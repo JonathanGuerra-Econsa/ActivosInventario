@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Activos.Designer.cs">
+      <DependentUpon>Activos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Agregar_Activo.cs">
       <SubType>Form</SubType>
     </Compile>
