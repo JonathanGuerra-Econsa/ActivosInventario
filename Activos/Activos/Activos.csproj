@@ -89,6 +89,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Activos.resx">
+      <DependentUpon>Activos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Agregar_Activo.resx">
       <DependentUpon>Agregar_Activo.cs</DependentUpon>
     </EmbeddedResource>
