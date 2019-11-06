@@ -44,12 +44,12 @@
             // 
             this.btnDepartamento.BackColor = System.Drawing.Color.Transparent;
             this.btnDepartamento.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDepartamento.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDepartamento.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDepartamento.Image = global::Activos.Properties.Resources.cashier;
             this.btnDepartamento.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnDepartamento.Location = new System.Drawing.Point(71, 127);
+            this.btnDepartamento.Location = new System.Drawing.Point(23, 107);
             this.btnDepartamento.Name = "btnDepartamento";
-            this.btnDepartamento.Size = new System.Drawing.Size(133, 157);
+            this.btnDepartamento.Size = new System.Drawing.Size(150, 190);
             this.btnDepartamento.TabIndex = 0;
             this.btnDepartamento.TabStop = false;
             this.btnDepartamento.Text = "Departamento";
@@ -61,12 +61,12 @@
             // 
             this.btnUsuario.BackColor = System.Drawing.Color.Transparent;
             this.btnUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnUsuario.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuario.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUsuario.Image = global::Activos.Properties.Resources.man__1_;
             this.btnUsuario.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnUsuario.Location = new System.Drawing.Point(228, 127);
+            this.btnUsuario.Location = new System.Drawing.Point(198, 107);
             this.btnUsuario.Name = "btnUsuario";
-            this.btnUsuario.Size = new System.Drawing.Size(133, 157);
+            this.btnUsuario.Size = new System.Drawing.Size(150, 190);
             this.btnUsuario.TabIndex = 1;
             this.btnUsuario.TabStop = false;
             this.btnUsuario.Text = "Usuario";
@@ -78,12 +78,12 @@
             // 
             this.btnCategoria.BackColor = System.Drawing.Color.Transparent;
             this.btnCategoria.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCategoria.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCategoria.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCategoria.Image = global::Activos.Properties.Resources.backend;
             this.btnCategoria.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCategoria.Location = new System.Drawing.Point(387, 127);
+            this.btnCategoria.Location = new System.Drawing.Point(374, 107);
             this.btnCategoria.Name = "btnCategoria";
-            this.btnCategoria.Size = new System.Drawing.Size(133, 157);
+            this.btnCategoria.Size = new System.Drawing.Size(150, 190);
             this.btnCategoria.TabIndex = 2;
             this.btnCategoria.TabStop = false;
             this.btnCategoria.Text = "Categoría";
@@ -95,12 +95,12 @@
             // 
             this.btnActivo.BackColor = System.Drawing.Color.Transparent;
             this.btnActivo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnActivo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActivo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActivo.Image = global::Activos.Properties.Resources.article;
             this.btnActivo.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnActivo.Location = new System.Drawing.Point(543, 127);
+            this.btnActivo.Location = new System.Drawing.Point(552, 107);
             this.btnActivo.Name = "btnActivo";
-            this.btnActivo.Size = new System.Drawing.Size(133, 157);
+            this.btnActivo.Size = new System.Drawing.Size(150, 190);
             this.btnActivo.TabIndex = 3;
             this.btnActivo.TabStop = false;
             this.btnActivo.Text = "Activo";
@@ -112,12 +112,12 @@
             // 
             this.btnArticulo.BackColor = System.Drawing.Color.Transparent;
             this.btnArticulo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnArticulo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnArticulo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnArticulo.Image = global::Activos.Properties.Resources.attachment;
             this.btnArticulo.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnArticulo.Location = new System.Drawing.Point(702, 127);
+            this.btnArticulo.Location = new System.Drawing.Point(727, 107);
             this.btnArticulo.Name = "btnArticulo";
-            this.btnArticulo.Size = new System.Drawing.Size(133, 157);
+            this.btnArticulo.Size = new System.Drawing.Size(150, 190);
             this.btnArticulo.TabIndex = 4;
             this.btnArticulo.TabStop = false;
             this.btnArticulo.Text = "Articulo";
@@ -141,9 +141,9 @@
             this.button1.BackColor = System.Drawing.Color.Transparent;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(543, 279);
+            this.button1.Location = new System.Drawing.Point(552, 303);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(133, 42);
+            this.button1.Size = new System.Drawing.Size(150, 44);
             this.button1.TabIndex = 6;
             this.button1.Text = "Activos Busqueda";
             this.button1.UseVisualStyleBackColor = false;
@@ -163,6 +163,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Cursor = System.Windows.Forms.Cursors.Help;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(1, 417);
@@ -170,6 +171,7 @@
             this.label2.Size = new System.Drawing.Size(269, 21);
             this.label2.TabIndex = 8;
             this.label2.Text = "Departamento de Informática 2020";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // Form1
             // 
