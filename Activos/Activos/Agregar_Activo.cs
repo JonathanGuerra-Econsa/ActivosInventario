@@ -18,6 +18,25 @@ namespace Activos
             InitializeComponent();
         }
 
+        private void llenarComboBox()
+        {
+            cmbUsuario.DataSource = consultasMySQL.verUsuarios();
+            cmbUsuario.DisplayMember = "Usuario";
+            cmbUsuario.ValueMember = "ID";
+
+            cmbEstado.DataSource = consultasMySQL.verEstados();
+            cmbEstado.DisplayMember = "Estado";
+            cmbEstado.ValueMember = "ID";
+
+            cmbCategoria.DataSource = consultasMySQL.verCategorias();
+            cmbCategoria.DisplayMember = "Categoria";
+            cmbCategoria.ValueMember = "ID";
+
+            cmbEmpresa.DataSource = consultasMySQL.verEmpresa();
+            cmbEmpresa.DisplayMember = "Empresa";
+            cmbEmpresa.ValueMember = "ID";
+        }
+
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Deseas agregar este activo?", "Agregar Activo", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
@@ -41,6 +60,11 @@ namespace Activos
                     MessageBox.Show("Ocurrio un error: " + ex + ". :(");
                 }
             }
+        }
+
+        private void Agregar_Activo_Load(object sender, EventArgs e)
+        {
+            llenarComboBox();
         }
     }
 }

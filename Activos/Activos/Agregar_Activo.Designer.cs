@@ -216,6 +216,7 @@
             this.Name = "Agregar_Activo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Activo";
+            this.Load += new System.EventHandler(this.Agregar_Activo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
