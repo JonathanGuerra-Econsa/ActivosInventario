@@ -96,7 +96,7 @@
             this.btnAct.TabIndex = 12;
             this.btnAct.Text = "Actualizar";
             this.btnAct.UseVisualStyleBackColor = false;
-            this.btnAct.Click += new System.EventHandler(this.btnAct_Click);
+            this.btnAct.Click += new System.EventHandler(this.ArmarConsulta);
             // 
             // button2
             // 
@@ -109,7 +109,7 @@
             this.button2.TabIndex = 13;
             this.button2.Text = "Limpiar Buscador";
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.limpiarDatos);
             // 
             // dateInicio
             // 
