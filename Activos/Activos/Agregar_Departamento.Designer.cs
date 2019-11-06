@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Agregar_Departamento));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDepartamento = new System.Windows.Forms.TextBox();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -57,13 +57,13 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Nombre: ";
             // 
-            // textBox1
+            // txtDepartamento
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(198, 145);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(292, 23);
-            this.textBox1.TabIndex = 8;
+            this.txtDepartamento.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDepartamento.Location = new System.Drawing.Point(198, 145);
+            this.txtDepartamento.Name = "txtDepartamento";
+            this.txtDepartamento.Size = new System.Drawing.Size(292, 23);
+            this.txtDepartamento.TabIndex = 8;
             // 
             // btnAgregar
             // 
@@ -86,7 +86,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(610, 364);
             this.Controls.Add(this.btnAgregar);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtDepartamento);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
@@ -104,7 +104,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDepartamento;
         private System.Windows.Forms.Button btnAgregar;
     }
 }
