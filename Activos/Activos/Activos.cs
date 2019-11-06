@@ -13,6 +13,7 @@ namespace Activos
     public partial class Activos : Form
     {
         ConsultasMysql mysql = new ConsultasMysql();
+        DateTime fechaI = new DateTime(2000,1,1), fechaF = DateTime.Today, fechaAntI, fechaAntF;
 
         public Activos()
         {
@@ -28,7 +29,10 @@ namespace Activos
             dataGridView1.Columns[7].Visible = false;
 
             //datatime
-            //data
+            dateInicio.Value = fechaI;
+            dateFinal.Value = fechaF;
+            fechaAntF = fechaF;
+            fechaAntI = fechaI;
             
             //Combo box de USUARIOS
             DataTable usuarios = new DataTable();
@@ -72,6 +76,13 @@ namespace Activos
 
         private void ArmarConsulta(object sender, EventArgs e)
         {
+            if (dateInicio.Value < dateFinal.Value) { fechaAntI = dateInicio.Value; fechaAntF = dateFinal.Value; }
+            else
+            {
+                dateFinal.Value = fechaAntF;
+                dateInicio.Value = fechaAntI;
+                MessageBox.Show("La fecha Inicial no puede ser superior a la fecha Final", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             if (cmbEstado.SelectedValue == null) return;
             StringBuilder consulta = new StringBuilder();
             consulta.Append("WHERE ");
@@ -93,7 +104,8 @@ namespace Activos
             cmbCat.SelectedValue = 0;
             cmbUsuario.SelectedValue = 0;
             textBox7.Text = "";
-
+            dateInicio.Value = fechaI;
+            dateFinal.Value = fechaF;
         }
     }
 }
