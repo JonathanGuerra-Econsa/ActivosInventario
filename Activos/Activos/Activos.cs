@@ -20,6 +20,16 @@ namespace Activos
             InitializeComponent();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            limpiarDatos(sender, e);
+        }
+
+        private void btnAct_Click(object sender, EventArgs e)
+        {
+            ArmarConsulta(sender, e);
+        }
+
         private void Activos_Load(object sender, EventArgs e)
         {
             //datos
