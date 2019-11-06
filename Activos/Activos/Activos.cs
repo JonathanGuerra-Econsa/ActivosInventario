@@ -76,7 +76,7 @@ namespace Activos
             if (cmbUsuario.SelectedValue.ToString() != 0.ToString()) consulta.Append("u.idUsuario like '%" + cmbUsuario.SelectedValue + "%' AND ");
             if (cmbCat.SelectedValue.ToString() != 0.ToString()) consulta.Append("c.idCategoria like '%" + cmbCat.SelectedValue + "%' AND ");
             if (cmbEstado.SelectedValue.ToString() != 0.ToString()) consulta.Append("e.idEstado like '%" + cmbEstado.SelectedValue + "%' AND ");
-            consulta.Append("a.fecha_ingreso BETWEEN '"+ dateInicio.Value.Date.ToString("yyyy-MM-dd") + "' AND '" + dateFinal.Value.Date.ToString("yyyy-MM-dd") + "'");
+            consulta.Append("a.fecha_ingreso BETWEEN '"+ dateInicio.Value.Date.ToString("yyyy-MM-dd") + "' AND '" + dateFinal.Value.Date.ToString("yyyy-MM-dd") + "' ORDER BY idActivo");
             //if (consulta.ToString() == "WHERE ") consulta = new StringBuilder();
             //DataRowView dv = (DataRowView)cmbUsuario.SelectedItem;
             //int id = (int)dv.Row["idU"];;
