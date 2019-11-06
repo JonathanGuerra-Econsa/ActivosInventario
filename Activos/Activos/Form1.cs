@@ -44,7 +44,12 @@ namespace Activos
         private void btnArticulo_Click(object sender, EventArgs e)
         {
             Agregar_Articulo agregarArticulo = new Agregar_Articulo();
-            agregarArticulo.Show();
+            agregarArticulo.ShowDialog();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            new Activos().Show();
         }
     }
 }

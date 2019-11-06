@@ -12,18 +12,59 @@ namespace Activos
 {
     public partial class Agregar_Activo : Form
     {
+        ConsultasMySQL_JG consultasMySQL =new  ConsultasMySQL_JG();
         public Agregar_Activo()
         {
             InitializeComponent();
+        }
+
+        private void llenarComboBox()
+        {
+            cmbUsuario.DataSource = consultasMySQL.verUsuarios();
+            cmbUsuario.DisplayMember = "Usuario";
+            cmbUsuario.ValueMember = "ID";
+
+            cmbEstado.DataSource = consultasMySQL.verEstados();
+            cmbEstado.DisplayMember = "Estado";
+            cmbEstado.ValueMember = "ID";
+
+            cmbCategoria.DataSource = consultasMySQL.verCategorias();
+            cmbCategoria.DisplayMember = "Categoria";
+            cmbCategoria.ValueMember = "ID";
+
+            cmbEmpresa.DataSource = consultasMySQL.verEmpresa();
+            cmbEmpresa.DisplayMember = "Empresa";
+            cmbEmpresa.ValueMember = "ID";
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Deseas agregar este activo?", "Agregar Activo", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
             {
-                MessageBox.Show("Activo agregado correctamente", "Activo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Close();
+                try
+                {
+                    consultasMySQL.agregarActivo(txtDescripcion.Text, cmbUsuario.SelectedValue.ToString(), cmbEstado.SelectedValue.ToString(), cmbCategoria.SelectedValue.ToString(), cmbEmpresa.SelectedValue.ToString(), dtFecha.Value.ToString("yyyy-MM-dd"));
+                    MessageBox.Show("Activo agregado correctamente", "Activo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    try
+                    {
+                        consultasMySQL.agregarActivo_Historial(txtDescripcion.Text, cmbUsuario.SelectedValue.ToString(), cmbEstado.SelectedValue.ToString(), cmbCategoria.SelectedValue.ToString(), cmbEmpresa.SelectedValue.ToString(), dtFecha.Value.ToString("yyyy-MM-dd"), consultasMySQL.verIdActivos());
+                        Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("No se pudo guardar en historial debido a que ha ocurrido una excepción, las cual es: " + ex);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrio un error: " + ex + ". :(");
+                }
             }
+        }
+
+        private void Agregar_Activo_Load(object sender, EventArgs e)
+        {
+            llenarComboBox();
         }
     }
 }
