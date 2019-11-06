@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace Activos
 {
-    class MySQL_JG
+    class ConsultasMySQL_JG
     {
         //----------------------------------------------*Variables Gloables*--------------------------------------------//
         string connectionString = @"Server=192.168.0.5;Database=activos;Uid=hola;Pwd=;port=3306;";
