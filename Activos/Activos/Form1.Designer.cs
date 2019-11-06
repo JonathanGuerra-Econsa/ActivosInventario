@@ -49,6 +49,7 @@
             this.btnDepartamento.Name = "btnDepartamento";
             this.btnDepartamento.Size = new System.Drawing.Size(133, 157);
             this.btnDepartamento.TabIndex = 0;
+            this.btnDepartamento.TabStop = false;
             this.btnDepartamento.Text = "Departamento";
             this.btnDepartamento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnDepartamento.UseVisualStyleBackColor = false;
@@ -65,6 +66,7 @@
             this.btnUsuario.Name = "btnUsuario";
             this.btnUsuario.Size = new System.Drawing.Size(133, 157);
             this.btnUsuario.TabIndex = 1;
+            this.btnUsuario.TabStop = false;
             this.btnUsuario.Text = "Usuario";
             this.btnUsuario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnUsuario.UseVisualStyleBackColor = false;
@@ -81,6 +83,7 @@
             this.btnCategoria.Name = "btnCategoria";
             this.btnCategoria.Size = new System.Drawing.Size(133, 157);
             this.btnCategoria.TabIndex = 2;
+            this.btnCategoria.TabStop = false;
             this.btnCategoria.Text = "Categoría";
             this.btnCategoria.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCategoria.UseVisualStyleBackColor = false;
@@ -97,6 +100,7 @@
             this.btnActivo.Name = "btnActivo";
             this.btnActivo.Size = new System.Drawing.Size(133, 157);
             this.btnActivo.TabIndex = 3;
+            this.btnActivo.TabStop = false;
             this.btnActivo.Text = "Activo";
             this.btnActivo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnActivo.UseVisualStyleBackColor = false;
@@ -113,6 +117,7 @@
             this.btnArticulo.Name = "btnArticulo";
             this.btnArticulo.Size = new System.Drawing.Size(133, 157);
             this.btnArticulo.TabIndex = 4;
+            this.btnArticulo.TabStop = false;
             this.btnArticulo.Text = "Articulo";
             this.btnArticulo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnArticulo.UseVisualStyleBackColor = false;
@@ -131,9 +136,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(71, 313);
+            this.button1.Location = new System.Drawing.Point(543, 279);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(133, 64);
+            this.button1.Size = new System.Drawing.Size(133, 42);
             this.button1.TabIndex = 6;
             this.button1.Text = "Activos Busqueda";
             this.button1.UseVisualStyleBackColor = true;
