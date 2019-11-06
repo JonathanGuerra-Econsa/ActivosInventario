@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=8.0.17.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -81,6 +82,7 @@
     <Compile Include="Agregar_Usuario.Designer.cs">
       <DependentUpon>Agregar_Usuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsultasMysql.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

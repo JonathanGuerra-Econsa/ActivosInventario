@@ -35,6 +35,7 @@
             this.btnActivo = new System.Windows.Forms.Button();
             this.btnArticulo = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnDepartamento
@@ -128,6 +129,16 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Menú Principal";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(71, 313);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(133, 64);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Activos Busqueda";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -135,6 +146,7 @@
             this.BackgroundImage = global::Activos.Properties.Resources.fondo2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(904, 447);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnArticulo);
             this.Controls.Add(this.btnActivo);
@@ -160,6 +172,7 @@
         private System.Windows.Forms.Button btnActivo;
         private System.Windows.Forms.Button btnArticulo;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
