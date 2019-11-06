@@ -17,7 +17,7 @@ namespace Activos
         public DataTable consulta(string consulta = "")
         {
             DataTable dt = new DataTable();
-            dt.Columns.Add("ID");
+            dt.Columns.Add("ID", typeof(Int32));
             dt.Columns.Add("Descripcion");
             dt.Columns.Add("Usuario");
             dt.Columns.Add("idUsuario");
