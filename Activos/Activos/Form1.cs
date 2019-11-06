@@ -46,5 +46,10 @@ namespace Activos
         {
             new Activos().Show();
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Departamento de Informática 2019", "Creditos", MessageBoxButtons.OK);
+        }
     }
 }
