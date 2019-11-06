@@ -26,6 +26,9 @@ namespace Activos
             dataGridView1.Columns[3].Visible = false;
             dataGridView1.Columns[5].Visible = false;
             dataGridView1.Columns[7].Visible = false;
+
+            //datatime
+            //data
             
             //Combo box de USUARIOS
             DataTable usuarios = new DataTable();
@@ -82,6 +85,15 @@ namespace Activos
             //int id = (int)dv.Row["idU"];;
             Console.WriteLine(consulta);
             dataGridView1.DataSource = mysql.consulta(consulta.ToString());
+        }
+
+        private void limpiarDatos(object sender, EventArgs e)
+        {
+            cmbEstado.SelectedValue = 0;
+            cmbCat.SelectedValue = 0;
+            cmbUsuario.SelectedValue = 0;
+            textBox7.Text = "";
+
         }
     }
 }
