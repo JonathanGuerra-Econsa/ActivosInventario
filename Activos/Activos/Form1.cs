@@ -22,7 +22,7 @@ namespace Activos
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            new Agregar_Departamento().Show();
         }
 
         private void btnUsuario_Click(object sender, EventArgs e)
