@@ -127,5 +127,73 @@ namespace Activos
             connection.Close();
             return dt;
         }
+
+        public DataTable empresas()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("idEm", typeof(Int32));
+            dt.Columns.Add("nombre", typeof(string));
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT * FROM empresa";
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    DataRow empresa = dt.NewRow();
+                    empresa["idEm"] = reader.GetInt32(0);
+                    empresa["nombre"] = reader.GetString(1);
+                    dt.Rows.Add(empresa);
+                }
+            }
+            connection.Close();
+            return dt;
+        }
+        // Revisar Articulos
+
+        public DataTable buscar(string tabla, string id)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID", typeof(Int32));
+            dt.Columns.Add("Descripcion");
+            dt.Columns.Add("Usuario");
+            dt.Columns.Add("idUsuario");
+            dt.Columns.Add("Estado");
+            dt.Columns.Add("idEstado");
+            dt.Columns.Add("Categoria");
+            dt.Columns.Add("idCategoria");
+            dt.Columns.Add("Empresa");
+            dt.Columns.Add("Fecha de Ingreso");
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT a.idActivo,a.descripcion,u.nombre as 'Usuario', u.idUsuario, " +
+                "e.nombre as 'Estado', e.idEstado, c.nombre as 'Categoria', c.idCategoria, em.nombre as 'Empresa', a.fecha_ingreso FROM `" + tabla + "` as a " +
+                "JOIN `usuario` as u ON a.idUsuario = u.idUsuario " +
+                "JOIN `estado` as e ON a.idEstado = e.idEstado " +
+                "JOIN `categoria` as c ON a.idCategoria = c.idCategoria " +
+                "JOIN `empresa` as em ON a.idEmpresa = em.idEmpresa WHERE a.idActivo = " + id;
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    DataRow encontrado = dt.NewRow();
+                    encontrado[0] = reader.GetString(0);
+                    encontrado[1] = reader.GetString(1);
+                    encontrado[2] = reader.GetString(2);
+                    encontrado[3] = reader.GetString(3);
+                    encontrado[4] = reader.GetString(4);
+                    encontrado[5] = reader.GetString(5);
+                    encontrado[6] = reader.GetString(6);
+                    encontrado[7] = reader.GetString(7);
+                    encontrado[8] = reader.GetString(8);
+                    encontrado[9] = reader.GetString(9);
+                    dt.Rows.Add(encontrado);
+                }
+            }
+            connection.Close();
+            return dt;
+        }
     }
 }

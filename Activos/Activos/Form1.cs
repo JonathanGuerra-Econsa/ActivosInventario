@@ -69,5 +69,10 @@ namespace Activos
         {
             Application.Exit();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            new Revisar_articulos().Show();
+        }
     }
 }
