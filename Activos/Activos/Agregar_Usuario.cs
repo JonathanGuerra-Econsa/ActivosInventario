@@ -20,13 +20,13 @@ namespace Activos
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text != "" || txtPassword.Text != "" || txtUsuario.Text != "")
+            if (txtNombre.Text != "" || txtUsuario.Text != "")
             {
                 if (MessageBox.Show("Deseas agregar a este usuario?", "Agregar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
                 {
                     try
                     {
-                        consultasMySQL.agregarUsuario(txtNombre.Text, txtUsuario.Text, txtPassword.Text, cmbDepartamento.SelectedValue.ToString());
+                        consultasMySQL.agregarUsuario(txtNombre.Text, txtUsuario.Text, "", cmbDepartamento.SelectedValue.ToString());
                         MessageBox.Show("Usuario agregado correctamente", "Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Close();
                     }
@@ -47,6 +47,9 @@ namespace Activos
             cmbDepartamento.DataSource = consultasMySQL.verDepartamentos();
             cmbDepartamento.DisplayMember = "Departamento";
             cmbDepartamento.ValueMember = "ID";
+
+            dgvUsuarios.DataSource = consultasMySQL.verUsuarios();
+            dgvUsuarios.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Activos
 
         private void btnUsuario_Click(object sender, EventArgs e)
         {
-            
+            new Agregar_Usuario().Show();
         }
 
         private void btnCategoria_Click(object sender, EventArgs e)
