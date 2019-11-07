@@ -61,6 +61,7 @@ namespace Activos
                 txtDepartamento.Visible = true;
                 cmbDepartamento.Visible = false;
                 btnCancelar.Visible = false;
+                btnSet.Visible = false;
             }
             else
             {
@@ -71,6 +72,7 @@ namespace Activos
                 txtDepartamento.Visible = false;
                 cmbDepartamento.Visible = true;
                 btnCancelar.Visible = true;
+                btnSet.Visible = true;
                 limpiar();
             }
         }
@@ -88,40 +90,13 @@ namespace Activos
 
         private void btnAgregar_Click_1(object sender, EventArgs e)
         {
-            if (btnCancelar.Visible == true)
-            {
-                if (txtNombre.Text != "" || txtUsuario.Text != "")
-                {
-                    if (MessageBox.Show("Deseas agregar a este usuario?", "Agregar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
-                    {
-                        try
-                        {
-                            consultasMySQL.agregarUsuario(txtNombre.Text, txtUsuario.Text, "", cmbDepartamento.SelectedValue.ToString());
-                            MessageBox.Show("Usuario agregado correctamente", "Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //Llamo a el evento click de cancelar porque hace lo mismo que activar dgvUsuarios
-                            btnCancelar_Click(sender, e);
-                            ComboDash();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Excepción Encontrada: " + ex);
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Porfavor llene correctamente todos los campos debidamente", "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            else
-            {
-                detalle = false;
-                Detalle();
-                dgvUsuarios.Enabled = false;
-                dgvUsuarios.DefaultCellStyle.BackColor = Color.Gray;
-                dgvUsuarios.ColumnHeadersDefaultCellStyle.BackColor = Color.Gray;
-                dgvUsuarios.BackgroundColor = Color.Gray;
-            }
+            detalle = false;
+            Detalle();
+            dgvUsuarios.Enabled = false;
+            dgvUsuarios.DefaultCellStyle.BackColor = Color.Gray;
+            dgvUsuarios.ColumnHeadersDefaultCellStyle.BackColor = Color.Gray;
+            dgvUsuarios.BackgroundColor = Color.Gray;
+            btnAgregar.Visible = false;
         }
 
         private void limpiar()
@@ -141,6 +116,33 @@ namespace Activos
             detalle = true;
             Detalle();
             limpiar();
+        }
+
+        private void btnSet_Click(object sender, EventArgs e)
+        {
+            if (txtNombre.Text != "" || txtUsuario.Text != "")
+            {
+                if (MessageBox.Show("Deseas agregar a este usuario?", "Agregar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        consultasMySQL.agregarUsuario(txtNombre.Text, txtUsuario.Text, "", cmbDepartamento.SelectedValue.ToString());
+                        MessageBox.Show("Usuario agregado correctamente", "Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //Llamo a el evento click de cancelar porque hace lo mismo que activar dgvUsuarios
+                        btnCancelar_Click(sender, e);
+                        btnAgregar.Visible = true;
+                        ComboDash();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Excepción Encontrada: " + ex);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Porfavor llene correctamente todos los campos debidamente", "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }
