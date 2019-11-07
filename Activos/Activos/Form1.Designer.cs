@@ -197,9 +197,9 @@
             this.labelName.ForeColor = System.Drawing.Color.Black;
             this.labelName.Location = new System.Drawing.Point(1, 9);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(221, 21);
+            this.labelName.Size = new System.Drawing.Size(93, 21);
             this.labelName.TabIndex = 10;
-            this.labelName.Text = "Bienvenido Jonathan Guerra";
+            this.labelName.Text = "Bienvenido";
             // 
             // Form1
             // 
