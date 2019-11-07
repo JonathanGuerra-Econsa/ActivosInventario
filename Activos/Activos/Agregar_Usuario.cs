@@ -58,10 +58,13 @@ namespace Activos
                 txtUsuario.ReadOnly = true;
                 txtDepartamento.BorderStyle = BorderStyle.None;
                 txtDepartamento.ReadOnly = true;
+
                 txtDepartamento.Visible = true;
                 cmbDepartamento.Visible = false;
                 btnCancelar.Visible = false;
                 btnSet.Visible = false;
+                btnEditar.Visible = true;
+                btnAgregar.Visible = true;
             }
             else
             {
@@ -73,6 +76,10 @@ namespace Activos
                 cmbDepartamento.Visible = true;
                 btnCancelar.Visible = true;
                 btnSet.Visible = true;
+                dgvUsuarios.Enabled = false;
+                dgvUsuarios.DefaultCellStyle.BackColor = Color.Silver;
+                dgvUsuarios.ColumnHeadersDefaultCellStyle.BackColor = Color.Silver;
+                dgvUsuarios.BackgroundColor = Color.Silver;
                 limpiar();
             }
         }
@@ -90,13 +97,10 @@ namespace Activos
 
         private void btnAgregar_Click_1(object sender, EventArgs e)
         {
+            btnAgregar.Visible = false;
+            btnEditar.Visible = false;
             detalle = false;
             Detalle();
-            dgvUsuarios.Enabled = false;
-            dgvUsuarios.DefaultCellStyle.BackColor = Color.Gray;
-            dgvUsuarios.ColumnHeadersDefaultCellStyle.BackColor = Color.Gray;
-            dgvUsuarios.BackgroundColor = Color.Gray;
-            btnAgregar.Visible = false;
         }
 
         private void limpiar()
@@ -109,13 +113,7 @@ namespace Activos
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            dgvUsuarios.Enabled = true;
-            dgvUsuarios.DefaultCellStyle.BackColor = Color.White;
-            dgvUsuarios.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
-            dgvUsuarios.BackgroundColor = Color.White;
-            detalle = true;
-            Detalle();
-            limpiar();
+            Reordenar();
         }
 
         private void btnSet_Click(object sender, EventArgs e)
@@ -126,12 +124,9 @@ namespace Activos
                 {
                     try
                     {
-                        consultasMySQL.agregarUsuario(txtNombre.Text, txtUsuario.Text, "", cmbDepartamento.SelectedValue.ToString());
+                        consultasMySQL.agregarUsuario(txtNombre.Text, txtUsuario.Text, "null", cmbDepartamento.SelectedValue.ToString());
                         MessageBox.Show("Usuario agregado correctamente", "Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //Llamo a el evento click de cancelar porque hace lo mismo que activar dgvUsuarios
-                        btnCancelar_Click(sender, e);
-                        btnAgregar.Visible = true;
-                        ComboDash();
+                        Reordenar();
                     }
                     catch (Exception ex)
                     {
@@ -142,6 +137,53 @@ namespace Activos
             else
             {
                 MessageBox.Show("Porfavor llene correctamente todos los campos debidamente", "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void Reordenar()
+        {
+            btnAgregar.Visible = true;
+            btnEditar.Visible = true;
+            dgvUsuarios.Enabled = true;
+            dgvUsuarios.DefaultCellStyle.BackColor = Color.White;
+            dgvUsuarios.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+            dgvUsuarios.BackgroundColor = Color.White;
+            limpiar();
+            ComboDash();
+            detalle = true;
+            Detalle();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if(detalle == false)
+            {
+                try
+                {
+                    consultasMySQL.updateUsuario(txtNombre.Text, txtUsuario.Text, cmbDepartamento.SelectedValue.ToString(), lbID.Text);
+                    MessageBox.Show("Usuario Actualizado");
+                    Reordenar();
+                    detalle = true;
+                    Detalle();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrio una Excepción: " + ex);
+                }
+            }
+            else if(detalle == true)
+            {
+                detalle = false;
+                Detalle();
+                string idUsuario = dgvUsuarios.CurrentRow.Cells[0].Value.ToString();
+                string nombre = dgvUsuarios.CurrentRow.Cells[1].Value.ToString();
+                string usuario = dgvUsuarios.CurrentRow.Cells[2].Value.ToString();
+                string departamento = dgvUsuarios.CurrentRow.Cells[3].Value.ToString();
+
+                lbID.Text = idUsuario;
+                txtNombre.Text = nombre;
+                txtUsuario.Text = usuario;
+                cmbDepartamento.Text = departamento;
             }
         }
     }
