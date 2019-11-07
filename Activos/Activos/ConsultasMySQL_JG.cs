@@ -243,5 +243,17 @@ namespace Activos
                 mysqlCmd.ExecuteNonQuery();
             }
         }
+
+        public MySqlDataReader Login(string usuario)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("SELECT  nombre, user, password FROM {0} WHERE user LIKE '{1}'", Tabla_Usuario, usuario), mysqlCon);
+                MySqlDataReader reader = mysqlCmd.ExecuteReader();
+                reader.Read();
+                return reader;
+            }
+        }
     }
 }
