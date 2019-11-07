@@ -27,6 +27,14 @@ namespace Activos
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            if(consultasMySQL.Login(txtUser.Text, txtPassword.Text) != "")
+            {
+                new Form1().Show();
+            }
+            else
+            {
+                MessageBox.Show("Usuario o Contraseña invalido");
+            }
         }
     }
 }
