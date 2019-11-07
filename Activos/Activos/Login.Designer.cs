@@ -58,26 +58,26 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = global::Activos.Properties.Resources.Econsa;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Location = new System.Drawing.Point(399, 12);
+            this.panel1.Location = new System.Drawing.Point(417, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(159, 119);
             this.panel1.TabIndex = 10;
             // 
             // txtUser
             // 
-            this.txtUser.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUser.Location = new System.Drawing.Point(221, 148);
+            this.txtUser.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUser.Location = new System.Drawing.Point(222, 154);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(205, 29);
+            this.txtUser.Size = new System.Drawing.Size(205, 33);
             this.txtUser.TabIndex = 1;
             // 
             // txtPassword
             // 
-            this.txtPassword.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(221, 179);
+            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(222, 194);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '•';
-            this.txtPassword.Size = new System.Drawing.Size(205, 29);
+            this.txtPassword.Size = new System.Drawing.Size(205, 33);
             this.txtPassword.TabIndex = 2;
             // 
             // label1
@@ -85,7 +85,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(86, 147);
+            this.label1.Location = new System.Drawing.Point(87, 153);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(91, 30);
             this.label1.TabIndex = 13;
@@ -96,7 +96,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(86, 178);
+            this.label3.Location = new System.Drawing.Point(87, 193);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(126, 30);
             this.label3.TabIndex = 14;
@@ -107,7 +107,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(206, 12);
+            this.label4.Location = new System.Drawing.Point(215, 12);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(187, 37);
             this.label4.TabIndex = 15;
@@ -120,9 +120,9 @@
             this.btnLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(441, 148);
+            this.btnLogin.Location = new System.Drawing.Point(433, 154);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(59, 60);
+            this.btnLogin.Size = new System.Drawing.Size(70, 73);
             this.btnLogin.TabIndex = 3;
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
