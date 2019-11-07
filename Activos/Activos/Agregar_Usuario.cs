@@ -50,6 +50,7 @@ namespace Activos
 
             dgvUsuarios.DataSource = consultasMySQL.verUsuarios();
             dgvUsuarios.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvUsuarios.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
     }
 }
