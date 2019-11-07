@@ -22,7 +22,7 @@ namespace Activos
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            new Agregar_Departamento().Show();
         }
 
         private void btnUsuario_Click(object sender, EventArgs e)
@@ -68,6 +68,11 @@ namespace Activos
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            new Revisar_articulos().Show();
         }
     }
 }
