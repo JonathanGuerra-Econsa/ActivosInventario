@@ -139,6 +139,8 @@ namespace Activos
                 button1.Text = "Editar";
                 activo = false;
                 button2.Visible = false;
+                textBox1.Enabled = true;
+                comboBox1.Enabled = true;
             }
             else
             {
@@ -151,6 +153,8 @@ namespace Activos
                 button1.Text = "Guardar";
                 activo = true;
                 button2.Visible = true;
+                textBox1.Enabled = false;
+                comboBox1.Enabled = false;
             }
         }
     }
