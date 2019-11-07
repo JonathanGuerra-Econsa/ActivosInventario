@@ -14,7 +14,7 @@ namespace Activos
         private MySqlConnection connection = new MySqlConnection("datasource=192.168.0.5;port=3306;username=admin;password=;database=activos;");
         MySqlDataReader reader;
 
-        public DataTable consulta(string consulta = "")
+        public DataTable consulta(string datos, string consulta = "")
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("ID", typeof(Int32));
@@ -29,12 +29,13 @@ namespace Activos
             dt.Columns.Add("Fecha de Ingreso");
             MySqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = "SELECT a.idActivo,a.descripcion,u.nombre as 'Usuario', u.idUsuario, " +
-                "e.nombre as 'Estado', e.idEstado, c.nombre as 'Categoria', c.idCategoria, em.nombre as 'Empresa', a.fecha_ingreso FROM `activo` as a " +
+                "e.nombre as 'Estado', e.idEstado, c.nombre as 'Categoria', c.idCategoria, em.nombre as 'Empresa', a.fecha_ingreso FROM `"+datos+"` as a " +
                 "JOIN `usuario` as u ON a.idUsuario = u.idUsuario " +
                 "JOIN `estado` as e ON a.idEstado = e.idEstado " +
                 "JOIN `categoria` as c ON a.idCategoria = c.idCategoria " +
                 "JOIN `empresa` as em ON a.idEmpresa = em.idEmpresa " + consulta;
             connection.Open();
+            Console.WriteLine(cmd.CommandText);
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
             {

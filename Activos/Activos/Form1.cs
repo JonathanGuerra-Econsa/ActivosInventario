@@ -51,5 +51,10 @@ namespace Activos
         {
             MessageBox.Show("Departamento de Informática 2020", "Creditos", MessageBoxButtons.OK);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            new Articulos().Show();
+        }
     }
 }

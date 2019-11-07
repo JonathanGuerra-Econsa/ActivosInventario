@@ -122,6 +122,9 @@
     <EmbeddedResource Include="Agregar_Usuario.resx">
       <DependentUpon>Agregar_Usuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Articulos.resx">
+      <DependentUpon>Articulos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
