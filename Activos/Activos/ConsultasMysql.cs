@@ -128,6 +128,28 @@ namespace Activos
             return dt;
         }
 
+        public DataTable empresas()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("idEm", typeof(Int32));
+            dt.Columns.Add("nombre", typeof(string));
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT * FROM empresa";
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    DataRow empresa = dt.NewRow();
+                    empresa["idEm"] = reader.GetInt32(0);
+                    empresa["nombre"] = reader.GetString(1);
+                    dt.Rows.Add(empresa);
+                }
+            }
+            connection.Close();
+            return dt;
+        }
         // Revisar Articulos
 
         public DataTable buscar(string tabla, string id)

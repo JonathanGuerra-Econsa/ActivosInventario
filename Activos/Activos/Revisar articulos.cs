@@ -14,7 +14,7 @@ namespace Activos
     {
         ConsultasMysql mysql = new ConsultasMysql();
         DataTable datos = new DataTable();
-
+        bool activo = false;
 
         public Revisar_articulos()
         {
@@ -27,6 +27,38 @@ namespace Activos
             this.CenterToScreen();
             comboBox1.Items.Add("activo");
             comboBox1.Items.Add("articulo");
+
+            //Combo box de USUARIOS
+            DataTable usuarios = new DataTable();
+            usuarios = mysql.usuarios();
+
+            user.DisplayMember = "nombre";
+            user.ValueMember = "idU";
+            user.DataSource = usuarios;
+
+            //Combo box de Categoria
+            DataTable categorias = new DataTable();
+            categorias = mysql.categorias();;
+
+            cat.DisplayMember = "nombre";
+            cat.ValueMember = "idC";
+            cat.DataSource = categorias;
+
+            //Combo box de Estado
+            DataTable estados = new DataTable();
+            estados = mysql.estados();
+
+            status.DisplayMember = "nombre";
+            status.ValueMember = "idE";
+            status.DataSource = estados;
+
+            //Combo box de Empresa
+            DataTable empresas = new DataTable();
+            empresas = mysql.empresas();
+
+            Emp.DisplayMember = "nombre";
+            Emp.ValueMember = "idEm";
+            Emp.DataSource = empresas;
         }
 
         private void Busqueda()
@@ -72,6 +104,7 @@ namespace Activos
             status.Text = datos.Rows[0]["Estado"].ToString();
             cat.Text = datos.Rows[0]["Categoria"].ToString();
             Emp.Text = datos.Rows[0]["Empresa"].ToString();
+            date.Value = Convert.ToDateTime(datos.Rows[0]["Fecha De Ingreso"]);
             //groupBox1.Text = datos.Rows[0]["Descripcion"].ToString();
             this.CenterToScreen();
         }
@@ -95,7 +128,30 @@ namespace Activos
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new editar().ShowDialog();
+            if (activo)
+            {
+                cat.Enabled = false;
+                status.Enabled = false;
+                user.Enabled = false;
+                date.Enabled = false;
+                desc.Enabled = false;
+                Emp.Enabled = false;
+                button1.Text = "Editar";
+                activo = false;
+                button2.Visible = false;
+            }
+            else
+            {
+                cat.Enabled = true;
+                status.Enabled = true;
+                user.Enabled = true;
+                date.Enabled = true;
+                desc.Enabled = true;
+                Emp.Enabled = true;
+                button1.Text = "Guardar";
+                activo = true;
+                button2.Visible = true;
+            }
         }
     }
 }
