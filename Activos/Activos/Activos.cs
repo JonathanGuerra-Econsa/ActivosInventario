@@ -23,7 +23,7 @@ namespace Activos
         private void Activos_Load(object sender, EventArgs e)
         {
             //datos
-            dataGridView1.DataSource = mysql.consulta();
+            dataGridView1.DataSource = mysql.consulta("activo");
             dataGridView1.Columns[3].Visible = false;
             dataGridView1.Columns[5].Visible = false;
             dataGridView1.Columns[7].Visible = false;
@@ -95,7 +95,7 @@ namespace Activos
             //DataRowView dv = (DataRowView)cmbUsuario.SelectedItem;
             //int id = (int)dv.Row["idU"];;
             Console.WriteLine(consulta);
-            dataGridView1.DataSource = mysql.consulta(consulta.ToString());
+            dataGridView1.DataSource = mysql.consulta("activo",consulta.ToString());
         }
 
         private void limpiarDatos(object sender, EventArgs e)
