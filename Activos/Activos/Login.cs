@@ -27,9 +27,13 @@ namespace Activos
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if(consultasMySQL.Login(txtUser.Text, txtPassword.Text) != "")
+            string user_name = consultasMySQL.Login(txtUser.Text, txtPassword.Text);
+            if (user_name != "")
             {
-                new Form1().Show();
+                Form1 form1 = new Form1();
+                form1.nombre = user_name;
+                form1.Show();
+                Hide();
             }
             else
             {

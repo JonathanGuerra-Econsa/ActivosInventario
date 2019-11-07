@@ -12,6 +12,9 @@ namespace Activos
 {
     public partial class Form1 : Form
     {
+        //-------------Variables Publicas-----------//
+        public string nombre;
+        //--------------------------------------------//
         public Form1()
         {
             InitializeComponent();
@@ -55,6 +58,16 @@ namespace Activos
         private void button2_Click(object sender, EventArgs e)
         {
             new Articulos().Show();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            labelName.Text = ("Bienvenido " + nombre);
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
