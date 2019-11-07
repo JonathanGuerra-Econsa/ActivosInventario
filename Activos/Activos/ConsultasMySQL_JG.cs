@@ -243,5 +243,23 @@ namespace Activos
                 mysqlCmd.ExecuteNonQuery();
             }
         }
+
+        public string Login(string usuario, string password)
+        {
+            string user = "";
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlDataAdapter mysqlCmd = new MySqlDataAdapter(string.Format("SELECT  nombre FROM {0} WHERE user LIKE '{1}' AND password LIKE '{2}'", Tabla_Usuario, usuario, password), mysqlCon);
+                DataTable TableUsuario = new DataTable();
+                mysqlCmd.Fill(TableUsuario);
+                if(TableUsuario.Rows.Count > 0)
+                {
+                    DataRow row = TableUsuario.Rows[0];
+                    user = row[0].ToString();
+                }
+                return user;
+            }
+        }
     }
 }
