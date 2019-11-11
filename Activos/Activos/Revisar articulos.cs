@@ -137,25 +137,81 @@ namespace Activos
         #endregion
 
         #region botones
+
+        private void activoTrue()
+        {
+            cat.Enabled = false;
+            status.Enabled = false;
+            user.Enabled = false;
+            date.Enabled = false;
+            desc.Enabled = false;
+            Emp.Enabled = false;
+            button1.Text = "Editar";
+            button3.Text = "Traspaso";
+            button4.Text = "Cambiar fecha de ingreso";
+            activo = false;
+            button1.Enabled = true;
+            button3.Enabled = true;
+            button4.Enabled = true;
+            button2.Visible = false;
+            textBox1.Enabled = true;
+            comboBox1.Enabled = true;
+        }
+
+        private void activoFalse(int button = 0)
+        {
+            cat.Enabled = true;
+            status.Enabled = true;
+            user.Enabled = true;
+            date.Enabled = true;
+            desc.Enabled = true;
+            Emp.Enabled = true;
+            button1.Text = "Guardar";
+            button3.Text = "Realizar Traspaso";
+            button4.Text = "Guardar";
+            activo = true;
+            button2.Visible = true;
+            button1.Enabled = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            textBox1.Enabled = false;
+            comboBox1.Enabled = false;
+            if (button == 1)
+            {
+                button1.Enabled = true;
+                button3.Text = "Traspaso";
+                button4.Text = "Cambiar fecha de ingreso";
+                user.Enabled = false;
+                date.Enabled = false;
+            }
+            else if (button == 3)
+            {
+                button3.Enabled = true;
+                button1.Text = "Editar";
+                button4.Text = "Cambiar fecha de ingreso";
+                date.Enabled = false;
+                cat.Enabled = false;
+                status.Enabled = false;
+                desc.Enabled = false;
+                Emp.Enabled = false;
+            }
+            else if (button == 4)
+            {
+                button4.Enabled = true;
+                button1.Text = "Editar";
+                button3.Text = "Traspaso";
+                user.Enabled = false;
+                cat.Enabled = false;
+                status.Enabled = false;
+                desc.Enabled = false;
+                Emp.Enabled = false;
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (activo)
             {
-                //guarda cambios
-                cat.Enabled = false;
-                status.Enabled = false;
-                user.Enabled = false;
-                //date.Enabled = false;
-                desc.Enabled = false;
-                Emp.Enabled = false;
-                button1.Text = "Editar";
-                button1.Enabled = true;
-                activo = false;
-                button3.Enabled = true;
-                button4.Enabled = true;
-                button2.Visible = false;
-                textBox1.Enabled = true;
-                comboBox1.Enabled = true;
                 if (mysql.editar(desc.Text, Convert.ToInt32(status.SelectedValue), Convert.ToInt32(cat.SelectedValue), Convert.ToInt32(Emp.SelectedValue),comboBox1.Text,Convert.ToInt32(textBox1.Text)))
                 {
                     MessageBox.Show(comboBox1.Text+" Editado correctamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -164,23 +220,11 @@ namespace Activos
                 {
                     MessageBox.Show("Error al editar el "+textBox1.Text+".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                activoTrue();
             }
             else
             {
-                //activa guarda cambios
-                cat.Enabled = true;
-                status.Enabled = true;
-                user.Enabled = false;
-                //date.Enabled = true;
-                desc.Enabled = true;
-                Emp.Enabled = true;
-                button1.Text = "Guardar";
-                activo = true;
-                button2.Visible = true;
-                button3.Enabled = false;
-                button4.Enabled = false;
-                textBox1.Enabled = false;
-                comboBox1.Enabled = false;
+                activoFalse(1);
             }
         }
 
@@ -188,15 +232,6 @@ namespace Activos
         {
             if (activo)
             {
-                user.Enabled = false;
-                //date.Enabled = false;
-                button3.Text = "Traspaso";
-                activo = false;
-                button2.Visible = false;
-                textBox1.Enabled = true;
-                comboBox1.Enabled = true;
-                button1.Enabled = true;
-                button4.Enabled = true;
                 bool result = mysql.traspaso(Convert.ToInt32(user.SelectedValue), comboBox1.Text, Convert.ToInt32(textBox1.Text));
                 if (result)
                 {
@@ -206,18 +241,11 @@ namespace Activos
                 {
                     MessageBox.Show("Error al realizar el traspaso.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                activoFalse();
             }
             else
             {
-                user.Enabled = true;
-                //date.Enabled = true;
-                button3.Text = "Realizar Traspaso";
-                activo = true;
-                button2.Visible = true;
-                button1.Enabled = false;
-                button4.Enabled = false;
-                textBox1.Enabled = false;
-                comboBox1.Enabled = false;
+                activoFalse(3);
             }
         }
 
@@ -225,40 +253,28 @@ namespace Activos
         {
             if (activo)
             {
-                //user.Enabled = false;
-                date.Enabled = false;
-                button4.Text = "Cambiar fecha de ingreso";
-                activo = false;
-                button2.Visible = false;
-                textBox1.Enabled = true;
-                comboBox1.Enabled = true;
-                button1.Enabled = true;
-                button3.Enabled = true;
-                bool result = mysql.traspaso(Convert.ToInt32(user.SelectedValue), comboBox1.Text, Convert.ToInt32(textBox1.Text));
+                bool result = mysql.fecha(comboBox1.Text, date.Value.Date.ToString("yyyy-MM-dd"), Convert.ToInt32(textBox1.Text));
                 if (result)
                 {
-                    MessageBox.Show("Traspaso realizado correctamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Cambio de fecha realizado correctamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
-                    MessageBox.Show("Error al realizar el traspaso.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error al intentar cambiar la fecha de ingreso.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                activoTrue();
             }
             else
             {
-               // user.Enabled = true;
-                date.Enabled = true;
-                button4.Text = "Guardar";
-                activo = true;
-                button2.Visible = true;
-                button1.Enabled = false;
-                button3.Enabled = false;
-                textBox1.Enabled = false;
-                comboBox1.Enabled = false;
+                activoFalse(4);
             }
         }
+
         #endregion
 
-        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            activoTrue();
+        }
     }
 }
