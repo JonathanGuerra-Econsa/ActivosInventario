@@ -152,6 +152,7 @@ namespace Activos
                 button1.Enabled = true;
                 activo = false;
                 button3.Enabled = true;
+                button4.Enabled = true;
                 button2.Visible = false;
                 textBox1.Enabled = true;
                 comboBox1.Enabled = true;
@@ -177,9 +178,9 @@ namespace Activos
                 activo = true;
                 button2.Visible = true;
                 button3.Enabled = false;
+                button4.Enabled = false;
                 textBox1.Enabled = false;
                 comboBox1.Enabled = false;
-                button3.Text = "Traspaso";
             }
         }
 
@@ -195,6 +196,7 @@ namespace Activos
                 textBox1.Enabled = true;
                 comboBox1.Enabled = true;
                 button1.Enabled = true;
+                button4.Enabled = true;
                 bool result = mysql.traspaso(Convert.ToInt32(user.SelectedValue), comboBox1.Text, Convert.ToInt32(textBox1.Text));
                 if (result)
                 {
@@ -213,12 +215,50 @@ namespace Activos
                 activo = true;
                 button2.Visible = true;
                 button1.Enabled = false;
+                button4.Enabled = false;
+                textBox1.Enabled = false;
+                comboBox1.Enabled = false;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (activo)
+            {
+                //user.Enabled = false;
+                date.Enabled = false;
+                button4.Text = "Cambiar fecha de ingreso";
+                activo = false;
+                button2.Visible = false;
+                textBox1.Enabled = true;
+                comboBox1.Enabled = true;
+                button1.Enabled = true;
+                button3.Enabled = true;
+                bool result = mysql.traspaso(Convert.ToInt32(user.SelectedValue), comboBox1.Text, Convert.ToInt32(textBox1.Text));
+                if (result)
+                {
+                    MessageBox.Show("Traspaso realizado correctamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    MessageBox.Show("Error al realizar el traspaso.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+               // user.Enabled = true;
+                date.Enabled = true;
+                button4.Text = "Guardar";
+                activo = true;
+                button2.Visible = true;
+                button1.Enabled = false;
+                button3.Enabled = false;
                 textBox1.Enabled = false;
                 comboBox1.Enabled = false;
             }
         }
         #endregion
 
-       
+        
     }
 }
