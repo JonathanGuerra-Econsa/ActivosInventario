@@ -23,11 +23,14 @@ namespace Activos
 
         private void Revisar_articulos_Load(object sender, EventArgs e)
         {
+            #region principal
             this.Height = 160;
             this.CenterToScreen();
-            comboBox1.Items.Add("activo");
-            comboBox1.Items.Add("articulo");
+            comboBox1.Items.Add("Activo");
+            comboBox1.Items.Add("Articulo");
+            #endregion
 
+            #region set combobox's
             //Combo box de USUARIOS
             DataTable usuarios = new DataTable();
             usuarios = mysql.usuarios();
@@ -59,6 +62,7 @@ namespace Activos
             Emp.DisplayMember = "nombre";
             Emp.ValueMember = "idEm";
             Emp.DataSource = empresas;
+            #endregion
         }
 
         private void Busqueda()
@@ -76,7 +80,7 @@ namespace Activos
             {
                 ocultar();
                 MessageBox.Show("El id '" + textBox1.Text + "' no se encuentra en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBox1.Text = "";
+                textBox1.Text = ""; 
                 this.ActiveControl = textBox1;                
             }
         }
@@ -87,14 +91,17 @@ namespace Activos
             if (string.IsNullOrEmpty(comboBox1.Text)) return;
             Busqueda();
         }
-        
+
+        #region ocultar card
         private void ocultar()
         {
             this.Height = 160;
             groupBox1.Visible = false;
             this.CenterToScreen();
         }
+        #endregion
 
+        #region mostrar card
         private void mostrar()
         {
             this.Height = 381;
@@ -108,7 +115,9 @@ namespace Activos
             //groupBox1.Text = datos.Rows[0]["Descripcion"].ToString();
             this.CenterToScreen();
         }
+        #endregion
 
+        #region verificacion
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             timer1.Stop();
@@ -125,37 +134,91 @@ namespace Activos
             if (string.IsNullOrEmpty(textBox1.Text)) return;
             Busqueda();
         }
+        #endregion
 
+        #region botones
         private void button1_Click(object sender, EventArgs e)
         {
             if (activo)
             {
+                //guarda cambios
                 cat.Enabled = false;
                 status.Enabled = false;
                 user.Enabled = false;
-                date.Enabled = false;
+                //date.Enabled = false;
                 desc.Enabled = false;
                 Emp.Enabled = false;
                 button1.Text = "Editar";
+                button1.Enabled = true;
                 activo = false;
+                button3.Enabled = true;
                 button2.Visible = false;
                 textBox1.Enabled = true;
                 comboBox1.Enabled = true;
+                if (mysql.editar(desc.Text, Convert.ToInt32(status.SelectedValue), Convert.ToInt32(cat.SelectedValue), Convert.ToInt32(Emp.SelectedValue),comboBox1.Text,Convert.ToInt32(textBox1.Text)))
+                {
+                    MessageBox.Show(comboBox1.Text+" Editado correctamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    MessageBox.Show("Error al editar el "+textBox1.Text+".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
+                //activa guarda cambios
                 cat.Enabled = true;
                 status.Enabled = true;
-                user.Enabled = true;
-                date.Enabled = true;
+                user.Enabled = false;
+                //date.Enabled = true;
                 desc.Enabled = true;
                 Emp.Enabled = true;
                 button1.Text = "Guardar";
                 activo = true;
                 button2.Visible = true;
+                button3.Enabled = false;
+                textBox1.Enabled = false;
+                comboBox1.Enabled = false;
+                button3.Text = "Traspaso";
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (activo)
+            {
+                user.Enabled = false;
+                //date.Enabled = false;
+                button3.Text = "Traspaso";
+                activo = false;
+                button2.Visible = false;
+                textBox1.Enabled = true;
+                comboBox1.Enabled = true;
+                button1.Enabled = true;
+                bool result = mysql.traspaso(Convert.ToInt32(user.SelectedValue), comboBox1.Text, Convert.ToInt32(textBox1.Text));
+                if (result)
+                {
+                    MessageBox.Show("Traspaso realizado correctamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    MessageBox.Show("Error al realizar el traspaso.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                user.Enabled = true;
+                //date.Enabled = true;
+                button3.Text = "Realizar Traspaso";
+                activo = true;
+                button2.Visible = true;
+                button1.Enabled = false;
                 textBox1.Enabled = false;
                 comboBox1.Enabled = false;
             }
         }
+        #endregion
+
+       
     }
 }
