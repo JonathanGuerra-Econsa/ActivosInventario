@@ -195,5 +195,30 @@ namespace Activos
             connection.Close();
             return dt;
         }
+
+        public bool traspaso(int idUsuario, string tabla, int id)
+        {
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "UPDATE " + tabla + " SET idUsuario = " + idUsuario + " WHERE idActivo = " + id;
+            connection.Open();
+            object resultado = cmd.ExecuteNonQuery();
+            connection.Close();
+            if (resultado != null) return true;
+            else return false;
+        }
+
+        public bool editar(string desc, int estado, int cat, int empresa, string tabla, int id)
+        {
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "UPDATE " + tabla + " SET descripcion = '" +desc  + "'," +
+                "idEstado = "+estado+"," +
+                "idCategoria = "+cat+"," +
+                "idEmpresa = "+empresa+" WHERE idActivo = " + id;
+            connection.Open();
+            object resultado = cmd.ExecuteNonQuery();
+            connection.Close();
+            if (resultado != null) return true;
+            else return false;
+        }
     }
 }

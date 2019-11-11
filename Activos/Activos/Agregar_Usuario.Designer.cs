@@ -148,7 +148,7 @@
             // 
             this.lbID.AutoSize = true;
             this.lbID.BackColor = System.Drawing.Color.Transparent;
-            this.lbID.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbID.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbID.Location = new System.Drawing.Point(134, 36);
             this.lbID.Name = "lbID";
             this.lbID.Size = new System.Drawing.Size(0, 20);
@@ -258,6 +258,7 @@
             this.dgvUsuarios.Size = new System.Drawing.Size(342, 224);
             this.dgvUsuarios.TabIndex = 22;
             this.dgvUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellClick);
+            this.dgvUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellContentClick);
             // 
             // Agregar_Usuario
             // 
