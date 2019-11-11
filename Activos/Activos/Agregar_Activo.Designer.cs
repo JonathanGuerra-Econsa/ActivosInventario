@@ -109,9 +109,9 @@
             // 
             this.dtFecha.CalendarFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtFecha.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtFecha.Location = new System.Drawing.Point(111, 266);
+            this.dtFecha.Location = new System.Drawing.Point(139, 266);
             this.dtFecha.Name = "dtFecha";
-            this.dtFecha.Size = new System.Drawing.Size(337, 23);
+            this.dtFecha.Size = new System.Drawing.Size(309, 23);
             this.dtFecha.TabIndex = 41;
             // 
             // label7
@@ -121,9 +121,9 @@
             this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(20, 265);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(58, 21);
+            this.label7.Size = new System.Drawing.Size(119, 21);
             this.label7.TabIndex = 40;
-            this.label7.Text = "Fecha:";
+            this.label7.Text = "Fecha Ingreso:";
             // 
             // cmbEmpresa
             // 
@@ -363,10 +363,10 @@
             // 
             this.txtFecha.BackColor = System.Drawing.Color.White;
             this.txtFecha.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFecha.Location = new System.Drawing.Point(111, 264);
+            this.txtFecha.Location = new System.Drawing.Point(139, 264);
             this.txtFecha.Multiline = true;
             this.txtFecha.Name = "txtFecha";
-            this.txtFecha.Size = new System.Drawing.Size(337, 25);
+            this.txtFecha.Size = new System.Drawing.Size(309, 25);
             this.txtFecha.TabIndex = 48;
             // 
             // label8

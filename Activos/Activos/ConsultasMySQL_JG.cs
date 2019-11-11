@@ -291,5 +291,15 @@ namespace Activos
                 mysqlCmd.ExecuteNonQuery();
             }
         }
+
+        public void updateActivo(string descripcion, string idUsuario, string idEstado, string idCategoria, string idEmpresa, string idActivo)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("UPDATE {0} SET descripcion = '{1}', idUsuario = '{2}', idEstado = '{3}', idCategoria = '{4}', idEmpresa = '{5}' WHERE idActivo = '{6}'", Tabla_Activo, descripcion, idUsuario, idEstado, idCategoria, idEmpresa, idActivo), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+            }
+        }
     }
 }
