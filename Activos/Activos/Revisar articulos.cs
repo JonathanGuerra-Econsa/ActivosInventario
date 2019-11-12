@@ -88,7 +88,6 @@ namespace Activos
         private void timer1_Tick(object sender, EventArgs e)
         {
             timer1.Stop();
-            if (string.IsNullOrEmpty(comboBox1.Text)) return;
             Busqueda();
         }
 
@@ -130,6 +129,7 @@ namespace Activos
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            textBox1.Enabled = true;
             this.ActiveControl = textBox1;
             if (string.IsNullOrEmpty(textBox1.Text)) return;
             Busqueda();
@@ -212,15 +212,18 @@ namespace Activos
         {
             if (activo)
             {
-                if (mysql.editar(desc.Text, Convert.ToInt32(status.SelectedValue), Convert.ToInt32(cat.SelectedValue), Convert.ToInt32(Emp.SelectedValue),comboBox1.Text,Convert.ToInt32(textBox1.Text)))
-                {
-                    MessageBox.Show(comboBox1.Text+" Editado correctamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                DialogResult result = MessageBox.Show("¿Desea guardar los cambios realizardos?","Guardar cambios", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes) { 
+                    if (mysql.editar(desc.Text, Convert.ToInt32(status.SelectedValue), Convert.ToInt32(cat.SelectedValue), Convert.ToInt32(Emp.SelectedValue),comboBox1.Text,Convert.ToInt32(textBox1.Text)))
+                    {
+                        MessageBox.Show(comboBox1.Text+" Editado correctamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al editar el "+textBox1.Text+".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    activoTrue();
                 }
-                else
-                {
-                    MessageBox.Show("Error al editar el "+textBox1.Text+".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                activoTrue();
             }
             else
             {
@@ -232,16 +235,18 @@ namespace Activos
         {
             if (activo)
             {
-                bool result = mysql.traspaso(Convert.ToInt32(user.SelectedValue), comboBox1.Text, Convert.ToInt32(textBox1.Text));
-                if (result)
-                {
-                    MessageBox.Show("Traspaso realizado correctamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                DialogResult result = MessageBox.Show("¿Esta segur@ de hacer el traspaso al usuario " + user.Text + "?", "Traspaso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes) {
+                    if (mysql.traspaso(Convert.ToInt32(user.SelectedValue), comboBox1.Text, Convert.ToInt32(textBox1.Text)))
+                    {
+                        MessageBox.Show("Traspaso realizado correctamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al realizar el traspaso.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    activoTrue();
                 }
-                else
-                {
-                    MessageBox.Show("Error al realizar el traspaso.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                activoFalse();
             }
             else
             {
@@ -253,16 +258,18 @@ namespace Activos
         {
             if (activo)
             {
-                bool result = mysql.fecha(comboBox1.Text, date.Value.Date.ToString("yyyy-MM-dd"), Convert.ToInt32(textBox1.Text));
-                if (result)
-                {
-                    MessageBox.Show("Cambio de fecha realizado correctamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                DialogResult result = MessageBox.Show("¿Segur@ que deseas cambiar la fecha de ingreso a " + date.Value.Date.ToString("yyyy-MM-dd") + "?", "Cambiar fecha", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if(result == DialogResult.Yes) { 
+                    if (mysql.fecha(comboBox1.Text, date.Value.Date.ToString("yyyy-MM-dd"), Convert.ToInt32(textBox1.Text)))
+                    {
+                        MessageBox.Show("Cambio de fecha realizado correctamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al intentar cambiar la fecha de ingreso.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    activoTrue();
                 }
-                else
-                {
-                    MessageBox.Show("Error al intentar cambiar la fecha de ingreso.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                activoTrue();
             }
             else
             {
@@ -274,7 +281,9 @@ namespace Activos
 
         private void button2_Click(object sender, EventArgs e)
         {
+            datos = mysql.buscar(comboBox1.Text,textBox1.Text);
             activoTrue();
+            mostrar();
         }
     }
 }
