@@ -42,6 +42,15 @@ namespace Activos
             cmbUsuario.ValueMember = "idU";
             cmbUsuario.DataSource = usuarios;
 
+            cmbUsuario.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbUsuario.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection userData = new AutoCompleteStringCollection();
+            foreach (DataRow row in usuarios.Rows)
+            {
+                userData.Add(row["nombre"].ToString());
+            }
+            cmbUsuario.AutoCompleteCustomSource = userData;
+
             //Combo box de Categoria
             DataTable categorias = new DataTable();
             categorias = mysql.categorias();
@@ -55,6 +64,15 @@ namespace Activos
             cmbCat.ValueMember = "idC";
             cmbCat.DataSource = categorias;
 
+            cmbCat.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbCat.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection catData = new AutoCompleteStringCollection();
+            foreach (DataRow row in categorias.Rows)
+            {
+                catData.Add(row["nombre"].ToString());
+            }
+            cmbCat.AutoCompleteCustomSource = catData;
+
             //Combo box de Estado
             DataTable estados = new DataTable();
             estados = mysql.estados();
@@ -67,6 +85,15 @@ namespace Activos
             cmbEstado.DisplayMember = "nombre";
             cmbEstado.ValueMember = "idE";
             cmbEstado.DataSource = estados;
+
+            cmbEstado.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbEstado.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection estadoData = new AutoCompleteStringCollection();
+            foreach (DataRow row in estados.Rows)
+            {
+                estadoData.Add(row["nombre"].ToString());
+            }
+            cmbEstado.AutoCompleteCustomSource = estadoData;
         }
 
         public Articulos()
@@ -97,9 +124,9 @@ namespace Activos
             StringBuilder consulta = new StringBuilder();
             consulta.Append("WHERE ");
             if (!(string.IsNullOrEmpty(textBox7.Text))) consulta.Append("a.descripcion like '%" + textBox7.Text + "%' AND ");
-            if (cmbUsuario.SelectedValue.ToString() != 0.ToString()) consulta.Append("u.idUsuario like '%" + cmbUsuario.SelectedValue + "%' AND ");
-            if (cmbCat.SelectedValue.ToString() != 0.ToString()) consulta.Append("c.idCategoria like '%" + cmbCat.SelectedValue + "%' AND ");
-            if (cmbEstado.SelectedValue.ToString() != 0.ToString()) consulta.Append("e.idEstado like '%" + cmbEstado.SelectedValue + "%' AND ");
+            if (cmbUsuario.SelectedValue.ToString() != 0.ToString() && cmbUsuario.SelectedValue.ToString() != null) consulta.Append("u.idUsuario = '" + cmbUsuario.SelectedValue + "' AND ");
+            if (cmbCat.SelectedValue.ToString() != 0.ToString() && cmbCat.SelectedValue.ToString() != null) consulta.Append("c.idCategoria = '" + cmbCat.SelectedValue + "' AND ");
+            if (cmbEstado.SelectedValue.ToString() != 0.ToString() && cmbEstado.SelectedValue.ToString() != null) consulta.Append("e.idEstado = '" + cmbEstado.SelectedValue + "' AND ");
             consulta.Append("a.fecha_ingreso BETWEEN '" + dateInicio.Value.Date.ToString("yyyy-MM-dd") + "' AND '" + dateFinal.Value.Date.ToString("yyyy-MM-dd") + "' ORDER BY idActivo");
             //if (consulta.ToString() == "WHERE ") consulta = new StringBuilder();
             //DataRowView dv = (DataRowView)cmbUsuario.SelectedItem;
