@@ -58,7 +58,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(102, 30);
             this.label7.TabIndex = 39;
-            this.label7.Text = "Articulos";
+            this.label7.Text = "Artículos";
             // 
             // dataGridView1
             // 
@@ -87,6 +87,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 144);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(922, 368);
             this.dataGridView1.TabIndex = 38;
             // 
@@ -158,17 +159,19 @@
             // 
             // dateFinal
             // 
-            this.dateFinal.Location = new System.Drawing.Point(581, 115);
+            this.dateFinal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateFinal.Location = new System.Drawing.Point(584, 113);
             this.dateFinal.Name = "dateFinal";
-            this.dateFinal.Size = new System.Drawing.Size(200, 20);
+            this.dateFinal.Size = new System.Drawing.Size(200, 23);
             this.dateFinal.TabIndex = 31;
             this.dateFinal.ValueChanged += new System.EventHandler(this.FormarConsulta);
             // 
             // dateInicio
             // 
-            this.dateInicio.Location = new System.Drawing.Point(579, 65);
+            this.dateInicio.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateInicio.Location = new System.Drawing.Point(582, 58);
             this.dateInicio.Name = "dateInicio";
-            this.dateInicio.Size = new System.Drawing.Size(200, 20);
+            this.dateInicio.Size = new System.Drawing.Size(200, 23);
             this.dateInicio.TabIndex = 30;
             this.dateInicio.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateInicio.ValueChanged += new System.EventHandler(this.FormarConsulta);
@@ -201,38 +204,42 @@
             // 
             // cmbCat
             // 
+            this.cmbCat.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCat.FormattingEnabled = true;
             this.cmbCat.Location = new System.Drawing.Point(170, 113);
             this.cmbCat.Name = "cmbCat";
-            this.cmbCat.Size = new System.Drawing.Size(179, 21);
+            this.cmbCat.Size = new System.Drawing.Size(179, 23);
             this.cmbCat.TabIndex = 27;
             this.cmbCat.SelectedIndexChanged += new System.EventHandler(this.FormarConsulta);
             this.cmbCat.SelectedValueChanged += new System.EventHandler(this.FormarConsulta);
             // 
             // cmbEstado
             // 
+            this.cmbEstado.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEstado.FormattingEnabled = true;
             this.cmbEstado.Location = new System.Drawing.Point(386, 113);
             this.cmbEstado.Name = "cmbEstado";
-            this.cmbEstado.Size = new System.Drawing.Size(179, 21);
+            this.cmbEstado.Size = new System.Drawing.Size(179, 23);
             this.cmbEstado.TabIndex = 26;
             this.cmbEstado.SelectedIndexChanged += new System.EventHandler(this.FormarConsulta);
             this.cmbEstado.SelectedValueChanged += new System.EventHandler(this.FormarConsulta);
             // 
             // cmbUsuario
             // 
+            this.cmbUsuario.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbUsuario.FormattingEnabled = true;
             this.cmbUsuario.Location = new System.Drawing.Point(386, 61);
             this.cmbUsuario.Name = "cmbUsuario";
-            this.cmbUsuario.Size = new System.Drawing.Size(179, 21);
+            this.cmbUsuario.Size = new System.Drawing.Size(179, 23);
             this.cmbUsuario.TabIndex = 25;
             this.cmbUsuario.SelectedIndexChanged += new System.EventHandler(this.FormarConsulta);
             // 
             // textBox7
             // 
+            this.textBox7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox7.Location = new System.Drawing.Point(170, 63);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(179, 20);
+            this.textBox7.Size = new System.Drawing.Size(179, 23);
             this.textBox7.TabIndex = 24;
             this.textBox7.TextChanged += new System.EventHandler(this.FormarConsulta);
             // 
@@ -240,6 +247,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Activos.Properties.Resources.fondo3;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(947, 524);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dataGridView1);
@@ -257,6 +266,7 @@
             this.Controls.Add(this.cmbEstado);
             this.Controls.Add(this.cmbUsuario);
             this.Controls.Add(this.textBox7);
+            this.DoubleBuffered = true;
             this.Name = "Articulos";
             this.Text = "Articulos";
             this.Load += new System.EventHandler(this.Articulos_Load);

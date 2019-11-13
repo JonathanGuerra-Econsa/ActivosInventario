@@ -99,6 +99,7 @@ namespace Activos
                 estadoData.Add(row["nombre"].ToString());
             }
             cmbEstado.AutoCompleteCustomSource = estadoData;
+            dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
 
         private void ArmarConsulta(object sender, EventArgs e)

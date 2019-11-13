@@ -128,7 +128,7 @@
             // dateFinal
             // 
             this.dateFinal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateFinal.Location = new System.Drawing.Point(581, 117);
+            this.dateFinal.Location = new System.Drawing.Point(582, 115);
             this.dateFinal.Name = "dateFinal";
             this.dateFinal.Size = new System.Drawing.Size(200, 23);
             this.dateFinal.TabIndex = 15;
@@ -227,6 +227,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 146);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(922, 368);
             this.dataGridView1.TabIndex = 22;
             // 
