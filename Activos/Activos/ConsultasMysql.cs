@@ -220,5 +220,16 @@ namespace Activos
             if (resultado != null) return true;
             else return false;
         }
+
+        public bool fecha(string tabla, string fecha, int id)
+        {
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "UPDATE " + tabla + " SET fecha_ingreso = '" + fecha + "' WHERE idActivo = " + id;
+            connection.Open();
+            object resultado = cmd.ExecuteNonQuery();
+            connection.Close();
+            if (resultado != null) return true;
+            else return false;
+        }
     }
 }
