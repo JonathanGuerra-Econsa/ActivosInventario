@@ -12,6 +12,7 @@ namespace Activos
 {
     public partial class Agregar_Activo : Form
     {
+        #region Variables
         //----------------------------------------------------------*Variables*---------------------------------------------------//
         ConsultasMySQL_JG consultasMySQL =new  ConsultasMySQL_JG();
         bool detalle = true;
@@ -24,6 +25,9 @@ namespace Activos
         string Empresa;
         string Fecha_Ingreso;
         //--------------------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region Load
+        //------------------------------------------------------------ Inicio LOAD -----------------------------------------------//
         public Agregar_Activo()
         {
             InitializeComponent();
@@ -34,7 +38,10 @@ namespace Activos
             actualizarDGV();
             lbID.Text = "";
         }
-
+        //--------------------------------------------------------------------- --------------------------------------------------------------//
+        #endregion
+        #region actualizarDGV()
+        //------------------------------------ Recarga el DataGridView con una consulta en MySQL y cambia el estado de Enable a "true"-----------------------//
         private void actualizarDGV()
         {
             //Consulta inicial
@@ -82,7 +89,10 @@ namespace Activos
             //ahora está en detalle
             detalle = true;
         }
-
+        //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
+        #endregion
+        #region deshabilitarDGV()
+        //--------------------------------------------- Deshabilita el DataGridView Para poder modificar un activo o crear uno nuevo ----------------------------------------------//
         private void deshabilitarDGV()
         {
             //Cambio de visibilidad para botones
@@ -131,7 +141,10 @@ namespace Activos
             //ahora no está en detalle
             detalle = false;
         }
-
+        //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
+        #endregion
+        #region Llenar ComboBox()
+        //------------------------------------------------------------------------------ Llenar los ComboBox que Necesita Activos -------------------------------------------------------------------------------//
         private void llenarComboBox()
         {
             cmbUsuario.DataSource = consultasMySQL.verUsuarios();
@@ -150,7 +163,10 @@ namespace Activos
             cmbEmpresa.DisplayMember = "Empresa";
             cmbEmpresa.ValueMember = "ID";
         }
-
+        //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
+        #endregion
+        #region Click en Botón Agregar
+        //---------------------------------------------------------------------------------- Click en Botón agregar -------------------------------------------------------------------------------//
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             btnSet.Visible = true;
@@ -164,7 +180,10 @@ namespace Activos
             cmbEmpresa.Text = "";
             dtFecha.Text = DateTime.Now.ToString();
         }
-
+        //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
+        #endregion
+        #region Click en una Celda del dgvActivo
+        //------------------------------------ Cuando da click en una celda del DataGridView de Activo lo muestra en los textbox de Detalle Activo ---------------------------------//
         private void dgvActivo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.RowIndex != -1)
@@ -186,12 +205,18 @@ namespace Activos
                 txtFecha.Text = Fecha_Ingreso;
             }
         }
-
+        //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
+        #endregion
+        #region Botón Cancelar
+        //--------------------------------------------------------------- Llama a actualizarDGV() -------------------------------------------------------------------------------//
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             actualizarDGV();
         }
-
+        //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
+        #endregion
+        #region Botón que actualiza los activos seleccionados
+        //------------------------------------------------ Actualiza el activo seleccionado y actualiza el DataGridView de Activos -----------------------------------//
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             if(detalle == true)
@@ -216,7 +241,10 @@ namespace Activos
                 }
             }
         }
-
+        //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
+        #endregion
+        #region Botón que Guarda un nuevo activo
+        //-------------------------------------------------------------- Guarda un nuevo Activo -------------------------------------------------------------------------------//
         private void btnSet_Click(object sender, EventArgs e)
         {
             if(MessageBox.Show("Desea guardar este activo?", "Guardar Activo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
@@ -233,5 +261,7 @@ namespace Activos
                 }
             }
         }
+        //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
+        #endregion
     }
 }
