@@ -12,10 +12,14 @@ namespace Activos
 {
     public partial class Agregar_Categoria : Form
     {
+        #region Variables
         //----------------------------------------------*Variables*------------------------------------------------//
         ConsultasMySQL_JG consultasMySQL = new ConsultasMySQL_JG();
         bool detalle = true;
         //-----------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region Primeros procesos del Form "Load()"
+        //---------------------------------------------------------------- Load() -------------------------------------------------------------------------------//
         public Agregar_Categoria()
         {
             InitializeComponent();
@@ -26,7 +30,10 @@ namespace Activos
             actualizarDGV();
             lbID.Text = "";
         }
-
+        //---------------------------------------------------------------------------  -------------------------------------------------------------------------------//
+        #endregion
+        #region Actualizar DataGridView
+        //------------------------------------------ Habilita el DataGridView y lo actualiza ------------------------------------------------//
         private void actualizarDGV()
         {
             dgvCategoria.DataSource = consultasMySQL.verCategorias();
@@ -47,7 +54,10 @@ namespace Activos
             //Ahora está en modo detalle
             detalle = true;
         }
-
+        //----------------------------------------------------------------------- ----------------------------------------------------------------------------------//
+        #endregion
+        #region Deshabilita el DataGridView
+        //----------------------------------------------------- DesHabilita el DGV de Categoria para poder agregar o modificar una categoria -----------------------------//
         private void deshabilitarDGV()
         {
             //el DataGridView se vuelve activo
@@ -61,7 +71,10 @@ namespace Activos
             txtNombre.BorderStyle = BorderStyle.Fixed3D;
             txtNombre.ReadOnly = false;
         }
-
+        //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
+        #endregion
+        #region Habilitar Agregar Categoría
+        //--------------------------------------------------------------- Botón que agregar nueva categoría ---------------------------------------------------------------------------//
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             btnSet.Visible = true;
@@ -73,7 +86,10 @@ namespace Activos
             lbID.Text = "";
             deshabilitarDGV();
         }
-
+        //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
+        #endregion
+        #region Click en el DataGridView
+        //------------------------------------------------------------------------- Muestra el detalle de Categoría --------------------------------------------------------------------//
         private void dgvCategoria_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.RowIndex != -1)
@@ -85,12 +101,18 @@ namespace Activos
                 txtNombre.Text = Categoria;
             }
         }
-
+        //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
+        #endregion
+        #region Botón Cancelar
+        //------------------------------------------------------------------------------ Llama a actualizarDGV() -------------------------------------------------------------------------------------//
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             actualizarDGV();
         }
-
+        //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
+        #endregion
+        #region Botón que guarda una nueva Categoría
+        //------------------------------------------------------ Botón que guarda una nueva categoría en la DataBase -------------------------------------------------------//
         private void btnSet_Click(object sender, EventArgs e)
         {
             if (txtNombre.Text != "")
@@ -114,7 +136,10 @@ namespace Activos
             }
             actualizarDGV();
         }
-
+        //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
+        #endregion
+        #region Botón que actualiza una categoría
+        //-------------------------------------------------- Botón que actualiza una categoría ---------------------------------------------------------//
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             if(detalle == true)
@@ -144,5 +169,7 @@ namespace Activos
                 }
             }
         }
+        //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
+        #endregion
     }
 }

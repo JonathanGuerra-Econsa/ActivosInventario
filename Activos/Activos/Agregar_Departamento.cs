@@ -12,10 +12,14 @@ namespace Activos
 {
     public partial class Agregar_Departamento : Form
     {
+        #region Variables
         //--------------------------------------------------*Variables*-----------------------------------------------//
         ConsultasMySQL_JG consultasMySQL = new ConsultasMySQL_JG();
         bool detalle = true;
         //------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region Load
+        //------------------------------------------------------------------------------- Load() -------------------------------------------------------------------------------------//
         public Agregar_Departamento()
         {
             InitializeComponent();
@@ -26,6 +30,10 @@ namespace Activos
             actualizarDGV();
             lbID.Text = "";
         }
+        //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
+        #endregion
+        #region actualizarDGV()
+        //------------------------------------------------------------------ Actualiza en DataGridView y lo Habilita -------------------------------------------------------------------------------------//
         public void actualizarDGV()
         {
             dgvDepartamento.DataSource = consultasMySQL.verCategorias();
@@ -46,7 +54,10 @@ namespace Activos
             //Ahora está en modo detalle
             detalle = true;
         }
-
+        //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
+        #endregion
+        #region deshabilitarDGV()
+        //----------------------- Deshabilita el DataGridView para poder agregar un nuevo departamento o actualizarlo -----------------------------------------------------//
         private void deshabilitarDGV()
         {
             //el DataGridView se vuelve activo
@@ -60,7 +71,10 @@ namespace Activos
             txtDepartamento.BorderStyle = BorderStyle.Fixed3D;
             txtDepartamento.ReadOnly = false;
         }
-
+        //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
+        #endregion
+        #region Agregar()
+        //------------------------------------------------------------------ Botón que agrega y guarda un nuevo departamento -------------------------------------------------------------------------------------//
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             if (detalle == true)
@@ -74,7 +88,10 @@ namespace Activos
                 deshabilitarDGV();
             }
         }
-
+        //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
+        #endregion
+        #region Actualizar()
+        //------------------------------------------------------------------ Botón que actualiza un departamento -----------------------------------------------------------------//
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             if(detalle == false)
@@ -99,7 +116,10 @@ namespace Activos
                 deshabilitarDGV();
             }
         }
-
+        //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
+        #endregion
+        #region Click en el DataGridView
+        //------------------------------------------------------------------ Click en el DataGridView de departamento ------------------------------------------------------------//
         private void dgvDepartamento_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.RowIndex != -1)
@@ -111,12 +131,18 @@ namespace Activos
                 txtDepartamento.Text = Departamento;
             }
         }
-
+        //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
+        #endregion
+        #region Cancelar()
+        //------------------------------------------------------------------ Botón de cancelar que llama al método de actualizar-------------------------------------------------------------------------------------//
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             actualizarDGV();
         }
-
+        //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
+        #endregion
+        #region Set()
+        //------------------------------------------------------------------ Botón que guarda un nuevo departamento -------------------------------------------------------------------------------------//
         private void btnSet_Click(object sender, EventArgs e)
         {
             if(detalle == false)
@@ -143,5 +169,7 @@ namespace Activos
                 actualizarDGV();
             }
         }
+        //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
+        #endregion
     }
 }
