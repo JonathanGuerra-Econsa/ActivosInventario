@@ -162,6 +162,10 @@ namespace Activos
             cmbEmpresa.DataSource = consultasMySQL.verEmpresa();
             cmbEmpresa.DisplayMember = "Empresa";
             cmbEmpresa.ValueMember = "ID";
+
+            cmbInventario.DataSource = consultasMySQL.verInventario();
+            cmbInventario.DisplayMember = "nombre";
+            cmbInventario.ValueMember = "idInventarioActivo";
         }
         //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
         #endregion
