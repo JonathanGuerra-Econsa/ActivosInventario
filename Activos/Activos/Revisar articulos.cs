@@ -29,7 +29,6 @@ namespace Activos
             comboBox1.Items.Add("Activo");
             comboBox1.Items.Add("Articulo");
             #endregion
-
             #region set combobox's
             ////Combo box de USUARIOS
             //DataTable usuarios = new DataTable();
