@@ -132,7 +132,6 @@ namespace Activos
             //if (consulta.ToString() == "WHERE ") consulta = new StringBuilder();
             //DataRowView dv = (DataRowView)cmbUsuario.SelectedItem;
             //int id = (int)dv.Row["idU"];;
-            Console.WriteLine(consulta);
             dataGridView1.DataSource = mysql.consulta("activo", consulta.ToString());
         }
     }

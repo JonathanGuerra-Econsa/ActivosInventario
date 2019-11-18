@@ -35,7 +35,6 @@ namespace Activos
                 "JOIN `categoria` as c ON a.idCategoria = c.idCategoria " +
                 "JOIN `empresa` as em ON a.idEmpresa = em.idEmpresa " + consulta;
             connection.Open();
-            Console.WriteLine(cmd.CommandText);
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
             {
