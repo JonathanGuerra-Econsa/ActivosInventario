@@ -70,6 +70,7 @@
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(205, 29);
             this.txtUser.TabIndex = 1;
+            this.txtUser.Text = "admin";
             this.txtUser.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtPassword
@@ -80,6 +81,7 @@
             this.txtPassword.PasswordChar = '•';
             this.txtPassword.Size = new System.Drawing.Size(205, 29);
             this.txtPassword.TabIndex = 2;
+            this.txtPassword.Text = "123";
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
