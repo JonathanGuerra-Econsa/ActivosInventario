@@ -12,10 +12,14 @@ namespace Activos
 {
     public partial class Agregar_Usuario : Form
     {
+        #region Variables
         //----------------------------------Variables-----------------------------------//
         ConsultasMySQL_JG consultasMySQL = new ConsultasMySQL_JG();
         bool detalle = true;
         //-------------------------------------------------------------------------------//
+        #endregion
+        #region Load()
+        //------------------------------------------------------Primeros Procesos (Load) --------------------------------------------------//
         public Agregar_Usuario()
         {
             InitializeComponent();
@@ -25,7 +29,10 @@ namespace Activos
             llenarComboBox();
             actualizarDGV();
         }
-
+        //----------------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region actualizarDGV()
+        //-------------------------------------------------------------- Habilita el DataGridView y lo actualiza --------------------------------------------------//
         private void actualizarDGV()
         {
             //Detalle cambia como al origen
@@ -52,7 +59,10 @@ namespace Activos
             //Ahora está en modo detalle
             detalle = true;
         }
-
+        //----------------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region deshabilitarDGV()
+        //------------------------------------------- Deshabilita el DataGridView y  --------------------------------------------------//
         private void deshabilitarDGV()
         {
             //el DataGridView se vuelve activo
@@ -68,7 +78,10 @@ namespace Activos
             txtUsuario.BorderStyle = BorderStyle.Fixed3D;
             txtUsuario.ReadOnly = false;
         }
-
+        //----------------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region LlenarComboBox()
+        //--------------------- Llena los combobox que se necesitan para agregar y editar usuarios ------------------------------------------//
         private void llenarComboBox()
         {
             cmbDepartamento.DataSource = consultasMySQL.verDepartamentos();
@@ -79,7 +92,10 @@ namespace Activos
             dgvUsuarios.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgvUsuarios.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
-
+        //--------------------------------------------------------- ------------------------------------------------------------//
+        #endregion
+        #region Click en DataGridView
+        //------------- Cuando dan click en una celda del DGV actualiza la data en los textbox --------------------------//
         private void dgvUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1)
@@ -95,7 +111,10 @@ namespace Activos
                 txtDepartamento.Text = departamento;
             }
         }
-
+        //--------------------------------------------------------- ------------------------------------------------------------//
+        #endregion
+        #region botón agregar()
+        //---------------------------------------- Habilita botón de agregar ------------------------------------------------------------//
         private void btnAgregar_Click_1(object sender, EventArgs e)
         {
             txtNombre.Text = "";
@@ -110,12 +129,18 @@ namespace Activos
             txtDepartamento.Visible = false;
             deshabilitarDGV();
         }
-
+        //--------------------------------------------------------- ------------------------------------------------------------//
+        #endregion
+        #region botón cancelar
+        //---------------------------------------------- llama al método de actualizarDGV() ------------------------------------------------------------//
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             actualizarDGV();
         }
-
+        //--------------------------------------------------------- ------------------------------------------------------------//
+        #endregion
+        #region Set
+        //------------------------------------------------ Guarda un nuevo usuario en la base de datos ------------------------------------------------------------//
         private void btnSet_Click(object sender, EventArgs e)
         {
             if (txtNombre.Text != "" || txtUsuario.Text != "")
@@ -139,7 +164,11 @@ namespace Activos
                 MessageBox.Show("Porfavor llene correctamente todos los campos debidamente", "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
+        //--------------------------------------------------------- ------------------------------------------------------------//
+        #endregion
+        #region botón editar
+        //-------------------------------------- Botón que edita o actualiza un usuario ------------------------------------------------------------//
+        //--------------------------------------------------------- ------------------------------------------------------------//
         private void btnEditar_Click(object sender, EventArgs e)
         {
             if(detalle == false)
@@ -173,10 +202,6 @@ namespace Activos
                 btnCancelar.Visible = true;
             }
         }
-
-        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        #endregion
     }
 }

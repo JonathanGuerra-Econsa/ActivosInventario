@@ -52,36 +52,40 @@
             // 
             // textBox7
             // 
+            this.textBox7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox7.Location = new System.Drawing.Point(170, 65);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(179, 20);
+            this.textBox7.Size = new System.Drawing.Size(179, 23);
             this.textBox7.TabIndex = 6;
             this.textBox7.TextChanged += new System.EventHandler(this.ArmarConsulta);
             // 
             // cmbUsuario
             // 
+            this.cmbUsuario.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbUsuario.FormattingEnabled = true;
             this.cmbUsuario.Location = new System.Drawing.Point(386, 63);
             this.cmbUsuario.Name = "cmbUsuario";
-            this.cmbUsuario.Size = new System.Drawing.Size(179, 21);
+            this.cmbUsuario.Size = new System.Drawing.Size(179, 23);
             this.cmbUsuario.TabIndex = 8;
             this.cmbUsuario.SelectedIndexChanged += new System.EventHandler(this.ArmarConsulta);
             // 
             // cmbEstado
             // 
+            this.cmbEstado.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEstado.FormattingEnabled = true;
             this.cmbEstado.Location = new System.Drawing.Point(386, 115);
             this.cmbEstado.Name = "cmbEstado";
-            this.cmbEstado.Size = new System.Drawing.Size(179, 21);
+            this.cmbEstado.Size = new System.Drawing.Size(179, 23);
             this.cmbEstado.TabIndex = 9;
             this.cmbEstado.SelectedIndexChanged += new System.EventHandler(this.ArmarConsulta);
             // 
             // cmbCat
             // 
+            this.cmbCat.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCat.FormattingEnabled = true;
             this.cmbCat.Location = new System.Drawing.Point(170, 115);
             this.cmbCat.Name = "cmbCat";
-            this.cmbCat.Size = new System.Drawing.Size(179, 21);
+            this.cmbCat.Size = new System.Drawing.Size(179, 23);
             this.cmbCat.TabIndex = 10;
             this.cmbCat.SelectedIndexChanged += new System.EventHandler(this.ArmarConsulta);
             // 
@@ -113,18 +117,20 @@
             // 
             // dateInicio
             // 
+            this.dateInicio.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateInicio.Location = new System.Drawing.Point(579, 67);
             this.dateInicio.Name = "dateInicio";
-            this.dateInicio.Size = new System.Drawing.Size(200, 20);
+            this.dateInicio.Size = new System.Drawing.Size(200, 23);
             this.dateInicio.TabIndex = 14;
             this.dateInicio.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateInicio.ValueChanged += new System.EventHandler(this.ArmarConsulta);
             // 
             // dateFinal
             // 
-            this.dateFinal.Location = new System.Drawing.Point(581, 117);
+            this.dateFinal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateFinal.Location = new System.Drawing.Point(582, 115);
             this.dateFinal.Name = "dateFinal";
-            this.dateFinal.Size = new System.Drawing.Size(200, 20);
+            this.dateFinal.Size = new System.Drawing.Size(200, 23);
             this.dateFinal.TabIndex = 15;
             this.dateFinal.ValueChanged += new System.EventHandler(this.ArmarConsulta);
             // 
@@ -221,6 +227,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 146);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(922, 368);
             this.dataGridView1.TabIndex = 22;
             // 

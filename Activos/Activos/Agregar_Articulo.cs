@@ -12,12 +12,25 @@ namespace Activos
 {
     public partial class Agregar_Articulo : Form
     {
+        #region Variables
+        //--------------------------------------------------------------------------- Variables -------------------------------------------------------------------------------//
         ConsultasMySQL_JG consultasMySQL = new ConsultasMySQL_JG();
+        //---------------------------------------------------------------------------  -------------------------------------------------------------------------------//
+        #endregion
+        #region Load()
+        //--------------------------------------------------------------------------- Primera Carga del Form (Load) -------------------------------------------------------------------------------//
         public Agregar_Articulo()
         {
             InitializeComponent();
         }
-
+        private void Agregar_Articulo_Load(object sender, EventArgs e)
+        {
+            llenarComboBox();
+        }
+        //---------------------------------------------------------------------------  -------------------------------------------------------------------------------//
+        #endregion
+        #region llenarComboBox()
+        //--------------------------------------------------------------------------- Llena los ComboBox que necesita Artículos -------------------------------------------------------------------------------//
         private void llenarComboBox()
         {
             cmbUsuario.DataSource = consultasMySQL.verUsuarios();
@@ -36,7 +49,10 @@ namespace Activos
             cmbEmpresa.DisplayMember = "Empresa";
             cmbEmpresa.ValueMember = "ID";
         }
-
+        //---------------------------------------------------------------------------  -------------------------------------------------------------------------------//
+        #endregion
+        #region Agregar()
+        //--------------------------------------------------------------------------- Botón que agrega un nuevo artículo -------------------------------------------------------------------------------//
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Deseas agregar este artículo?", "Agregar Artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
@@ -61,10 +77,7 @@ namespace Activos
                 }
             }
         }
-
-        private void Agregar_Articulo_Load(object sender, EventArgs e)
-        {
-            llenarComboBox();
-        }
+        //---------------------------------------------------------------------------  -------------------------------------------------------------------------------//
+        #endregion
     }
 }
