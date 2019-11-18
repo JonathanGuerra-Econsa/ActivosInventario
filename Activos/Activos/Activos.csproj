@@ -205,5 +205,17 @@
   <ItemGroup>
     <None Include="Resources\writing.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FONDO 4.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
