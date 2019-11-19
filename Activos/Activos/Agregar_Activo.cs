@@ -17,14 +17,7 @@ namespace Activos
         ConsultasMySQL_JG consultasMySQL =new  ConsultasMySQL_JG();
         bool detalle = true;
 
-        string ID;
-        string Descripcion;
-        string Usuario;
-        string Estado;
-        string Categoria;
-        string Empresa;
-        string Fecha_Ingreso;
-
+        public string ID;
         public int opcion;
         //--------------------------------------------------------------------------------------------------------------------------//
         #endregion
