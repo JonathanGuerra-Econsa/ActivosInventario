@@ -104,35 +104,11 @@ namespace Activos
 
         private void Limpiar(object sender, EventArgs e)
         {
-            cmbEstado.SelectedValue = 0;
-            cmbCat.SelectedValue = 0;
-            cmbUsuario.SelectedValue = 0;
-            textBox7.Text = "";
-            dateInicio.Value = fechaI;
-            dateFinal.Value = fechaF;
         }
 
         private void FormarConsulta(object sender, EventArgs e)
         {
-            //if (dateInicio.Value < dateFinal.Value) { fechaAntI = dateInicio.Value; fechaAntF = dateFinal.Value; }
-            //else
-            //{
-            //    dateFinal.Value = fechaAntF;
-            //    dateInicio.Value = fechaAntI;
-            //    MessageBox.Show("La fecha Inicial no puede ser superior a la fecha Final", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-            //if (cmbEstado.SelectedValue == null) return;
-            //StringBuilder consulta = new StringBuilder();
-            //consulta.Append("WHERE ");
-            //if (!(string.IsNullOrEmpty(textBox7.Text))) consulta.Append("a.descripcion like '%" + textBox7.Text + "%' AND ");
-            //if (cmbUsuario.SelectedValue.ToString() != 0.ToString() && cmbUsuario.SelectedValue.ToString() != null) consulta.Append("u.idUsuario = '" + cmbUsuario.SelectedValue + "' AND ");
-            //if (cmbCat.SelectedValue.ToString() != 0.ToString() && cmbCat.SelectedValue.ToString() != null) consulta.Append("c.idCategoria = '" + cmbCat.SelectedValue + "' AND ");
-            //if (cmbEstado.SelectedValue.ToString() != 0.ToString() && cmbEstado.SelectedValue.ToString() != null) consulta.Append("e.idEstado = '" + cmbEstado.SelectedValue + "' AND ");
-            //consulta.Append("a.fecha_ingreso BETWEEN '" + dateInicio.Value.Date.ToString("yyyy-MM-dd") + "' AND '" + dateFinal.Value.Date.ToString("yyyy-MM-dd") + "' ORDER BY idActivo");
-            ////if (consulta.ToString() == "WHERE ") consulta = new StringBuilder();
-            ////DataRowView dv = (DataRowView)cmbUsuario.SelectedItem;
-            ////int id = (int)dv.Row["idU"];;
-            //dataGridView1.DataSource = mysql.consulta("activo", consulta.ToString());
+           
         }
     }
 }

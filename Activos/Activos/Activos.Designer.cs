@@ -230,7 +230,7 @@
             this.groupBox2.Controls.Add(this.cmbDepto);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(70)))), ((int)(((byte)(144)))));
-            this.groupBox2.Location = new System.Drawing.Point(441, 15);
+            this.groupBox2.Location = new System.Drawing.Point(441, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(422, 164);
             this.groupBox2.TabIndex = 25;
