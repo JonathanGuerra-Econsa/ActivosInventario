@@ -103,7 +103,7 @@ namespace Activos
 
         private void ArmarConsulta(object sender, EventArgs e)
         {            
-            if (cmbEstado.SelectedValue == null) return;
+            if (cmbTipo.SelectedValue == null) return;
             StringBuilder consulta = new StringBuilder();
             consulta.Append("WHERE ");
             #region comentarios 2
@@ -137,7 +137,7 @@ namespace Activos
 
         private void cmbGrupo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbGrupo.SelectedValue == null) return;
+            //if (cmbTipo.SelectedValue == null) return;
             DataTable subgrupo = new DataTable();
             subgrupo = mysql.subgrupo(Convert.ToInt32(cmbGrupo.SelectedValue));
 
