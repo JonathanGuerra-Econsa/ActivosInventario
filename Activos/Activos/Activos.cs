@@ -255,11 +255,10 @@ namespace Activos
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count == 0) return;
-            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            var row = dataGridView1.CurrentRow.Index;            
             Agregar_Activo agregar = new Agregar_Activo();
             agregar.opcion = 2;
-            agregar.ID = row.Cells["ID"].Value.ToString();
+            agregar.ID = dataGridView1.Rows[row].Cells["ID"].Value.ToString();
             agregar.ShowDialog();
         }
 
