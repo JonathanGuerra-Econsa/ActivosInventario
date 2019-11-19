@@ -191,7 +191,28 @@ namespace Activos
             gbSubGrupo.Enabled = false;
             gbUsuario.Enabled = false;
             gbValor.Enabled = false;
-            MessageBox.Show(ID);
+            btnActualizar.Visible = false;
+            btnSet.Visible = false;
+            lbID.Text = ID;
+            consultasMySQL.detalleActivo(ID);
+            txtDescripcion.Text = consultasMySQL.descripcion;
+            cmbEstado.Text = consultasMySQL.estado;
+            cmbTipo.Text = consultasMySQL.tipo;
+            cmbEmpresa.Text = consultasMySQL.empresa;
+            dtFecha.Value = Convert.ToDateTime(consultasMySQL.fecha_compra);
+            cmbUsuario.Text = consultasMySQL.usuario;
+            lbNombreUsuario.Text = consultasMySQL.usuario;
+            lbDepartamentoUsuario.Text = consultasMySQL.nombreDepartamentoUsuario;
+            lbPuesto.Text = consultasMySQL.puestoUsuario;
+            cmbGrupo.Text = consultasMySQL.grupo;
+            cmbSubGrupo.Text = consultasMySQL.subgrupo;
+            nuValor.Value = Convert.ToDecimal(consultasMySQL.valor);
+            txtFPC.Text = consultasMySQL.fpc;
+            dtDepreciacion.Value = Convert.ToDateTime(consultasMySQL.fechaDep);
+            nuPorcentaje.Value = Convert.ToDecimal(consultasMySQL.porcentajeDep);
+            nuDepreciacionAcumulada.Value = Convert.ToDecimal(consultasMySQL.depAcumulada);
+            nuValorResidual.Value = Convert.ToDecimal(consultasMySQL.valorResidual);
+            nuValorLibros.Value = Convert.ToDecimal(consultasMySQL.valorLibros);
         }
         #endregion
     }

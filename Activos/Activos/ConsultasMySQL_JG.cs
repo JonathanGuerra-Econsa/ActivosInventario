@@ -27,9 +27,25 @@ namespace Activos
         string Tabla_Grupo = "grupo";
         //---------------------------------------------------------------------------------------------------------------//
         //---------------------------------------------- * Variables de Reader * -----------------------------------------//
+
+        public string descripcion;
+        public string estado;
+        public string tipo;
+        public string empresa;
+        public string fecha_compra;
+        public string usuario;
         public string nombreUsuario;
         public string nombreDepartamentoUsuario;
         public string puestoUsuario;
+        public string grupo;
+        public string subgrupo;
+        public string valor;
+        public string fpc;
+        public string fechaDep;
+        public string porcentajeDep;
+        public string depAcumulada;
+        public string valorResidual;
+        public string valorLibros;
         //------------------------------------------------------------------------------------------------------------------//
         #endregion
         #region Plantilla ;)
@@ -372,6 +388,41 @@ namespace Activos
                 return subgrupo;
             }
         }
+        #endregion
+        #region Detalle Activo
+        //----------------------------------------------- * Data reader que trae la data para el detalle de activo * -----------------------------------------------------//
+        public void detalleActivo(string idActivo)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("SELECT a.descripcion as 'Descripcion', e.nombre as 'Estado', t.Tipo as 'Tipo', em.nombre as 'Empresa', a.fecha_compra as 'Fecha Compra', u.user as 'Usuario', u.nombre as 'Nombre Usuario', d.nombre as 'Departamento Usuario', u.puesto as 'Puesto', g.nombre as 'Grupo', s.nombre as 'Sub Grupo', a.Valor as 'Valor', a.FPC as 'FPC', a.fecha_dep as 'Fecha Depreciacion', a.PorcentajeDep as 'Porcentaje Depreciacion', a.DepAcumulada as 'Depreciacion Acumulada', a.ValorResidual as 'valor Residual', a.ValorLibros as 'Valor Libros' FROM {0} a INNER JOIN {1} e ON a.idEstado = e.idEstado INNER JOIN {2} t ON a.idTipo = t.idTipo INNER JOIN {3} em ON a.idEmpresa = em.idEmpresa INNER JOIN {4} u ON a.idUsuario = u.idUsuario INNER JOIN {5} d ON u.idDepartamento = d.idDepartamento INNER JOIN {6} s ON a.idSubgrupo = s.idSubgrupo INNER JOIN {7} g ON s.idGrupo = g.idGrupo WHERE idActivo = '{8}'", Tabla_Activo, Tabla_Estado, Tabla_Tipo, Tabla_Empresa, Tabla_Usuario, Tabla_Departamento, Tabla_SubGrupo, Tabla_Grupo, idActivo), mysqlCon);
+                MySqlDataReader read = mysqlCmd.ExecuteReader();
+                while (read.Read())
+                {
+                    descripcion = read["Descripcion"].ToString();
+                    estado = read["Estado"].ToString();
+                    tipo = read["Tipo"].ToString();
+                    empresa = read["Empresa"].ToString();
+                    fecha_compra = read["Fecha Compra"].ToString();
+                    usuario = read["Usuario"].ToString();
+                    nombreUsuario = read["Nombre Usuario"].ToString();
+                    nombreDepartamentoUsuario = read["Departamento Usuario"].ToString();
+                    puestoUsuario = read["Puesto"].ToString();
+                    grupo = read["Grupo"].ToString();
+                    subgrupo = read["Sub Grupo"].ToString();
+                    valor = read["Valor"].ToString();
+                    fpc = read["FPC"].ToString();
+                    fechaDep = read["Fecha Depreciacion"].ToString();
+                    porcentajeDep = read["Porcentaje Depreciacion"].ToString();
+                    depAcumulada = read["Depreciacion Acumulada"].ToString();
+                    valorResidual = read["Valor Residual"].ToString();
+                    valorLibros = read["Valor Libros"].ToString();
+                }
+                read.Close();
+            }
+        }
+        //----------------------------------------------------------------------------------------------------------------------------------------------------------------------//
         #endregion
     }
 }
