@@ -111,6 +111,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(1046, 368);
             this.dataGridView1.TabIndex = 22;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // groupBox1
             // 
@@ -247,6 +248,7 @@
             this.label11.Size = new System.Drawing.Size(63, 20);
             this.label11.TabIndex = 36;
             this.label11.Text = "Usuario";
+            this.label11.Visible = false;
             // 
             // label12
             // 
@@ -268,6 +270,8 @@
             this.cmbUser.Name = "cmbUser";
             this.cmbUser.Size = new System.Drawing.Size(201, 23);
             this.cmbUser.TabIndex = 34;
+            this.cmbUser.Visible = false;
+            this.cmbUser.SelectedIndexChanged += new System.EventHandler(this.ArmarConsulta);
             // 
             // cmbDepto
             // 
@@ -277,6 +281,7 @@
             this.cmbDepto.Name = "cmbDepto";
             this.cmbDepto.Size = new System.Drawing.Size(201, 23);
             this.cmbDepto.TabIndex = 33;
+            this.cmbDepto.SelectedIndexChanged += new System.EventHandler(this.cmbDepto_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -289,6 +294,7 @@
             this.button1.TabIndex = 26;
             this.button1.Text = "Imprimir Excel";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button3
             // 
@@ -301,6 +307,7 @@
             this.button3.TabIndex = 27;
             this.button3.Text = "Agregar (enviar 1)";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Activos
             // 

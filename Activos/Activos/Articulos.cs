@@ -29,27 +29,27 @@ namespace Activos
             fechaAntF = fechaF;
             fechaAntI = fechaI;
 
-            //Combo box de USUARIOS
-            DataTable usuarios = new DataTable();
-            usuarios = mysql.usuarios();
+            ////Combo box de USUARIOS
+            //DataTable usuarios = new DataTable();
+            //usuarios = mysql.usuarios();
 
-            DataRow nulo1 = usuarios.NewRow();
-            nulo1["nombre"] = "Escoger Usuario...";
-            nulo1["idU"] = 0;
-            usuarios.Rows.InsertAt(nulo1, 0);
+            //DataRow nulo1 = usuarios.NewRow();
+            //nulo1["nombre"] = "Escoger Usuario...";
+            //nulo1["idU"] = 0;
+            //usuarios.Rows.InsertAt(nulo1, 0);
 
-            cmbUsuario.DisplayMember = "nombre";
-            cmbUsuario.ValueMember = "idU";
-            cmbUsuario.DataSource = usuarios;
+            //cmbUsuario.DisplayMember = "nombre";
+            //cmbUsuario.ValueMember = "idU";
+            //cmbUsuario.DataSource = usuarios;
 
-            cmbUsuario.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbUsuario.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            AutoCompleteStringCollection userData = new AutoCompleteStringCollection();
-            foreach (DataRow row in usuarios.Rows)
-            {
-                userData.Add(row["nombre"].ToString());
-            }
-            cmbUsuario.AutoCompleteCustomSource = userData;
+            //cmbUsuario.AutoCompleteMode = AutoCompleteMode.Suggest;
+            //cmbUsuario.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            //AutoCompleteStringCollection userData = new AutoCompleteStringCollection();
+            //foreach (DataRow row in usuarios.Rows)
+            //{
+            //    userData.Add(row["nombre"].ToString());
+            //}
+            //cmbUsuario.AutoCompleteCustomSource = userData;
 
             ////Combo box de Categoria
             //DataTable categorias = new DataTable();
@@ -114,25 +114,25 @@ namespace Activos
 
         private void FormarConsulta(object sender, EventArgs e)
         {
-            if (dateInicio.Value < dateFinal.Value) { fechaAntI = dateInicio.Value; fechaAntF = dateFinal.Value; }
-            else
-            {
-                dateFinal.Value = fechaAntF;
-                dateInicio.Value = fechaAntI;
-                MessageBox.Show("La fecha Inicial no puede ser superior a la fecha Final", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            if (cmbEstado.SelectedValue == null) return;
-            StringBuilder consulta = new StringBuilder();
-            consulta.Append("WHERE ");
-            if (!(string.IsNullOrEmpty(textBox7.Text))) consulta.Append("a.descripcion like '%" + textBox7.Text + "%' AND ");
-            if (cmbUsuario.SelectedValue.ToString() != 0.ToString() && cmbUsuario.SelectedValue.ToString() != null) consulta.Append("u.idUsuario = '" + cmbUsuario.SelectedValue + "' AND ");
-            if (cmbCat.SelectedValue.ToString() != 0.ToString() && cmbCat.SelectedValue.ToString() != null) consulta.Append("c.idCategoria = '" + cmbCat.SelectedValue + "' AND ");
-            if (cmbEstado.SelectedValue.ToString() != 0.ToString() && cmbEstado.SelectedValue.ToString() != null) consulta.Append("e.idEstado = '" + cmbEstado.SelectedValue + "' AND ");
-            consulta.Append("a.fecha_ingreso BETWEEN '" + dateInicio.Value.Date.ToString("yyyy-MM-dd") + "' AND '" + dateFinal.Value.Date.ToString("yyyy-MM-dd") + "' ORDER BY idActivo");
-            //if (consulta.ToString() == "WHERE ") consulta = new StringBuilder();
-            //DataRowView dv = (DataRowView)cmbUsuario.SelectedItem;
-            //int id = (int)dv.Row["idU"];;
-            dataGridView1.DataSource = mysql.consulta("activo", consulta.ToString());
+            //if (dateInicio.Value < dateFinal.Value) { fechaAntI = dateInicio.Value; fechaAntF = dateFinal.Value; }
+            //else
+            //{
+            //    dateFinal.Value = fechaAntF;
+            //    dateInicio.Value = fechaAntI;
+            //    MessageBox.Show("La fecha Inicial no puede ser superior a la fecha Final", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //if (cmbEstado.SelectedValue == null) return;
+            //StringBuilder consulta = new StringBuilder();
+            //consulta.Append("WHERE ");
+            //if (!(string.IsNullOrEmpty(textBox7.Text))) consulta.Append("a.descripcion like '%" + textBox7.Text + "%' AND ");
+            //if (cmbUsuario.SelectedValue.ToString() != 0.ToString() && cmbUsuario.SelectedValue.ToString() != null) consulta.Append("u.idUsuario = '" + cmbUsuario.SelectedValue + "' AND ");
+            //if (cmbCat.SelectedValue.ToString() != 0.ToString() && cmbCat.SelectedValue.ToString() != null) consulta.Append("c.idCategoria = '" + cmbCat.SelectedValue + "' AND ");
+            //if (cmbEstado.SelectedValue.ToString() != 0.ToString() && cmbEstado.SelectedValue.ToString() != null) consulta.Append("e.idEstado = '" + cmbEstado.SelectedValue + "' AND ");
+            //consulta.Append("a.fecha_ingreso BETWEEN '" + dateInicio.Value.Date.ToString("yyyy-MM-dd") + "' AND '" + dateFinal.Value.Date.ToString("yyyy-MM-dd") + "' ORDER BY idActivo");
+            ////if (consulta.ToString() == "WHERE ") consulta = new StringBuilder();
+            ////DataRowView dv = (DataRowView)cmbUsuario.SelectedItem;
+            ////int id = (int)dv.Row["idU"];;
+            //dataGridView1.DataSource = mysql.consulta("activo", consulta.ToString());
         }
     }
 }

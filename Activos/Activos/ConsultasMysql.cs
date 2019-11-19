@@ -14,7 +14,7 @@ namespace Activos
         private MySqlConnection connection = new MySqlConnection("datasource=192.168.0.5;port=3306;username=admin;password=;database=activos;");
         MySqlDataReader reader;
 
-        public DataTable consulta(string datos, string consulta = "")
+        public DataTable consulta(string consulta = "")
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("ID", typeof(Int32));
@@ -48,7 +48,8 @@ namespace Activos
                 "JOIN `tipo` as c ON a.idTipo = c.idTipo " +
                 "JOIN `empresa` as em ON a.idEmpresa = em.idEmpresa " +
                 "JOIN `subgrupo` as s ON a.idSubgrupo = s.idSubgrupo " +
-                "JOIN `grupo` as g ON s.idGrupo = g.idGrupo ORDER BY a.idActivo " + consulta;
+                "JOIN `grupo` as g ON g.idGrupo = s.idGrupo " +
+                "JOIN `departamento` as d ON d.idDepartamento = u.idDepartamento " + consulta + " ORDER BY a.idActivo";
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
@@ -84,13 +85,13 @@ namespace Activos
             return dt;
         }
 
-        public DataTable usuarios()
+        public DataTable usuarios(int idDepto)
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("idU", typeof(Int32));
             dt.Columns.Add("nombre", typeof(string));
             MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT * FROM usuario";
+            cmd.CommandText = "SELECT * FROM usuario WHERE idDepartamento = " + idDepto;
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
@@ -216,6 +217,29 @@ namespace Activos
                     empresa["idEm"] = reader.GetInt32(0);
                     empresa["nombre"] = reader.GetString(1);
                     dt.Rows.Add(empresa);
+                }
+            }
+            connection.Close();
+            return dt;
+        }
+
+        public DataTable departamentos()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("idD", typeof(Int32));
+            dt.Columns.Add("nombre", typeof(string));
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT * FROM departamento";
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    DataRow depto = dt.NewRow();
+                    depto["idD"] = reader.GetInt32(0);
+                    depto["nombre"] = reader.GetString(1);
+                    dt.Rows.Add(depto);
                 }
             }
             connection.Close();
