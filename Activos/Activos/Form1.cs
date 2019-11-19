@@ -37,7 +37,7 @@ namespace Activos
 
         private void btnActivo_Click(object sender, EventArgs e)
         {
-            new Agregar_Activo().Show();
+            new Activos().Show();
         }
 
         private void btnArticulo_Click(object sender, EventArgs e)

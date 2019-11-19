@@ -51,27 +51,27 @@ namespace Activos
             }
             cmbUsuario.AutoCompleteCustomSource = userData;
 
-            //Combo box de Categoria
-            DataTable categorias = new DataTable();
-            categorias = mysql.categorias();
+            ////Combo box de Categoria
+            //DataTable categorias = new DataTable();
+            //categorias = mysql.categorias();
 
-            DataRow nulo2 = categorias.NewRow();
-            nulo2["nombre"] = "Escoger Categoria...";
-            nulo2["idC"] = 0;
-            categorias.Rows.InsertAt(nulo2, 0);
+            //DataRow nulo2 = categorias.NewRow();
+            //nulo2["nombre"] = "Escoger Categoria...";
+            //nulo2["idC"] = 0;
+            //categorias.Rows.InsertAt(nulo2, 0);
 
-            cmbCat.DisplayMember = "nombre";
-            cmbCat.ValueMember = "idC";
-            cmbCat.DataSource = categorias;
+            //cmbCat.DisplayMember = "nombre";
+            //cmbCat.ValueMember = "idC";
+            //cmbCat.DataSource = categorias;
 
-            cmbCat.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbCat.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            AutoCompleteStringCollection catData = new AutoCompleteStringCollection();
-            foreach (DataRow row in categorias.Rows)
-            {
-                catData.Add(row["nombre"].ToString());
-            }
-            cmbCat.AutoCompleteCustomSource = catData;
+            //cmbCat.AutoCompleteMode = AutoCompleteMode.Suggest;
+            //cmbCat.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            //AutoCompleteStringCollection catData = new AutoCompleteStringCollection();
+            //foreach (DataRow row in categorias.Rows)
+            //{
+            //    catData.Add(row["nombre"].ToString());
+            //}
+            //cmbCat.AutoCompleteCustomSource = catData;
 
             //Combo box de Estado
             DataTable estados = new DataTable();
@@ -132,7 +132,6 @@ namespace Activos
             //if (consulta.ToString() == "WHERE ") consulta = new StringBuilder();
             //DataRowView dv = (DataRowView)cmbUsuario.SelectedItem;
             //int id = (int)dv.Row["idU"];;
-            Console.WriteLine(consulta);
             dataGridView1.DataSource = mysql.consulta("activo", consulta.ToString());
         }
     }

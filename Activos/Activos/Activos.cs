@@ -13,7 +13,6 @@ namespace Activos
     public partial class Activos : Form
     {
         ConsultasMysql mysql = new ConsultasMysql();
-        DateTime fechaI = new DateTime(2000,1,1), fechaF = DateTime.Today, fechaAntI, fechaAntF;
 
         public Activos()
         {
@@ -27,58 +26,34 @@ namespace Activos
             dataGridView1.Columns[3].Visible = false;
             dataGridView1.Columns[5].Visible = false;
             dataGridView1.Columns[7].Visible = false;
+            dataGridView1.Columns[18].Visible = false;
+            dataGridView1.Columns[20].Visible = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
 
-            //datatime
-            dateInicio.Value = fechaI;
-            dateFinal.Value = fechaF;
-            fechaAntF = fechaF;
-            fechaAntI = fechaI;
+            #region Combo box de Grupos
+            DataTable grupo = new DataTable();
+            grupo = mysql.grupo();
 
-            //Combo box de USUARIOS
-            DataTable usuarios = new DataTable();
-            usuarios = mysql.usuarios();
+            DataRow nulo1 = grupo.NewRow();
+            nulo1["nombre"] = "Escoger Grupo...";
+            nulo1["idG"] = 0;
+            grupo.Rows.InsertAt(nulo1, 0);
 
-            DataRow nulo1 = usuarios.NewRow();
-            nulo1["nombre"] = "Escoger Usuario...";
-            nulo1["idU"] = 0;
-            usuarios.Rows.InsertAt(nulo1, 0);
+            cmbGrupo.DisplayMember = "nombre";
+            cmbGrupo.ValueMember = "idG";
+            cmbGrupo.DataSource = grupo;
 
-            cmbUsuario.DisplayMember = "nombre";
-            cmbUsuario.ValueMember = "idU";
-            cmbUsuario.DataSource = usuarios;
-
-            cmbUsuario.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbUsuario.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            AutoCompleteStringCollection userData = new AutoCompleteStringCollection();
-            foreach (DataRow row in usuarios.Rows)
+            cmbGrupo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbGrupo.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection grupoData = new AutoCompleteStringCollection();
+            foreach (DataRow row in grupo.Rows)
             {
-                userData.Add(row["nombre"].ToString());
+                grupoData.Add(row["nombre"].ToString());
             }
-            cmbUsuario.AutoCompleteCustomSource = userData;
-
-            //Combo box de Categoria
-            DataTable categorias = new DataTable();
-            categorias = mysql.categorias();
-
-            DataRow nulo2 = categorias.NewRow();
-            nulo2["nombre"] = "Escoger Categoria...";
-            nulo2["idC"] = 0;
-            categorias.Rows.InsertAt(nulo2, 0);
-
-            cmbCat.DisplayMember = "nombre";
-            cmbCat.ValueMember = "idC";
-            cmbCat.DataSource = categorias;
-
-            cmbCat.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbCat.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            AutoCompleteStringCollection catData = new AutoCompleteStringCollection();
-            foreach (DataRow row in categorias.Rows)
-            {
-                catData.Add(row["nombre"].ToString());
-            }
-            cmbCat.AutoCompleteCustomSource = catData;
-
-            //Combo box de Estado
+            cmbGrupo.AutoCompleteCustomSource = grupoData;
+            #endregion
+            #region Combo box de Estado
             DataTable estados = new DataTable();
             estados = mysql.estados();
 
@@ -100,40 +75,91 @@ namespace Activos
             }
             cmbEstado.AutoCompleteCustomSource = estadoData;
             dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            #endregion
+            #region Combo box de Tipo
+            DataTable tipos = new DataTable();
+            tipos = mysql.tipos();
+
+            DataRow nulo2 = tipos.NewRow();
+            nulo2["nombre"] = "Escoger Tipo...";
+            nulo2["idT"] = 0;
+            tipos.Rows.InsertAt(nulo2, 0);
+
+            cmbTipo.DisplayMember = "nombre";
+            cmbTipo.ValueMember = "idE";
+            cmbTipo.DataSource = tipos;
+
+            cmbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbTipo.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection tipoData = new AutoCompleteStringCollection();
+            foreach (DataRow row in tipos.Rows)
+            {
+                tipoData.Add(row["nombre"].ToString());
+            }
+            cmbTipo.AutoCompleteCustomSource = estadoData;
+            dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            #endregion
         }
 
         private void ArmarConsulta(object sender, EventArgs e)
-        {
-            if (dateInicio.Value < dateFinal.Value) { fechaAntI = dateInicio.Value; fechaAntF = dateFinal.Value; }
-            else
-            {
-                dateFinal.Value = fechaAntF;
-                dateInicio.Value = fechaAntI;
-                MessageBox.Show("La fecha Inicial no puede ser superior a la fecha Final", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        {            
             if (cmbEstado.SelectedValue == null) return;
             StringBuilder consulta = new StringBuilder();
             consulta.Append("WHERE ");
-            if (!(string.IsNullOrEmpty(textBox7.Text))) consulta.Append("a.descripcion like '%" + textBox7.Text + "%' AND ");
-            if (cmbUsuario.SelectedValue.ToString() != 0.ToString() && cmbUsuario.SelectedValue.ToString() != null) consulta.Append("u.idUsuario like '%" + cmbUsuario.SelectedValue + "%' AND ");
-            if (cmbCat.SelectedValue.ToString() != 0.ToString() && cmbCat.SelectedValue.ToString() != null) consulta.Append("c.idCategoria like '%" + cmbCat.SelectedValue + "%' AND ");
-            if (cmbEstado.SelectedValue.ToString() != 0.ToString() && cmbEstado.SelectedValue.ToString() != null) consulta.Append("e.idEstado like '%" + cmbEstado.SelectedValue + "%' AND ");
-            consulta.Append("a.fecha_ingreso BETWEEN '"+ dateInicio.Value.Date.ToString("yyyy-MM-dd") + "' AND '" + dateFinal.Value.Date.ToString("yyyy-MM-dd") + "' ORDER BY idActivo");
-            //if (consulta.ToString() == "WHERE ") consulta = new StringBuilder();
+            #region comentarios 2
+            //if (!(string.IsNullOrEmpty(textBox7.Text))) consulta.Append("a.descripcion like '%" + textBox7.Text + "%' AND ");
+            //if (cmbUsuario.SelectedValue.ToString() != 0.ToString() && cmbUsuario.SelectedValue.ToString() != null) consulta.Append("u.idUsuario like '%" + cmbUsuario.SelectedValue + "%' AND ");
+            //if (cmbCat.SelectedValue.ToString() != 0.ToString() && cmbCat.SelectedValue.ToString() != null) consulta.Append("c.idCategoria like '%" + cmbCat.SelectedValue + "%' AND ");
+            if (cmbEstado.SelectedValue.ToString() != 0.ToString() && cmbEstado.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != "WHERE ")  ;
+                consulta.Append("e.idEstado = " + cmbEstado.SelectedValue);
+            }
+            //consulta.Append("a.fecha_ingreso BETWEEN '"+ dateInicio.Value.Date.ToString("yyyy-MM-dd") + "' AND '" + dateFinal.Value.Date.ToString("yyyy-MM-dd") + "' ORDER BY idActivo");
+            if (consulta.ToString() == "WHERE ") consulta = new StringBuilder();
+                        
             //DataRowView dv = (DataRowView)cmbUsuario.SelectedItem;
             //int id = (int)dv.Row["idU"];;
+            #endregion
             Console.WriteLine(consulta);
             dataGridView1.DataSource = mysql.consulta("activo",consulta.ToString());
         }
 
         private void limpiarDatos(object sender, EventArgs e)
         {
-            cmbEstado.SelectedValue = 0;
-            cmbCat.SelectedValue = 0;
-            cmbUsuario.SelectedValue = 0;
-            textBox7.Text = "";
-            dateInicio.Value = fechaI;
-            dateFinal.Value = fechaF;
+            //cmbEstado.SelectedValue = 0;
+            //cmbCat.SelectedValue = 0;
+            //cmbUsuario.SelectedValue = 0;
+            //textBox7.Text = "";
+            //dateInicio.Value = fechaI;
+            //dateFinal.Value = fechaF;
+        }
+
+        private void cmbGrupo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbGrupo.SelectedValue == null) return;
+            DataTable subgrupo = new DataTable();
+            subgrupo = mysql.subgrupo(Convert.ToInt32(cmbGrupo.SelectedValue));
+
+            DataRow nulo1 = subgrupo.NewRow();
+            nulo1["nombre"] = "Escoger SubGrupo...";
+            nulo1["idS"] = 0;
+            subgrupo.Rows.InsertAt(nulo1, 0);
+
+            cmbSubgrupo.DisplayMember = "nombre";
+            cmbSubgrupo.ValueMember = "idS";
+            cmbSubgrupo.DataSource = subgrupo;
+
+            cmbSubgrupo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbSubgrupo.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection subgrupoData = new AutoCompleteStringCollection();
+            foreach (DataRow row in subgrupo.Rows)
+            {
+                subgrupoData.Add(row["nombre"].ToString());
+            }
+            cmbGrupo.AutoCompleteCustomSource = subgrupoData;
+
+            ArmarConsulta(sender,e);
         }
     }
 }

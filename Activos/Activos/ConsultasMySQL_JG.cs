@@ -10,11 +10,12 @@ namespace Activos
 {
     class ConsultasMySQL_JG
     {
+        #region Variables
         //----------------------------------------------*Variables Gloables*--------------------------------------------//
         string connectionString = @"Server=192.168.0.5;Database=activos;Uid=hola;Pwd=;port=3306;";
         string Tabla_Departamento = "departamento";
         string Tabla_Usuario = "usuario";
-        string Tabla_Categoria = "categoria";
+        string Tabla_Categoria = "tipo";
         string Tabla_Activo = "activo";
         string Tabla_Activo_Historial = "activo_historial";
         string Tabla_Articulo = "articulo";
@@ -25,7 +26,8 @@ namespace Activos
         string Tabla_DetalleInvActivo = "detalleinvactivo";
         string Tabla_InvActivo = "inventario_activo";
         //---------------------------------------------------------------------------------------------------------------//
-
+        #endregion
+        #region Plantilla ;)
         //-----------------------------------------Plantilla para Metodo View----------------------------------------//
         public DataTable View()
         {
@@ -39,7 +41,9 @@ namespace Activos
             }
         }
         //----------------------------------------------------------------------------------------------------------------//
-
+        #endregion
+        #region verDepartamentos()
+        //---------------------------------------Ver los departamentos------------------------------------------------------------//
         public DataTable verDepartamentos()
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
@@ -51,7 +55,10 @@ namespace Activos
                 return TableInventario;
             }
         }
-
+        //----------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region verEstados()
+        //------------------------------------------------Ver los Estados--------------------------------------------------------//
         public DataTable verEstados()
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
@@ -63,7 +70,10 @@ namespace Activos
                 return TableEstado;
             }
         }
-
+        //----------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region verEmpresa()
+        //--------------------------------------Ver las empresas-----------------------------------------------------------//
         public DataTable verEmpresa()
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
@@ -75,7 +85,10 @@ namespace Activos
                 return TableEmpresa;
             }
         }
-
+        //----------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region verUsuario()
+        //-----------------------------------------------Ver los Usuarios---------------------------------------------------------//
         public DataTable verUsuarios()
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
@@ -87,19 +100,25 @@ namespace Activos
                 return TableUser;
             }
         }
-
+        //----------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region verCategorias()
+        //---------------------------------------------------Ver las Categorias------------------------------------------------------//
         public DataTable verCategorias()
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlDataAdapter mysqlCmd = new MySqlDataAdapter(string.Format("SELECT idCategoria as 'ID', nombre as 'Categoria' FROM {0} ORDER BY idCategoria", Tabla_Categoria), mysqlCon);
+                MySqlDataAdapter mysqlCmd = new MySqlDataAdapter(string.Format("SELECT idTipo as 'ID', tipo as 'Categoria', idSubgrupo as 'SubGrupo' FROM {0} ORDER BY idTipo", Tabla_Categoria), mysqlCon);
                 DataTable TableCategoria = new DataTable();
                 mysqlCmd.Fill(TableCategoria);
                 return TableCategoria;
             }
         }
-
+        //----------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region verActivos()
+        //---------------------------------------------Ver los Activos------------------------------------------------------------//
         public DataTable verActivos()
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
@@ -111,7 +130,10 @@ namespace Activos
                 return TableActivo;
             }
         }
-
+        //----------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region verArtículos()
+        //----------------------------------------------------Ver los Artículos------------------------------------------------------------//
         public DataTable verArticulos()
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
@@ -123,7 +145,10 @@ namespace Activos
                 return TableArticulo;
             }
         }
-
+        //----------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region verDetalleActivo()
+        //------------------------------------------------------Ver los Detalles de Activos--------------------------------------------------//
         public DataTable verDetalleActivo()
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
@@ -135,7 +160,10 @@ namespace Activos
                 return TableDetalle;
             }
         }
-
+        //----------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region verIdActivos()
+        //------------------------------------------------------Buscar ------------------------------------------------------//
         public string verIdActivos()
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
@@ -154,7 +182,7 @@ namespace Activos
                 return idActivo;
             }
         }
-
+        #endregion
         public string verIdArticulos()
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))

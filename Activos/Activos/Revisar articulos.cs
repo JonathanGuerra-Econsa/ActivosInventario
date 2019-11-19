@@ -29,23 +29,22 @@ namespace Activos
             comboBox1.Items.Add("Activo");
             comboBox1.Items.Add("Articulo");
             #endregion
-
             #region set combobox's
-            //Combo box de USUARIOS
-            DataTable usuarios = new DataTable();
-            usuarios = mysql.usuarios();
+            ////Combo box de USUARIOS
+            //DataTable usuarios = new DataTable();
+            //usuarios = mysql.usuarios();
 
-            user.DisplayMember = "nombre";
-            user.ValueMember = "idU";
-            user.DataSource = usuarios;
+            //user.DisplayMember = "nombre";
+            //user.ValueMember = "idU";
+            //user.DataSource = usuarios;
 
             //Combo box de Categoria
-            DataTable categorias = new DataTable();
-            categorias = mysql.categorias();;
+            //DataTable categorias = new DataTable();
+            //categorias = mysql.categorias();;
 
-            cat.DisplayMember = "nombre";
-            cat.ValueMember = "idC";
-            cat.DataSource = categorias;
+            //cat.DisplayMember = "nombre";
+            //cat.ValueMember = "idC";
+            //cat.DataSource = categorias;
 
             //Combo box de Estado
             DataTable estados = new DataTable();
