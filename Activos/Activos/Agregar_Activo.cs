@@ -38,10 +38,7 @@ namespace Activos
             }
             else
             {
-                gbDetalleActivo.Enabled = false;
-                gbSubGrupo.Enabled = false;
-                gbUsuario.Enabled = false;
-                gbValor.Enabled = false;
+                metodoMostrar();
             }
         }
         //--------------------------------------------------------------------- --------------------------------------------------------------//
@@ -125,12 +122,46 @@ namespace Activos
         //-------------------------------------------------------------- Guarda un nuevo Activo -------------------------------------------------------------------------------//
         private void btnSet_Click(object sender, EventArgs e)
         {
-            if(txtDescripcion.Text != "")
+            if(txtDescripcion.Text != "" & cmbEstado.SelectedIndex != -1 & cmbTipo.SelectedIndex != -1 
+                & cmbEmpresa.SelectedIndex != -1 & dtFecha.Value != null & cmbUsuario.SelectedIndex != -1 
+                & cmbSubGrupo.SelectedIndex != -1 & nuValor.Value != 0 & txtFPC.Text != "" & dtDepreciacion.Value != null 
+                & nuPorcentaje.Value != 0 & nuDepreciacionAcumulada.Value != 0 & nuValorResidual.Value != 0
+                & nuValorLibros.Value != 0)
             {
-
+                if (MessageBox.Show("Desea guardar este activo?", "Guardar Activo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        string descricpion = txtDescripcion.Text;
+                        string idEstado = cmbEstado.SelectedValue.ToString();
+                        string idTipo = cmbTipo.SelectedValue.ToString();
+                        string idEmpresa = cmbEmpresa.SelectedValue.ToString();
+                        string fecha_compra = dtFecha.Value.ToString("yyyy-MM-dd");
+                        string idUsuario = cmbUsuario.SelectedValue.ToString();
+                        string idSubgrupo = cmbSubGrupo.SelectedValue.ToString();
+                        string valor = nuValor.Value.ToString();
+                        string fpc = txtFPC.Text;
+                        string fecha_depreciacion = dtDepreciacion.Value.ToString("yyyy-MM-dd");
+                        string porcentajeDep = nuPorcentaje.Value.ToString();
+                        string depAcumulada = nuDepreciacionAcumulada.Value.ToString();
+                        string valorResidual = nuValorResidual.Value.ToString();
+                        string valorLibro = nuValorLibros.Value.ToString();
+                        consultasMySQL.agregarActivo(descricpion, idUsuario, idEstado, idTipo, idEmpresa, fecha_compra, valor, fpc, fecha_depreciacion, porcentajeDep, depAcumulada, valorResidual, valorLibro, idSubgrupo);
+                        MessageBox.Show("Activo Guardado con éxtio", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Hide();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor llene el formulario completamente", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
+        //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
         #endregion
         #region SelectedIndexChanged
         //--------------------------------------- CmbUsuario ---------------------------------------------//
@@ -143,8 +174,7 @@ namespace Activos
             lbPuesto.Text = consultasMySQL.puestoUsuario;
         }
         //-------------------------------------------------------------------------------------------------//
-        #endregion
-
+        //--------------------------------------- cmbGrupo ---------------------------------------------//
         private void cmbGrupo_SelectedIndexChanged(object sender, EventArgs e)
         {
             string idGrupo = cmbGrupo.SelectedValue.ToString();
@@ -152,10 +182,15 @@ namespace Activos
             cmbSubGrupo.DisplayMember = "Nombre";
             cmbSubGrupo.ValueMember = "ID";
         }
-
-        private void cmbEmpresa_SelectedIndexChanged(object sender, EventArgs e)
+        //---------------------------------------------------------------------------------------------------//
+        #endregion
+        private void metodoMostrar()
         {
-
+            gbDetalleActivo.Enabled = false;
+            gbSubGrupo.Enabled = false;
+            gbUsuario.Enabled = false;
+            gbValor.Enabled = false;
+            MessageBox.Show(ID);
         }
     }
 }

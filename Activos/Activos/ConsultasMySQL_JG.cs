@@ -242,12 +242,12 @@ namespace Activos
         }
         #endregion
         #region agregarActivo()
-        public void agregarActivo(string descripcion, string idUsuario, string idEstado, string idcategoria, string idEmpresa, string fecha)
+        public void agregarActivo(string descripcion, string idUsuario, string idEstado, string idTipo, string idEmpresa, string fecha_compra, string valor, string fpc, string fecha_dep, string porcentajeDep, string depAcumulada, string valorResidual, string valorLibros, string idSubGrupo)
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(descripcion, idUsuario, idEstado, idCategoria, idEmpresa, fecha_ingreso) VALUES('{1}', '{2}', '{3}', '{4}', '{5}', '{6}')", Tabla_Activo, descripcion, idUsuario, idEstado, idcategoria, idEmpresa, fecha), mysqlCon);
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}( descripcion, idUsuario, idEstado, idTipo, idEmpresa, fecha_compra, Valor, FPC, fecha_dep, PorcentajeDep, DepAcumulada, ValorResidual, ValorLibros, idSubgrupo ) VALUES('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}')", Tabla_Activo, descripcion, idUsuario, idEstado, idTipo, idEmpresa, fecha_compra, valor, fpc, fecha_dep, porcentajeDep, depAcumulada, valorResidual, valorLibros, idSubGrupo), mysqlCon);
                 mysqlCmd.ExecuteNonQuery();
             }
         }
