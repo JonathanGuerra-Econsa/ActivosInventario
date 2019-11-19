@@ -125,17 +125,9 @@ namespace Activos
         //-------------------------------------------------------------- Guarda un nuevo Activo -------------------------------------------------------------------------------//
         private void btnSet_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Desea guardar este activo?", "Guardar Activo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            if(txtDescripcion.Text != "")
             {
-                try
-                {
-                    consultasMySQL.agregarActivo(txtDescripcion.Text, cmbUsuario.SelectedValue.ToString(), cmbEstado.SelectedValue.ToString(), cmbTipo.SelectedValue.ToString(), cmbEmpresa.SelectedValue.ToString(), dtFecha.Value.ToString("yyyy-MM-dd HH:mm:ss"));
-                    MessageBox.Show("Agregado Correctamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
+
             }
         }
         //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
@@ -159,6 +151,11 @@ namespace Activos
             cmbSubGrupo.DataSource = consultasMySQL.verSubGrupo(idGrupo);
             cmbSubGrupo.DisplayMember = "Nombre";
             cmbSubGrupo.ValueMember = "ID";
+        }
+
+        private void cmbEmpresa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
