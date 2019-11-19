@@ -184,6 +184,7 @@ namespace Activos
         }
         //---------------------------------------------------------------------------------------------------//
         #endregion
+        #region Método Mostrar
         private void metodoMostrar()
         {
             gbDetalleActivo.Enabled = false;
@@ -192,5 +193,6 @@ namespace Activos
             gbValor.Enabled = false;
             MessageBox.Show(ID);
         }
+        #endregion
     }
 }
