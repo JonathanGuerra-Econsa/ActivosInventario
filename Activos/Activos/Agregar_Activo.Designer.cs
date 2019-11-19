@@ -56,6 +56,7 @@
             this.cmbUsuario = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.gbSubGrupo = new System.Windows.Forms.GroupBox();
+            this.cmbSubGrupo = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
             this.cmbGrupo = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -75,7 +76,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.nuValor = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
-            this.cmbSubGrupo = new System.Windows.Forms.ComboBox();
             this.gbDetalleActivo.SuspendLayout();
             this.gbUsuario.SuspendLayout();
             this.gbSubGrupo.SuspendLayout();
@@ -171,7 +171,6 @@
             this.cmbEmpresa.Name = "cmbEmpresa";
             this.cmbEmpresa.Size = new System.Drawing.Size(337, 23);
             this.cmbEmpresa.TabIndex = 3;
-            this.cmbEmpresa.SelectedIndexChanged += new System.EventHandler(this.cmbEmpresa_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -417,6 +416,16 @@
             this.gbSubGrupo.TabStop = false;
             this.gbSubGrupo.Text = "Sub Grupo";
             // 
+            // cmbSubGrupo
+            // 
+            this.cmbSubGrupo.BackColor = System.Drawing.Color.White;
+            this.cmbSubGrupo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSubGrupo.FormattingEnabled = true;
+            this.cmbSubGrupo.Location = new System.Drawing.Point(249, 56);
+            this.cmbSubGrupo.Name = "cmbSubGrupo";
+            this.cmbSubGrupo.Size = new System.Drawing.Size(193, 23);
+            this.cmbSubGrupo.TabIndex = 36;
+            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -478,7 +487,7 @@
             // 
             // nuValorLibros
             // 
-            this.nuValorLibros.DecimalPlaces = 6;
+            this.nuValorLibros.DecimalPlaces = 2;
             this.nuValorLibros.Location = new System.Drawing.Point(145, 291);
             this.nuValorLibros.Maximum = new decimal(new int[] {
             500000,
@@ -502,7 +511,7 @@
             // 
             // nuValorResidual
             // 
-            this.nuValorResidual.DecimalPlaces = 6;
+            this.nuValorResidual.DecimalPlaces = 2;
             this.nuValorResidual.Location = new System.Drawing.Point(146, 260);
             this.nuValorResidual.Maximum = new decimal(new int[] {
             500000,
@@ -526,7 +535,7 @@
             // 
             // nuDepreciacionAcumulada
             // 
-            this.nuDepreciacionAcumulada.DecimalPlaces = 6;
+            this.nuDepreciacionAcumulada.DecimalPlaces = 2;
             this.nuDepreciacionAcumulada.Location = new System.Drawing.Point(145, 210);
             this.nuDepreciacionAcumulada.Maximum = new decimal(new int[] {
             500000,
@@ -560,7 +569,7 @@
             // 
             // nuPorcentaje
             // 
-            this.nuPorcentaje.DecimalPlaces = 6;
+            this.nuPorcentaje.DecimalPlaces = 2;
             this.nuPorcentaje.Location = new System.Drawing.Point(145, 160);
             this.nuPorcentaje.Maximum = new decimal(new int[] {
             500000,
@@ -622,7 +631,7 @@
             // 
             // nuValor
             // 
-            this.nuValor.DecimalPlaces = 6;
+            this.nuValor.DecimalPlaces = 2;
             this.nuValor.Location = new System.Drawing.Point(145, 22);
             this.nuValor.Maximum = new decimal(new int[] {
             500000,
@@ -643,16 +652,6 @@
             this.label12.Size = new System.Drawing.Size(62, 25);
             this.label12.TabIndex = 51;
             this.label12.Text = "Valor:";
-            // 
-            // cmbSubGrupo
-            // 
-            this.cmbSubGrupo.BackColor = System.Drawing.Color.White;
-            this.cmbSubGrupo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSubGrupo.FormattingEnabled = true;
-            this.cmbSubGrupo.Location = new System.Drawing.Point(249, 56);
-            this.cmbSubGrupo.Name = "cmbSubGrupo";
-            this.cmbSubGrupo.Size = new System.Drawing.Size(193, 23);
-            this.cmbSubGrupo.TabIndex = 36;
             // 
             // Agregar_Activo
             // 
