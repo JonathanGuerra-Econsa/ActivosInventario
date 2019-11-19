@@ -95,6 +95,7 @@
             // 
             this.status.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.status.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.status.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.status.Enabled = false;
             this.status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.status.FormattingEnabled = true;
@@ -107,6 +108,7 @@
             // 
             this.cat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cat.Enabled = false;
             this.cat.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cat.FormattingEnabled = true;
@@ -119,6 +121,7 @@
             // 
             this.Emp.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.Emp.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.Emp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Emp.Enabled = false;
             this.Emp.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Emp.FormattingEnabled = true;
@@ -150,6 +153,7 @@
             // 
             this.user.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.user.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.user.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.user.Enabled = false;
             this.user.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.user.FormattingEnabled = true;
@@ -222,6 +226,7 @@
             // 
             this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(349, 38);

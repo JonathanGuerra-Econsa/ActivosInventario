@@ -23,17 +23,32 @@ namespace Activos
             dt.Columns.Add("idUsuario");
             dt.Columns.Add("Estado");
             dt.Columns.Add("idEstado");
-            dt.Columns.Add("Categoria");
-            dt.Columns.Add("idCategoria");
+            dt.Columns.Add("Tipo");
+            dt.Columns.Add("idTipo");
             dt.Columns.Add("Empresa");
-            dt.Columns.Add("Fecha de Ingreso");
+            dt.Columns.Add("Fecha de Compra");
+            dt.Columns.Add("Valor");
+            dt.Columns.Add("FPC");
+            dt.Columns.Add("Fecha de Depreciacion");
+            dt.Columns.Add("% Depreciacion");
+            dt.Columns.Add("Depreciacion Acumulada");
+            dt.Columns.Add("Valor Residual");
+            dt.Columns.Add("Valor Libros");
+            dt.Columns.Add("Subgrupo");
+            dt.Columns.Add("idSubgrupo");
+            dt.Columns.Add("Grupo");
+            dt.Columns.Add("idGrupo");
             MySqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = "SELECT a.idActivo,a.descripcion,u.nombre as 'Usuario', u.idUsuario, " +
-                "e.nombre as 'Estado', e.idEstado, c.nombre as 'Categoria', c.idCategoria, em.nombre as 'Empresa', a.fecha_ingreso FROM `"+datos+"` as a " +
+                "e.nombre as 'Estado', e.idEstado, c.tipo as 'Tipo', c.idTipo, em.nombre as 'Empresa', a.fecha_compra, a.Valor, " +
+                "a.FPC, a.fecha_dep, a.PorcentajeDep, a.DepAcumulada, a.ValorResidual, a.ValorLibros, s.nombre as 'Subgrupo',a.idSubgrupo, " +
+                "g.nombre as 'grupo', g.idGrupo FROM `activo` as a " +
                 "JOIN `usuario` as u ON a.idUsuario = u.idUsuario " +
                 "JOIN `estado` as e ON a.idEstado = e.idEstado " +
-                "JOIN `categoria` as c ON a.idCategoria = c.idCategoria " +
-                "JOIN `empresa` as em ON a.idEmpresa = em.idEmpresa " + consulta;
+                "JOIN `tipo` as c ON a.idTipo = c.idTipo " +
+                "JOIN `empresa` as em ON a.idEmpresa = em.idEmpresa " +
+                "JOIN `subgrupo` as s ON a.idSubgrupo = s.idSubgrupo " +
+                "JOIN `grupo` as g ON s.idGrupo = g.idGrupo ORDER BY a.idActivo " + consulta;
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
@@ -47,10 +62,21 @@ namespace Activos
                     activo["idUsuario"] = reader.GetString(3);
                     activo["Estado"] = reader.GetString(4);
                     activo["idEstado"] = reader.GetString(5);
-                    activo["Categoria"] = reader.GetString(6);
-                    activo["idCategoria"] = reader.GetString(7);
+                    activo["Tipo"] = reader.GetString(6);
+                    activo["idTipo"] = reader.GetString(7);
                     activo["Empresa"] = reader.GetString(8);
-                    activo["Fecha de Ingreso"] = reader.GetString(9);
+                    activo["Fecha de Compra"] = reader.GetString(9);
+                    activo["Valor"] = reader.GetString(10);
+                    activo["FPC"] = reader.GetString(11);
+                    activo["Fecha de Depreciacion"] = reader.GetString(12);
+                    activo["% Depreciacion"] = reader.GetString(13);
+                    activo["Depreciacion Acumulada"] = reader.GetString(14);
+                    activo["Valor Residual"] = reader.GetString(15);
+                    activo["Valor Libros"] = reader.GetString(16);
+                    activo["Subgrupo"] = reader.GetString(17);
+                    activo["idSubgrupo"] = reader.GetString(18);
+                    activo["Grupo"] = reader.GetString(19);
+                    activo["idGrupo"] = reader.GetString(20);
                     dt.Rows.Add(activo);
                 }
             }
@@ -81,13 +107,59 @@ namespace Activos
             return dt;
         }
 
-        public DataTable categorias()
+        public DataTable grupo()
         {
             DataTable dt = new DataTable();
-            dt.Columns.Add("idC", typeof(Int32));
+            dt.Columns.Add("idG", typeof(Int32));
             dt.Columns.Add("nombre", typeof(string));
             MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT * FROM categoria";
+            cmd.CommandText = "SELECT * FROM grupo";
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    DataRow grupo = dt.NewRow();
+                    grupo["idG"] = reader.GetInt32(0);
+                    grupo["nombre"] = reader.GetString(1);
+                    dt.Rows.Add(grupo);
+                }
+            }
+            connection.Close();
+            return dt;
+        }
+
+        public DataTable subgrupo(int idGrupo)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("idS", typeof(Int32));
+            dt.Columns.Add("nombre", typeof(string));
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT * FROM subgrupo WHERE idGrupo = " + idGrupo;
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    DataRow sub = dt.NewRow();
+                    sub["idS"] = reader.GetInt32(0);
+                    sub["nombre"] = reader.GetString(1);
+                    dt.Rows.Add(sub);
+                }
+            }
+            connection.Close();
+            return dt;
+        }
+
+        public DataTable tipos()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("idT", typeof(Int32));
+            dt.Columns.Add("nombre", typeof(string));
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT * FROM tipo";
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
@@ -95,7 +167,7 @@ namespace Activos
                 while (reader.Read())
                 {
                     DataRow categoria = dt.NewRow();
-                    categoria["idC"] = reader.GetInt32(0);
+                    categoria["idT"] = reader.GetInt32(0);
                     categoria["nombre"] = reader.GetString(1);
                     dt.Rows.Add(categoria);
                 }
