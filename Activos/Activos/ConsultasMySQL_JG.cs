@@ -15,17 +15,22 @@ namespace Activos
         string connectionString = @"Server=192.168.0.5;Database=activos;Uid=hola;Pwd=;port=3306;";
         string Tabla_Departamento = "departamento";
         string Tabla_Usuario = "usuario";
-        string Tabla_Categoria = "tipo";
+        string Tabla_Tipo = "tipo";
         string Tabla_Activo = "activo";
-        string Tabla_Activo_Historial = "activo_historial";
         string Tabla_Articulo = "articulo";
-        string Tabla_Articulo_Historial = "articulo_historial";
         string Tabla_Estado = "estado";
         string Tabla_Status = "status";
         string Tabla_Empresa = "empresa";
         string Tabla_DetalleInvActivo = "detalleinvactivo";
         string Tabla_InvActivo = "inventario_activo";
+        string Tabla_SubGrupo = "subgrupo";
+        string Tabla_Grupo = "grupo";
         //---------------------------------------------------------------------------------------------------------------//
+        //---------------------------------------------- * Variables de Reader * -----------------------------------------//
+        public string nombreUsuario;
+        public string nombreDepartamentoUsuario;
+        public string puestoUsuario;
+        //------------------------------------------------------------------------------------------------------------------//
         #endregion
         #region Plantilla ;)
         //-----------------------------------------Plantilla para Metodo View----------------------------------------//
@@ -102,14 +107,14 @@ namespace Activos
         }
         //----------------------------------------------------------------------------------------------------------------//
         #endregion
-        #region verCategorias()
+        #region verTipo()
         //---------------------------------------------------Ver las Categorias------------------------------------------------------//
-        public DataTable verCategorias()
+        public DataTable verTipos()
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlDataAdapter mysqlCmd = new MySqlDataAdapter(string.Format("SELECT idTipo as 'ID', tipo as 'Categoria', idSubgrupo as 'SubGrupo' FROM {0} ORDER BY idTipo", Tabla_Categoria), mysqlCon);
+                MySqlDataAdapter mysqlCmd = new MySqlDataAdapter(string.Format("SELECT idTipo as 'ID', tipo as 'Tipo' FROM {0} ORDER BY idTipo", Tabla_Tipo), mysqlCon);
                 DataTable TableCategoria = new DataTable();
                 mysqlCmd.Fill(TableCategoria);
                 return TableCategoria;
@@ -124,7 +129,7 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlDataAdapter mysqlCmd = new MySqlDataAdapter(string.Format("SELECT {0}.idActivo as 'ID', {0}.descripcion as 'Descripcion', {1}.user as 'Usuario', {2}.nombre as 'Estado', {3}.nombre as 'Categoria', {4}.nombre as 'Empresa', {0}.fecha_ingreso as 'Fecha Ingreso' FROM {0} INNER JOIN {1} ON {1}.idUsuario = {0}.idusuario INNER JOIN {2} ON {2}.idEstado = {0}.idEstado INNER JOIN {3} ON {3}.idCategoria = {0}.idcategoria INNER JOIN {4} ON {4}.idEmpresa = {0}.idEmpresa ORDER BY idActivo", Tabla_Activo, Tabla_Usuario, Tabla_Estado, Tabla_Categoria, Tabla_Empresa), mysqlCon);
+                MySqlDataAdapter mysqlCmd = new MySqlDataAdapter(string.Format("SELECT {0}.idActivo as 'ID', {0}.descripcion as 'Descripcion', {1}.user as 'Usuario', {2}.nombre as 'Estado', {3}.nombre as 'Categoria', {4}.nombre as 'Empresa', {0}.fecha_ingreso as 'Fecha Ingreso' FROM {0} INNER JOIN {1} ON {1}.idUsuario = {0}.idusuario INNER JOIN {2} ON {2}.idEstado = {0}.idEstado INNER JOIN {3} ON {3}.idCategoria = {0}.idcategoria INNER JOIN {4} ON {4}.idEmpresa = {0}.idEmpresa ORDER BY idActivo", Tabla_Activo, Tabla_Usuario, Tabla_Estado, Tabla_Tipo, Tabla_Empresa), mysqlCon);
                 DataTable TableActivo = new DataTable();
                 mysqlCmd.Fill(TableActivo);
                 return TableActivo;
@@ -139,7 +144,7 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlDataAdapter mysqlCmd = new MySqlDataAdapter(string.Format("SELECT {0}.idArticulo as 'ID', {0}.descripcion as 'Descripcion', {1}.user as 'Usuario', {2}.nombre as 'Estado', {3}.nombre as 'Categoria', {4}.nombre as 'Empresa', {0}.fecha_ingreso as 'Fecha Ingreso' FROM {0} INNER JOIN {1} ON {1}.idUsuario = {0}.idusuario INNER JOIN {2} ON {2}.idEstado = {0}.idEstado INNER JOIN {3} ON {3}.idCategoria = {0}.idcategoria INNER JOIN {4} ON {4}.idEmpresa = {0}.idEmpresa ORDER BY idArticulo", Tabla_Articulo, Tabla_Usuario, Tabla_Estado, Tabla_Categoria, Tabla_Empresa), mysqlCon);
+                MySqlDataAdapter mysqlCmd = new MySqlDataAdapter(string.Format("SELECT {0}.idArticulo as 'ID', {0}.descripcion as 'Descripcion', {1}.user as 'Usuario', {2}.nombre as 'Estado', {3}.nombre as 'Categoria', {4}.nombre as 'Empresa', {0}.fecha_ingreso as 'Fecha Ingreso' FROM {0} INNER JOIN {1} ON {1}.idUsuario = {0}.idusuario INNER JOIN {2} ON {2}.idEstado = {0}.idEstado INNER JOIN {3} ON {3}.idCategoria = {0}.idcategoria INNER JOIN {4} ON {4}.idEmpresa = {0}.idEmpresa ORDER BY idArticulo", Tabla_Articulo, Tabla_Usuario, Tabla_Estado, Tabla_Tipo, Tabla_Empresa), mysqlCon);
                 DataTable TableArticulo = new DataTable();
                 mysqlCmd.Fill(TableArticulo);
                 return TableArticulo;
@@ -154,7 +159,7 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlDataAdapter mysqlCmd = new MySqlDataAdapter(string.Format("SELECT dt.idDetalle as 'ID', a.descripcion as 'Descripcion', u.user as 'Usuario', e.nombre as 'Estado', c.nombre as 'Categoria', em.nombre as 'Empresa', a.fecha_ingreso as 'Fecha Ingreso', st.nombre as 'Estatus', dt.fecha_apertura as 'Fecha Apertura', inv.nombre as 'Inventario' FROM {0} dt INNER JOIN {1} a ON dt.idActivo = a.idActivo INNER JOIN {2} u ON a.idUsuario = u.idUsuario INNER JOIN {3} e ON e.idEstado = dt.idEstado INNER JOIN {4} c ON c.idCategoria = a.idCategoria INNER JOIN {5} em ON em.idEmpresa = a.idEmpresa INNER JOIN {6} st ON st.idStatus = dt.idStatus INNER JOIN {7} inv ON inv.idInventarioActivo = dt.idInventario WHERE  u.nombre LIKE '%%' ORDER BY idDetalle", Tabla_DetalleInvActivo, Tabla_Activo, Tabla_Usuario, Tabla_Estado, Tabla_Categoria, Tabla_Empresa, Tabla_Status, Tabla_InvActivo), mysqlCon);
+                MySqlDataAdapter mysqlCmd = new MySqlDataAdapter(string.Format("SELECT dt.idDetalle as 'ID', a.descripcion as 'Descripcion', u.user as 'Usuario', e.nombre as 'Estado', c.nombre as 'Categoria', em.nombre as 'Empresa', a.fecha_ingreso as 'Fecha Ingreso', st.nombre as 'Estatus', dt.fecha_apertura as 'Fecha Apertura', inv.nombre as 'Inventario' FROM {0} dt INNER JOIN {1} a ON dt.idActivo = a.idActivo INNER JOIN {2} u ON a.idUsuario = u.idUsuario INNER JOIN {3} e ON e.idEstado = dt.idEstado INNER JOIN {4} c ON c.idCategoria = a.idCategoria INNER JOIN {5} em ON em.idEmpresa = a.idEmpresa INNER JOIN {6} st ON st.idStatus = dt.idStatus INNER JOIN {7} inv ON inv.idInventarioActivo = dt.idInventario WHERE  u.nombre LIKE '%%' ORDER BY idDetalle", Tabla_DetalleInvActivo, Tabla_Activo, Tabla_Usuario, Tabla_Estado, Tabla_Tipo, Tabla_Empresa, Tabla_Status, Tabla_InvActivo), mysqlCon);
                 DataTable TableDetalle = new DataTable();
                 mysqlCmd.Fill(TableDetalle);
                 return TableDetalle;
@@ -183,6 +188,7 @@ namespace Activos
             }
         }
         #endregion
+        #region verArticulos()
         public string verIdArticulos()
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
@@ -201,7 +207,8 @@ namespace Activos
                 return idArticulo;
             }
         }
-
+        #endregion
+        #region agregarDepartamento()
         public void agregarDepartamento(string departamento)
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
@@ -211,7 +218,8 @@ namespace Activos
                 mysqlCmd.ExecuteNonQuery();
             }
         }
-
+        #endregion
+        #region agregarUsuario()
         public void agregarUsuario(string nombre, string usuario, string password, string idDepartamento)
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
@@ -221,17 +229,19 @@ namespace Activos
                 mysqlCmd.ExecuteNonQuery();
             }
         }
-
+        #endregion
+        #region agregarCategoria()
         public void agregarCategoria(string nombre)
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(nombre) VALUES('{1}')", Tabla_Categoria, nombre), mysqlCon);
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(nombre) VALUES('{1}')", Tabla_Tipo, nombre), mysqlCon);
                 mysqlCmd.ExecuteNonQuery();
             }
         }
-
+        #endregion
+        #region agregarActivo()
         public void agregarActivo(string descripcion, string idUsuario, string idEstado, string idcategoria, string idEmpresa, string fecha)
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
@@ -241,17 +251,8 @@ namespace Activos
                 mysqlCmd.ExecuteNonQuery();
             }
         }
-
-        public void agregarActivo_Historial(string descripcion, string idUsuario, string idEstado, string idcategoria, string idEmpresa, string fecha, string idActivo)
-        {
-            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
-            {
-                mysqlCon.Open();
-                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(descripcion, idUsuario, idEstado, idCategoria, idEmpresa, fecha_ingreso, idActivo) VALUES('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}')", Tabla_Activo_Historial, descripcion, idUsuario, idEstado, idcategoria, idEmpresa, fecha, idActivo), mysqlCon);
-                mysqlCmd.ExecuteNonQuery();
-            }
-        }
-
+        #endregion
+        #region agregarArticulo()
         public void agregarArticulo(string descripcion, string idUsuario, string idEstado, string idcategoria, string idEmpresa, string fecha)
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
@@ -261,17 +262,8 @@ namespace Activos
                 mysqlCmd.ExecuteNonQuery();
             }
         }
-
-        public void agregarArticulo_Historial(string descripcion, string idUsuario, string idEstado, string idcategoria, string idEmpresa, string fecha, string idActivo)
-        {
-            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
-            {
-                mysqlCon.Open();
-                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(descripcion, idUsuario, idEstado, idCategoria, idEmpresa, fecha_ingreso, idArticulo) VALUES('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}')", Tabla_Articulo_Historial, descripcion, idUsuario, idEstado, idcategoria, idEmpresa, fecha, idActivo), mysqlCon);
-                mysqlCmd.ExecuteNonQuery();
-            }
-        }
-
+        #endregion
+        #region Login()
         public string Login(string usuario, string password)
         {
             string user = "";
@@ -289,7 +281,8 @@ namespace Activos
                 return user;
             }
         }
-
+        #endregion
+        #region updateUsuario
         public void updateUsuario(string nombre, string user, string idDepartamento, string idUsuario)
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
@@ -299,7 +292,8 @@ namespace Activos
                 mysqlCmd.ExecuteNonQuery();
             }
         }
-
+        #endregion
+        #region updateDepartamento()
         public void updateDepartamento(string id, string departamento)
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
@@ -309,17 +303,19 @@ namespace Activos
                 mysqlCmd.ExecuteNonQuery();
             }
         }
-
+        #endregion
+        #region updateCategoria()
         public void updateCategoria(string id, string categoria)
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("UPDATE {0} SET nombre = '{1}' WHERE idCategoria = '{2}'", Tabla_Categoria, categoria, id), mysqlCon);
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("UPDATE {0} SET nombre = '{1}' WHERE idCategoria = '{2}'", Tabla_Tipo, categoria, id), mysqlCon);
                 mysqlCmd.ExecuteNonQuery();
             }
         }
-
+        #endregion
+        #region updateActivo()
         public void updateActivo(string descripcion, string idUsuario, string idEstado, string idCategoria, string idEmpresa, string idActivo)
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
@@ -329,5 +325,53 @@ namespace Activos
                 mysqlCmd.ExecuteNonQuery();
             }
         }
+        #endregion
+        #region Buscar Usuario
+        //----------------------------------------Busca a un Usuario por su ID-------------------------------------------//
+        public void buscarUsuario(string idUsuario)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("SELECT u.nombre as 'Nombre', d.nombre as 'Departamento', u.puesto as 'Puesto' FROM {0} u INNER JOIN {1} d ON u.idDepartamento = d.idDepartamento WHERE idUsuario = '{2}'", Tabla_Usuario, Tabla_Departamento, idUsuario), mysqlCon);
+                MySqlDataReader read = mysqlCmd.ExecuteReader();
+                while (read.Read())
+                {
+                    nombreUsuario = read["Nombre"].ToString();
+                    nombreDepartamentoUsuario = read["Departamento"].ToString();
+                    puestoUsuario = read["Puesto"].ToString();
+                }
+                read.Close();
+                mysqlCon.Close();
+            }
+        }
+        //----------------------------------------------------- ----------------------------------------------------------------//
+        #endregion
+        #region verGrupos()
+        public DataTable verGrupos()
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlDataAdapter mysqlDa = new MySqlDataAdapter(string.Format("SELECT idGrupo as 'ID', nombre as 'Nombre' FROM {0}", Tabla_Grupo),mysqlCon);
+                DataTable grupo = new DataTable();
+                mysqlDa.Fill(grupo);
+                return grupo;
+            }
+        }
+        #endregion
+        #region verSubGrupo()
+        public DataTable verSubGrupo(string idGrupo)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlDataAdapter mysqlDa = new MySqlDataAdapter(string.Format("SELECT s.idSubgrupo as 'ID', s.nombre as 'Nombre' FROM {0} s INNER JOIN {1} g ON s.idGrupo = g.idGrupo WHERE s.idGrupo = '{2}'", Tabla_SubGrupo, Tabla_Grupo, idGrupo), mysqlCon);
+                DataTable subgrupo = new DataTable();
+                mysqlDa.Fill(subgrupo);
+                return subgrupo;
+            }
+        }
+        #endregion
     }
 }

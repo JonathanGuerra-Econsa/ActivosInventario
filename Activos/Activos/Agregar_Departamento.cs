@@ -36,7 +36,7 @@ namespace Activos
         //------------------------------------------------------------------ Actualiza en DataGridView y lo Habilita -------------------------------------------------------------------------------------//
         public void actualizarDGV()
         {
-            dgvDepartamento.DataSource = consultasMySQL.verCategorias();
+            dgvDepartamento.DataSource = consultasMySQL.verTipos();
             //Detalle cambia como al origen
             dgvDepartamento.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             txtDepartamento.BorderStyle = BorderStyle.None;

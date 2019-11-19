@@ -36,6 +36,13 @@ namespace Activos
                 btnSet.Visible = true;
                 btnActualizar.Visible = false;
             }
+            else
+            {
+                gbDetalleActivo.Enabled = false;
+                gbSubGrupo.Enabled = false;
+                gbUsuario.Enabled = false;
+                gbValor.Enabled = false;
+            }
         }
         //--------------------------------------------------------------------- --------------------------------------------------------------//
         #endregion
@@ -43,21 +50,25 @@ namespace Activos
         //------------------------------------------------------------------------------ Llenar los ComboBox que Necesita Activos -------------------------------------------------------------------------------//
         private void llenarComboBox()
         {
-            cmbUsuario.DataSource = consultasMySQL.verUsuarios();
-            cmbUsuario.DisplayMember = "Usuario";
-            cmbUsuario.ValueMember = "ID";
-
             cmbEstado.DataSource = consultasMySQL.verEstados();
             cmbEstado.DisplayMember = "Estado";
             cmbEstado.ValueMember = "ID";
 
-            cmbCategoria.DataSource = consultasMySQL.verCategorias();
-            cmbCategoria.DisplayMember = "Categoria";
-            cmbCategoria.ValueMember = "ID";
+            cmbUsuario.DataSource = consultasMySQL.verUsuarios();
+            cmbUsuario.DisplayMember = "Usuario";
+            cmbUsuario.ValueMember = "ID";
+
+            cmbTipo.DataSource = consultasMySQL.verTipos();
+            cmbTipo.DisplayMember = "Tipo";
+            cmbTipo.ValueMember = "ID";
 
             cmbEmpresa.DataSource = consultasMySQL.verEmpresa();
             cmbEmpresa.DisplayMember = "Empresa";
             cmbEmpresa.ValueMember = "ID";
+
+            cmbGrupo.DataSource = consultasMySQL.verGrupos();
+            cmbGrupo.DisplayMember = "Nombre";
+            cmbGrupo.ValueMember = "ID";
         }
         //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
         #endregion
@@ -71,7 +82,7 @@ namespace Activos
             txtDescripcion.Text = "";
             cmbUsuario.Text = "";
             cmbEstado.Text = "";
-            cmbCategoria.Text = "";
+            cmbTipo.Text = "";
             cmbEmpresa.Text = "";
             dtFecha.Text = DateTime.Now.ToString();
         }
@@ -98,7 +109,7 @@ namespace Activos
                 {
                     try
                     {
-                        consultasMySQL.updateActivo(txtDescripcion.Text, cmbUsuario.SelectedValue.ToString(), cmbEstado.SelectedValue.ToString(), cmbCategoria.SelectedValue.ToString(), cmbEmpresa.SelectedValue.ToString(), lbID.Text);
+                        consultasMySQL.updateActivo(txtDescripcion.Text, cmbUsuario.SelectedValue.ToString(), cmbEstado.SelectedValue.ToString(), cmbTipo.SelectedValue.ToString(), cmbEmpresa.SelectedValue.ToString(), lbID.Text);
                         MessageBox.Show("Activo Actualizado", "Actualización", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
@@ -118,7 +129,7 @@ namespace Activos
             {
                 try
                 {
-                    consultasMySQL.agregarActivo(txtDescripcion.Text, cmbUsuario.SelectedValue.ToString(), cmbEstado.SelectedValue.ToString(), cmbCategoria.SelectedValue.ToString(), cmbEmpresa.SelectedValue.ToString(), dtFecha.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                    consultasMySQL.agregarActivo(txtDescripcion.Text, cmbUsuario.SelectedValue.ToString(), cmbEstado.SelectedValue.ToString(), cmbTipo.SelectedValue.ToString(), cmbEmpresa.SelectedValue.ToString(), dtFecha.Value.ToString("yyyy-MM-dd HH:mm:ss"));
                     MessageBox.Show("Agregado Correctamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -129,5 +140,25 @@ namespace Activos
         }
         //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
         #endregion
+        #region SelectedIndexChanged
+        //--------------------------------------- CmbUsuario ---------------------------------------------//
+        private void cmbUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string idUsuario = cmbUsuario.SelectedValue.ToString();
+            consultasMySQL.buscarUsuario(idUsuario);
+            lbNombreUsuario.Text = consultasMySQL.nombreUsuario;
+            lbDepartamentoUsuario.Text = consultasMySQL.nombreDepartamentoUsuario;
+            lbPuesto.Text = consultasMySQL.puestoUsuario;
+        }
+        //-------------------------------------------------------------------------------------------------//
+        #endregion
+
+        private void cmbGrupo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string idGrupo = cmbGrupo.SelectedValue.ToString();
+            cmbSubGrupo.DataSource = consultasMySQL.verSubGrupo(idGrupo);
+            cmbSubGrupo.DisplayMember = "Nombre";
+            cmbSubGrupo.ValueMember = "ID";
+        }
     }
 }

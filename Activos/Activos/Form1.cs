@@ -42,7 +42,9 @@ namespace Activos
 
         private void btnArticulo_Click(object sender, EventArgs e)
         {
-            
+            Agregar_Activo agregarActivo = new Agregar_Activo();
+            agregarActivo.opcion = 1;
+            agregarActivo.Show();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
