@@ -17,7 +17,7 @@ namespace Activos
 
         public Activos()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
 
         private void Activos_Load(object sender, EventArgs e)
