@@ -187,10 +187,22 @@ namespace Activos
         #region Método Mostrar
         private void metodoMostrar()
         {
-            gbDetalleActivo.Enabled = false;
-            gbSubGrupo.Enabled = false;
-            gbUsuario.Enabled = false;
-            gbValor.Enabled = false;
+            txtDescripcion.Enabled = false; ;
+            cmbEstado.Enabled = false;
+            cmbTipo.Enabled = false;
+            cmbEmpresa.Enabled = false;
+            dtFecha.Enabled = false;
+            cmbUsuario.Enabled = false;
+            cmbGrupo.Enabled = false;
+            cmbSubGrupo.Enabled = false;
+            nuValor.Enabled = false;
+            txtFPC.Enabled = false;
+            dtDepreciacion.Enabled = false;
+            nuPorcentaje.Enabled = false;
+            nuDepreciacionAcumulada.Enabled = false;
+            nuValorResidual.Enabled = false;
+            nuValorLibros.Enabled = false;
+
             btnActualizar.Visible = false;
             btnSet.Visible = false;
             lbID.Text = ID;
