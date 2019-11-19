@@ -225,6 +225,7 @@ namespace Activos
             nuDepreciacionAcumulada.Value = Convert.ToDecimal(consultasMySQL.depAcumulada);
             nuValorResidual.Value = Convert.ToDecimal(consultasMySQL.valorResidual);
             nuValorLibros.Value = Convert.ToDecimal(consultasMySQL.valorLibros);
+            MessageBox.Show("2019/11/19");
         }
         #endregion
     }
