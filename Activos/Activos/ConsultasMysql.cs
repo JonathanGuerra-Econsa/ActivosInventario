@@ -85,6 +85,62 @@ namespace Activos
             return dt;
         }
 
+        public DataTable consultaArticulo(string consulta = "")
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID", typeof(Int32));
+            dt.Columns.Add("Descripcion");
+            dt.Columns.Add("Usuario");
+            dt.Columns.Add("idUsuario");
+            dt.Columns.Add("Estado");
+            dt.Columns.Add("idEstado");
+            dt.Columns.Add("Tipo");
+            dt.Columns.Add("idTipo");
+            dt.Columns.Add("Empresa");
+            dt.Columns.Add("Fecha de Compra");
+            dt.Columns.Add("Valor");
+            dt.Columns.Add("FPC");
+            dt.Columns.Add("Subgrupo");
+            dt.Columns.Add("idSubgrupo");
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT a.idArticulo,a.descripcion,u.nombre as 'Usuario', u.idUsuario, " +
+                "e.nombre as 'Estado', e.idEstado, c.tipo as 'Tipo', c.idTipo, em.nombre as 'Empresa', a.fecha_compra, a.Valor, " +
+                "a.FPC, s.nombre as 'Subgrupo',a.idSubgrupo FROM `articulo` as a " +
+                "JOIN `usuario` as u ON a.idUsuario = u.idUsuario " +
+                "JOIN `estado` as e ON a.idEstado = e.idEstado " +
+                "JOIN `tipo` as c ON a.idTipo = c.idTipo " +
+                "JOIN `empresa` as em ON a.idEmpresa = em.idEmpresa " +
+                "JOIN `subgrupo` as s ON a.idSubgrupo = s.idSubgrupo " +
+                "JOIN `departamento` as d ON d.idDepartamento = u.idDepartamento " + consulta + " ORDER BY a.idArticulo";
+            Console.WriteLine(cmd.CommandText);
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    DataRow activo = dt.NewRow();
+                    activo["ID"] = reader.GetString(0);
+                    activo["Descripcion"] = reader.GetString(1);
+                    activo["Usuario"] = reader.GetString(2);
+                    activo["idUsuario"] = reader.GetString(3);
+                    activo["Estado"] = reader.GetString(4);
+                    activo["idEstado"] = reader.GetString(5);
+                    activo["Tipo"] = reader.GetString(6);
+                    activo["idTipo"] = reader.GetString(7);
+                    activo["Empresa"] = reader.GetString(8);
+                    activo["Fecha de Compra"] = reader.GetString(9);
+                    activo["Valor"] = reader.GetString(10);
+                    activo["FPC"] = reader.GetString(11);
+                    activo["Subgrupo"] = reader.GetString(12);
+                    activo["idSubgrupo"] = reader.GetString(13);
+                    dt.Rows.Add(activo);
+                }
+            }
+            connection.Close();
+            return dt;
+        }
+
         public DataTable usuarios(int idDepto)
         {
             DataTable dt = new DataTable();
