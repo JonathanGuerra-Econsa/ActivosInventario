@@ -23,16 +23,6 @@ namespace Activos
             dataGridView1.Columns[5].Visible = false;
             dataGridView1.Columns[7].Visible = false;
 
-            //datatime
-            dateInicio.Value = fechaI;
-            dateFinal.Value = fechaF;
-            fechaAntF = fechaF;
-            fechaAntI = fechaI;
-
-            ////Combo box de USUARIOS
-            //DataTable usuarios = new DataTable();
-            //usuarios = mysql.usuarios();
-
             //DataRow nulo1 = usuarios.NewRow();
             //nulo1["nombre"] = "Escoger Usuario...";
             //nulo1["idU"] = 0;
