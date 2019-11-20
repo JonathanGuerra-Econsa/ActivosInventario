@@ -18,12 +18,11 @@ namespace Activos
         private void Articulos_Load(object sender, EventArgs e)
         {
             #region datos
-            dataGridView1.DataSource = mysql.consulta();
+            dataGridView1.DataSource = mysql.consultaArticulo();
             dataGridView1.Columns[3].Visible = false;
             dataGridView1.Columns[5].Visible = false;
             dataGridView1.Columns[7].Visible = false;
-            dataGridView1.Columns[18].Visible = false;
-            dataGridView1.Columns[20].Visible = false;
+            dataGridView1.Columns[13].Visible = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             #endregion
@@ -166,12 +165,16 @@ namespace Activos
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            Agregar_Articulo nuevoForm = new Agregar_Articulo();
+            nuevoForm.opcion = 2;
+            nuevoForm.ShowDialog();
+            Limpiar(sender, e);
+            ArmarConsulta(sender, e);
         }
 
         private void ArmarConsulta(object sender, EventArgs e)
         {
-            if (cmbTipo.SelectedValue == null) return;
+            if (cmbSubgrupo.SelectedValue == null) return;
             StringBuilder consulta = new StringBuilder();
             consulta.Append("WHERE ");
 
@@ -195,6 +198,16 @@ namespace Activos
             {
                 if (consulta.ToString() != "WHERE ") consulta.Append(" AND ");
                 consulta.Append("c.idTipo = " + cmbTipo.SelectedValue);
+            }
+            if (cmbEmpresa.SelectedValue.ToString() != 0.ToString() && cmbEmpresa.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != "WHERE ") consulta.Append(" AND ");
+                consulta.Append("em.nombre = '" + cmbEmpresa.Text + "'");
+            }
+            if (!string.IsNullOrEmpty(textBox1.Text))
+            {
+                if (consulta.ToString() != "WHERE ") consulta.Append(" AND ");
+                consulta.Append("a.idActivo = " + textBox1.Text);
             }
             if (consulta.ToString() == "WHERE ") consulta = new StringBuilder();
 
@@ -277,6 +290,8 @@ namespace Activos
             cmbSubgrupo.SelectedValue = 0;
             cmbEstado.SelectedValue = 0;
             cmbDepto.SelectedValue = 0;
+            textBox1.Text = "";
+            cmbEmpresa.SelectedValue = 0;
             ArmarConsulta(sender, e);
         }
 
@@ -321,6 +336,17 @@ namespace Activos
         private void timer1_Tick(object sender, EventArgs e)
         {
             timer1.Stop();
+            ArmarConsulta(sender, e);
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            var row = dataGridView1.CurrentRow.Index;
+            Agregar_Activo agregar = new Agregar_Activo();
+            agregar.opcion = 2;
+            agregar.ID = dataGridView1.Rows[row].Cells["ID"].Value.ToString();
+            agregar.ShowDialog();
             ArmarConsulta(sender, e);
         }
     }

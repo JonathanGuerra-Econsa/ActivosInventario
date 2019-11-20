@@ -201,6 +201,7 @@ namespace Activos
             cmbEstado.SelectedValue = 0;
             cmbDepto.SelectedValue = 0;
             textBox1.Text = "";
+            cmbEmpresa.SelectedValue = 0;
             ArmarConsulta(sender, e);
         }
 
@@ -273,6 +274,8 @@ namespace Activos
             Agregar_Activo agregar = new Agregar_Activo();
             agregar.opcion = 1;
             agregar.ShowDialog();
+            limpiarDatos(sender, e);
+            ArmarConsulta(sender, e);
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
