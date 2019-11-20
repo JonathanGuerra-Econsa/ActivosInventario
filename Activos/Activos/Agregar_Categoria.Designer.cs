@@ -75,9 +75,9 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(26, 113);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 21);
+            this.label2.Size = new System.Drawing.Size(52, 21);
             this.label2.TabIndex = 11;
-            this.label2.Text = "Nombre: ";
+            this.label2.Text = "Tipo: ";
             // 
             // label1
             // 
@@ -86,9 +86,9 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(298, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 30);
+            this.label1.Size = new System.Drawing.Size(57, 30);
             this.label1.TabIndex = 10;
-            this.label1.Text = "Categoria";
+            this.label1.Text = "Tipo";
             // 
             // dgvCategoria
             // 
@@ -138,7 +138,7 @@
             this.groupBox1.Size = new System.Drawing.Size(341, 268);
             this.groupBox1.TabIndex = 24;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Detalle Categoría";
+            this.groupBox1.Text = "Detalle Tipo";
             // 
             // btnActualizar
             // 
@@ -218,7 +218,7 @@
             this.MaximizeBox = false;
             this.Name = "Agregar_Categoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Categoria";
+            this.Text = "Tipo";
             this.Load += new System.EventHandler(this.Agregar_Categoria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategoria)).EndInit();
             this.groupBox1.ResumeLayout(false);

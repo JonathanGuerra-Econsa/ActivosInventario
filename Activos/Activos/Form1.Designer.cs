@@ -87,7 +87,7 @@
             this.btnCategoria.Size = new System.Drawing.Size(150, 190);
             this.btnCategoria.TabIndex = 2;
             this.btnCategoria.TabStop = false;
-            this.btnCategoria.Text = "Categoría";
+            this.btnCategoria.Text = "Tipo";
             this.btnCategoria.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCategoria.UseVisualStyleBackColor = false;
             this.btnCategoria.Click += new System.EventHandler(this.btnCategoria_Click);
