@@ -71,6 +71,39 @@ namespace Activos
             }
             cmbDepto.AutoCompleteCustomSource = deptoData;
             #endregion
+            #region Combo box de Empresa
+            DataTable empresa = new DataTable();
+            empresa.Columns.Add("idEm", typeof(Int32));
+            empresa.Columns.Add("nombre", typeof(string));
+
+            DataRow nuloem = empresa.NewRow();
+            nuloem["nombre"] = "Escoger Estado...";
+            nuloem["idEm"] = 0;
+            empresa.Rows.Add(nuloem);
+
+            DataRow unhesa = empresa.NewRow();
+            unhesa["nombre"] = "Unhesa";
+            unhesa["idEm"] = 1;
+            empresa.Rows.Add(unhesa);
+
+            DataRow proquima = empresa.NewRow();
+            proquima["nombre"] = "Proquima";
+            proquima["idEm"] = 2;
+            empresa.Rows.Add(proquima);
+
+            cmbEmpresa.DisplayMember = "nombre";
+            cmbEmpresa.ValueMember = "idEm";
+            cmbEmpresa.DataSource = empresa;
+
+            cmbEmpresa.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbEmpresa.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection empresaData = new AutoCompleteStringCollection();
+            foreach (DataRow row in estados.Rows)
+            {
+                empresaData.Add(row["nombre"].ToString());
+            }
+            cmbEmpresa.AutoCompleteCustomSource = empresaData;
+            #endregion
             #region Combo box de Subgrupo
             DataTable subgrupo = new DataTable();
             subgrupo = mysql.subgrupo(5);
@@ -92,28 +125,6 @@ namespace Activos
                 subgrupoData.Add(row["nombre"].ToString());
             }
             cmbSubgrupo.AutoCompleteCustomSource = subgrupoData;
-            #endregion
-            #region Combo box de Tipo
-            //DataTable tipos = new DataTable();
-            //tipos = mysql.tipos();
-
-            //DataRow nulo2 = tipos.NewRow();
-            //nulo2["nombre"] = "Escoger Tipo...";
-            //nulo2["idT"] = 0;
-            //tipos.Rows.InsertAt(nulo2, 0);
-
-            //cmbTipo.DisplayMember = "nombre";
-            //cmbTipo.ValueMember = "idT";
-            //cmbTipo.DataSource = tipos;
-
-            //cmbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
-            //cmbTipo.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            //AutoCompleteStringCollection tipoData = new AutoCompleteStringCollection();
-            //foreach (DataRow row in tipos.Rows)
-            //{
-            //    tipoData.Add(row["nombre"].ToString());
-            //}
-            //cmbTipo.AutoCompleteCustomSource = estadoData;
             #endregion
         }
 
@@ -266,6 +277,50 @@ namespace Activos
             cmbSubgrupo.SelectedValue = 0;
             cmbEstado.SelectedValue = 0;
             cmbDepto.SelectedValue = 0;
+            ArmarConsulta(sender, e);
+        }
+
+        private void cmbSubgrupo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            #region Combo box de Tipo
+            DataTable tipos = new DataTable();
+            tipos = mysql.tipos(Convert.ToInt32(cmbSubgrupo.SelectedValue));
+
+            DataRow nulo2 = tipos.NewRow();
+            nulo2["nombre"] = "Escoger Tipo...";
+            nulo2["idT"] = 0;
+            tipos.Rows.InsertAt(nulo2, 0);
+
+            cmbTipo.DisplayMember = "nombre";
+            cmbTipo.ValueMember = "idT";
+            cmbTipo.DataSource = tipos;
+
+            cmbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbTipo.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection tipoData = new AutoCompleteStringCollection();
+            foreach (DataRow row in tipos.Rows)
+            {
+                tipoData.Add(row["nombre"].ToString());
+            }
+            cmbTipo.AutoCompleteCustomSource = tipoData;
+            #endregion
+
+            ArmarConsulta(sender,e);
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            timer1.Stop();
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            timer1.Start();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Stop();
             ArmarConsulta(sender, e);
         }
     }

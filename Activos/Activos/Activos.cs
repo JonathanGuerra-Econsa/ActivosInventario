@@ -368,7 +368,6 @@ namespace Activos
 
         private void cmbSubgrupo_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             #region Combo box de Tipo
             DataTable tipos = new DataTable();
             tipos = mysql.tipos(Convert.ToInt32(cmbSubgrupo.SelectedValue));
@@ -391,6 +390,8 @@ namespace Activos
             }
             cmbTipo.AutoCompleteCustomSource = tipoData;
             #endregion
+
+            ArmarConsulta(sender, e);
         }
     }
 }
