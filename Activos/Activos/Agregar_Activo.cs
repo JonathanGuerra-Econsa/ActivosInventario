@@ -34,7 +34,7 @@ namespace Activos
                 llenarComboBox();
                 lbID.Text = "";
                 btnSet.Visible = true;
-                btnActualizar.Visible = false;
+                btnEditar.Visible = false;
             }
             else
             {
@@ -66,6 +66,11 @@ namespace Activos
             cmbGrupo.DataSource = consultasMySQL.verGrupos();
             cmbGrupo.DisplayMember = "Nombre";
             cmbGrupo.ValueMember = "ID";
+
+            string idGrupo = cmbGrupo.SelectedValue.ToString();
+            cmbSubGrupo.DataSource = consultasMySQL.verSubGrupo(idGrupo);
+            cmbSubGrupo.DisplayMember = "Nombre";
+            cmbSubGrupo.ValueMember = "ID";
         }
         //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
         #endregion
@@ -74,7 +79,7 @@ namespace Activos
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             btnSet.Visible = true;
-            btnActualizar.Visible = false;
+            btnEditar.Visible = false;
             lbID.Text = "";
             txtDescripcion.Text = "";
             cmbUsuario.Text = "";
@@ -89,34 +94,71 @@ namespace Activos
         //--------------------------------------------------------------- Llama a actualizarDGV() -------------------------------------------------------------------------------//
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Desea cancelar la edición de este activo?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                metodoMostrar();
+                btnCancelar.Visible = false;
+            }
         }
         //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
         #endregion
         #region Botón que actualiza los activos seleccionados
         //------------------------------------------------ Actualiza el activo seleccionado y actualiza el DataGridView de Activos -----------------------------------//
-        private void btnActualizar_Click(object sender, EventArgs e)
+        private void btnEditar_Click(object sender, EventArgs e)
         {
-            if(detalle == true)
+            txtDescripcion.Enabled = true;
+            cmbEstado.Enabled = true;
+            cmbTipo.Enabled = true;
+            cmbEmpresa.Enabled = true;
+            dtFecha.Enabled = true;
+            cmbUsuario.Enabled = true;
+            cmbGrupo.Enabled = true;
+            cmbSubGrupo.Enabled = true;
+            nuValor.Enabled = true;
+            txtFPC.Enabled = true;
+            dtDepreciacion.Enabled = true;
+            nuPorcentaje.Enabled = true;
+            nuDepreciacionAcumulada.Enabled = true;
+            nuValorResidual.Enabled = true;
+            nuValorLibros.Enabled = true;
+            btnActualiza.Visible = true;
+            btnEditar.Visible = false;
+            btnCancelar.Visible = true;
+        }
+        //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
+        //-----------------------------------------------------------------------------------------Actualizar() ---------------------------------------------------------------------//
+        private void btnActualiza_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Desea actualizar este activo con esta nueva información?", "Actualizar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                dtFecha.Enabled = false;
-            }
-            else
-            {
-                if(MessageBox.Show("Deseas Modificar este Activo?", "Actualizar", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                try
                 {
-                    try
-                    {
-                        consultasMySQL.updateActivo(txtDescripcion.Text, cmbUsuario.SelectedValue.ToString(), cmbEstado.SelectedValue.ToString(), cmbTipo.SelectedValue.ToString(), cmbEmpresa.SelectedValue.ToString(), lbID.Text);
-                        MessageBox.Show("Activo Actualizado", "Actualización", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.ToString());
-                    }
+                    string des = txtDescripcion.Text;
+                    string idusuario = Convert.ToString(cmbUsuario.SelectedValue);
+                    string idestado = Convert.ToString(cmbEstado.SelectedValue);
+                    string idtipo = Convert.ToString(cmbTipo.SelectedValue);
+                    string idempresa = Convert.ToString(cmbEmpresa.SelectedValue);
+                    string fecha_compra = dtFecha.Value.ToString("yyyy-MM-dd");
+                    string valor = Convert.ToString(nuValor.Value);
+                    string fpc = txtFPC.Text;
+                    string fechadep= dtDepreciacion.Value.ToString("yyyy-MM-dd");
+                    string porcentajedep = Convert.ToString(nuPorcentaje.Value);
+                    string depacumulada = Convert.ToString(nuDepreciacionAcumulada.Value);
+                    string valorresidual = Convert.ToString(nuValorResidual.Value);
+                    string valorlibros= Convert.ToString(nuValorLibros.Value);
+                    string idsubgrupo = Convert.ToString(cmbSubGrupo.SelectedValue);
+                    string idactivo = lbID.Text;
+                    consultasMySQL.updateActivo(des, idusuario, idestado, idtipo, idempresa, fecha_compra, valor, fpc, fechadep, porcentajedep, depacumulada, valorresidual, valorlibros, idsubgrupo, idactivo);
+                    MessageBox.Show("Activo Actualizado !", "Actualización", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    metodoMostrar();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
                 }
             }
         }
-        //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
+        //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
         #endregion
         #region Botón que Guarda un nuevo activo
         //-------------------------------------------------------------- Guarda un nuevo Activo -------------------------------------------------------------------------------//
@@ -187,6 +229,7 @@ namespace Activos
         #region Método Mostrar
         private void metodoMostrar()
         {
+            llenarComboBox();
             txtDescripcion.Enabled = false; ;
             cmbEstado.Enabled = false;
             cmbTipo.Enabled = false;
@@ -203,12 +246,20 @@ namespace Activos
             nuValorResidual.Enabled = false;
             nuValorLibros.Enabled = false;
 
-            btnActualizar.Visible = false;
+            btnEditar.Visible = true;
+            btnActualiza.Visible = false;
+            btnCancelar.Visible = false;
             btnSet.Visible = false;
+            asignacionDeVariables();
+        }
+        #endregion
+        #region asignacion de variables
+        public void asignacionDeVariables()
+        {
             lbID.Text = ID;
             consultasMySQL.detalleActivo(ID);
             txtDescripcion.Text = consultasMySQL.descripcion;
-            cmbEstado.Text = consultasMySQL.estado;
+            cmbEstado.Text= consultasMySQL.estado;
             cmbTipo.Text = consultasMySQL.tipo;
             cmbEmpresa.Text = consultasMySQL.empresa;
             dtFecha.Value = Convert.ToDateTime(consultasMySQL.fecha_compra);

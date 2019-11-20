@@ -44,9 +44,10 @@
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnActualizar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
             this.btnSet = new System.Windows.Forms.Button();
             this.gbUsuario = new System.Windows.Forms.GroupBox();
+            this.btnActualiza = new System.Windows.Forms.Button();
             this.lbPuesto = new System.Windows.Forms.Label();
             this.lbDepartamentoUsuario = new System.Windows.Forms.Label();
             this.lbNombreUsuario = new System.Windows.Forms.Label();
@@ -258,7 +259,7 @@
             this.btnCancelar.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnCancelar.Image = global::Activos.Properties.Resources.cancel;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancelar.Location = new System.Drawing.Point(525, 502);
+            this.btnCancelar.Location = new System.Drawing.Point(683, 502);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(169, 76);
             this.btnCancelar.TabIndex = 6;
@@ -268,21 +269,22 @@
             this.btnCancelar.Visible = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // btnActualizar
+            // btnEditar
             // 
-            this.btnActualizar.BackColor = System.Drawing.Color.Transparent;
-            this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnActualizar.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnActualizar.Image = global::Activos.Properties.Resources.file__1_;
-            this.btnActualizar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnActualizar.Location = new System.Drawing.Point(700, 502);
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(170, 76);
-            this.btnActualizar.TabIndex = 5;
-            this.btnActualizar.Text = "Actualizar";
-            this.btnActualizar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnActualizar.UseVisualStyleBackColor = false;
-            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
+            this.btnEditar.BackColor = System.Drawing.Color.Transparent;
+            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEditar.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnEditar.Image = global::Activos.Properties.Resources.file__1_;
+            this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEditar.Location = new System.Drawing.Point(858, 502);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(170, 76);
+            this.btnEditar.TabIndex = 5;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEditar.UseVisualStyleBackColor = false;
+            this.btnEditar.Visible = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnSet
             // 
@@ -318,6 +320,23 @@
             this.gbUsuario.TabIndex = 2;
             this.gbUsuario.TabStop = false;
             this.gbUsuario.Text = "Usuario";
+            // 
+            // btnActualiza
+            // 
+            this.btnActualiza.BackColor = System.Drawing.Color.Transparent;
+            this.btnActualiza.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnActualiza.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnActualiza.Image = global::Activos.Properties.Resources.file1;
+            this.btnActualiza.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnActualiza.Location = new System.Drawing.Point(858, 502);
+            this.btnActualiza.Name = "btnActualiza";
+            this.btnActualiza.Size = new System.Drawing.Size(170, 76);
+            this.btnActualiza.TabIndex = 15;
+            this.btnActualiza.Text = "Actualizar";
+            this.btnActualiza.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnActualiza.UseVisualStyleBackColor = false;
+            this.btnActualiza.Visible = false;
+            this.btnActualiza.Click += new System.EventHandler(this.btnActualiza_Click);
             // 
             // lbPuesto
             // 
@@ -677,13 +696,14 @@
             this.BackgroundImage = global::Activos.Properties.Resources.FONDO_4;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1040, 632);
+            this.Controls.Add(this.btnActualiza);
             this.Controls.Add(this.gbValor);
             this.Controls.Add(this.gbSubGrupo);
             this.Controls.Add(this.gbUsuario);
             this.Controls.Add(this.gbDetalleActivo);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnActualizar);
+            this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnSet);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -727,7 +747,7 @@
         private System.Windows.Forms.Button btnSet;
         private System.Windows.Forms.Label lbID;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnActualizar;
+        private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.GroupBox gbUsuario;
         private System.Windows.Forms.Label lbPuesto;
         private System.Windows.Forms.Label lbDepartamentoUsuario;
@@ -758,5 +778,6 @@
         private System.Windows.Forms.NumericUpDown nuValor;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cmbSubGrupo;
+        private System.Windows.Forms.Button btnActualiza;
     }
 }

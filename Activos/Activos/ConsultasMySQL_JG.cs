@@ -332,12 +332,12 @@ namespace Activos
         }
         #endregion
         #region updateActivo()
-        public void updateActivo(string descripcion, string idUsuario, string idEstado, string idCategoria, string idEmpresa, string idActivo)
+        public void updateActivo(string descripcion, string idUsuario, string idEstado, string idTipo, string idEmpresa, string fecha_compra, string valor, string fpc, string fecha_dep, string porcentajeDep, string  depAcumulada, string valorResidual, string valorLibros, string idSubGrupo, string idActivo)
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("UPDATE {0} SET descripcion = '{1}', idUsuario = '{2}', idEstado = '{3}', idCategoria = '{4}', idEmpresa = '{5}' WHERE idActivo = '{6}'", Tabla_Activo, descripcion, idUsuario, idEstado, idCategoria, idEmpresa, idActivo), mysqlCon);
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("UPDATE {0} SET descripcion = '{1}', idUsuario = '{2}', idEstado = '{3}', idTipo = '{4}', idEmpresa = '{5}', fecha_compra = '{6}', Valor = '{7}', FPC = '{8}', fecha_dep = '{9}', PorcentajeDep = '{10}', DepAcumulada = '{11}', ValorResidual = '{12}', ValorLibros = '{13}', idSubgrupo = '{14}' WHERE idActivo = '{15}'", Tabla_Activo, descripcion, idUsuario, idEstado, idTipo, idEmpresa, fecha_compra, valor, fpc, fecha_dep, porcentajeDep, depAcumulada, valorResidual, valorLibros, idSubGrupo, idActivo), mysqlCon);
                 mysqlCmd.ExecuteNonQuery();
             }
         }
