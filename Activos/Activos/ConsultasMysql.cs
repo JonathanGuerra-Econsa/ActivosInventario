@@ -70,6 +70,7 @@ namespace Activos
                 "JOIN `departamento` AS d ON d.idDepartamento = u.idDepartamento " + 
                 consulta + 
                 " ORDER BY a.idActivo";
+            Console.WriteLine(cmd.CommandText);
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
@@ -244,13 +245,13 @@ namespace Activos
             return dt;
         }
 
-        public DataTable tipos()
+        public DataTable tipos(int idSub)
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("idT", typeof(Int32));
             dt.Columns.Add("nombre", typeof(string));
             MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT * FROM tipo";
+            cmd.CommandText = "SELECT * FROM tipo WHERE idSubgrupo =" + idSub;
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
