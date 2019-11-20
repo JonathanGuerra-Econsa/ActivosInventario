@@ -39,17 +39,37 @@ namespace Activos
             dt.Columns.Add("Grupo");
             dt.Columns.Add("idGrupo");
             MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT a.idActivo,a.descripcion,u.nombre as 'Usuario', u.idUsuario, " +
-                "e.nombre as 'Estado', e.idEstado, c.tipo as 'Tipo', c.idTipo, em.nombre as 'Empresa', a.fecha_compra, a.Valor, " +
-                "a.FPC, a.fecha_dep, a.PorcentajeDep, a.DepAcumulada, a.ValorResidual, a.ValorLibros, s.nombre as 'Subgrupo',a.idSubgrupo, " +
-                "g.nombre as 'grupo', g.idGrupo FROM `activo` as a " +
-                "JOIN `usuario` as u ON a.idUsuario = u.idUsuario " +
-                "JOIN `estado` as e ON a.idEstado = e.idEstado " +
-                "JOIN `tipo` as c ON a.idTipo = c.idTipo " +
-                "JOIN `empresa` as em ON a.idEmpresa = em.idEmpresa " +
-                "JOIN `subgrupo` as s ON a.idSubgrupo = s.idSubgrupo " +
-                "JOIN `grupo` as g ON g.idGrupo = s.idGrupo " +
-                "JOIN `departamento` as d ON d.idDepartamento = u.idDepartamento " + consulta + " ORDER BY a.idActivo";
+            cmd.CommandText = "SELECT a.idActivo, " +
+                "a.descripcion, " +
+                "u.nombre AS 'Usuario', " +
+                "u.idUsuario, " +
+                "e.nombre AS 'Estado', " +
+                "e.idEstado, " +
+                "c.tipo AS 'Tipo', " +
+                "c.idTipo, " +
+                "em.nombre AS 'Empresa', " +
+                "a.fecha_compra, " +
+                "a.Valor, " +
+                "a.FPC, " +
+                "a.fecha_dep, " +
+                "a.PorcentajeDep, " +
+                "a.DepAcumulada, " +
+                "a.ValorResidual, " +
+                "a.ValorLibros, " +
+                "s.nombre AS 'Subgrupo', " +
+                "a.idSubgrupo, " +
+                "g.nombre AS 'grupo', " +
+                "g.idGrupo " +
+                "FROM `activo` AS a " +
+                "JOIN `usuario` AS u ON a.idUsuario = u.idUsuario " +
+                "JOIN `estado` AS e ON a.idEstado = e.idEstado " +
+                "JOIN `tipo` AS c ON a.idTipo = c.idTipo " +
+                "JOIN `empresa` AS em ON a.idEmpresa = em.idEmpresa " +
+                "JOIN `subgrupo` AS s ON a.idSubgrupo = s.idSubgrupo " +
+                "JOIN `grupo` AS g ON g.idGrupo = s.idGrupo " +
+                "JOIN `departamento` AS d ON d.idDepartamento = u.idDepartamento " + 
+                consulta + 
+                " ORDER BY a.idActivo";
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
@@ -103,15 +123,29 @@ namespace Activos
             dt.Columns.Add("Subgrupo");
             dt.Columns.Add("idSubgrupo");
             MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT a.idArticulo,a.descripcion,u.nombre as 'Usuario', u.idUsuario, " +
-                "e.nombre as 'Estado', e.idEstado, c.tipo as 'Tipo', c.idTipo, em.nombre as 'Empresa', a.fecha_compra, a.Valor, " +
-                "a.FPC, s.nombre as 'Subgrupo',a.idSubgrupo FROM `articulo` as a " +
-                "JOIN `usuario` as u ON a.idUsuario = u.idUsuario " +
-                "JOIN `estado` as e ON a.idEstado = e.idEstado " +
-                "JOIN `tipo` as c ON a.idTipo = c.idTipo " +
-                "JOIN `empresa` as em ON a.idEmpresa = em.idEmpresa " +
-                "JOIN `subgrupo` as s ON a.idSubgrupo = s.idSubgrupo " +
-                "JOIN `departamento` as d ON d.idDepartamento = u.idDepartamento " + consulta + " ORDER BY a.idArticulo";
+            cmd.CommandText = "SELECT a.idArticulo, " +
+                "a.descripcion, " +
+                "u.nombre AS 'Usuario', " +
+                "u.idUsuario, " +
+                "e.nombre AS 'Estado', " +
+                "e.idEstado, " +
+                "c.tipo AS 'Tipo', " +
+                "c.idTipo, " +
+                "em.nombre AS 'Empresa', " +
+                "a.fecha_compra, " +
+                "a.Valor, " +
+                "a.FPC, " +
+                "s.nombre AS 'Subgrupo', " +
+                "a.idSubgrupo " +
+                "FROM `articulo` AS a " +
+                "JOIN `usuario` AS u ON a.idUsuario = u.idUsuario " +
+                "JOIN `estado` AS e ON a.idEstado = e.idEstado " +
+                "JOIN `tipo` AS c ON a.idTipo = c.idTipo " +
+                "JOIN `empresa` AS em ON a.idEmpresa = em.idEmpresa " +
+                "JOIN `subgrupo` AS s ON a.idSubgrupo = s.idSubgrupo " +
+                "JOIN `departamento` AS d ON d.idDepartamento = u.idDepartamento " + 
+                consulta + 
+                " ORDER BY a.idArticulo";
             Console.WriteLine(cmd.CommandText);
             connection.Open();
             reader = cmd.ExecuteReader();
@@ -133,7 +167,7 @@ namespace Activos
                     activo["Valor"] = reader.GetString(10);
                     activo["FPC"] = reader.GetString(11);
                     activo["Subgrupo"] = reader.GetString(12);
-                    activo["idSubgrupo"] = reader.GetString(13);
+                    activo["idSubgrupo"] = reader.GetString(18);
                     dt.Rows.Add(activo);
                 }
             }
@@ -317,12 +351,12 @@ namespace Activos
             dt.Columns.Add("Empresa");
             dt.Columns.Add("Fecha de Ingreso");
             MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT a.idActivo,a.descripcion,u.nombre as 'Usuario', u.idUsuario, " +
-                "e.nombre as 'Estado', e.idEstado, c.nombre as 'Categoria', c.idCategoria, em.nombre as 'Empresa', a.fecha_ingreso FROM `" + tabla + "` as a " +
-                "JOIN `usuario` as u ON a.idUsuario = u.idUsuario " +
-                "JOIN `estado` as e ON a.idEstado = e.idEstado " +
-                "JOIN `categoria` as c ON a.idCategoria = c.idCategoria " +
-                "JOIN `empresa` as em ON a.idEmpresa = em.idEmpresa WHERE a.idActivo = " + id;
+            cmd.CommandText = "SELECT a.idActivo,a.descripcion,u.nombre AS 'Usuario', u.idUsuario, " +
+                "e.nombre AS 'Estado', e.idEstado, c.nombre AS 'Categoria', c.idCategoria, em.nombre AS 'Empresa', a.fecha_ingreso FROM `" + tabla + "` AS a " +
+                "JOIN `usuario` AS u ON a.idUsuario = u.idUsuario " +
+                "JOIN `estado` AS e ON a.idEstado = e.idEstado " +
+                "JOIN `categoria` AS c ON a.idCategoria = c.idCategoria " +
+                "JOIN `empresa` AS em ON a.idEmpresa = em.idEmpresa WHERE a.idActivo = " + id;
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
