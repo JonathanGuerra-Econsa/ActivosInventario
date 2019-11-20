@@ -14,7 +14,6 @@ namespace Activos
     public partial class Articulos : Form
     {
         ConsultasMysql mysql = new ConsultasMysql();
-        DateTime fechaI = new DateTime(2000, 1, 1), fechaF = DateTime.Today, fechaAntI, fechaAntF;
 
         private void Articulos_Load(object sender, EventArgs e)
         {
@@ -95,26 +94,26 @@ namespace Activos
             cmbSubgrupo.AutoCompleteCustomSource = subgrupoData;
             #endregion
             #region Combo box de Tipo
-            DataTable tipos = new DataTable();
-            tipos = mysql.tipos();
+            //DataTable tipos = new DataTable();
+            //tipos = mysql.tipos();
 
-            DataRow nulo2 = tipos.NewRow();
-            nulo2["nombre"] = "Escoger Tipo...";
-            nulo2["idT"] = 0;
-            tipos.Rows.InsertAt(nulo2, 0);
+            //DataRow nulo2 = tipos.NewRow();
+            //nulo2["nombre"] = "Escoger Tipo...";
+            //nulo2["idT"] = 0;
+            //tipos.Rows.InsertAt(nulo2, 0);
 
-            cmbTipo.DisplayMember = "nombre";
-            cmbTipo.ValueMember = "idT";
-            cmbTipo.DataSource = tipos;
+            //cmbTipo.DisplayMember = "nombre";
+            //cmbTipo.ValueMember = "idT";
+            //cmbTipo.DataSource = tipos;
 
-            cmbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbTipo.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            AutoCompleteStringCollection tipoData = new AutoCompleteStringCollection();
-            foreach (DataRow row in tipos.Rows)
-            {
-                tipoData.Add(row["nombre"].ToString());
-            }
-            cmbTipo.AutoCompleteCustomSource = estadoData;
+            //cmbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            //cmbTipo.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            //AutoCompleteStringCollection tipoData = new AutoCompleteStringCollection();
+            //foreach (DataRow row in tipos.Rows)
+            //{
+            //    tipoData.Add(row["nombre"].ToString());
+            //}
+            //cmbTipo.AutoCompleteCustomSource = estadoData;
             #endregion
         }
 
@@ -187,7 +186,6 @@ namespace Activos
                 consulta.Append("c.idTipo = " + cmbTipo.SelectedValue);
             }
             if (consulta.ToString() == "WHERE ") consulta = new StringBuilder();
-            Console.WriteLine(consulta);
 
             dataGridView1.DataSource = mysql.consultaArticulo(consulta.ToString());
         }
