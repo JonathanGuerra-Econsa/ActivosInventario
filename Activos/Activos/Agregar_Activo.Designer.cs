@@ -47,7 +47,6 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnSet = new System.Windows.Forms.Button();
             this.gbUsuario = new System.Windows.Forms.GroupBox();
-            this.btnActualiza = new System.Windows.Forms.Button();
             this.lbPuesto = new System.Windows.Forms.Label();
             this.lbDepartamentoUsuario = new System.Windows.Forms.Label();
             this.lbNombreUsuario = new System.Windows.Forms.Label();
@@ -56,6 +55,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.cmbUsuario = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnActualiza = new System.Windows.Forms.Button();
             this.gbSubGrupo = new System.Windows.Forms.GroupBox();
             this.cmbSubGrupo = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -317,26 +317,9 @@
             this.gbUsuario.Location = new System.Drawing.Point(12, 376);
             this.gbUsuario.Name = "gbUsuario";
             this.gbUsuario.Size = new System.Drawing.Size(505, 173);
-            this.gbUsuario.TabIndex = 2;
+            this.gbUsuario.TabIndex = 1;
             this.gbUsuario.TabStop = false;
             this.gbUsuario.Text = "Usuario";
-            // 
-            // btnActualiza
-            // 
-            this.btnActualiza.BackColor = System.Drawing.Color.Transparent;
-            this.btnActualiza.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnActualiza.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnActualiza.Image = global::Activos.Properties.Resources.file1;
-            this.btnActualiza.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnActualiza.Location = new System.Drawing.Point(858, 502);
-            this.btnActualiza.Name = "btnActualiza";
-            this.btnActualiza.Size = new System.Drawing.Size(170, 76);
-            this.btnActualiza.TabIndex = 15;
-            this.btnActualiza.Text = "Actualizar";
-            this.btnActualiza.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnActualiza.UseVisualStyleBackColor = false;
-            this.btnActualiza.Visible = false;
-            this.btnActualiza.Click += new System.EventHandler(this.btnActualiza_Click);
             // 
             // lbPuesto
             // 
@@ -428,6 +411,23 @@
             this.label3.TabIndex = 34;
             this.label3.Text = "Usuario:";
             // 
+            // btnActualiza
+            // 
+            this.btnActualiza.BackColor = System.Drawing.Color.Transparent;
+            this.btnActualiza.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnActualiza.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnActualiza.Image = global::Activos.Properties.Resources.file1;
+            this.btnActualiza.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnActualiza.Location = new System.Drawing.Point(858, 502);
+            this.btnActualiza.Name = "btnActualiza";
+            this.btnActualiza.Size = new System.Drawing.Size(170, 76);
+            this.btnActualiza.TabIndex = 15;
+            this.btnActualiza.Text = "Actualizar";
+            this.btnActualiza.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnActualiza.UseVisualStyleBackColor = false;
+            this.btnActualiza.Visible = false;
+            this.btnActualiza.Click += new System.EventHandler(this.btnActualiza_Click);
+            // 
             // gbSubGrupo
             // 
             this.gbSubGrupo.BackColor = System.Drawing.Color.Transparent;
@@ -439,7 +439,7 @@
             this.gbSubGrupo.Location = new System.Drawing.Point(525, 78);
             this.gbSubGrupo.Name = "gbSubGrupo";
             this.gbSubGrupo.Size = new System.Drawing.Size(505, 88);
-            this.gbSubGrupo.TabIndex = 1;
+            this.gbSubGrupo.TabIndex = 2;
             this.gbSubGrupo.TabStop = false;
             this.gbSubGrupo.Text = "Sub Grupo";
             // 
@@ -453,7 +453,7 @@
             this.cmbSubGrupo.Location = new System.Drawing.Point(249, 56);
             this.cmbSubGrupo.Name = "cmbSubGrupo";
             this.cmbSubGrupo.Size = new System.Drawing.Size(193, 25);
-            this.cmbSubGrupo.TabIndex = 36;
+            this.cmbSubGrupo.TabIndex = 1;
             // 
             // label17
             // 
