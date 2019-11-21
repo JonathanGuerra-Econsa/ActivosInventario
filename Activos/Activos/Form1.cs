@@ -32,7 +32,7 @@ namespace Activos
 
         private void btnCategoria_Click(object sender, EventArgs e)
         {
-            new Agregar_Categoria().Show();
+            new Agregar_Tipo().Show();
         }
 
         private void btnActivo_Click(object sender, EventArgs e)

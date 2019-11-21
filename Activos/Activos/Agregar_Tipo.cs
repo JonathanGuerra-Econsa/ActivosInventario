@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Activos
 {
-    public partial class Agregar_Categoria : Form
+    public partial class Agregar_Tipo : Form
     {
         #region Variables
         //----------------------------------------------*Variables*------------------------------------------------//
@@ -20,7 +20,7 @@ namespace Activos
         #endregion
         #region Primeros procesos del Form "Load()"
         //---------------------------------------------------------------- Load() -------------------------------------------------------------------------------//
-        public Agregar_Categoria()
+        public Agregar_Tipo()
         {
             InitializeComponent();
         }
