@@ -70,7 +70,6 @@ namespace Activos
                 "JOIN `departamento` AS d ON d.idDepartamento = u.idDepartamento " + 
                 consulta + 
                 " ORDER BY a.idActivo";
-            Console.WriteLine(cmd.CommandText);
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
@@ -147,7 +146,6 @@ namespace Activos
                 "JOIN `departamento` AS d ON d.idDepartamento = u.idDepartamento " + 
                 consulta + 
                 " ORDER BY a.idArticulo";
-            Console.WriteLine(cmd.CommandText);
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
@@ -168,7 +166,7 @@ namespace Activos
                     activo["Valor"] = reader.GetString(10);
                     activo["FPC"] = reader.GetString(11);
                     activo["Subgrupo"] = reader.GetString(12);
-                    activo["idSubgrupo"] = reader.GetString(18);
+                    activo["idSubgrupo"] = reader.GetString(13);
                     dt.Rows.Add(activo);
                 }
             }
@@ -336,6 +334,7 @@ namespace Activos
             connection.Close();
             return dt;
         }
+
         // Revisar Articulos
 
         public DataTable buscar(string tabla, string id)
