@@ -27,8 +27,7 @@ namespace Activos
 
         private void Agregar_Categoria_Load(object sender, EventArgs e)
         {
-            actualizarDGV();
-            lbID.Text = "";
+
         }
         //---------------------------------------------------------------------------  -------------------------------------------------------------------------------//
         #endregion
