@@ -67,11 +67,11 @@
     <Compile Include="Agregar_Articulo.Designer.cs">
       <DependentUpon>Agregar_Articulo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Agregar_Categoria.cs">
+    <Compile Include="Agregar_Tipo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Agregar_Categoria.Designer.cs">
-      <DependentUpon>Agregar_Categoria.cs</DependentUpon>
+    <Compile Include="Agregar_Tipo.Designer.cs">
+      <DependentUpon>Agregar_Tipo.cs</DependentUpon>
     </Compile>
     <Compile Include="Agregar_Departamento.cs">
       <SubType>Form</SubType>
@@ -116,8 +116,8 @@
     <EmbeddedResource Include="Agregar_Articulo.resx">
       <DependentUpon>Agregar_Articulo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Agregar_Categoria.resx">
-      <DependentUpon>Agregar_Categoria.cs</DependentUpon>
+    <EmbeddedResource Include="Agregar_Tipo.resx">
+      <DependentUpon>Agregar_Tipo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Agregar_Departamento.resx">
       <DependentUpon>Agregar_Departamento.cs</DependentUpon>
@@ -213,6 +213,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\file1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gaming.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stapler.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
