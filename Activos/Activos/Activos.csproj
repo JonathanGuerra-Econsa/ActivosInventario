@@ -55,6 +55,12 @@
     <Compile Include="Activos.Designer.cs">
       <DependentUpon>Activos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrador_Activo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrador_Activo.Designer.cs">
+      <DependentUpon>Administrador_Activo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Agregar_Activo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Activos.resx">
       <DependentUpon>Activos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrador_Activo.resx">
+      <DependentUpon>Administrador_Activo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Agregar_Activo.resx">
       <DependentUpon>Agregar_Activo.cs</DependentUpon>
