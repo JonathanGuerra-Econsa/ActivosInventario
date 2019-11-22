@@ -424,5 +424,35 @@ namespace Activos
         }
         //----------------------------------------------------------------------------------------------------------------------------------------------------------------------//
         #endregion
+        #region verTiposActivo()
+        //--------------------------------------------- Método para traer los tipos de la base de datos ----------------------------------------//
+        public DataTable verTiposActivo()
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlDataAdapter mysqlDa = new MySqlDataAdapter(string.Format("SELECT t.idTipo as 'ID', t.Tipo as 'Tipo', s.nombre as 'Sub Grupo' FROM Tipo t INNER JOIN subgrupo s ON t.idSubgrupo = s.idSubgrupo "), mysqlCon);
+                DataTable table_Tipo = new DataTable();
+                mysqlDa.Fill(table_Tipo);
+                return table_Tipo;
+            }
+        }
+        //------------------------------------------------------------------------- --------------------------------------------------------------------//
+        #endregion
+        #region verGrupo()
+        //---------------------------------------------------------------- Método que trae la tabla de grupos --------------------------------------------------//
+        public DataTable verGrupo()
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlDataAdapter mysqlDa = new MySqlDataAdapter(string.Format("SELECT idGrupo as 'ID', nombre as 'Nombre' FROM grupo"), mysqlCon);
+                DataTable table_grupo = new DataTable();
+                mysqlDa.Fill(table_grupo);
+                return table_grupo;
+            }
+        }
+        //-------------------------------------------------------------------------------- -----------------------------------------------------------------------------//
+        #endregion
     }
 }
