@@ -343,9 +343,9 @@ namespace Activos
         {
             if (e.RowIndex < 0) return;
             var row = dataGridView1.CurrentRow.Index;
-            Agregar_Activo agregar = new Agregar_Activo();
+            Agregar_Articulo agregar = new Agregar_Articulo();
             agregar.opcion = 2;
-            agregar.ID = dataGridView1.Rows[row].Cells["ID"].Value.ToString();
+            agregar.ID = Convert.ToInt32(dataGridView1.Rows[row].Cells["ID"].Value.ToString());
             agregar.ShowDialog();
             ArmarConsulta(sender, e);
         }
