@@ -454,5 +454,18 @@ namespace Activos
         }
         //-------------------------------------------------------------------------------- -----------------------------------------------------------------------------//
         #endregion
+        #region verSubGrupos()
+        public DataTable verSubGrupo()
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlDataAdapter mysqlDa = new MySqlDataAdapter(string.Format("SELECT s.idSubGrupo as 'ID', s.nombre as 'Nombre', g.nombre as 'Grupo' FROM {0} s INNER JOIN grupo g ON g.idGrupo = s.idGrupo", Tabla_SubGrupo), mysqlCon);
+                DataTable table_grupo = new DataTable();
+                mysqlDa.Fill(table_grupo);
+                return table_grupo;
+            }
+        }
+        #endregion
     }
 }

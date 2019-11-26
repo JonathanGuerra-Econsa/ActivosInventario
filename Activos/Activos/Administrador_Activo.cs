@@ -47,6 +47,7 @@ namespace Activos
                 {
                     gbTipos.Visible = true;
                     gbGrupos.Visible = false;
+                    gbSubGrupos.Visible = false;
                     dgvTipos.DataSource = consultasMySQL.verTiposActivo();
                     dgvTipos.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     dgvTipos.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -56,10 +57,21 @@ namespace Activos
                 {
                     gbGrupos.Visible = true;
                     gbTipos.Visible = false;
+                    gbSubGrupos.Visible = false;
                     dgvGrupo.DataSource = consultasMySQL.verGrupo();
                     dgvGrupo.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     dgvGrupo.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     btnCancelarGrupo.Visible = false;
+                }
+                if (cmbAdministrar.SelectedIndex == 2)
+                {
+                    gbSubGrupos.Visible = true;
+                    gbGrupos.Visible = false;
+                    gbTipos.Visible = false;
+                    dgvSubGrupos.DataSource = consultasMySQL.verSubGrupo();
+                    dgvSubGrupos.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dgvSubGrupos.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    btnCancelarSubGrupo.Visible = false;
                 }
             }
         }

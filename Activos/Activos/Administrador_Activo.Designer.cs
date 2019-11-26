@@ -31,25 +31,24 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Administrador_Activo));
             this.cmbAdministrar = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gbTipos = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnCancelTipo = new System.Windows.Forms.Button();
+            this.btnEditTipo = new System.Windows.Forms.Button();
+            this.txtTipo = new System.Windows.Forms.TextBox();
+            this.lbIDTipo = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbGrupoTipo = new System.Windows.Forms.ComboBox();
             this.btnAddTipo = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbSubGrupoTipo = new System.Windows.Forms.ComboBox();
             this.dgvTipos = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cmbGrupoTipo = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lbIDTipo = new System.Windows.Forms.Label();
-            this.txtTipo = new System.Windows.Forms.TextBox();
-            this.btnEditTipo = new System.Windows.Forms.Button();
-            this.btnCancelTipo = new System.Windows.Forms.Button();
             this.gbGrupos = new System.Windows.Forms.GroupBox();
             this.gbDetalleGrupo = new System.Windows.Forms.GroupBox();
             this.btnCancelarGrupo = new System.Windows.Forms.Button();
@@ -61,15 +60,17 @@
             this.btnAgregarGrupo = new System.Windows.Forms.Button();
             this.dgvGrupo = new System.Windows.Forms.DataGridView();
             this.gbSubGrupos = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.gbDetalleSubGrupo = new System.Windows.Forms.GroupBox();
+            this.btnCancelarSubGrupo = new System.Windows.Forms.Button();
+            this.btnEditarSubGrupo = new System.Windows.Forms.Button();
+            this.txtSubGrupo = new System.Windows.Forms.TextBox();
+            this.lbIDsubGrupo = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnAgregarSubGrupo = new System.Windows.Forms.Button();
             this.dgvSubGrupos = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cmbGrupo = new System.Windows.Forms.ComboBox();
             this.gbTipos.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTipos)).BeginInit();
@@ -77,7 +78,7 @@
             this.gbDetalleGrupo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrupo)).BeginInit();
             this.gbSubGrupos.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.gbDetalleSubGrupo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubGrupos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -136,6 +137,97 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalle Tipo";
             // 
+            // btnCancelTipo
+            // 
+            this.btnCancelTipo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCancelTipo.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelTipo.Image = global::Activos.Properties.Resources.close;
+            this.btnCancelTipo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancelTipo.Location = new System.Drawing.Point(193, 243);
+            this.btnCancelTipo.Name = "btnCancelTipo";
+            this.btnCancelTipo.Size = new System.Drawing.Size(126, 65);
+            this.btnCancelTipo.TabIndex = 14;
+            this.btnCancelTipo.Text = "Cancelar";
+            this.btnCancelTipo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancelTipo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCancelTipo.UseVisualStyleBackColor = true;
+            // 
+            // btnEditTipo
+            // 
+            this.btnEditTipo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEditTipo.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditTipo.Image = global::Activos.Properties.Resources.writing;
+            this.btnEditTipo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEditTipo.Location = new System.Drawing.Point(193, 243);
+            this.btnEditTipo.Name = "btnEditTipo";
+            this.btnEditTipo.Size = new System.Drawing.Size(126, 65);
+            this.btnEditTipo.TabIndex = 13;
+            this.btnEditTipo.Text = "Editar";
+            this.btnEditTipo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEditTipo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditTipo.UseVisualStyleBackColor = true;
+            // 
+            // txtTipo
+            // 
+            this.txtTipo.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTipo.Location = new System.Drawing.Point(105, 90);
+            this.txtTipo.Name = "txtTipo";
+            this.txtTipo.Size = new System.Drawing.Size(214, 27);
+            this.txtTipo.TabIndex = 12;
+            // 
+            // lbIDTipo
+            // 
+            this.lbIDTipo.AutoSize = true;
+            this.lbIDTipo.BackColor = System.Drawing.Color.Transparent;
+            this.lbIDTipo.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbIDTipo.Location = new System.Drawing.Point(101, 54);
+            this.lbIDTipo.Name = "lbIDTipo";
+            this.lbIDTipo.Size = new System.Drawing.Size(26, 21);
+            this.lbIDTipo.TabIndex = 11;
+            this.lbIDTipo.Text = "ID";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(12, 90);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(47, 21);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Tipo:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(12, 54);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(30, 21);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "ID:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(12, 130);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 21);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Grupo:";
+            // 
+            // cmbGrupoTipo
+            // 
+            this.cmbGrupoTipo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbGrupoTipo.FormattingEnabled = true;
+            this.cmbGrupoTipo.Location = new System.Drawing.Point(105, 130);
+            this.cmbGrupoTipo.Name = "cmbGrupoTipo";
+            this.cmbGrupoTipo.Size = new System.Drawing.Size(214, 25);
+            this.cmbGrupoTipo.TabIndex = 8;
+            // 
             // btnAddTipo
             // 
             this.btnAddTipo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -179,21 +271,13 @@
             this.dgvTipos.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvTipos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvTipos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTipos.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvTipos.EnableHeadersVisualStyles = false;
             this.dgvTipos.Location = new System.Drawing.Point(10, 26);
             this.dgvTipos.MultiSelect = false;
@@ -214,97 +298,6 @@
             this.label2.Size = new System.Drawing.Size(207, 30);
             this.label2.TabIndex = 3;
             this.label2.Text = "Administrar Activos";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 130);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 21);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Grupo:";
-            // 
-            // cmbGrupoTipo
-            // 
-            this.cmbGrupoTipo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbGrupoTipo.FormattingEnabled = true;
-            this.cmbGrupoTipo.Location = new System.Drawing.Point(105, 130);
-            this.cmbGrupoTipo.Name = "cmbGrupoTipo";
-            this.cmbGrupoTipo.Size = new System.Drawing.Size(214, 25);
-            this.cmbGrupoTipo.TabIndex = 8;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(12, 54);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(30, 21);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "ID:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(12, 90);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 21);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Tipo:";
-            // 
-            // lbIDTipo
-            // 
-            this.lbIDTipo.AutoSize = true;
-            this.lbIDTipo.BackColor = System.Drawing.Color.Transparent;
-            this.lbIDTipo.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbIDTipo.Location = new System.Drawing.Point(101, 54);
-            this.lbIDTipo.Name = "lbIDTipo";
-            this.lbIDTipo.Size = new System.Drawing.Size(26, 21);
-            this.lbIDTipo.TabIndex = 11;
-            this.lbIDTipo.Text = "ID";
-            // 
-            // txtTipo
-            // 
-            this.txtTipo.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTipo.Location = new System.Drawing.Point(105, 90);
-            this.txtTipo.Name = "txtTipo";
-            this.txtTipo.Size = new System.Drawing.Size(214, 27);
-            this.txtTipo.TabIndex = 12;
-            // 
-            // btnEditTipo
-            // 
-            this.btnEditTipo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnEditTipo.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditTipo.Image = global::Activos.Properties.Resources.writing;
-            this.btnEditTipo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEditTipo.Location = new System.Drawing.Point(193, 243);
-            this.btnEditTipo.Name = "btnEditTipo";
-            this.btnEditTipo.Size = new System.Drawing.Size(126, 65);
-            this.btnEditTipo.TabIndex = 13;
-            this.btnEditTipo.Text = "Editar";
-            this.btnEditTipo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditTipo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEditTipo.UseVisualStyleBackColor = true;
-            // 
-            // btnCancelTipo
-            // 
-            this.btnCancelTipo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCancelTipo.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelTipo.Image = global::Activos.Properties.Resources.close;
-            this.btnCancelTipo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancelTipo.Location = new System.Drawing.Point(193, 243);
-            this.btnCancelTipo.Name = "btnCancelTipo";
-            this.btnCancelTipo.Size = new System.Drawing.Size(126, 65);
-            this.btnCancelTipo.TabIndex = 14;
-            this.btnCancelTipo.Text = "Cancelar";
-            this.btnCancelTipo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelTipo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCancelTipo.UseVisualStyleBackColor = true;
             // 
             // gbGrupos
             // 
@@ -428,14 +421,14 @@
             this.dgvGrupo.AllowUserToResizeRows = false;
             this.dgvGrupo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvGrupo.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvGrupo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvGrupo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvGrupo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGrupo.EnableHeadersVisualStyles = false;
             this.dgvGrupo.Location = new System.Drawing.Point(10, 26);
@@ -449,7 +442,7 @@
             // gbSubGrupos
             // 
             this.gbSubGrupos.BackColor = System.Drawing.Color.Transparent;
-            this.gbSubGrupos.Controls.Add(this.groupBox3);
+            this.gbSubGrupos.Controls.Add(this.gbDetalleSubGrupo);
             this.gbSubGrupos.Controls.Add(this.dgvSubGrupos);
             this.gbSubGrupos.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbSubGrupos.Location = new System.Drawing.Point(12, 87);
@@ -459,78 +452,80 @@
             this.gbSubGrupos.TabStop = false;
             this.gbSubGrupos.Text = "Sub Grupos";
             // 
-            // groupBox3
+            // gbDetalleSubGrupo
             // 
-            this.groupBox3.BackColor = System.Drawing.Color.White;
-            this.groupBox3.Controls.Add(this.button1);
-            this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Controls.Add(this.textBox1);
-            this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Location = new System.Drawing.Point(376, 26);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(351, 337);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Detalle Grupo";
+            this.gbDetalleSubGrupo.BackColor = System.Drawing.Color.White;
+            this.gbDetalleSubGrupo.Controls.Add(this.cmbGrupo);
+            this.gbDetalleSubGrupo.Controls.Add(this.label7);
+            this.gbDetalleSubGrupo.Controls.Add(this.btnCancelarSubGrupo);
+            this.gbDetalleSubGrupo.Controls.Add(this.btnEditarSubGrupo);
+            this.gbDetalleSubGrupo.Controls.Add(this.txtSubGrupo);
+            this.gbDetalleSubGrupo.Controls.Add(this.lbIDsubGrupo);
+            this.gbDetalleSubGrupo.Controls.Add(this.label8);
+            this.gbDetalleSubGrupo.Controls.Add(this.label11);
+            this.gbDetalleSubGrupo.Controls.Add(this.btnAgregarSubGrupo);
+            this.gbDetalleSubGrupo.Location = new System.Drawing.Point(376, 26);
+            this.gbDetalleSubGrupo.Name = "gbDetalleSubGrupo";
+            this.gbDetalleSubGrupo.Size = new System.Drawing.Size(351, 337);
+            this.gbDetalleSubGrupo.TabIndex = 1;
+            this.gbDetalleSubGrupo.TabStop = false;
+            this.gbDetalleSubGrupo.Text = "Detalle Sub Grupo";
             // 
-            // button1
+            // btnCancelarSubGrupo
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::Activos.Properties.Resources.close;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.Location = new System.Drawing.Point(193, 243);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 65);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Cancelar";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCancelarSubGrupo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCancelarSubGrupo.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelarSubGrupo.Image = global::Activos.Properties.Resources.close;
+            this.btnCancelarSubGrupo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancelarSubGrupo.Location = new System.Drawing.Point(193, 243);
+            this.btnCancelarSubGrupo.Name = "btnCancelarSubGrupo";
+            this.btnCancelarSubGrupo.Size = new System.Drawing.Size(126, 65);
+            this.btnCancelarSubGrupo.TabIndex = 14;
+            this.btnCancelarSubGrupo.Text = "Cancelar";
+            this.btnCancelarSubGrupo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancelarSubGrupo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCancelarSubGrupo.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnEditarSubGrupo
             // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = global::Activos.Properties.Resources.writing;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.Location = new System.Drawing.Point(193, 243);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(126, 65);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Editar";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnEditarSubGrupo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEditarSubGrupo.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarSubGrupo.Image = global::Activos.Properties.Resources.writing;
+            this.btnEditarSubGrupo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEditarSubGrupo.Location = new System.Drawing.Point(193, 243);
+            this.btnEditarSubGrupo.Name = "btnEditarSubGrupo";
+            this.btnEditarSubGrupo.Size = new System.Drawing.Size(126, 65);
+            this.btnEditarSubGrupo.TabIndex = 13;
+            this.btnEditarSubGrupo.Text = "Editar";
+            this.btnEditarSubGrupo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEditarSubGrupo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditarSubGrupo.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtSubGrupo
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(105, 140);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(214, 27);
-            this.textBox1.TabIndex = 12;
+            this.txtSubGrupo.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSubGrupo.Location = new System.Drawing.Point(119, 110);
+            this.txtSubGrupo.Name = "txtSubGrupo";
+            this.txtSubGrupo.Size = new System.Drawing.Size(196, 27);
+            this.txtSubGrupo.TabIndex = 12;
             // 
-            // label7
+            // lbIDsubGrupo
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(101, 100);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(26, 21);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "ID";
+            this.lbIDsubGrupo.AutoSize = true;
+            this.lbIDsubGrupo.BackColor = System.Drawing.Color.Transparent;
+            this.lbIDsubGrupo.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbIDsubGrupo.Location = new System.Drawing.Point(97, 70);
+            this.lbIDsubGrupo.Name = "lbIDsubGrupo";
+            this.lbIDsubGrupo.Size = new System.Drawing.Size(26, 21);
+            this.lbIDsubGrupo.TabIndex = 11;
+            this.lbIDsubGrupo.Text = "ID";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(39, 100);
+            this.label8.Location = new System.Drawing.Point(21, 70);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(30, 21);
             this.label8.TabIndex = 9;
@@ -541,26 +536,26 @@
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(39, 142);
+            this.label11.Location = new System.Drawing.Point(21, 112);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(60, 21);
+            this.label11.Size = new System.Drawing.Size(92, 21);
             this.label11.TabIndex = 7;
-            this.label11.Text = "Grupo:";
+            this.label11.Text = "Sub Grupo:";
             // 
-            // button3
+            // btnAgregarSubGrupo
             // 
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = global::Activos.Properties.Resources.plus__1_;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.Location = new System.Drawing.Point(61, 243);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(126, 65);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Agregar";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnAgregarSubGrupo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAgregarSubGrupo.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarSubGrupo.Image = global::Activos.Properties.Resources.plus__1_;
+            this.btnAgregarSubGrupo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAgregarSubGrupo.Location = new System.Drawing.Point(61, 243);
+            this.btnAgregarSubGrupo.Name = "btnAgregarSubGrupo";
+            this.btnAgregarSubGrupo.Size = new System.Drawing.Size(126, 65);
+            this.btnAgregarSubGrupo.TabIndex = 6;
+            this.btnAgregarSubGrupo.Text = "Agregar";
+            this.btnAgregarSubGrupo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregarSubGrupo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAgregarSubGrupo.UseVisualStyleBackColor = true;
             // 
             // dgvSubGrupos
             // 
@@ -568,14 +563,14 @@
             this.dgvSubGrupos.AllowUserToResizeRows = false;
             this.dgvSubGrupos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSubGrupos.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSubGrupos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSubGrupos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvSubGrupos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSubGrupos.EnableHeadersVisualStyles = false;
             this.dgvSubGrupos.Location = new System.Drawing.Point(10, 26);
@@ -585,6 +580,25 @@
             this.dgvSubGrupos.RowHeadersVisible = false;
             this.dgvSubGrupos.Size = new System.Drawing.Size(360, 337);
             this.dgvSubGrupos.TabIndex = 0;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(21, 152);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(60, 21);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Grupo:";
+            // 
+            // cmbGrupo
+            // 
+            this.cmbGrupo.FormattingEnabled = true;
+            this.cmbGrupo.Location = new System.Drawing.Point(119, 152);
+            this.cmbGrupo.Name = "cmbGrupo";
+            this.cmbGrupo.Size = new System.Drawing.Size(196, 28);
+            this.cmbGrupo.TabIndex = 16;
             // 
             // Administrador_Activo
             // 
@@ -615,8 +629,8 @@
             this.gbDetalleGrupo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrupo)).EndInit();
             this.gbSubGrupos.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.gbDetalleSubGrupo.ResumeLayout(false);
+            this.gbDetalleSubGrupo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubGrupos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -653,14 +667,16 @@
         private System.Windows.Forms.Button btnAgregarGrupo;
         private System.Windows.Forms.DataGridView dgvGrupo;
         private System.Windows.Forms.GroupBox gbSubGrupos;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox gbDetalleSubGrupo;
+        private System.Windows.Forms.Button btnCancelarSubGrupo;
+        private System.Windows.Forms.Button btnEditarSubGrupo;
+        private System.Windows.Forms.TextBox txtSubGrupo;
+        private System.Windows.Forms.Label lbIDsubGrupo;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnAgregarSubGrupo;
         private System.Windows.Forms.DataGridView dgvSubGrupos;
+        private System.Windows.Forms.ComboBox cmbGrupo;
+        private System.Windows.Forms.Label label7;
     }
 }
