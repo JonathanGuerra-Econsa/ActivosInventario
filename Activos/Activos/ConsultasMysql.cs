@@ -220,6 +220,29 @@ namespace Activos
             return dt;
         }
 
+        public DataTable gruposAll()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID", typeof(Int32));
+            dt.Columns.Add("Grupo", typeof(string));
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT * FROM grupo";
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    DataRow grupo = dt.NewRow();
+                    grupo["ID"] = reader.GetInt32(0);
+                    grupo["Grupo"] = reader.GetString(1);
+                    dt.Rows.Add(grupo);
+                }
+            }
+            connection.Close();
+            return dt;
+        }
+
         public DataTable subgrupo(int idGrupo)
         {
             DataTable dt = new DataTable();
@@ -259,6 +282,32 @@ namespace Activos
                     DataRow categoria = dt.NewRow();
                     categoria["idT"] = reader.GetInt32(0);
                     categoria["nombre"] = reader.GetString(1);
+                    dt.Rows.Add(categoria);
+                }
+            }
+            connection.Close();
+            return dt;
+        }
+
+        public DataTable tiposAll()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID", typeof(Int32));
+            dt.Columns.Add("Tipo", typeof(string));
+            dt.Columns.Add("Grupo", typeof(string));
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT t.idTipo, t.Tipo, g.nombre FROM tipo as t " +
+                "JOIN grupo AS g ON t.idSubgrupo = g.idGrupo";
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    DataRow categoria = dt.NewRow();
+                    categoria["ID"] = reader.GetInt32(0);
+                    categoria["Tipo"] = reader.GetString(1);
+                    categoria["Grupo"] = reader.GetString(2);
                     dt.Rows.Add(categoria);
                 }
             }
