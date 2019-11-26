@@ -37,5 +37,12 @@ namespace Activos
             Administrador_Activo administrar = new Administrador_Activo();
             administrar.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            //new Administrador_Articulo().ShowDialog();
+            this.Show();
+        }
     }
 }
