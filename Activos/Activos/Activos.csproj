@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="MySql.Data, Version=8.0.17.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,6 +55,18 @@
     <Compile Include="Activos.Designer.cs">
       <DependentUpon>Activos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrador_Activo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrador_Activo.Designer.cs">
+      <DependentUpon>Administrador_Activo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrador_Articulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrador_Articulo.Designer.cs">
+      <DependentUpon>Administrador_Articulo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Agregar_Activo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,11 +79,11 @@
     <Compile Include="Agregar_Articulo.Designer.cs">
       <DependentUpon>Agregar_Articulo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Agregar_Categoria.cs">
+    <Compile Include="Agregar_Tipo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Agregar_Categoria.Designer.cs">
-      <DependentUpon>Agregar_Categoria.cs</DependentUpon>
+    <Compile Include="Agregar_Tipo.Designer.cs">
+      <DependentUpon>Agregar_Tipo.cs</DependentUpon>
     </Compile>
     <Compile Include="Agregar_Departamento.cs">
       <SubType>Form</SubType>
@@ -89,6 +104,18 @@
       <DependentUpon>Articulos.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsultasMysql.cs" />
+    <Compile Include="Control_Articulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control_Articulo.Designer.cs">
+      <DependentUpon>Control_Articulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control_GrupoArticulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control_GrupoArticulo.Designer.cs">
+      <DependentUpon>Control_GrupoArticulo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,14 +131,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Revisar articulos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Revisar articulos.Designer.cs">
-      <DependentUpon>Revisar articulos.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Activos.resx">
       <DependentUpon>Activos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrador_Activo.resx">
+      <DependentUpon>Administrador_Activo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrador_Articulo.resx">
+      <DependentUpon>Administrador_Articulo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Agregar_Activo.resx">
       <DependentUpon>Agregar_Activo.cs</DependentUpon>
@@ -119,8 +146,8 @@
     <EmbeddedResource Include="Agregar_Articulo.resx">
       <DependentUpon>Agregar_Articulo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Agregar_Categoria.resx">
-      <DependentUpon>Agregar_Categoria.cs</DependentUpon>
+    <EmbeddedResource Include="Agregar_Tipo.resx">
+      <DependentUpon>Agregar_Tipo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Agregar_Departamento.resx">
       <DependentUpon>Agregar_Departamento.cs</DependentUpon>
@@ -130,6 +157,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Articulos.resx">
       <DependentUpon>Articulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control_Articulo.resx">
+      <DependentUpon>Control_Articulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control_GrupoArticulo.resx">
+      <DependentUpon>Control_GrupoArticulo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -147,9 +180,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Revisar articulos.resx">
-      <DependentUpon>Revisar articulos.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -216,6 +246,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gaming.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stapler.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

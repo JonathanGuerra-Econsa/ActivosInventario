@@ -15,6 +15,7 @@ namespace Activos
         #region Variables
         //--------------------------------------------------------------------------- Variables -------------------------------------------------------------------------------//
         ConsultasMySQL_JG consultasMySQL = new ConsultasMySQL_JG();
+        public int opcion, ID;
         //---------------------------------------------------------------------------  -------------------------------------------------------------------------------//
         #endregion
         #region Load()
@@ -41,7 +42,7 @@ namespace Activos
             cmbEstado.DisplayMember = "Estado";
             cmbEstado.ValueMember = "ID";
 
-            cmbCategoria.DataSource = consultasMySQL.verCategorias();
+            cmbCategoria.DataSource = consultasMySQL.verTipos();
             cmbCategoria.DisplayMember = "Categoria";
             cmbCategoria.ValueMember = "ID";
 
@@ -63,7 +64,6 @@ namespace Activos
                     MessageBox.Show("Artículo agregado correctamente", "Artículo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     try
                     {
-                        consultasMySQL.agregarArticulo_Historial(txtDescripcion.Text, cmbUsuario.SelectedValue.ToString(), cmbEstado.SelectedValue.ToString(), cmbCategoria.SelectedValue.ToString(), cmbEmpresa.SelectedValue.ToString(), dtFecha.Value.ToString("yyyy-MM-dd"), consultasMySQL.verIdArticulos());
                         Close();
                     }
                     catch (Exception ex)

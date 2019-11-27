@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Activos));
@@ -50,9 +51,16 @@
             this.cmbDepto = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbEmpresa = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAct
@@ -111,6 +119,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(1046, 368);
             this.dataGridView1.TabIndex = 22;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // groupBox1
             // 
@@ -208,7 +217,7 @@
             this.cmbSubgrupo.Name = "cmbSubgrupo";
             this.cmbSubgrupo.Size = new System.Drawing.Size(203, 23);
             this.cmbSubgrupo.TabIndex = 1;
-            this.cmbSubgrupo.SelectedIndexChanged += new System.EventHandler(this.ArmarConsulta);
+            this.cmbSubgrupo.SelectedIndexChanged += new System.EventHandler(this.cmbSubgrupo_SelectedIndexChanged);
             // 
             // cmbGrupo
             // 
@@ -229,9 +238,9 @@
             this.groupBox2.Controls.Add(this.cmbDepto);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(70)))), ((int)(((byte)(144)))));
-            this.groupBox2.Location = new System.Drawing.Point(441, 15);
+            this.groupBox2.Location = new System.Drawing.Point(441, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(422, 164);
+            this.groupBox2.Size = new System.Drawing.Size(215, 164);
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Responsable";
@@ -247,6 +256,7 @@
             this.label11.Size = new System.Drawing.Size(63, 20);
             this.label11.TabIndex = 36;
             this.label11.Text = "Usuario";
+            this.label11.Visible = false;
             // 
             // label12
             // 
@@ -268,6 +278,8 @@
             this.cmbUser.Name = "cmbUser";
             this.cmbUser.Size = new System.Drawing.Size(201, 23);
             this.cmbUser.TabIndex = 34;
+            this.cmbUser.Visible = false;
+            this.cmbUser.SelectedIndexChanged += new System.EventHandler(this.ArmarConsulta);
             // 
             // cmbDepto
             // 
@@ -277,6 +289,7 @@
             this.cmbDepto.Name = "cmbDepto";
             this.cmbDepto.Size = new System.Drawing.Size(201, 23);
             this.cmbDepto.TabIndex = 33;
+            this.cmbDepto.SelectedIndexChanged += new System.EventHandler(this.cmbDepto_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -289,6 +302,7 @@
             this.button1.TabIndex = 26;
             this.button1.Text = "Imprimir Excel";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button3
             // 
@@ -299,8 +313,73 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(91, 52);
             this.button3.TabIndex = 27;
-            this.button3.Text = "Agregar (enviar 1)";
+            this.button3.Text = "Agregar Activo";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.cmbEmpresa);
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(70)))), ((int)(((byte)(144)))));
+            this.groupBox3.Location = new System.Drawing.Point(662, 12);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(202, 164);
+            this.groupBox3.TabIndex = 37;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "ID y Empresa";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(70)))), ((int)(((byte)(144)))));
+            this.label1.Location = new System.Drawing.Point(6, 81);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 20);
+            this.label1.TabIndex = 38;
+            this.label1.Text = "Empresa";
+            // 
+            // cmbEmpresa
+            // 
+            this.cmbEmpresa.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbEmpresa.FormattingEnabled = true;
+            this.cmbEmpresa.Location = new System.Drawing.Point(10, 104);
+            this.cmbEmpresa.Name = "cmbEmpresa";
+            this.cmbEmpresa.Size = new System.Drawing.Size(186, 23);
+            this.cmbEmpresa.TabIndex = 37;
+            this.cmbEmpresa.SelectedIndexChanged += new System.EventHandler(this.ArmarConsulta);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textBox1.Location = new System.Drawing.Point(10, 45);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(186, 23);
+            this.textBox1.TabIndex = 36;
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(70)))), ((int)(((byte)(144)))));
+            this.label2.Location = new System.Drawing.Point(6, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(97, 20);
+            this.label2.TabIndex = 35;
+            this.label2.Text = "Id del Activo";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Activos
             // 
@@ -309,6 +388,7 @@
             this.BackgroundImage = global::Activos.Properties.Resources.fondo3;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1070, 556);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
@@ -327,6 +407,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -351,5 +433,11 @@
         private System.Windows.Forms.ComboBox cmbUser;
         private System.Windows.Forms.ComboBox cmbDepto;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbEmpresa;
     }
 }

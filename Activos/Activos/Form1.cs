@@ -32,7 +32,7 @@ namespace Activos
 
         private void btnCategoria_Click(object sender, EventArgs e)
         {
-            new Agregar_Categoria().Show();
+            new Agregar_Tipo().Show();
         }
 
         private void btnActivo_Click(object sender, EventArgs e)
@@ -42,7 +42,7 @@ namespace Activos
 
         private void btnArticulo_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -68,11 +68,6 @@ namespace Activos
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            new Revisar_articulos().Show();
         }
     }
 }
