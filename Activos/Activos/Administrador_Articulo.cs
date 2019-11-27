@@ -13,7 +13,7 @@ namespace Activos
     public partial class Administrador_Articulo : Form
     {
         ConsultasMysql mysql = new ConsultasMysql();
-        //DataTable dt = new DataTable();
+
         public Administrador_Articulo()
         {
             InitializeComponent();
@@ -43,6 +43,7 @@ namespace Activos
             #endregion
         }
 
+        #region combobox, cambio de seleccion
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             gbGrupos.Text = comboBox1.Text;
@@ -63,17 +64,23 @@ namespace Activos
             lblId.Text = "";
             lblTipo.Text = "";
         }
+        #endregion
 
+        #region "tipos" en datagrid
         private void tipos()
         {
             dataGridView1.DataSource = mysql.tiposAll();
         }
+        #endregion
 
-        private  void grupos()
+        #region "grupos" en datagrid
+        private void grupos()
         {
             dataGridView1.DataSource = mysql.gruposAll();
         }
+        #endregion
 
+        #region "ver detalles" click de datagrid
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex < 0 || lblId.Text == dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()) return;
@@ -81,7 +88,9 @@ namespace Activos
             lblTipo.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             if (comboBox1.Text == "Tipos") lblGrupo.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
         }
+        #endregion
 
+        #region boton "agregar" o "editar"
         private void button1_Click(object sender, EventArgs e)
         {
             if (comboBox1.Text == "Tipos")
@@ -99,7 +108,9 @@ namespace Activos
                 grupos();
             }
         }
+        #endregion
 
+        #region boton "cancelar"
         private void button2_Click(object sender, EventArgs e)
         {
             if (lblId.Text == "")
@@ -124,7 +135,9 @@ namespace Activos
                 grupos();
             }
         }
+        #endregion
 
+        #region eliminar (comentado)
         //private void button3_Click(object sender, EventArgs e)
         //{
         //    DialogResult result = MessageBox.Show("¿Esta seguro de eliminar este " + comboBox1.Text.Replace("s", "") + "?", 
@@ -141,5 +154,6 @@ namespace Activos
         //        }
         //    }
         //}
+        #endregion
     }
 }
