@@ -198,7 +198,7 @@ namespace Activos
             dgvGrupo.BackgroundColor = Color.White; 
             dgvGrupo.DefaultCellStyle.BackColor = Color.White;
             btnCancelarGrupo.Visible = false;
-            cmbAdministrar.Enabled = false;
+            cmbAdministrar.Enabled = true;
         }
         #endregion
         #region Bloquear Detalle SubGrupo
@@ -210,6 +210,7 @@ namespace Activos
             txtSubGrupo.Enabled = false;
             cmbGrupo.Enabled = false;
             btnCancelarSubGrupo.Visible = false;
+            cmbAdministrar.Enabled = true;
         }
         #endregion
         #region Bloquear DataGridView Tipo
@@ -245,6 +246,7 @@ namespace Activos
             dgvSubGrupos.Enabled = false;
             dgvSubGrupos.BackgroundColor = Color.Silver;
             dgvSubGrupos.DefaultCellStyle.BackColor = Color.Silver;
+            cmbAdministrar.Enabled = false;
         }
         #endregion
 
@@ -274,6 +276,7 @@ namespace Activos
                             MessageBox.Show("Guardado Correctamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             dgvTipos.DataSource = consultasMySQL.verTiposActivo();
                             bloquearDetalleTipo();
+                            cmbAdministrar.Enabled = true;
                         }
                         else
                         {
@@ -292,6 +295,7 @@ namespace Activos
             bloquearDetalleTipo();
             btnCancelTipo.Location = new Point(193, 243);
             transladarDatosTipo();
+            cmbAdministrar.Enabled = true;
         }
         private void btnEditTipo_Click(object sender, EventArgs e)
         {
@@ -312,6 +316,7 @@ namespace Activos
                             MessageBox.Show("Guardado Correctamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             dgvTipos.DataSource = consultasMySQL.verTiposActivo();
                             bloquearDetalleTipo();
+                            cmbAdministrar.Enabled = true;
                         }
                         else
                         {
