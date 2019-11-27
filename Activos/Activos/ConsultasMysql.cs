@@ -129,20 +129,20 @@ namespace Activos
                 "u.idUsuario, " +
                 "e.nombre AS 'Estado', " +
                 "e.idEstado, " +
-                "c.tipo AS 'Tipo', " +
-                "c.idTipo, " +
+                "c.Tipo AS 'Tipo', " +
+                "c.idTipoArticulo, " +
                 "em.nombre AS 'Empresa', " +
                 "a.fecha_compra, " +
                 "a.Valor, " +
                 "a.FPC, " +
-                "s.nombre AS 'Subgrupo', " +
-                "a.idSubgrupo " +
+                "s.nombre AS 'Grupo', " +
+                "s.idGrupoArticulo " +
                 "FROM `articulo` AS a " +
                 "JOIN `usuario` AS u ON a.idUsuario = u.idUsuario " +
                 "JOIN `estado` AS e ON a.idEstado = e.idEstado " +
-                "JOIN `tipo` AS c ON a.idTipo = c.idTipo " +
+                "JOIN `tipo_articulo` AS c ON a.idTipo = c.idTipoArticulo " +
                 "JOIN `empresa` AS em ON a.idEmpresa = em.idEmpresa " +
-                "JOIN `subgrupo` AS s ON a.idSubgrupo = s.idSubgrupo " +
+                "JOIN `grupo_articulo` AS s ON c.idGrupoArticulo = s.idGrupoArticulo " +
                 "JOIN `departamento` AS d ON d.idDepartamento = u.idDepartamento " + 
                 consulta + 
                 " ORDER BY a.idArticulo";
