@@ -431,7 +431,7 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlDataAdapter mysqlDa = new MySqlDataAdapter(string.Format("SELECT t.idTipo as 'ID', t.Tipo as 'Tipo', s.nombre as 'Sub Grupo' FROM Tipo t INNER JOIN subgrupo s ON t.idSubgrupo = s.idSubgrupo "), mysqlCon);
+                MySqlDataAdapter mysqlDa = new MySqlDataAdapter(string.Format("SELECT t.idTipo as 'ID', t.Tipo as 'Tipo', s.nombre as 'Sub Grupo',  g.nombre as 'Grupo' FROM Tipo t INNER JOIN subgrupo s ON t.idSubgrupo = s.idSubgrupo INNER JOIN grupo g ON s.idGrupo = g.idGrupo"), mysqlCon);
                 DataTable table_Tipo = new DataTable();
                 mysqlDa.Fill(table_Tipo);
                 return table_Tipo;
@@ -460,10 +460,110 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlDataAdapter mysqlDa = new MySqlDataAdapter(string.Format("SELECT s.idSubGrupo as 'ID', s.nombre as 'Nombre', g.nombre as 'Grupo' FROM {0} s INNER JOIN grupo g ON g.idGrupo = s.idGrupo", Tabla_SubGrupo), mysqlCon);
+                MySqlDataAdapter mysqlDa = new MySqlDataAdapter(string.Format("SELECT s.idSubGrupo as 'ID', s.nombre as 'Nombre', g.nombre as 'Grupo' FROM {0} s INNER JOIN grupo g ON g.idGrupo = s.idGrupo ORDER BY idSubgrupo", Tabla_SubGrupo), mysqlCon);
                 DataTable table_grupo = new DataTable();
                 mysqlDa.Fill(table_grupo);
                 return table_grupo;
+            }
+        }
+        #endregion
+        #region ver grupo según su subgrupo
+        public string verGrupo_SubGrupo(string idSubgrupo)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                string grupo = "NULL";
+                mysqlCon.Open();
+                MySqlDataAdapter mysqlDa = new MySqlDataAdapter(string.Format("SELECT g.nombre as 'Nombre' FROM {1} s INNER JOIN {2} g ON s.idGrupo = g.idGrupo WHERE s.idSubgrupo = '{0}'", idSubgrupo, Tabla_SubGrupo, Tabla_Grupo), mysqlCon);
+                DataTable TableActivo = new DataTable();
+                mysqlDa.Fill(TableActivo);
+                if (TableActivo.Rows.Count > 0)
+                {
+                    DataRow row = TableActivo.Rows[0];
+                    DataRow name = TableActivo.Rows[0];
+                    grupo = Convert.ToString(row[0]);
+                }
+                return grupo;
+            }
+        }
+        #endregion
+        #region verSubGrupoFiltrado()
+        public DataTable verSubGrupoFiltrado(string idGrupo)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlDataAdapter mysqlDa = new MySqlDataAdapter(string.Format("SELECT s.idSubGrupo as 'ID', s.nombre as 'Nombre', g.nombre as 'Grupo' FROM {0} s INNER JOIN grupo g ON g.idGrupo = s.idGrupo WHERE s.idGrupo = '{1}' ORDER BY idSubgrupo", Tabla_SubGrupo, idGrupo), mysqlCon);
+                DataTable table_grupo = new DataTable();
+                mysqlDa.Fill(table_grupo);
+                return table_grupo;
+            }
+        }
+        #endregion
+        #region addTipo
+        public void addTipo(string tipo, string idSubgrupo)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(tipo, idSubgrupo) VALUES('{1}', '{2}')", Tabla_Tipo, tipo, idSubgrupo), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+        #region editTipo()
+        public void editTipo(string idTipo, string tipo, string idSubgrupo)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("UPDATE {0} SET tipo = '{1}', idSubGrupo = '{2}' WHERE idTipo = '{3}'", Tabla_Tipo, tipo, idSubgrupo, idTipo), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+        #region addGrupo()
+        public void addGrupo(string nombre)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(nombre) VALUES('{1}')", Tabla_Grupo, nombre), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+        #region editGrupo()
+        public void editGrupo(string idGrupo, string nombreGrupo)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("UPDATE {0} SET nombre = '{1}' WHERE idGrupo = '{2}'", Tabla_Grupo, nombreGrupo, idGrupo), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+                mysqlCon.Close();
+            }
+        }
+        #endregion
+        #region addSubGrupo
+        public void addSubGrupo(string nombre, string idGrupo)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(nombre, idGrupo) VALUES ('{1}', '{2}')", Tabla_SubGrupo, nombre, idGrupo), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+        #region editSubGrupo
+        public void editSubGrupo(string idSubGrupo, string nombre, string idGrupo)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("UPDATE {0} SET nombre = '{1}', idGrupo = '{2}' WHERE idSubGrupo = '{3}'", Tabla_SubGrupo, nombre, idGrupo, idSubGrupo), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
             }
         }
         #endregion
