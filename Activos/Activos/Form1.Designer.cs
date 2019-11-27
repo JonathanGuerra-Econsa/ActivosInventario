@@ -193,7 +193,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Activos.Properties.Resources.fondo2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(907, 457);
+            this.ClientSize = new System.Drawing.Size(986, 457);
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);

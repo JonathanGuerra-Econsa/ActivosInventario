@@ -84,6 +84,8 @@
             // 
             // cmbAdministrar
             // 
+            this.cmbAdministrar.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbAdministrar.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbAdministrar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbAdministrar.FormattingEnabled = true;
             this.cmbAdministrar.Location = new System.Drawing.Point(22, 41);
