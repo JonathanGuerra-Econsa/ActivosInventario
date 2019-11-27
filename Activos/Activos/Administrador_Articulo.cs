@@ -17,6 +17,7 @@ namespace Activos
         public Administrador_Articulo()
         {
             InitializeComponent();
+            this.CenterToScreen();
         }
 
         private void Administrador_Articulo_Load(object sender, EventArgs e)
@@ -49,14 +50,18 @@ namespace Activos
             {
                 label8.Visible = true;
                 lblGrupo.Visible = true;
-                dataGridView1.DataSource = mysql.tiposAll();
+                tipos();
             }
             else
             {
                 label8.Visible = false;
                 lblGrupo.Visible = false;
-                dataGridView1.DataSource = mysql.gruposAll();
+                grupos();
             }
+
+            lblGrupo.Text = "";
+            lblId.Text = "";
+            lblTipo.Text = "";
         }
 
         private void tipos()
@@ -66,7 +71,7 @@ namespace Activos
 
         private  void grupos()
         {
-
+            dataGridView1.DataSource = mysql.gruposAll();
         }
 
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -76,5 +81,65 @@ namespace Activos
             lblTipo.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             if (comboBox1.Text == "Tipos") lblGrupo.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.Text == "Tipos")
+            {
+                Control_Articulo view = new Control_Articulo();
+                view.option = "1";
+                view.ShowDialog();
+                tipos();
+            }
+            else
+            {
+                Control_GrupoArticulo view = new Control_GrupoArticulo();
+                view.option = "1";
+                view.ShowDialog();
+                grupos();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (lblId.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar un dato para editar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (comboBox1.Text == "Tipos")
+            {         
+                Control_Articulo view = new Control_Articulo();
+                view.ID = lblId.Text;
+                view.option = "2";
+                view.ShowDialog();
+                tipos();
+            }
+            else
+            {
+                Control_GrupoArticulo view = new Control_GrupoArticulo();
+                view.ID = lblId.Text;
+                view.option = "2";
+                view.ShowDialog();
+                grupos();
+            }
+        }
+
+        //private void button3_Click(object sender, EventArgs e)
+        //{
+        //    DialogResult result = MessageBox.Show("¿Esta seguro de eliminar este " + comboBox1.Text.Replace("s", "") + "?", 
+        //        "Eliminar " + comboBox1.Text.Replace("s", ""), MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+        //    if (result == DialogResult.Yes)
+        //    {
+        //        if(mysql.deleteGrupoTipoArticulo(comboBox1.Text, lblId.Text))
+        //        {
+        //            MessageBox.Show("Exito");
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Error al intentar eliminar. No lo intente de nuevo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        }
+        //    }
+        //}
     }
 }

@@ -197,7 +197,7 @@ namespace Activos
             return dt;
         }
 
-        public DataTable grupo()
+        public DataTable grupos()
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("idG", typeof(Int32));
@@ -226,7 +226,7 @@ namespace Activos
             dt.Columns.Add("ID", typeof(Int32));
             dt.Columns.Add("Grupo", typeof(string));
             MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT * FROM grupo";
+            cmd.CommandText = "SELECT * FROM grupo_articulo ORDER BY idGrupoArticulo";
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
@@ -241,6 +241,73 @@ namespace Activos
             }
             connection.Close();
             return dt;
+        }
+
+        public DataTable grupo(string id)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID", typeof(Int32));
+            dt.Columns.Add("Tipo", typeof(string));
+            dt.Columns.Add("Grupo", typeof(string));
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT * FROM grupo_articulo WHERE idGrupoArticulo = " + id + " ORDER BY idGrupoArticulo";
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    DataRow categoria = dt.NewRow();
+                    categoria["ID"] = reader.GetInt32(0);
+                    categoria["Tipo"] = reader.GetString(1);
+                    dt.Rows.Add(categoria);
+                }
+            }
+            connection.Close();
+            return dt;
+        }
+
+        public bool addGrupo(string desc)
+        {
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "INSERT INTO grupo_articulo VALUES (0, '" + desc + "')";
+            Console.WriteLine(cmd.CommandText);
+            connection.Open();
+            object resultado = cmd.ExecuteNonQuery();
+            connection.Close();
+            if (resultado != null) return true;
+            else return false;
+        }
+
+        public bool editGrupo(string desc, string id)
+        {
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "UPDATE grupo_articulo SET nombre = '" + desc + "' WHERE idGrupoArticulo = " + id;
+            Console.WriteLine(cmd.CommandText);
+            connection.Open();
+            object resultado = cmd.ExecuteNonQuery();
+            connection.Close();
+            if (resultado != null) return true;
+            else return false;
+        }
+
+        public bool deleteGrupoTipoArticulo(string tabla, string id)
+        {
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "Delete From" + tabla.Replace("s","").ToLower() + "_articulo Where id" + tabla.Replace("s", "") + "Articulo = " + id;
+            connection.Open();
+            object resultado;
+            try
+            { 
+                resultado = cmd.ExecuteNonQuery();
+            }
+            catch
+            {
+                resultado = null;
+            }
+            connection.Close();
+            if (resultado != null) return true;
+            else return false;
         }
 
         public DataTable subgrupo(int idGrupo)
@@ -296,8 +363,8 @@ namespace Activos
             dt.Columns.Add("Tipo", typeof(string));
             dt.Columns.Add("Grupo", typeof(string));
             MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT t.idTipo, t.Tipo, g.nombre FROM tipo as t " +
-                "JOIN grupo AS g ON t.idSubgrupo = g.idGrupo";
+            cmd.CommandText = "SELECT t.idTipoArticulo, t.Tipo, g.nombre FROM tipo_articulo as t " +
+                "JOIN grupo_articulo AS g ON t.idGrupoArticulo = g.idGrupoArticulo ORDER BY t.idTipoArticulo";
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
@@ -313,6 +380,56 @@ namespace Activos
             }
             connection.Close();
             return dt;
+        }
+
+        public DataTable tipo(string id)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID", typeof(Int32));
+            dt.Columns.Add("Tipo", typeof(string));
+            dt.Columns.Add("Grupo", typeof(string));
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT * FROM tipo_articulo as t " +
+                "JOIN grupo_articulo AS g ON t.idGrupoArticulo = g.idGrupoArticulo WHERE t.idTipoArticulo = " + id + " ORDER BY t.idTipoArticulo";
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    DataRow categoria = dt.NewRow();
+                    categoria["ID"] = reader.GetInt32(0);
+                    categoria["Tipo"] = reader.GetString(1);
+                    categoria["Grupo"] = reader.GetString(2);
+                    dt.Rows.Add(categoria);
+                }
+            }
+            connection.Close();
+            return dt;
+        }
+
+        public bool addTipo(string desc, string grupo)
+        {
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "INSERT INTO tipo_articulo VALUES (0, '" + desc + "', " + grupo + ")";
+            Console.WriteLine(cmd.CommandText);
+            connection.Open();
+            object resultado = cmd.ExecuteNonQuery();
+            connection.Close();
+            if (resultado != null) return true;
+            else return false;
+        }
+
+        public bool editTipo(string desc, string grupo, string id)
+        {
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "UPDATE tipo_articulo SET tipo = '" + desc + "', idGrupoArticulo = " + grupo + " WHERE idTipoArticulo = " + id;
+            Console.WriteLine(cmd.CommandText);
+            connection.Open();
+            object resultado = cmd.ExecuteNonQuery();
+            connection.Close();
+            if (resultado != null) return true;
+            else return false;
         }
 
         public DataTable estados()
