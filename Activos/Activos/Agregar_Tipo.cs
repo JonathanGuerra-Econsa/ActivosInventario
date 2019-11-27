@@ -41,7 +41,7 @@ namespace Activos
         private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();
-            //new Administrador_Articulo().ShowDialog();
+            new Administrador_Articulo().ShowDialog();
             this.Show();
         }
     }

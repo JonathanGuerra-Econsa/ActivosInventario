@@ -34,7 +34,7 @@ namespace Activos
             #endregion
             #region Combo box de Grupos
             DataTable grupo = new DataTable();
-            grupo = mysql.grupo();
+            grupo = mysql.grupos();
 
             DataRow nulo1 = grupo.NewRow();
             nulo1["nombre"] = "Escoger Grupo...";
