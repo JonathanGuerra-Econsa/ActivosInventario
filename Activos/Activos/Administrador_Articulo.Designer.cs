@@ -29,17 +29,19 @@
         private void InitializeComponent()
         {
             this.gbGrupos = new System.Windows.Forms.GroupBox();
+            this.lblGrupo = new System.Windows.Forms.TextBox();
+            this.lblTipo = new System.Windows.Forms.TextBox();
+            this.lblId = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.gbTipos = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lblId = new System.Windows.Forms.Label();
-            this.lblTipo = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblGrupo = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.gbGrupos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -48,10 +50,12 @@
             // 
             this.gbGrupos.BackColor = System.Drawing.Color.White;
             this.gbGrupos.Controls.Add(this.lblGrupo);
-            this.gbGrupos.Controls.Add(this.label8);
             this.gbGrupos.Controls.Add(this.lblTipo);
-            this.gbGrupos.Controls.Add(this.label7);
             this.gbGrupos.Controls.Add(this.lblId);
+            this.gbGrupos.Controls.Add(this.button2);
+            this.gbGrupos.Controls.Add(this.button1);
+            this.gbGrupos.Controls.Add(this.label8);
+            this.gbGrupos.Controls.Add(this.label7);
             this.gbGrupos.Controls.Add(this.label4);
             this.gbGrupos.Controls.Add(this.dataGridView1);
             this.gbGrupos.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -61,6 +65,96 @@
             this.gbGrupos.TabIndex = 7;
             this.gbGrupos.TabStop = false;
             this.gbGrupos.Text = "Tipos";
+            // 
+            // lblGrupo
+            // 
+            this.lblGrupo.Location = new System.Drawing.Point(479, 210);
+            this.lblGrupo.Multiline = true;
+            this.lblGrupo.Name = "lblGrupo";
+            this.lblGrupo.ReadOnly = true;
+            this.lblGrupo.Size = new System.Drawing.Size(173, 65);
+            this.lblGrupo.TabIndex = 13;
+            // 
+            // lblTipo
+            // 
+            this.lblTipo.Location = new System.Drawing.Point(479, 108);
+            this.lblTipo.Multiline = true;
+            this.lblTipo.Name = "lblTipo";
+            this.lblTipo.ReadOnly = true;
+            this.lblTipo.Size = new System.Drawing.Size(173, 96);
+            this.lblTipo.TabIndex = 12;
+            // 
+            // lblId
+            // 
+            this.lblId.Location = new System.Drawing.Point(479, 75);
+            this.lblId.Name = "lblId";
+            this.lblId.ReadOnly = true;
+            this.lblId.Size = new System.Drawing.Size(173, 27);
+            this.lblId.TabIndex = 11;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(536, 319);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(116, 32);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Editar";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(415, 317);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(115, 33);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Agregar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(411, 213);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(56, 20);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Grupo:";
+            this.label8.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(411, 108);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(43, 20);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Tipo:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(411, 75);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(28, 20);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "ID:";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(7, 27);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.Size = new System.Drawing.Size(383, 324);
+            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
             // label2
             // 
@@ -107,74 +201,6 @@
             this.comboBox1.TabIndex = 4;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(7, 27);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(383, 324);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(411, 48);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(28, 20);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "ID:";
-            // 
-            // lblId
-            // 
-            this.lblId.AutoSize = true;
-            this.lblId.Location = new System.Drawing.Point(467, 48);
-            this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(0, 20);
-            this.lblId.TabIndex = 3;
-            // 
-            // lblTipo
-            // 
-            this.lblTipo.AutoSize = true;
-            this.lblTipo.Location = new System.Drawing.Point(467, 108);
-            this.lblTipo.Name = "lblTipo";
-            this.lblTipo.Size = new System.Drawing.Size(0, 20);
-            this.lblTipo.TabIndex = 5;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(411, 108);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(43, 20);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Tipo:";
-            // 
-            // lblGrupo
-            // 
-            this.lblGrupo.AutoSize = true;
-            this.lblGrupo.Location = new System.Drawing.Point(467, 172);
-            this.lblGrupo.Name = "lblGrupo";
-            this.lblGrupo.Size = new System.Drawing.Size(0, 20);
-            this.lblGrupo.TabIndex = 7;
-            this.lblGrupo.Visible = false;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(411, 172);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(56, 20);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "Grupo:";
-            this.label8.Visible = false;
-            // 
             // Administrador_Articulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -207,11 +233,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lblTipo;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label lblGrupo;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox lblId;
+        private System.Windows.Forms.TextBox lblGrupo;
+        private System.Windows.Forms.TextBox lblTipo;
     }
 }
