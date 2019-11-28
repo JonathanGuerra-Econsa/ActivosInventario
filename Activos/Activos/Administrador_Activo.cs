@@ -76,10 +76,10 @@ namespace Activos
                     gbGrupos.Visible = false;
                     gbSubGrupos.Visible = false;
                     dgvTipos.DataSource = consultasMySQL.verTiposActivo();
-                    transladarDatosTipo();
                     dgvTipos.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     dgvTipos.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     dgvTipos.Columns[3].Visible = false;
+                    transladarDatosTipo();
                     btnCancelTipo.Visible = false;
                 }
                 if (cmbAdministrar.SelectedIndex == 1)
@@ -88,9 +88,9 @@ namespace Activos
                     gbTipos.Visible = false;
                     gbSubGrupos.Visible = false;
                     dgvGrupo.DataSource = consultasMySQL.verGrupo();
-                    transladarDatosGrupo();
                     dgvGrupo.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     dgvGrupo.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    transladarDatosGrupo();
                     btnCancelarGrupo.Visible = false;
                 }
                 if (cmbAdministrar.SelectedIndex == 2)
@@ -99,9 +99,9 @@ namespace Activos
                     gbGrupos.Visible = false;
                     gbTipos.Visible = false;
                     dgvSubGrupos.DataSource = consultasMySQL.verSubGrupo();
-                    transladarDatosSubGrupo();
                     dgvSubGrupos.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     dgvSubGrupos.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    transladarDatosSubGrupo();
                     btnCancelarSubGrupo.Visible = false;
                 }
             }
@@ -187,6 +187,7 @@ namespace Activos
             dgvTipos.DefaultCellStyle.BackColor = Color.White;
             btnCancelTipo.Visible = false;
             btnEditTipo.Visible = true;
+            cmbAdministrar.Enabled = true;
         }
         #endregion
         #region Bloquear Detalle Grupo
@@ -197,6 +198,7 @@ namespace Activos
             dgvGrupo.BackgroundColor = Color.White; 
             dgvGrupo.DefaultCellStyle.BackColor = Color.White;
             btnCancelarGrupo.Visible = false;
+            cmbAdministrar.Enabled = true;
         }
         #endregion
         #region Bloquear Detalle SubGrupo
@@ -208,6 +210,7 @@ namespace Activos
             txtSubGrupo.Enabled = false;
             cmbGrupo.Enabled = false;
             btnCancelarSubGrupo.Visible = false;
+            cmbAdministrar.Enabled = true;
         }
         #endregion
         #region Bloquear DataGridView Tipo
@@ -220,6 +223,7 @@ namespace Activos
             dgvTipos.BackgroundColor = Color.Silver;
             dgvTipos.DefaultCellStyle.BackColor = Color.Silver;
             btnCancelTipo.Visible = true;
+            cmbAdministrar.Enabled = false;
         }
         #endregion
         #region Bloquear DataGridView Grupo
@@ -230,6 +234,7 @@ namespace Activos
             dgvGrupo.Enabled = false;
             dgvGrupo.BackgroundColor = Color.Silver;
             dgvGrupo.DefaultCellStyle.BackColor = Color.Silver;
+            cmbAdministrar.Enabled = false;
         }
         #endregion
         #region Bloquear DataGridView SubGrupo
@@ -241,9 +246,11 @@ namespace Activos
             dgvSubGrupos.Enabled = false;
             dgvSubGrupos.BackgroundColor = Color.Silver;
             dgvSubGrupos.DefaultCellStyle.BackColor = Color.Silver;
+            cmbAdministrar.Enabled = false;
         }
         #endregion
-        #region Click en botones TIPO
+
+        #region Botones TIPO
         //----------------------------------------------- Tipo ---------------------------------------------//
         private void btnAddTipo_Click(object sender, EventArgs e)
         {
@@ -269,6 +276,7 @@ namespace Activos
                             MessageBox.Show("Guardado Correctamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             dgvTipos.DataSource = consultasMySQL.verTiposActivo();
                             bloquearDetalleTipo();
+                            cmbAdministrar.Enabled = true;
                         }
                         else
                         {
@@ -287,6 +295,7 @@ namespace Activos
             bloquearDetalleTipo();
             btnCancelTipo.Location = new Point(193, 243);
             transladarDatosTipo();
+            cmbAdministrar.Enabled = true;
         }
         private void btnEditTipo_Click(object sender, EventArgs e)
         {
@@ -301,10 +310,18 @@ namespace Activos
                 {
                     try
                     {
-                        consultasMySQL.editTipo(lbIDTipo.Text, txtTipo.Text, cmbSubGrupoTipo.SelectedValue.ToString());
-                        MessageBox.Show("Guardado Correctamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        dgvTipos.DataSource = consultasMySQL.verTiposActivo();
-                        bloquearDetalleTipo();
+                        if (txtTipo.Text != "" && cmbGrupoTipo.SelectedItem != null && cmbSubGrupoTipo.SelectedItem != null)
+                        {
+                            consultasMySQL.editTipo(lbIDTipo.Text, txtTipo.Text, cmbSubGrupoTipo.SelectedValue.ToString());
+                            MessageBox.Show("Guardado Correctamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            dgvTipos.DataSource = consultasMySQL.verTiposActivo();
+                            bloquearDetalleTipo();
+                            cmbAdministrar.Enabled = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ingrese los campos correctamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -326,15 +343,22 @@ namespace Activos
             }
             else
             {
-                if (MessageBox.Show("Desea crear este nuevo grupo bajo el nombre '" + txtGrupo.Text + "' ?", "Guardar Grupo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Desea crear este nuevo grupo?", "Guardar Grupo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     try
                     {
-                        consultasMySQL.addGrupo(txtGrupo.Text);
-                        MessageBox.Show("Grupo Guardado Exitosamente", "Grupo guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        dgvGrupo.DataSource = consultasMySQL.verGrupo();
-                        bloquearDetalleGrupo();
-                        transladarDatosGrupo();
+                        if (txtGrupo.Text != "")
+                        {
+                            consultasMySQL.addGrupo(txtGrupo.Text);
+                            MessageBox.Show("Grupo Guardado Exitosamente", "Grupo guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            dgvGrupo.DataSource = consultasMySQL.verGrupo();
+                            bloquearDetalleGrupo();
+                            transladarDatosGrupo();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ingrese los campo correctamente", "No Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -362,11 +386,18 @@ namespace Activos
                 {
                     try
                     {
-                        consultasMySQL.editGrupo(lbIDGrupo.Text, txtGrupo.Text);
-                        MessageBox.Show("Grupo Editado Exitosamente", "Grupo Actualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        bloquearDetalleGrupo();
-                        dgvGrupo.DataSource = consultasMySQL.verGrupo();
-                        transladarDatosGrupo();
+                        if (txtGrupo.Text != "")
+                        {
+                            consultasMySQL.editGrupo(lbIDGrupo.Text, txtGrupo.Text);
+                            MessageBox.Show("Grupo Editado Exitosamente", "Grupo Actualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            bloquearDetalleGrupo();
+                            dgvGrupo.DataSource = consultasMySQL.verGrupo();
+                            transladarDatosGrupo();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ingrese los campo correctamente", "No Actualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -392,11 +423,18 @@ namespace Activos
                 {
                     try
                     {
-                        consultasMySQL.addSubGrupo(txtSubGrupo.Text, cmbGrupo.SelectedValue.ToString());
-                        MessageBox.Show("SubGrupo guardado correctamente", "Guardar SubGrupo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        bloquearDetalleSubGrupo();
-                        transladarDatosSubGrupo();
-                        dgvSubGrupos.DataSource = consultasMySQL.verSubGrupo();
+                        if (txtSubGrupo.Text != "" && cmbGrupo.SelectedItem != null)
+                        {
+                            consultasMySQL.addSubGrupo(txtSubGrupo.Text, cmbGrupo.SelectedValue.ToString());
+                            MessageBox.Show("SubGrupo guardado correctamente", "Guardar SubGrupo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            bloquearDetalleSubGrupo();
+                            transladarDatosSubGrupo();
+                            dgvSubGrupos.DataSource = consultasMySQL.verSubGrupo();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ingrese los campo correctamente", "No Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -425,11 +463,18 @@ namespace Activos
                 {
                     try
                     {
-                        consultasMySQL.editSubGrupo(lbIDsubGrupo.Text, txtSubGrupo.Text, cmbGrupo.SelectedValue.ToString());
-                        MessageBox.Show("Sub Grupo editado correctamente", "Editar Sub Grupo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        bloquearDetalleSubGrupo();
-                        transladarDatosSubGrupo();
-                        dgvSubGrupos.DataSource = consultasMySQL.verSubGrupo();
+                        if (txtSubGrupo.Text != "" && cmbGrupo.SelectedItem != null)
+                        {
+                            consultasMySQL.editSubGrupo(lbIDsubGrupo.Text, txtSubGrupo.Text, cmbGrupo.SelectedValue.ToString());
+                            MessageBox.Show("Sub Grupo editado correctamente", "Editar Sub Grupo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            bloquearDetalleSubGrupo();
+                            transladarDatosSubGrupo();
+                            dgvSubGrupos.DataSource = consultasMySQL.verSubGrupo();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ingrese los campo correctamente", "No Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                     catch (Exception ex)
                     {
