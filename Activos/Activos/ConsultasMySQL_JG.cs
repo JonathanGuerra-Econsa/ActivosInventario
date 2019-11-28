@@ -431,7 +431,7 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlDataAdapter mysqlDa = new MySqlDataAdapter(string.Format("SELECT t.idTipo as 'ID', t.Tipo as 'Tipo', s.nombre as 'Sub Grupo',  g.nombre as 'Grupo' FROM Tipo t INNER JOIN subgrupo s ON t.idSubgrupo = s.idSubgrupo INNER JOIN grupo g ON s.idGrupo = g.idGrupo"), mysqlCon);
+                MySqlDataAdapter mysqlDa = new MySqlDataAdapter(string.Format("SELECT t.idTipo as 'ID', t.Tipo as 'Tipo' FROM {0} t", Tabla_Tipo), mysqlCon);
                 DataTable table_Tipo = new DataTable();
                 mysqlDa.Fill(table_Tipo);
                 return table_Tipo;
@@ -501,23 +501,23 @@ namespace Activos
         }
         #endregion
         #region addTipo
-        public void addTipo(string tipo, string idSubgrupo)
+        public void addTipo(string tipo)
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(tipo, idSubgrupo) VALUES('{1}', '{2}')", Tabla_Tipo, tipo, idSubgrupo), mysqlCon);
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(tipo) VALUES('{1}')", Tabla_Tipo, tipo), mysqlCon);
                 mysqlCmd.ExecuteNonQuery();
             }
         }
         #endregion
         #region editTipo()
-        public void editTipo(string idTipo, string tipo, string idSubgrupo)
+        public void editTipo(string idTipo, string tipo)
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("UPDATE {0} SET tipo = '{1}', idSubGrupo = '{2}' WHERE idTipo = '{3}'", Tabla_Tipo, tipo, idSubgrupo, idTipo), mysqlCon);
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("UPDATE {0} SET tipo = '{1}' WHERE idTipo = '{2}'", Tabla_Tipo, tipo, idTipo), mysqlCon);
                 mysqlCmd.ExecuteNonQuery();
             }
         }

@@ -41,28 +41,11 @@ namespace Activos
             cmbAdministrar.DisplayMember = "Value";
             cmbAdministrar.ValueMember = "Key";
             //---------------------------------------------------------------------- -----------------------------------------------------------------------//
-            //------------------------------------------------------------ ComboBox de Grupo en gbTipo ---------------------------------------------------//
-            cmbGrupoTipo.DataSource = consultasMySQL.verGrupo();
-            cmbGrupoTipo.DisplayMember = "Nombre";
-            cmbGrupoTipo.ValueMember = "ID";
-            //---------------------------------------------------------------------------------------------------------------------------------------------//
             //---------------------------------------------------------------- ComboBox de Grupo en gbSubGrupo ---------------------------------------//
             cmbGrupo.DataSource = consultasMySQL.verGrupo();
             cmbGrupo.DisplayMember = "Nombre";
             cmbGrupo.ValueMember = "ID";
             //----------------------------------------------------------------------------------------------------------------------------------------------------//
-            //------------------------------------------------------------ ComboBox de SubGrupo en gbTipo ---------------------------------------------------//
-            cmbSubGrupoTipo.DataSource = consultasMySQL.verSubGrupo();
-            cmbSubGrupoTipo.DisplayMember = "Nombre";
-            cmbSubGrupoTipo.ValueMember = "ID";
-            //---------------------------------------------------------------------------------------------------------------------------------------------//     
-        }
-
-        private void llenarCmbSubGrupoTipo()
-        {
-            cmbSubGrupoTipo.DataSource = consultasMySQL.verSubGrupoFiltrado(cmbGrupoTipo.SelectedValue.ToString());
-            cmbSubGrupoTipo.DisplayMember = "Nombre";
-            cmbSubGrupoTipo.ValueMember = "ID";
         }
         #endregion
         #region SelectedValueChanged de Administrador
@@ -78,7 +61,6 @@ namespace Activos
                     dgvTipos.DataSource = consultasMySQL.verTiposActivo();
                     dgvTipos.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     dgvTipos.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    dgvTipos.Columns[3].Visible = false;
                     transladarDatosTipo();
                     btnCancelTipo.Visible = false;
                 }
@@ -120,13 +102,9 @@ namespace Activos
         {
             string idTipo = dgvTipos.CurrentRow.Cells[0].Value.ToString();
             string tipo = dgvTipos.CurrentRow.Cells[1].Value.ToString();
-            string subGrupo = dgvTipos.CurrentRow.Cells[2].Value.ToString();
-            string grupo = dgvTipos.CurrentRow.Cells[3].Value.ToString();
 
             lbIDTipo.Text = idTipo;
             txtTipo.Text = tipo;
-            cmbGrupoTipo.Text = grupo;
-            cmbSubGrupoTipo.Text = subGrupo;
         }
         #endregion
         #region DataGridView GRUPO
@@ -171,7 +149,6 @@ namespace Activos
         //------------------------------------------------------------------ cmbGrupoTipo ---------------------------------------------------//
         private void cmbGrupoTipo_SelectedValueChanged(object sender, EventArgs e)
         {
-            llenarCmbSubGrupoTipo();
             cmbAdministrar.SelectedIndex = 0;
         }
         //------------------------------------------------------------------------- / -------------------------------------------------------------//
@@ -180,14 +157,13 @@ namespace Activos
         private void bloquearDetalleTipo()
         {
             txtTipo.Enabled = false;
-            cmbGrupoTipo.Enabled = false;
-            cmbSubGrupoTipo.Enabled = false;
             dgvTipos.Enabled = true;
             dgvTipos.BackgroundColor = Color.White;
             dgvTipos.DefaultCellStyle.BackColor = Color.White;
             btnCancelTipo.Visible = false;
             btnEditTipo.Visible = true;
             cmbAdministrar.Enabled = true;
+            btnCancelTipo.Location = new Point(193, 243);
         }
         #endregion
         #region Bloquear Detalle Grupo
@@ -199,6 +175,7 @@ namespace Activos
             dgvGrupo.DefaultCellStyle.BackColor = Color.White;
             btnCancelarGrupo.Visible = false;
             cmbAdministrar.Enabled = true;
+            btnCancelarGrupo.Location = new Point(193, 243);
         }
         #endregion
         #region Bloquear Detalle SubGrupo
@@ -211,14 +188,13 @@ namespace Activos
             cmbGrupo.Enabled = false;
             btnCancelarSubGrupo.Visible = false;
             cmbAdministrar.Enabled = true;
+            btnCancelarSubGrupo.Location = new Point(193, 243);
         }
         #endregion
         #region Bloquear DataGridView Tipo
         private void bloquearDGVTipo()
         {
             txtTipo.Enabled = true;
-            cmbGrupoTipo.Enabled = true;
-            cmbSubGrupoTipo.Enabled = true;
             dgvTipos.Enabled = false;
             dgvTipos.BackgroundColor = Color.Silver;
             dgvTipos.DefaultCellStyle.BackColor = Color.Silver;
@@ -260,9 +236,6 @@ namespace Activos
                 btnEditTipo.Visible = false;
                 lbIDTipo.Text = "";
                 txtTipo.Text = "";
-                cmbGrupoTipo.Text = "";
-                cmbSubGrupoTipo.Text = "";
-                cmbSubGrupoTipo.DataSource = null;
             }
             else
             {
@@ -270,12 +243,13 @@ namespace Activos
                 {
                     try
                     {
-                        if (txtTipo.Text != "" && cmbGrupoTipo.SelectedItem != null && cmbSubGrupoTipo.SelectedItem != null)
+                        if (txtTipo.Text != "" )
                         {
-                            consultasMySQL.addTipo(txtTipo.Text, cmbSubGrupoTipo.SelectedValue.ToString());
+                            consultasMySQL.addTipo(txtTipo.Text);
                             MessageBox.Show("Guardado Correctamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             dgvTipos.DataSource = consultasMySQL.verTiposActivo();
                             bloquearDetalleTipo();
+                            transladarDatosTipo();
                             cmbAdministrar.Enabled = true;
                         }
                         else
@@ -293,7 +267,6 @@ namespace Activos
         private void btnCancelTipo_Click(object sender, EventArgs e)
         {
             bloquearDetalleTipo();
-            btnCancelTipo.Location = new Point(193, 243);
             transladarDatosTipo();
             cmbAdministrar.Enabled = true;
         }
@@ -310,12 +283,13 @@ namespace Activos
                 {
                     try
                     {
-                        if (txtTipo.Text != "" && cmbGrupoTipo.SelectedItem != null && cmbSubGrupoTipo.SelectedItem != null)
+                        if (txtTipo.Text != "" )
                         {
-                            consultasMySQL.editTipo(lbIDTipo.Text, txtTipo.Text, cmbSubGrupoTipo.SelectedValue.ToString());
+                            consultasMySQL.editTipo(lbIDTipo.Text, txtTipo.Text);
                             MessageBox.Show("Guardado Correctamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             dgvTipos.DataSource = consultasMySQL.verTiposActivo();
                             bloquearDetalleTipo();
+                            transladarDatosTipo();
                             cmbAdministrar.Enabled = true;
                         }
                         else
@@ -370,7 +344,6 @@ namespace Activos
         private void btnCancelarGrupo_Click(object sender, EventArgs e)
         {
             bloquearDetalleGrupo();
-            btnCancelarGrupo.Location = new Point(193, 243);
             transladarDatosGrupo();
         }
         private void btnEditarGrupo_Click(object sender, EventArgs e)
@@ -446,7 +419,6 @@ namespace Activos
         private void btnCancelarSubGrupo_Click(object sender, EventArgs e)
         {
             bloquearDetalleSubGrupo();
-            btnCancelarSubGrupo.Location = new Point(193, 243);
             transladarDatosSubGrupo();
         }
 

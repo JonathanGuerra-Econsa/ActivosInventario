@@ -27,93 +27,101 @@ namespace Activos
 
         private void Agregar_Departamento_Load(object sender, EventArgs e)
         {
-            actualizarDGV();
-            lbID.Text = "";
+            verDepartamento();
+            activarDGV();
         }
         //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
         #endregion
-        #region actualizarDGV()
+        #region activarDGV()
         //------------------------------------------------------------------ Actualiza en DataGridView y lo Habilita -------------------------------------------------------------------------------------//
-        public void actualizarDGV()
+        public void activarDGV()
         {
-            dgvDepartamento.DataSource = consultasMySQL.verTipos();
-            //Detalle cambia como al origen
-            dgvDepartamento.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            txtDepartamento.BorderStyle = BorderStyle.None;
-            txtDepartamento.ReadOnly = true;
-            //el DataGridView se vuelve activo
-            dgvDepartamento.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+            txtDepartamento.Enabled = false;
+            btnCancelar.Visible = false;
+            btnCancelar.Location = new Point(201, 199);
+            btnSet.Visible = true;
+            btnActualizar.Visible = true;
+            lbNombreID.Visible = true;
+            dgvDepartamento.Enabled = true;
             dgvDepartamento.BackgroundColor = Color.White;
             dgvDepartamento.DefaultCellStyle.BackColor = Color.White;
-            dgvDepartamento.Enabled = true;
-            //Se reordenar el factor de los botones
-            btnAgregar.Visible = true;
-            btnActualizar.Visible = true;
-            btnSet.Visible = false;
-            btnCancelar.Visible = false;
-            //Ahora está en modo detalle
-            detalle = true;
+            transladarDepartamento();
         }
         //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
         #endregion
-        #region deshabilitarDGV()
-        //----------------------- Deshabilita el DataGridView para poder agregar un nuevo departamento o actualizarlo -----------------------------------------------------//
-        private void deshabilitarDGV()
+        #region Botón Set()
+        //------------------------------------------------------------------ Botón que guarda un nuevo departamento -------------------------------------------------------------------------------------//
+        private void btnSet_Click(object sender, EventArgs e)
         {
-            //el DataGridView se vuelve activo
-            dgvDepartamento.ColumnHeadersDefaultCellStyle.BackColor = Color.Silver;
-            dgvDepartamento.BackgroundColor = Color.Silver;
-            dgvDepartamento.DefaultCellStyle.BackColor = Color.Silver;
-            dgvDepartamento.Enabled = false;
-            //Ahora está en modo detalle
-            detalle = false;
-            //textos limpios
-            txtDepartamento.BorderStyle = BorderStyle.Fixed3D;
-            txtDepartamento.ReadOnly = false;
-        }
-        //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
-        #endregion
-        #region Agregar()
-        //------------------------------------------------------------------ Botón que agrega y guarda un nuevo departamento -------------------------------------------------------------------------------------//
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            if (detalle == true)
+            if (txtDepartamento.Enabled == false)
             {
-                btnAgregar.Visible = false;
-                btnCancelar.Visible = true;
-                btnActualizar.Visible = false;
-                btnSet.Visible = true;
+                txtDepartamento.Enabled = true;
+                activarDetalle();
                 txtDepartamento.Text = "";
                 lbID.Text = "";
-                deshabilitarDGV();
+                lbNombreID.Visible = false;
             }
-        }
-        //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
-        #endregion
-        #region Actualizar()
-        //------------------------------------------------------------------ Botón que actualiza un departamento -----------------------------------------------------------------//
-        private void btnActualizar_Click(object sender, EventArgs e)
-        {
-            if(detalle == false)
+            else
             {
-                if(MessageBox.Show("Este Departamento sera cambiado a: " + txtDepartamento.Text + ", está de acuerdo?", "Cambio de Departamento", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                if (MessageBox.Show("Desea agregar este departamento?", "Guardar Departamento", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     try
                     {
-                        consultasMySQL.updateDepartamento(lbID.Text, txtDepartamento.Text);
-                        MessageBox.Show("Departamento Actualizado","Actualizado");
-                        actualizarDGV();
+                        if(txtDepartamento.Text != "")
+                        {
+                            consultasMySQL.agregarDepartamento(txtDepartamento.Text);
+                            MessageBox.Show("Departamento Agregado!", "Guardar Departamento", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            activarDGV();
+                            verDepartamento();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Por favor llene todos los campos correctamente", "Campos Inválidos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.ToString());
                     }
                 }
-                actualizarDGV();
+            }
+        }
+        //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
+        #endregion
+        #region Botón Actualizar()
+        //------------------------------------------------------------------ Botón que actualiza un departamento -----------------------------------------------------------------//
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            if (txtDepartamento.Enabled == false)
+            {
+                activarDetalle();
+                btnCancelar.Visible = true;
+                btnCancelar.Location = new Point(78, 199);
+                btnSet.Visible = false;
             }
             else
             {
-                deshabilitarDGV();
+                if(MessageBox.Show("Desea actualizar este departamento?", "Actualizar Departamento", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    if (txtDepartamento.Text != "")
+                    {
+                        try
+                        {
+                            consultasMySQL.updateDepartamento(lbID.Text, txtDepartamento.Text);
+                            MessageBox.Show("Departamento actualizado con éxito", "Actualizar Departamento", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            verDepartamento();
+                            activarDGV();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString());
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Por favor llene todos los campos correctamente", "Campos Inválidos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
             }
         }
         //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
@@ -124,12 +132,17 @@ namespace Activos
         {
             if(e.RowIndex != -1)
             {
-                string ID = dgvDepartamento.CurrentRow.Cells[0].Value.ToString();
-                string Departamento = dgvDepartamento.CurrentRow.Cells[1].Value.ToString();
-
-                lbID.Text = ID;
-                txtDepartamento.Text = Departamento;
+                transladarDepartamento();
             }
+        }
+
+        private void transladarDepartamento()
+        {
+            string ID = dgvDepartamento.CurrentRow.Cells[0].Value.ToString();
+            string Departamento = dgvDepartamento.CurrentRow.Cells[1].Value.ToString();
+
+            lbID.Text = ID;
+            txtDepartamento.Text = Departamento;
         }
         //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
         #endregion
@@ -137,39 +150,27 @@ namespace Activos
         //------------------------------------------------------------------ Botón de cancelar que llama al método de actualizar-------------------------------------------------------------------------------------//
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            actualizarDGV();
+            activarDGV();
         }
         //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
         #endregion
-        #region Set()
-        //------------------------------------------------------------------ Botón que guarda un nuevo departamento -------------------------------------------------------------------------------------//
-        private void btnSet_Click(object sender, EventArgs e)
+        #region activarDetalle()
+        private void activarDetalle()
         {
-            if(detalle == false)
-            {
-                if (txtDepartamento.Text != "")
-                {
-                    if (MessageBox.Show("Deseas agregar este departamento?", "Agregar Departamento", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
-                    {
-                        try
-                        {
-                            consultasMySQL.agregarDepartamento(txtDepartamento.Text);
-                            MessageBox.Show("Departamento agregado correctamente", "Departamento", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Exepción encontrada: " + ex);
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Escriba el nombre del Departamento", "Valor Vacío", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                actualizarDGV();
-            }
+            dgvDepartamento.Enabled = false;
+            dgvDepartamento.BackgroundColor = Color.Silver;
+            dgvDepartamento.DefaultCellStyle.BackColor = Color.Silver;
+            txtDepartamento.Enabled = true;
+            btnCancelar.Visible = true;
         }
-        //--------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------//
+        #endregion
+        #region verDepartamento()
+        private void verDepartamento()
+        {
+            dgvDepartamento.DataSource = consultasMySQL.verDepartamentos();
+            dgvDepartamento.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvDepartamento.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
         #endregion
     }
 }
