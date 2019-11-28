@@ -26,12 +26,13 @@ namespace Activos
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             #endregion
+
             #region Combo box de Estado
             DataTable estados = new DataTable();
             estados = mysql.estados();
 
             DataRow nulo3 = estados.NewRow();
-            nulo3["nombre"] = "Escoger Estado...";
+            nulo3["nombre"] = "";
             nulo3["idE"] = 0;
             estados.Rows.InsertAt(nulo3, 0);
 
@@ -48,12 +49,13 @@ namespace Activos
             }
             cmbEstado.AutoCompleteCustomSource = estadoData;
             #endregion
+
             #region Combo box de Departamento
             DataTable departamentos = new DataTable();
             departamentos = mysql.departamentos();
 
             DataRow nulo4 = departamentos.NewRow();
-            nulo4["nombre"] = "Escoger Departamento...";
+            nulo4["nombre"] = "";
             nulo4["idD"] = 0;
             departamentos.Rows.InsertAt(nulo4, 0);
 
@@ -70,13 +72,14 @@ namespace Activos
             }
             cmbDepto.AutoCompleteCustomSource = deptoData;
             #endregion
+
             #region Combo box de Empresa
             DataTable empresa = new DataTable();
             empresa.Columns.Add("idEm", typeof(Int32));
             empresa.Columns.Add("nombre", typeof(string));
 
             DataRow nuloem = empresa.NewRow();
-            nuloem["nombre"] = "Escoger Estado...";
+            nuloem["nombre"] = "";
             nuloem["idEm"] = 0;
             empresa.Rows.Add(nuloem);
 
@@ -103,17 +106,18 @@ namespace Activos
             }
             cmbEmpresa.AutoCompleteCustomSource = empresaData;
             #endregion
-            #region Combo box de Subgrupo
+
+            #region Combo box de Grupo
             DataTable subgrupo = new DataTable();
-            subgrupo = mysql.subgrupo(5);
+            subgrupo = mysql.gruposAll();
 
             DataRow nulo1 = subgrupo.NewRow();
-            nulo1["nombre"] = "Escoger SubGrupo...";
-            nulo1["idS"] = 0;
+            nulo1["Grupo"] = "";
+            nulo1["ID"] = 0;
             subgrupo.Rows.InsertAt(nulo1, 0);
 
-            cmbSubgrupo.DisplayMember = "nombre";
-            cmbSubgrupo.ValueMember = "idS";
+            cmbSubgrupo.DisplayMember = "Grupo";
+            cmbSubgrupo.ValueMember = "ID";
             cmbSubgrupo.DataSource = subgrupo;
 
             cmbSubgrupo.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -121,7 +125,7 @@ namespace Activos
             AutoCompleteStringCollection subgrupoData = new AutoCompleteStringCollection();
             foreach (DataRow row in subgrupo.Rows)
             {
-                subgrupoData.Add(row["nombre"].ToString());
+                subgrupoData.Add(row["Grupo"].ToString());
             }
             cmbSubgrupo.AutoCompleteCustomSource = subgrupoData;
             #endregion
@@ -143,7 +147,7 @@ namespace Activos
             usuarios = mysql.usuarios(Convert.ToInt32(cmbDepto.SelectedValue));
 
             DataRow nulo1 = usuarios.NewRow();
-            nulo1["nombre"] = "Escoger Usuario...";
+            nulo1["nombre"] = "";
             nulo1["idU"] = 0;
             usuarios.Rows.InsertAt(nulo1, 0);
 
@@ -182,7 +186,7 @@ namespace Activos
             if (cmbSubgrupo.SelectedValue.ToString() != 0.ToString() && cmbSubgrupo.SelectedValue.ToString() != null)
             {
                 if (consulta.ToString() != "WHERE ") consulta.Append(" AND ");
-                consulta.Append("s.idSubgrupo = " + cmbSubgrupo.SelectedValue);
+                consulta.Append("s.idGrupoArticulo = " + cmbSubgrupo.SelectedValue);
             }
             if (cmbDepto.SelectedValue.ToString() != 0.ToString() && cmbSubgrupo.SelectedValue.ToString() != null)
             {
@@ -197,7 +201,7 @@ namespace Activos
             if (cmbTipo.SelectedValue.ToString() != 0.ToString() && cmbTipo.SelectedValue.ToString() != null)
             {
                 if (consulta.ToString() != "WHERE ") consulta.Append(" AND ");
-                consulta.Append("c.idTipo = " + cmbTipo.SelectedValue);
+                consulta.Append("c.idTipoArticulo = " + cmbTipo.SelectedValue);
             }
             if (cmbEmpresa.SelectedValue.ToString() != 0.ToString() && cmbEmpresa.SelectedValue.ToString() != null)
             {
@@ -207,7 +211,7 @@ namespace Activos
             if (!string.IsNullOrEmpty(textBox1.Text))
             {
                 if (consulta.ToString() != "WHERE ") consulta.Append(" AND ");
-                consulta.Append("a.idActivo = " + textBox1.Text);
+                consulta.Append("a.idArticulo = " + textBox1.Text);
             }
             if (consulta.ToString() == "WHERE ") consulta = new StringBuilder();
 
@@ -297,12 +301,13 @@ namespace Activos
 
         private void cmbSubgrupo_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             #region Combo box de Tipo
             DataTable tipos = new DataTable();
-            tipos = mysql.tipos(Convert.ToInt32(cmbSubgrupo.SelectedValue));
+            tipos = mysql.tiposArticulo(Convert.ToInt32(cmbSubgrupo.SelectedValue));
 
             DataRow nulo2 = tipos.NewRow();
-            nulo2["nombre"] = "Escoger Tipo...";
+            nulo2["nombre"] = "";
             nulo2["idT"] = 0;
             tipos.Rows.InsertAt(nulo2, 0);
 

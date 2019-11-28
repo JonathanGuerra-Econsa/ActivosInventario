@@ -333,13 +333,36 @@ namespace Activos
             return dt;
         }
 
-        public DataTable tipos(int idSub)
+        public DataTable tipos()
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("idT", typeof(Int32));
             dt.Columns.Add("nombre", typeof(string));
             MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT * FROM tipo WHERE idSubgrupo =" + idSub;
+            cmd.CommandText = "SELECT * FROM tipo";
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    DataRow categoria = dt.NewRow();
+                    categoria["idT"] = reader.GetInt32(0);
+                    categoria["nombre"] = reader.GetString(1);
+                    dt.Rows.Add(categoria);
+                }
+            }
+            connection.Close();
+            return dt;
+        }
+
+        public DataTable tiposArticulo(int idSub)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("idT", typeof(Int32));
+            dt.Columns.Add("nombre", typeof(string));
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT * FROM tipo_articulo WHERE idTipoArticulo =" + idSub;
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)

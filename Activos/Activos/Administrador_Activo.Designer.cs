@@ -42,11 +42,7 @@
             this.lbIDTipo = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cmbGrupoTipo = new System.Windows.Forms.ComboBox();
             this.btnAddTipo = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbSubGrupoTipo = new System.Windows.Forms.ComboBox();
             this.dgvTipos = new System.Windows.Forms.DataGridView();
             this.gbGrupos = new System.Windows.Forms.GroupBox();
             this.gbDetalleGrupo = new System.Windows.Forms.GroupBox();
@@ -127,11 +123,7 @@
             this.groupBox1.Controls.Add(this.lbIDTipo);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.cmbGrupoTipo);
             this.groupBox1.Controls.Add(this.btnAddTipo);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.cmbSubGrupoTipo);
             this.groupBox1.Location = new System.Drawing.Point(376, 26);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(351, 337);
@@ -174,7 +166,7 @@
             // txtTipo
             // 
             this.txtTipo.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTipo.Location = new System.Drawing.Point(105, 90);
+            this.txtTipo.Location = new System.Drawing.Point(109, 143);
             this.txtTipo.Name = "txtTipo";
             this.txtTipo.Size = new System.Drawing.Size(214, 27);
             this.txtTipo.TabIndex = 12;
@@ -184,7 +176,7 @@
             this.lbIDTipo.AutoSize = true;
             this.lbIDTipo.BackColor = System.Drawing.Color.Transparent;
             this.lbIDTipo.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbIDTipo.Location = new System.Drawing.Point(101, 54);
+            this.lbIDTipo.Location = new System.Drawing.Point(105, 107);
             this.lbIDTipo.Name = "lbIDTipo";
             this.lbIDTipo.Size = new System.Drawing.Size(26, 21);
             this.lbIDTipo.TabIndex = 11;
@@ -195,7 +187,7 @@
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(12, 90);
+            this.label6.Location = new System.Drawing.Point(38, 143);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 21);
             this.label6.TabIndex = 10;
@@ -206,32 +198,11 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(12, 54);
+            this.label5.Location = new System.Drawing.Point(38, 107);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 21);
             this.label5.TabIndex = 9;
             this.label5.Text = "ID:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 130);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 21);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Grupo:";
-            // 
-            // cmbGrupoTipo
-            // 
-            this.cmbGrupoTipo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbGrupoTipo.FormattingEnabled = true;
-            this.cmbGrupoTipo.Location = new System.Drawing.Point(105, 130);
-            this.cmbGrupoTipo.Name = "cmbGrupoTipo";
-            this.cmbGrupoTipo.Size = new System.Drawing.Size(214, 25);
-            this.cmbGrupoTipo.TabIndex = 8;
-            this.cmbGrupoTipo.SelectedValueChanged += new System.EventHandler(this.cmbGrupoTipo_SelectedValueChanged);
             // 
             // btnAddTipo
             // 
@@ -248,26 +219,6 @@
             this.btnAddTipo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAddTipo.UseVisualStyleBackColor = true;
             this.btnAddTipo.Click += new System.EventHandler(this.btnAddTipo_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 173);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 21);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Sub Grupo:";
-            // 
-            // cmbSubGrupoTipo
-            // 
-            this.cmbSubGrupoTipo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSubGrupoTipo.FormattingEnabled = true;
-            this.cmbSubGrupoTipo.Location = new System.Drawing.Point(105, 173);
-            this.cmbSubGrupoTipo.Name = "cmbSubGrupoTipo";
-            this.cmbSubGrupoTipo.Size = new System.Drawing.Size(214, 25);
-            this.cmbSubGrupoTipo.TabIndex = 5;
             // 
             // dgvTipos
             // 
@@ -660,8 +611,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnAddTipo;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cmbSubGrupoTipo;
         private System.Windows.Forms.DataGridView dgvTipos;
         private System.Windows.Forms.Button btnCancelTipo;
         private System.Windows.Forms.Button btnEditTipo;
@@ -669,8 +618,6 @@
         private System.Windows.Forms.Label lbIDTipo;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cmbGrupoTipo;
         private System.Windows.Forms.GroupBox gbGrupos;
         private System.Windows.Forms.GroupBox gbDetalleGrupo;
         private System.Windows.Forms.Button btnCancelarGrupo;
