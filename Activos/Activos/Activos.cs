@@ -32,12 +32,13 @@ namespace Activos
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             #endregion
+
             #region Combo box de Grupos
             DataTable grupo = new DataTable();
             grupo = mysql.grupos();
 
             DataRow nulo1 = grupo.NewRow();
-            nulo1["nombre"] = "Escoger Grupo...";
+            nulo1["nombre"] = "";
             nulo1["idG"] = 0;
             grupo.Rows.InsertAt(nulo1, 0);
 
@@ -54,12 +55,13 @@ namespace Activos
             }
             cmbGrupo.AutoCompleteCustomSource = grupoData;
             #endregion
+
             #region Combo box de Estado
             DataTable estados = new DataTable();
             estados = mysql.estados();
 
             DataRow nulo3 = estados.NewRow();
-            nulo3["nombre"] = "Escoger Estado...";
+            nulo3["nombre"] = "";
             nulo3["idE"] = 0;
             estados.Rows.InsertAt(nulo3, 0);
 
@@ -76,13 +78,14 @@ namespace Activos
             }
             cmbEstado.AutoCompleteCustomSource = estadoData;
             #endregion
+
             #region Combo box de Empresa
             DataTable empresa = new DataTable();
             empresa.Columns.Add("idEm", typeof(Int32));
             empresa.Columns.Add("nombre", typeof(string));
 
             DataRow nuloem = empresa.NewRow();
-            nuloem["nombre"] = "Escoger Estado...";
+            nuloem["nombre"] = "";
             nuloem["idEm"] = 0;
             empresa.Rows.Add(nuloem);            
 
@@ -109,12 +112,36 @@ namespace Activos
             }
             cmbEmpresa.AutoCompleteCustomSource = empresaData;
             #endregion
+
+            #region Combo box de Tipo
+            DataTable tipos = new DataTable();
+            tipos = mysql.tipos();
+
+            DataRow nulo2 = tipos.NewRow();
+            nulo2["nombre"] = "";
+            nulo2["idT"] = 0;
+            tipos.Rows.InsertAt(nulo2, 0);
+
+            cmbTipo.DisplayMember = "nombre";
+            cmbTipo.ValueMember = "idT";
+            cmbTipo.DataSource = tipos;
+
+            cmbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbTipo.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection tipoData = new AutoCompleteStringCollection();
+            foreach (DataRow row in tipos.Rows)
+            {
+                tipoData.Add(row["nombre"].ToString());
+            }
+            cmbTipo.AutoCompleteCustomSource = tipoData;
+            #endregion
+
             #region Combo box de Departamento
             DataTable departamentos = new DataTable();
             departamentos = mysql.departamentos();
 
             DataRow nulo4 = departamentos.NewRow();
-            nulo4["nombre"] = "Escoger Departamento...";
+            nulo4["nombre"] = "";
             nulo4["idD"] = 0;
             departamentos.Rows.InsertAt(nulo4, 0);
 
@@ -212,7 +239,7 @@ namespace Activos
             subgrupo = mysql.subgrupo(Convert.ToInt32(cmbGrupo.SelectedValue));
 
             DataRow nulo1 = subgrupo.NewRow();
-            nulo1["nombre"] = "Escoger SubGrupo...";
+            nulo1["nombre"] = "";
             nulo1["idS"] = 0;
             subgrupo.Rows.InsertAt(nulo1, 0);
 
@@ -249,7 +276,7 @@ namespace Activos
             usuarios = mysql.usuarios(Convert.ToInt32(cmbDepto.SelectedValue));
 
             DataRow nulo1 = usuarios.NewRow();
-            nulo1["nombre"] = "Escoger Usuario...";
+            nulo1["nombre"] = "";
             nulo1["idU"] = 0;
             usuarios.Rows.InsertAt(nulo1, 0);
 
@@ -371,29 +398,6 @@ namespace Activos
 
         private void cmbSubgrupo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            #region Combo box de Tipo
-            DataTable tipos = new DataTable();
-            tipos = mysql.tipos(Convert.ToInt32(cmbSubgrupo.SelectedValue));
-
-            DataRow nulo2 = tipos.NewRow();
-            nulo2["nombre"] = "Escoger Tipo...";
-            nulo2["idT"] = 0;
-            tipos.Rows.InsertAt(nulo2, 0);
-
-            cmbTipo.DisplayMember = "nombre";
-            cmbTipo.ValueMember = "idT";
-            cmbTipo.DataSource = tipos;
-
-            cmbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbTipo.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            AutoCompleteStringCollection tipoData = new AutoCompleteStringCollection();
-            foreach (DataRow row in tipos.Rows)
-            {
-                tipoData.Add(row["nombre"].ToString());
-            }
-            cmbTipo.AutoCompleteCustomSource = tipoData;
-            #endregion
-
             ArmarConsulta(sender, e);
         }
     }
