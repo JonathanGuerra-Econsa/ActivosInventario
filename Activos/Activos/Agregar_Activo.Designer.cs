@@ -48,11 +48,7 @@
             this.btnSet = new System.Windows.Forms.Button();
             this.gbUsuario = new System.Windows.Forms.GroupBox();
             this.lbPuesto = new System.Windows.Forms.Label();
-            this.lbDepartamentoUsuario = new System.Windows.Forms.Label();
-            this.lbNombreUsuario = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.cmbUsuario = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnActualiza = new System.Windows.Forms.Button();
@@ -77,6 +73,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.nuValor = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
+            this.cmbDepartamento = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.gbDetalleActivo.SuspendLayout();
             this.gbUsuario.SuspendLayout();
             this.gbSubGrupo.SuspendLayout();
@@ -147,10 +145,10 @@
             // dtFecha
             // 
             this.dtFecha.CalendarFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtFecha.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtFecha.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtFecha.Location = new System.Drawing.Point(130, 222);
             this.dtFecha.Name = "dtFecha";
-            this.dtFecha.Size = new System.Drawing.Size(337, 23);
+            this.dtFecha.Size = new System.Drawing.Size(337, 27);
             this.dtFecha.TabIndex = 4;
             // 
             // label7
@@ -168,11 +166,11 @@
             this.cmbEmpresa.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbEmpresa.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbEmpresa.BackColor = System.Drawing.Color.White;
-            this.cmbEmpresa.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbEmpresa.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEmpresa.FormattingEnabled = true;
             this.cmbEmpresa.Location = new System.Drawing.Point(130, 178);
             this.cmbEmpresa.Name = "cmbEmpresa";
-            this.cmbEmpresa.Size = new System.Drawing.Size(337, 25);
+            this.cmbEmpresa.Size = new System.Drawing.Size(337, 28);
             this.cmbEmpresa.TabIndex = 3;
             // 
             // label6
@@ -191,11 +189,11 @@
             this.cmbTipo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbTipo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbTipo.BackColor = System.Drawing.Color.White;
-            this.cmbTipo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbTipo.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTipo.FormattingEnabled = true;
             this.cmbTipo.Location = new System.Drawing.Point(130, 137);
             this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(337, 25);
+            this.cmbTipo.Size = new System.Drawing.Size(337, 28);
             this.cmbTipo.TabIndex = 2;
             // 
             // label5
@@ -214,11 +212,11 @@
             this.cmbEstado.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbEstado.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbEstado.BackColor = System.Drawing.Color.White;
-            this.cmbEstado.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbEstado.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEstado.FormattingEnabled = true;
             this.cmbEstado.Location = new System.Drawing.Point(130, 99);
             this.cmbEstado.Name = "cmbEstado";
-            this.cmbEstado.Size = new System.Drawing.Size(337, 25);
+            this.cmbEstado.Size = new System.Drawing.Size(337, 28);
             this.cmbEstado.TabIndex = 1;
             // 
             // label4
@@ -235,10 +233,10 @@
             // txtDescripcion
             // 
             this.txtDescripcion.BackColor = System.Drawing.Color.White;
-            this.txtDescripcion.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcion.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescripcion.Location = new System.Drawing.Point(130, 60);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(337, 25);
+            this.txtDescripcion.Size = new System.Drawing.Size(337, 27);
             this.txtDescripcion.TabIndex = 0;
             // 
             // label2
@@ -305,12 +303,10 @@
             // gbUsuario
             // 
             this.gbUsuario.BackColor = System.Drawing.Color.Transparent;
-            this.gbUsuario.Controls.Add(this.lbPuesto);
-            this.gbUsuario.Controls.Add(this.lbDepartamentoUsuario);
-            this.gbUsuario.Controls.Add(this.lbNombreUsuario);
-            this.gbUsuario.Controls.Add(this.label11);
-            this.gbUsuario.Controls.Add(this.label10);
+            this.gbUsuario.Controls.Add(this.cmbDepartamento);
             this.gbUsuario.Controls.Add(this.label9);
+            this.gbUsuario.Controls.Add(this.lbPuesto);
+            this.gbUsuario.Controls.Add(this.label11);
             this.gbUsuario.Controls.Add(this.cmbUsuario);
             this.gbUsuario.Controls.Add(this.label3);
             this.gbUsuario.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -325,78 +321,34 @@
             // 
             this.lbPuesto.AutoSize = true;
             this.lbPuesto.BackColor = System.Drawing.Color.Transparent;
-            this.lbPuesto.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPuesto.Location = new System.Drawing.Point(222, 114);
+            this.lbPuesto.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPuesto.Location = new System.Drawing.Point(201, 114);
             this.lbPuesto.Name = "lbPuesto";
-            this.lbPuesto.Size = new System.Drawing.Size(69, 25);
+            this.lbPuesto.Size = new System.Drawing.Size(55, 20);
             this.lbPuesto.TabIndex = 40;
             this.lbPuesto.Text = "Puesto";
-            // 
-            // lbDepartamentoUsuario
-            // 
-            this.lbDepartamentoUsuario.AutoSize = true;
-            this.lbDepartamentoUsuario.BackColor = System.Drawing.Color.Transparent;
-            this.lbDepartamentoUsuario.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDepartamentoUsuario.Location = new System.Drawing.Point(222, 87);
-            this.lbDepartamentoUsuario.Name = "lbDepartamentoUsuario";
-            this.lbDepartamentoUsuario.Size = new System.Drawing.Size(133, 25);
-            this.lbDepartamentoUsuario.TabIndex = 39;
-            this.lbDepartamentoUsuario.Text = "Departamento";
-            // 
-            // lbNombreUsuario
-            // 
-            this.lbNombreUsuario.AutoSize = true;
-            this.lbNombreUsuario.BackColor = System.Drawing.Color.Transparent;
-            this.lbNombreUsuario.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNombreUsuario.Location = new System.Drawing.Point(222, 61);
-            this.lbNombreUsuario.Name = "lbNombreUsuario";
-            this.lbNombreUsuario.Size = new System.Drawing.Size(81, 25);
-            this.lbNombreUsuario.TabIndex = 38;
-            this.lbNombreUsuario.Text = "Nombre";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(73, 114);
+            this.label11.Location = new System.Drawing.Point(56, 109);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(75, 25);
             this.label11.TabIndex = 37;
             this.label11.Text = "Puesto:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(73, 87);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(143, 25);
-            this.label10.TabIndex = 36;
-            this.label10.Text = "Departamento:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(73, 61);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(88, 25);
-            this.label9.TabIndex = 35;
-            this.label9.Text = "Nombre:";
             // 
             // cmbUsuario
             // 
             this.cmbUsuario.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbUsuario.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbUsuario.BackColor = System.Drawing.Color.White;
-            this.cmbUsuario.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbUsuario.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbUsuario.FormattingEnabled = true;
-            this.cmbUsuario.Location = new System.Drawing.Point(225, 32);
+            this.cmbUsuario.Location = new System.Drawing.Point(205, 82);
             this.cmbUsuario.Name = "cmbUsuario";
-            this.cmbUsuario.Size = new System.Drawing.Size(193, 25);
+            this.cmbUsuario.Size = new System.Drawing.Size(193, 28);
             this.cmbUsuario.TabIndex = 0;
             this.cmbUsuario.SelectedIndexChanged += new System.EventHandler(this.cmbUsuario_SelectedIndexChanged);
             // 
@@ -405,7 +357,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(73, 34);
+            this.label3.Location = new System.Drawing.Point(56, 81);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 25);
             this.label3.TabIndex = 34;
@@ -448,11 +400,11 @@
             this.cmbSubGrupo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbSubGrupo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbSubGrupo.BackColor = System.Drawing.Color.White;
-            this.cmbSubGrupo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSubGrupo.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSubGrupo.FormattingEnabled = true;
             this.cmbSubGrupo.Location = new System.Drawing.Point(249, 56);
             this.cmbSubGrupo.Name = "cmbSubGrupo";
-            this.cmbSubGrupo.Size = new System.Drawing.Size(193, 25);
+            this.cmbSubGrupo.Size = new System.Drawing.Size(193, 28);
             this.cmbSubGrupo.TabIndex = 1;
             // 
             // label17
@@ -471,11 +423,11 @@
             this.cmbGrupo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbGrupo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbGrupo.BackColor = System.Drawing.Color.White;
-            this.cmbGrupo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbGrupo.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbGrupo.FormattingEnabled = true;
             this.cmbGrupo.Location = new System.Drawing.Point(249, 17);
             this.cmbGrupo.Name = "cmbGrupo";
-            this.cmbGrupo.Size = new System.Drawing.Size(193, 25);
+            this.cmbGrupo.Size = new System.Drawing.Size(193, 28);
             this.cmbGrupo.TabIndex = 0;
             this.cmbGrupo.SelectedIndexChanged += new System.EventHandler(this.cmbGrupo_SelectedIndexChanged);
             // 
@@ -519,7 +471,7 @@
             // nuValorLibros
             // 
             this.nuValorLibros.DecimalPlaces = 2;
-            this.nuValorLibros.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nuValorLibros.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nuValorLibros.Location = new System.Drawing.Point(145, 287);
             this.nuValorLibros.Maximum = new decimal(new int[] {
             500000,
@@ -527,7 +479,7 @@
             0,
             0});
             this.nuValorLibros.Name = "nuValorLibros";
-            this.nuValorLibros.Size = new System.Drawing.Size(299, 25);
+            this.nuValorLibros.Size = new System.Drawing.Size(299, 27);
             this.nuValorLibros.TabIndex = 6;
             // 
             // label22
@@ -544,7 +496,7 @@
             // nuValorResidual
             // 
             this.nuValorResidual.DecimalPlaces = 2;
-            this.nuValorResidual.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nuValorResidual.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nuValorResidual.Location = new System.Drawing.Point(146, 256);
             this.nuValorResidual.Maximum = new decimal(new int[] {
             500000,
@@ -552,7 +504,7 @@
             0,
             0});
             this.nuValorResidual.Name = "nuValorResidual";
-            this.nuValorResidual.Size = new System.Drawing.Size(298, 25);
+            this.nuValorResidual.Size = new System.Drawing.Size(298, 27);
             this.nuValorResidual.TabIndex = 5;
             // 
             // label21
@@ -569,7 +521,7 @@
             // nuDepreciacionAcumulada
             // 
             this.nuDepreciacionAcumulada.DecimalPlaces = 2;
-            this.nuDepreciacionAcumulada.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nuDepreciacionAcumulada.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nuDepreciacionAcumulada.Location = new System.Drawing.Point(145, 208);
             this.nuDepreciacionAcumulada.Maximum = new decimal(new int[] {
             500000,
@@ -577,7 +529,7 @@
             0,
             0});
             this.nuDepreciacionAcumulada.Name = "nuDepreciacionAcumulada";
-            this.nuDepreciacionAcumulada.Size = new System.Drawing.Size(299, 25);
+            this.nuDepreciacionAcumulada.Size = new System.Drawing.Size(299, 27);
             this.nuDepreciacionAcumulada.TabIndex = 4;
             // 
             // label20
@@ -604,7 +556,7 @@
             // nuPorcentaje
             // 
             this.nuPorcentaje.DecimalPlaces = 2;
-            this.nuPorcentaje.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nuPorcentaje.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nuPorcentaje.Location = new System.Drawing.Point(145, 156);
             this.nuPorcentaje.Maximum = new decimal(new int[] {
             500000,
@@ -612,7 +564,7 @@
             0,
             0});
             this.nuPorcentaje.Name = "nuPorcentaje";
-            this.nuPorcentaje.Size = new System.Drawing.Size(274, 25);
+            this.nuPorcentaje.Size = new System.Drawing.Size(274, 27);
             this.nuPorcentaje.TabIndex = 3;
             // 
             // label16
@@ -628,10 +580,10 @@
             // dtDepreciacion
             // 
             this.dtDepreciacion.CalendarFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtDepreciacion.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtDepreciacion.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDepreciacion.Location = new System.Drawing.Point(145, 103);
             this.dtDepreciacion.Name = "dtDepreciacion";
-            this.dtDepreciacion.Size = new System.Drawing.Size(299, 25);
+            this.dtDepreciacion.Size = new System.Drawing.Size(299, 27);
             this.dtDepreciacion.TabIndex = 2;
             // 
             // label15
@@ -647,10 +599,10 @@
             // txtFPC
             // 
             this.txtFPC.BackColor = System.Drawing.Color.White;
-            this.txtFPC.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFPC.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFPC.Location = new System.Drawing.Point(145, 54);
             this.txtFPC.Name = "txtFPC";
-            this.txtFPC.Size = new System.Drawing.Size(299, 25);
+            this.txtFPC.Size = new System.Drawing.Size(299, 27);
             this.txtFPC.TabIndex = 1;
             // 
             // label13
@@ -667,7 +619,7 @@
             // nuValor
             // 
             this.nuValor.DecimalPlaces = 2;
-            this.nuValor.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nuValor.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nuValor.Location = new System.Drawing.Point(145, 22);
             this.nuValor.Maximum = new decimal(new int[] {
             500000,
@@ -675,7 +627,7 @@
             0,
             0});
             this.nuValor.Name = "nuValor";
-            this.nuValor.Size = new System.Drawing.Size(299, 25);
+            this.nuValor.Size = new System.Drawing.Size(299, 27);
             this.nuValor.TabIndex = 0;
             // 
             // label12
@@ -688,6 +640,30 @@
             this.label12.Size = new System.Drawing.Size(62, 25);
             this.label12.TabIndex = 51;
             this.label12.Text = "Valor:";
+            // 
+            // cmbDepartamento
+            // 
+            this.cmbDepartamento.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbDepartamento.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbDepartamento.BackColor = System.Drawing.Color.White;
+            this.cmbDepartamento.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDepartamento.FormattingEnabled = true;
+            this.cmbDepartamento.Location = new System.Drawing.Point(205, 48);
+            this.cmbDepartamento.Name = "cmbDepartamento";
+            this.cmbDepartamento.Size = new System.Drawing.Size(193, 28);
+            this.cmbDepartamento.TabIndex = 41;
+            this.cmbDepartamento.SelectedIndexChanged += new System.EventHandler(this.cmbDepartamento_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(56, 50);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(143, 25);
+            this.label9.TabIndex = 42;
+            this.label9.Text = "Departamento:";
             // 
             // Agregar_Activo
             // 
@@ -750,11 +726,7 @@
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.GroupBox gbUsuario;
         private System.Windows.Forms.Label lbPuesto;
-        private System.Windows.Forms.Label lbDepartamentoUsuario;
-        private System.Windows.Forms.Label lbNombreUsuario;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cmbUsuario;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox gbSubGrupo;
@@ -779,5 +751,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cmbSubGrupo;
         private System.Windows.Forms.Button btnActualiza;
+        private System.Windows.Forms.ComboBox cmbDepartamento;
+        private System.Windows.Forms.Label label9;
     }
 }
