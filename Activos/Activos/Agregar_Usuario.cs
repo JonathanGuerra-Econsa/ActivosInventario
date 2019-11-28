@@ -73,6 +73,7 @@ namespace Activos
                 cmbDepartamento.Enabled = true;
                 txtNombre.Text = "";
                 txtUsuario.Text = "";
+                txtPuesto.Text = "";
                 cmbDepartamento.Text = "";
                 lbNombreID.Visible = false;
                 lbID.Text = "";
@@ -82,12 +83,12 @@ namespace Activos
             {
                 if (MessageBox.Show("Desea agregar este usuario?", "Agregar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    if (txtNombre.Text != "" && txtUsuario.Text != "" && cmbDepartamento.SelectedItem != null)
+                    if (txtNombre.Text != "" && txtUsuario.Text != "" && cmbDepartamento.SelectedItem != null && txtPuesto.Text != "")
                     {
                         try
                         {
                             const string contraseña_por_defecto = "null";
-                            consultasMySQL.agregarUsuario(txtNombre.Text, txtUsuario.Text, contraseña_por_defecto, cmbDepartamento.SelectedValue.ToString());
+                            consultasMySQL.agregarUsuario(txtNombre.Text, txtUsuario.Text, contraseña_por_defecto, cmbDepartamento.SelectedValue.ToString(), txtPuesto.Text);
                             MessageBox.Show("Usuario guardado con éxito!", "Usuario Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             activarDGV();
                             verUsuarios();
@@ -119,11 +120,11 @@ namespace Activos
             {
                 if (MessageBox.Show("Desea editar este usuario?", "Actualizar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    if (txtNombre.Text != "" && txtUsuario.Text != "" && cmbDepartamento.SelectedItem != null)
+                    if (txtNombre.Text != "" && txtUsuario.Text != "" && cmbDepartamento.SelectedItem != null && txtPuesto.Text != "")
                     {
                         try
                         {
-                            consultasMySQL.updateUsuario(txtNombre.Text, txtUsuario.Text, cmbDepartamento.SelectedValue.ToString(), lbID.Text);
+                            consultasMySQL.updateUsuario(txtNombre.Text, txtUsuario.Text, cmbDepartamento.SelectedValue.ToString(), lbID.Text, txtPuesto.Text);
                             MessageBox.Show("Usuario actualizado con éxito!", "Usuario Actualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             verUsuarios();
                             activarDGV();
@@ -157,11 +158,13 @@ namespace Activos
             string nombre = dgvUsuarios.CurrentRow.Cells[1].Value.ToString();
             string usuario = dgvUsuarios.CurrentRow.Cells[2].Value.ToString();
             string departamento = dgvUsuarios.CurrentRow.Cells[3].Value.ToString();
+            string puesto = dgvUsuarios.CurrentRow.Cells[4].Value.ToString();
 
             lbID.Text = idUsuario;
             txtNombre.Text = nombre;
             txtUsuario.Text = usuario;
             cmbDepartamento.Text = departamento;
+            txtPuesto.Text = puesto;
         }
         #endregion
         #region activarDGV()
@@ -172,6 +175,7 @@ namespace Activos
             dgvUsuarios.DefaultCellStyle.BackColor = Color.White;
             txtNombre.Enabled = false;
             txtUsuario.Enabled = false;
+            txtPuesto.Enabled = false;
             cmbDepartamento.Enabled = false;
             btnEditar.Visible = true;
             btnCancelar.Visible = false;
@@ -188,6 +192,7 @@ namespace Activos
             dgvUsuarios.DefaultCellStyle.BackColor = Color.Silver;
             txtNombre.Enabled = true;
             txtUsuario.Enabled = true;
+            txtPuesto.Enabled = true;
             cmbDepartamento.Enabled = true;
             btnCancelar.Visible = true;
         }

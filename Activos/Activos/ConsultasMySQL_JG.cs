@@ -116,7 +116,7 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlDataAdapter mySqlCmd = new MySqlDataAdapter(string.Format("SELECT {0}.idUsuario as 'ID', {0}.nombre as 'Nombre', {0}.user as 'Usuario', {1}.nombre as 'Departamento' FROM {0} INNER JOIN {1} ON {0}.idDepartamento = {1}.idDepartamento ORDER BY idUsuario", Tabla_Usuario, Tabla_Departamento), mysqlCon);
+                MySqlDataAdapter mySqlCmd = new MySqlDataAdapter(string.Format("SELECT {0}.idUsuario as 'ID', {0}.nombre as 'Nombre', {0}.user as 'Usuario', {1}.nombre as 'Departamento', {0}.puesto as 'Puesto' FROM {0} INNER JOIN {1} ON {0}.idDepartamento = {1}.idDepartamento ORDER BY idUsuario", Tabla_Usuario, Tabla_Departamento), mysqlCon);
                 DataTable TableUser = new DataTable();
                 mySqlCmd.Fill(TableUser);
                 return TableUser;
@@ -237,12 +237,12 @@ namespace Activos
         }
         #endregion
         #region agregarUsuario()
-        public void agregarUsuario(string nombre, string usuario, string password, string idDepartamento)
+        public void agregarUsuario(string nombre, string usuario, string password, string idDepartamento, string puesto)
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(nombre, user, password, idDepartamento) VALUES('{1}','{2}','{3}','{4}')", Tabla_Usuario, nombre, usuario, password, idDepartamento), mysqlCon);
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(nombre, user, password, idDepartamento, puesto) VALUES('{1}','{2}','{3}','{4}', '{5}')", Tabla_Usuario, nombre, usuario, password, idDepartamento, puesto), mysqlCon);
                 mysqlCmd.ExecuteNonQuery();
             }
         }
@@ -300,12 +300,12 @@ namespace Activos
         }
         #endregion
         #region updateUsuario
-        public void updateUsuario(string nombre, string user, string idDepartamento, string idUsuario)
+        public void updateUsuario(string nombre, string user, string idDepartamento, string idUsuario, string puesto)
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("UPDATE {0} SET nombre = '{1}', user = '{2}', idDepartamento = '{3}' WHERE idUsuario = '{4}'", Tabla_Usuario, nombre, user, idDepartamento, idUsuario), mysqlCon);
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("UPDATE {0} SET nombre = '{1}', user = '{2}', idDepartamento = '{3}', puesto = '{5}' WHERE idUsuario = '{4}'", Tabla_Usuario, nombre, user, idDepartamento, idUsuario, puesto), mysqlCon);
                 mysqlCmd.ExecuteNonQuery();
             }
         }
