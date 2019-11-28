@@ -26,57 +26,9 @@ namespace Activos
         }
         private void Agregar_Usuario_Load(object sender, EventArgs e)
         {
+            verUsuarios();
+            activarDGV();
             llenarComboBox();
-            actualizarDGV();
-        }
-        //----------------------------------------------------------------------------------------------------------------------//
-        #endregion
-        #region actualizarDGV()
-        //-------------------------------------------------------------- Habilita el DataGridView y lo actualiza --------------------------------------------------//
-        private void actualizarDGV()
-        {
-            //Detalle cambia como al origen
-            dgvUsuarios.DataSource = consultasMySQL.verUsuarios();
-            dgvUsuarios.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            txtNombre.BorderStyle = BorderStyle.None;
-            txtNombre.ReadOnly = true;
-            txtUsuario.BorderStyle = BorderStyle.None;
-            txtUsuario.ReadOnly = true;
-            txtDepartamento.Visible = true;
-            cmbDepartamento.Visible = false;
-            txtDepartamento.BorderStyle = BorderStyle.None;
-            txtDepartamento.ReadOnly = true;
-            //el DataGridView se vuelve activo
-            dgvUsuarios.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
-            dgvUsuarios.BackgroundColor = Color.White;
-            dgvUsuarios.DefaultCellStyle.BackColor = Color.White;
-            dgvUsuarios.Enabled = true;
-            //Se reordenar el factor de los botones
-            btnAgregar.Visible = true;
-            btnEditar.Visible = true;
-            btnSet.Visible = false;
-            btnCancelar.Visible = false;
-            //Ahora está en modo detalle
-            detalle = true;
-        }
-        //----------------------------------------------------------------------------------------------------------------------//
-        #endregion
-        #region deshabilitarDGV()
-        //------------------------------------------- Deshabilita el DataGridView y  --------------------------------------------------//
-        private void deshabilitarDGV()
-        {
-            //el DataGridView se vuelve activo
-            dgvUsuarios.ColumnHeadersDefaultCellStyle.BackColor = Color.Silver;
-            dgvUsuarios.BackgroundColor = Color.Silver;
-            dgvUsuarios.DefaultCellStyle.BackColor = Color.Silver;
-            dgvUsuarios.Enabled = false;
-            //Ahora está en modo detalle
-            detalle = false;
-            //textos limpios
-            txtNombre.BorderStyle = BorderStyle.Fixed3D;
-            txtNombre.ReadOnly = false;
-            txtUsuario.BorderStyle = BorderStyle.Fixed3D;
-            txtUsuario.ReadOnly = false;
         }
         //----------------------------------------------------------------------------------------------------------------------//
         #endregion
@@ -87,55 +39,25 @@ namespace Activos
             cmbDepartamento.DataSource = consultasMySQL.verDepartamentos();
             cmbDepartamento.DisplayMember = "Departamento";
             cmbDepartamento.ValueMember = "ID";
-
-            dgvUsuarios.DataSource = consultasMySQL.verUsuarios();
-            dgvUsuarios.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgvUsuarios.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
         //--------------------------------------------------------- ------------------------------------------------------------//
         #endregion
         #region Click en DataGridView
         //------------- Cuando dan click en una celda del DGV actualiza la data en los textbox --------------------------//
-        private void dgvUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvUsuarios_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1)
             {
-                string idUsuario = dgvUsuarios.CurrentRow.Cells[0].Value.ToString();
-                string nombre = dgvUsuarios.CurrentRow.Cells[1].Value.ToString();
-                string usuario = dgvUsuarios.CurrentRow.Cells[2].Value.ToString();
-                string departamento = dgvUsuarios.CurrentRow.Cells[3].Value.ToString();
-
-                lbID.Text = idUsuario;
-                txtNombre.Text = nombre;
-                txtUsuario.Text = usuario;
-                txtDepartamento.Text = departamento;
+                transladarusuarios();
             }
         }
         //--------------------------------------------------------- ------------------------------------------------------------//
         #endregion
-        #region botón agregar()
-        //---------------------------------------- Habilita botón de agregar ------------------------------------------------------------//
-        private void btnAgregar_Click_1(object sender, EventArgs e)
-        {
-            txtNombre.Text = "";
-            txtUsuario.Text = "";
-            txtDepartamento.Text = "";
-            lbID.Text = "";
-            btnAgregar.Visible = false;
-            btnEditar.Visible = false;
-            btnCancelar.Visible = true;
-            btnSet.Visible = true;
-            cmbDepartamento.Visible = true;
-            txtDepartamento.Visible = false;
-            deshabilitarDGV();
-        }
-        //--------------------------------------------------------- ------------------------------------------------------------//
-        #endregion
-        #region botón cancelar
+        #region Botón Cancelar
         //---------------------------------------------- llama al método de actualizarDGV() ------------------------------------------------------------//
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            actualizarDGV();
+            activarDGV();
         }
         //--------------------------------------------------------- ------------------------------------------------------------//
         #endregion
@@ -143,64 +65,131 @@ namespace Activos
         //------------------------------------------------ Guarda un nuevo usuario en la base de datos ------------------------------------------------------------//
         private void btnSet_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text != "" || txtUsuario.Text != "")
+            if (txtNombre.Enabled == false)
             {
-                if (MessageBox.Show("Deseas agregar a este usuario?", "Agregar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
-                {
-                    try
-                    {
-                        consultasMySQL.agregarUsuario(txtNombre.Text, txtUsuario.Text, "null", cmbDepartamento.SelectedValue.ToString());
-                        MessageBox.Show("Usuario agregado correctamente", "Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        actualizarDGV();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Excepción Encontrada: " + ex);
-                    }
-                }
+                activarDetalle();
+                txtNombre.Enabled = true;
+                txtUsuario.Enabled = true;
+                cmbDepartamento.Enabled = true;
+                txtNombre.Text = "";
+                txtUsuario.Text = "";
+                cmbDepartamento.Text = "";
+                lbNombreID.Visible = false;
+                lbID.Text = "";
+                btnEditar.Visible = false;
             }
             else
             {
-                MessageBox.Show("Porfavor llene correctamente todos los campos debidamente", "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (MessageBox.Show("Desea agregar este usuario?", "Agregar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    if (txtNombre.Text != "" && txtUsuario.Text != "" && cmbDepartamento.SelectedItem != null)
+                    {
+                        try
+                        {
+                            const string contraseña_por_defecto = "null";
+                            consultasMySQL.agregarUsuario(txtNombre.Text, txtUsuario.Text, contraseña_por_defecto, cmbDepartamento.SelectedValue.ToString());
+                            MessageBox.Show("Usuario guardado con éxito!", "Usuario Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            activarDGV();
+                            verUsuarios();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString());
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Por favor llene todos los campos correctamente", "Guardado Fallido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
             }
         }
         //--------------------------------------------------------- ------------------------------------------------------------//
         #endregion
-        #region botón editar
+        #region Botón Editar
         //-------------------------------------- Botón que edita o actualiza un usuario ------------------------------------------------------------//
-        //--------------------------------------------------------- ------------------------------------------------------------//
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if(detalle == false)
+            if (txtNombre.Enabled == false)
             {
-                try
+                activarDetalle();
+                btnCancelar.Location = new Point(103, 226);
+            }
+            else
+            {
+                if (MessageBox.Show("Desea editar este usuario?", "Actualizar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    consultasMySQL.updateUsuario(txtNombre.Text, txtUsuario.Text, cmbDepartamento.SelectedValue.ToString(), lbID.Text);
-                    MessageBox.Show("Usuario Actualizado");
-                    actualizarDGV();
-                    detalle = true;
+                    if (txtNombre.Text != "" && txtUsuario.Text != "" && cmbDepartamento.SelectedItem != null)
+                    {
+                        try
+                        {
+                            consultasMySQL.updateUsuario(txtNombre.Text, txtUsuario.Text, cmbDepartamento.SelectedValue.ToString(), lbID.Text);
+                            MessageBox.Show("Usuario actualizado con éxito!", "Usuario Actualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            verUsuarios();
+                            activarDGV();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString());
+                        }
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Ocurrio una Excepción: " + ex);
+                    MessageBox.Show("Por favor llene todos los campos correctamente", "Guardado Fallido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            else if(detalle == true)
-            {
-                deshabilitarDGV();
-                string idUsuario = dgvUsuarios.CurrentRow.Cells[0].Value.ToString();
-                string nombre = dgvUsuarios.CurrentRow.Cells[1].Value.ToString();
-                string usuario = dgvUsuarios.CurrentRow.Cells[2].Value.ToString();
-                string departamento = dgvUsuarios.CurrentRow.Cells[3].Value.ToString();
+        }
+        //--------------------------------------------------------- ------------------------------------------------------------//
+        #endregion
+        #region verUsuarios()
+        private void verUsuarios()
+        {
+            dgvUsuarios.DataSource = consultasMySQL.verUsuarios();
+            dgvUsuarios.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvUsuarios.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
+        #endregion
+        #region transladarUsuarios();
+        private void transladarusuarios()
+        {
+            string idUsuario = dgvUsuarios.CurrentRow.Cells[0].Value.ToString();
+            string nombre = dgvUsuarios.CurrentRow.Cells[1].Value.ToString();
+            string usuario = dgvUsuarios.CurrentRow.Cells[2].Value.ToString();
+            string departamento = dgvUsuarios.CurrentRow.Cells[3].Value.ToString();
 
-                lbID.Text = idUsuario;
-                txtNombre.Text = nombre;
-                txtUsuario.Text = usuario;
-                cmbDepartamento.Text = departamento;
-
-                btnAgregar.Visible = false;
-                btnCancelar.Visible = true;
-            }
+            lbID.Text = idUsuario;
+            txtNombre.Text = nombre;
+            txtUsuario.Text = usuario;
+            cmbDepartamento.Text = departamento;
+        }
+        #endregion
+        #region activarDGV()
+        private void activarDGV()
+        {
+            dgvUsuarios.Enabled = true;
+            dgvUsuarios.BackgroundColor = Color.White;
+            dgvUsuarios.DefaultCellStyle.BackColor = Color.White;
+            txtNombre.Enabled = false;
+            txtUsuario.Enabled = false;
+            cmbDepartamento.Enabled = false;
+            btnEditar.Visible = true;
+            btnCancelar.Visible = false;
+            btnCancelar.Location = new Point(226, 226);
+            lbNombreID.Visible = true;
+            transladarusuarios();
+        }
+        #endregion
+        #region activarDetalle()
+        private void activarDetalle()
+        {
+            dgvUsuarios.Enabled = false;
+            dgvUsuarios.BackgroundColor = Color.Silver;
+            dgvUsuarios.DefaultCellStyle.BackColor = Color.Silver;
+            txtNombre.Enabled = true;
+            txtUsuario.Enabled = true;
+            cmbDepartamento.Enabled = true;
+            btnCancelar.Visible = true;
         }
         #endregion
     }
