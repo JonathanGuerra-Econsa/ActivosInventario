@@ -265,5 +265,11 @@
   <ItemGroup>
     <None Include="Resources\plus-sign-in-circle.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo excel_opt.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
