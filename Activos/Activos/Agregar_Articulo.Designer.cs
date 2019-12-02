@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Agregar_Articulo));
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnActualiza = new System.Windows.Forms.Button();
+            this.btnActualizar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -97,21 +97,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Central";
             // 
-            // btnActualiza
+            // btnActualizar
             // 
-            this.btnActualiza.BackColor = System.Drawing.Color.Transparent;
-            this.btnActualiza.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnActualiza.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnActualiza.Image = global::Activos.Properties.Resources.file1;
-            this.btnActualiza.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnActualiza.Location = new System.Drawing.Point(702, 403);
-            this.btnActualiza.Name = "btnActualiza";
-            this.btnActualiza.Size = new System.Drawing.Size(170, 76);
-            this.btnActualiza.TabIndex = 33;
-            this.btnActualiza.Text = "Actualizar";
-            this.btnActualiza.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnActualiza.UseVisualStyleBackColor = false;
-            this.btnActualiza.Visible = false;
+            this.btnActualizar.BackColor = System.Drawing.Color.Transparent;
+            this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnActualizar.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnActualizar.Image = global::Activos.Properties.Resources.file1;
+            this.btnActualizar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnActualizar.Location = new System.Drawing.Point(702, 403);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(170, 76);
+            this.btnActualizar.TabIndex = 33;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnActualizar.UseVisualStyleBackColor = false;
+            this.btnActualizar.Visible = false;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // btnCancelar
             // 
@@ -128,6 +129,7 @@
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Visible = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnEditar
             // 
@@ -144,6 +146,7 @@
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEditar.UseVisualStyleBackColor = false;
             this.btnEditar.Visible = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // groupBox3
             // 
@@ -438,6 +441,7 @@
             this.btnSet.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSet.UseVisualStyleBackColor = false;
             this.btnSet.Visible = false;
+            this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
             // 
             // Agregar_Articulo
             // 
@@ -450,7 +454,7 @@
             this.Controls.Add(this.gbUsuario);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnEditar);
-            this.Controls.Add(this.btnActualiza);
+            this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
@@ -476,7 +480,7 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnActualiza;
+        private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.GroupBox groupBox3;

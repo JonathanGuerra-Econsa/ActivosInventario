@@ -26,7 +26,7 @@ namespace Activos
         string Tabla_SubGrupo = "subgrupo";
         string Tabla_Grupo = "grupo";
         //---------------------------------------------------------------------------------------------------------------//
-        //---------------------------------------------- * Variables de Reader * -----------------------------------------//
+        //---------------------------------------------- * Variables de Reader Activo* -----------------------------------------//
 
         public string descripcion;
         public string estado;
@@ -48,6 +48,19 @@ namespace Activos
         public string valorLibros;
         public string departamentoUsuario;
         //------------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region Variables Artículo
+        //---------------------------------------------------* Variables Globales de Artículos *--------------------------------------//
+        public string descripcion_articulo;
+        public string usuario_articulo;
+        public string departamento_articulo;
+        public string estado_articulo;
+        public string tipo_articulo;
+        public string empresa_articulo;
+        public string fecha_articulo;
+        public string valor_articulo;
+        public string fpc_articulo;
+        //---------------------------------------------------------------------------------------------------------------------------------//
         #endregion
         #region Plantilla ;)
         //-----------------------------------------Plantilla para Metodo View----------------------------------------//
@@ -290,7 +303,7 @@ namespace Activos
                 MySqlDataAdapter mysqlCmd = new MySqlDataAdapter(string.Format("SELECT  nombre FROM {0} WHERE user LIKE '{1}' AND password LIKE '{2}'", Tabla_Usuario, usuario, password), mysqlCon);
                 DataTable TableUsuario = new DataTable();
                 mysqlCmd.Fill(TableUsuario);
-                if(TableUsuario.Rows.Count > 0)
+                if (TableUsuario.Rows.Count > 0)
                 {
                     DataRow row = TableUsuario.Rows[0];
                     user = row[0].ToString();
@@ -333,7 +346,7 @@ namespace Activos
         }
         #endregion
         #region updateActivo()
-        public void updateActivo(string descripcion, string idUsuario, string idEstado, string idTipo, string idEmpresa, string fecha_compra, string valor, string fpc, string fecha_dep, string porcentajeDep, string  depAcumulada, string valorResidual, string valorLibros, string idSubGrupo, string idActivo)
+        public void updateActivo(string descripcion, string idUsuario, string idEstado, string idTipo, string idEmpresa, string fecha_compra, string valor, string fpc, string fecha_dep, string porcentajeDep, string depAcumulada, string valorResidual, string valorLibros, string idSubGrupo, string idActivo)
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
@@ -370,7 +383,7 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlDataAdapter mysqlDa = new MySqlDataAdapter(string.Format("SELECT idGrupo as 'ID', nombre as 'Nombre' FROM {0}", Tabla_Grupo),mysqlCon);
+                MySqlDataAdapter mysqlDa = new MySqlDataAdapter(string.Format("SELECT idGrupo as 'ID', nombre as 'Nombre' FROM {0}", Tabla_Grupo), mysqlCon);
                 DataTable grupo = new DataTable();
                 mysqlDa.Fill(grupo);
                 return grupo;
@@ -582,6 +595,30 @@ namespace Activos
             }
         }
 
+        #endregion
+        #region llenarVariablesArticulos
+        public void detalleArticulo(string idArticulo)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("SELECT ar.descripcion as 'Descripcion', u.nombre as 'Usuario', d.nombre as 'Departamento' , es.nombre as 'Estado', t.Tipo as 'Tipo', em.nombre as 'Empresa', ar.fecha_compra as 'Fecha', ar.Valor as 'Valor', ar.FPC as 'FPC' FROM {0} ar INNER JOIN {1} u ON ar.idUsuario = u.idUsuario INNER JOIN {6} d ON u.idDepartamento = d.idDepartamento INNER JOIN {2} es ON ar.idEstado = es.idEstado INNER JOIN {3} t ON ar.idTipo = t.idTipo INNER JOIN {4} em ON ar.idEmpresa = em.idEmpresa WHERE ar.idArticulo = '{5}'", Tabla_Articulo, Tabla_Usuario, Tabla_Estado, Tabla_Tipo, Tabla_Empresa, idArticulo, Tabla_Departamento), mysqlCon);
+                MySqlDataReader read =  mysqlCmd.ExecuteReader();
+                while (read.Read())
+                {
+                    descripcion_articulo = read["Descripcion"].ToString();
+                    usuario_articulo = read["Usuario"].ToString();
+                    estado_articulo = read["Estado"].ToString();
+                    tipo_articulo = read["Tipo"].ToString();
+                    empresa_articulo = read["Empresa"].ToString();
+                    fecha_articulo = read["Fecha"].ToString();
+                    valor_articulo = read["Valor"].ToString();
+                    fpc_articulo = read["FPC"].ToString();
+                    departamento_articulo = read["Departamento"].ToString();
+                }
+                read.Close();
+            }
+        }
         #endregion
     }
 }
