@@ -47,6 +47,8 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnSet = new System.Windows.Forms.Button();
             this.gbUsuario = new System.Windows.Forms.GroupBox();
+            this.cmbDepartamento = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.lbPuesto = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.cmbUsuario = new System.Windows.Forms.ComboBox();
@@ -73,8 +75,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.nuValor = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
-            this.cmbDepartamento = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.gbDetalleActivo.SuspendLayout();
             this.gbUsuario.SuspendLayout();
             this.gbSubGrupo.SuspendLayout();
@@ -316,6 +316,30 @@
             this.gbUsuario.TabIndex = 1;
             this.gbUsuario.TabStop = false;
             this.gbUsuario.Text = "Usuario";
+            // 
+            // cmbDepartamento
+            // 
+            this.cmbDepartamento.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbDepartamento.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbDepartamento.BackColor = System.Drawing.Color.White;
+            this.cmbDepartamento.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDepartamento.FormattingEnabled = true;
+            this.cmbDepartamento.Location = new System.Drawing.Point(205, 48);
+            this.cmbDepartamento.Name = "cmbDepartamento";
+            this.cmbDepartamento.Size = new System.Drawing.Size(193, 28);
+            this.cmbDepartamento.TabIndex = 41;
+            this.cmbDepartamento.SelectedIndexChanged += new System.EventHandler(this.cmbDepartamento_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(56, 50);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(143, 25);
+            this.label9.TabIndex = 42;
+            this.label9.Text = "Departamento:";
             // 
             // lbPuesto
             // 
@@ -640,30 +664,6 @@
             this.label12.Size = new System.Drawing.Size(62, 25);
             this.label12.TabIndex = 51;
             this.label12.Text = "Valor:";
-            // 
-            // cmbDepartamento
-            // 
-            this.cmbDepartamento.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cmbDepartamento.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbDepartamento.BackColor = System.Drawing.Color.White;
-            this.cmbDepartamento.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbDepartamento.FormattingEnabled = true;
-            this.cmbDepartamento.Location = new System.Drawing.Point(205, 48);
-            this.cmbDepartamento.Name = "cmbDepartamento";
-            this.cmbDepartamento.Size = new System.Drawing.Size(193, 28);
-            this.cmbDepartamento.TabIndex = 41;
-            this.cmbDepartamento.SelectedIndexChanged += new System.EventHandler(this.cmbDepartamento_SelectedIndexChanged);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(56, 50);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(143, 25);
-            this.label9.TabIndex = 42;
-            this.label9.Text = "Departamento:";
             // 
             // Agregar_Activo
             // 

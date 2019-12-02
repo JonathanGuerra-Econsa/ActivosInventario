@@ -26,6 +26,14 @@ namespace Activos
         }
         private void Agregar_Articulo_Load(object sender, EventArgs e)
         {
+            if(opcion == 1)
+            {
+                habilitar(true);
+            }
+            else
+            {
+                vistaDetalle();
+            }
             llenarComboBox();
         }
         //---------------------------------------------------------------------------  -------------------------------------------------------------------------------//
@@ -34,21 +42,6 @@ namespace Activos
         //--------------------------------------------------------------------------- Llena los ComboBox que necesita Artículos -------------------------------------------------------------------------------//
         private void llenarComboBox()
         {
-            cmbUsuario.DataSource = consultasMySQL.verUsuarios();
-            cmbUsuario.DisplayMember = "Usuario";
-            cmbUsuario.ValueMember = "ID";
-
-            cmbEstado.DataSource = consultasMySQL.verEstados();
-            cmbEstado.DisplayMember = "Estado";
-            cmbEstado.ValueMember = "ID";
-
-            cmbCategoria.DataSource = consultasMySQL.verTipos();
-            cmbCategoria.DisplayMember = "Categoria";
-            cmbCategoria.ValueMember = "ID";
-
-            cmbEmpresa.DataSource = consultasMySQL.verEmpresa();
-            cmbEmpresa.DisplayMember = "Empresa";
-            cmbEmpresa.ValueMember = "ID";
         }
         //---------------------------------------------------------------------------  -------------------------------------------------------------------------------//
         #endregion
@@ -56,28 +49,30 @@ namespace Activos
         //--------------------------------------------------------------------------- Botón que agrega un nuevo artículo -------------------------------------------------------------------------------//
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Deseas agregar este artículo?", "Agregar Artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
-            {
-                try
-                {
-                    consultasMySQL.agregarArticulo(txtDescripcion.Text, cmbUsuario.SelectedValue.ToString(), cmbEstado.SelectedValue.ToString(), cmbCategoria.SelectedValue.ToString(), cmbEmpresa.SelectedValue.ToString(), dtFecha.Value.ToString("yyyy-MM-dd"));
-                    MessageBox.Show("Artículo agregado correctamente", "Artículo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    try
-                    {
-                        Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Ocurrió una Excepción: " + ex);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ocurrió una Excepción: " + ex);
-                }
-            }
+
         }
         //---------------------------------------------------------------------------  -------------------------------------------------------------------------------//
+        #endregion
+        #region vistaDetalle()
+        private void vistaDetalle()
+        {
+            habilitar(false);
+            btnEditar.Visible = true;
+        }
+        #endregion
+        #region habilitar()
+        private void habilitar(bool habilitar)
+        {
+            txtDescripcion.Enabled = habilitar;
+            cmbEstado.Enabled = habilitar;
+            cmbTipo.Enabled = habilitar;
+            cmbEmpresa.Enabled = habilitar;
+            cmbDepartamento.Enabled = habilitar;
+            cmbUsuario.Enabled = habilitar;
+            dtFecha.Enabled = habilitar;
+            nuValor.Enabled = habilitar;
+            txtFPC.Enabled = habilitar;
+        }
         #endregion
     }
 }
