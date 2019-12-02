@@ -170,7 +170,7 @@ namespace Activos
         private void button3_Click(object sender, EventArgs e)
         {
             Agregar_Articulo nuevoForm = new Agregar_Articulo();
-            nuevoForm.opcion = 2;
+            nuevoForm.opcion = 1;
             nuevoForm.ShowDialog();
             Limpiar(sender, e);
             ArmarConsulta(sender, e);
