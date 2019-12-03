@@ -26,15 +26,17 @@ namespace Activos
         }
         private void Agregar_Articulo_Load(object sender, EventArgs e)
         {
+            llenarComboBox();
             if(opcion == 1)
             {
                 vistaAgregar();
+                label8.Visible = false;
+                lbID.Visible = false;
             }
             else
             {
                 vistaDetalle();
             }
-            llenarComboBox();
         }
         //---------------------------------------------------------------------------  -------------------------------------------------------------------------------//
         #endregion
@@ -42,6 +44,29 @@ namespace Activos
         //--------------------------------------------------------------------------- Llena los ComboBox que necesita Artículos -------------------------------------------------------------------------------//
         private void llenarComboBox()
         {
+            cmbEstado.DataSource = consultasMySQL.verEstados();
+            cmbEstado.DisplayMember = "Estado";
+            cmbEstado.ValueMember = "ID";
+
+            cmbTipo.DataSource = consultasMySQL.verTipoArt();
+            cmbTipo.DisplayMember = "Tipo";
+            cmbTipo.ValueMember = "ID";
+
+            cmbEmpresa.DataSource = consultasMySQL.verEmpresa();
+            cmbEmpresa.DisplayMember = "Empresa";
+            cmbEmpresa.ValueMember = "ID";
+
+            cmbDepartamento.DataSource = consultasMySQL.verDepartamentos();
+            cmbDepartamento.DisplayMember = "Departamento";
+            cmbDepartamento.ValueMember = "ID";
+
+            string idDepartamento = cmbDepartamento.SelectedValue.ToString();
+            cmbUsuario.DataSource = consultasMySQL.verUsuariosDep(idDepartamento);
+            cmbUsuario.DisplayMember = "Nombre";
+            cmbUsuario.ValueMember = "ID";
+
+            consultasMySQL.buscarUsuario(cmbUsuario.SelectedValue.ToString());
+            lbPuesto.Text = consultasMySQL.puestoUsuario;
         }
         //---------------------------------------------------------------------------  -------------------------------------------------------------------------------//
         #endregion
@@ -115,8 +140,16 @@ namespace Activos
             {
                 try
                 {
-                    MessageBox.Show("Artículo Guardado", "Guardar Artículo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Hide();
+                    if(txtDescripcion.Text != "" && cmbUsuario.SelectedItem != null && cmbEstado.SelectedItem != null && cmbTipo.SelectedItem != null && cmbEmpresa.SelectedItem != null)
+                    {
+                        consultasMySQL.addArticulo(txtDescripcion.Text, cmbUsuario.SelectedValue.ToString(), cmbEstado.SelectedValue.ToString(), cmbTipo.SelectedValue.ToString(), cmbEmpresa.SelectedValue.ToString(), dtFecha.Value.ToString("yyyy-MM-dd HH:mm:ss"), nuValor.Value.ToString(), txtFPC.Text);
+                        MessageBox.Show("Artículo Guardado", "Guardar Artículo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ingrese todos los datos correctamente", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -133,6 +166,7 @@ namespace Activos
             {
                 try
                 {
+                    consultasMySQL.editArticulo(txtDescripcion.Text, cmbUsuario.SelectedValue.ToString(), cmbEstado.SelectedValue.ToString(), cmbTipo.SelectedValue.ToString(), cmbEmpresa.SelectedValue.ToString(), dtFecha.Value.ToString("yyyy-MM-dd HH:mm:ss"), nuValor.Value.ToString(), txtFPC.Text, lbID.Text);
                     MessageBox.Show("Artículo actualizado correctamente!", "Artículo Actualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     habilitar(false);
                     vistaDetalle();
@@ -142,6 +176,22 @@ namespace Activos
                     MessageBox.Show(ex.ToString());
                 }
             }
+        }
+
+        #endregion
+        #region Value Changed
+        private void cmbDepartamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string idDepartamento = cmbDepartamento.SelectedValue.ToString();
+            cmbUsuario.DataSource = consultasMySQL.verUsuariosDep(idDepartamento);
+            cmbUsuario.DisplayMember = "Nombre";
+            cmbUsuario.ValueMember = "ID";
+        }
+
+        private void cmbUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            consultasMySQL.buscarUsuario(cmbUsuario.SelectedValue.ToString());
+            lbPuesto.Text = consultasMySQL.puestoUsuario;
         }
         #endregion
         #region vistaAgregar()
