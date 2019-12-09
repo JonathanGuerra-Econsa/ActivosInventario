@@ -199,9 +199,12 @@ namespace Activos
             }
             if (!string.IsNullOrEmpty(textBox1.Text))
             {
+                int n;
                 if (consulta.ToString() != "WHERE ") consulta.Append(" AND ");
-                consulta.Append("a.idActivo = " + textBox1.Text);
+                if (int.TryParse(textBox1.Text, out n)) consulta.Append("a.idActivo = " + textBox1.Text);
+                else consulta.Append("a.codigo = '" + textBox1.Text + "'");
             }
+            Console.WriteLine(consulta.ToString());
             ////----- En caso de que de error, pruebe con lo siguiente
             //DataRowView drv = cmbTipo.SelectedItem as DataRowView;
             //string value = string.Empty;
@@ -210,12 +213,12 @@ namespace Activos
             //if (value.ToString() != 0.ToString() && value.ToString() != null)
             //{
             //    if(drv != null) { 
-            //        if (consulta.ToString() != "WHERE ") consulta.Append(" AND ");
+            //        if (consulta.ToString() != "WHERE ") consulta.Append(" AND ");t
             //        consulta.Append("c.idTipo = " + value);
             //    }
             //}
             if (consulta.ToString() == "WHERE ") consulta = new StringBuilder();
-                        
+
             dataGridView1.DataSource = mysql.consulta(consulta.ToString());
         }
 
@@ -389,16 +392,18 @@ namespace Activos
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             timer1.Stop();
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != 'a' && e.KeyChar != '-')
             {
                 e.Handled = true;
             }
+            if ((e.KeyChar == 'a') && (sender as TextBox).Text.IndexOf('a') > -1) e.Handled = true;
+            if ((e.KeyChar == '-') && (sender as TextBox).Text.IndexOf('-') > -1) e.Handled = true;
             timer1.Start();
         }
 
         private void cmbSubgrupo_SelectedIndexChanged(object sender, EventArgs e)
         {
             ArmarConsulta(sender, e);
-        }
+        }        
     }
 }

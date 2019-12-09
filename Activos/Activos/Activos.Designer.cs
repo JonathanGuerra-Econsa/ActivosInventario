@@ -374,9 +374,9 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(70)))), ((int)(((byte)(144)))));
             this.label2.Location = new System.Drawing.Point(6, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 20);
+            this.label2.Size = new System.Drawing.Size(91, 20);
             this.label2.TabIndex = 35;
-            this.label2.Text = "Id del Activo";
+            this.label2.Text = "ID o Código";
             // 
             // timer1
             // 
