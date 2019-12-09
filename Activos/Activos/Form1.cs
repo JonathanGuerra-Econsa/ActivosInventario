@@ -69,5 +69,11 @@ namespace Activos
         {
             Application.Exit();
         }
+
+        private void btnInventario_Click(object sender, EventArgs e)
+        {
+            Aperturar_Inventario aperturarInventario = new Aperturar_Inventario();
+            aperturarInventario.Show();
+        }
     }
 }

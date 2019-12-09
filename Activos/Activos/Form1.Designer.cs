@@ -39,6 +39,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.labelName = new System.Windows.Forms.Label();
+            this.btnInventario = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnDepartamento
@@ -65,7 +66,7 @@
             this.btnUsuario.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUsuario.Image = global::Activos.Properties.Resources.man__1_;
             this.btnUsuario.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnUsuario.Location = new System.Drawing.Point(198, 107);
+            this.btnUsuario.Location = new System.Drawing.Point(179, 107);
             this.btnUsuario.Name = "btnUsuario";
             this.btnUsuario.Size = new System.Drawing.Size(150, 190);
             this.btnUsuario.TabIndex = 1;
@@ -82,7 +83,7 @@
             this.btnCategoria.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCategoria.Image = global::Activos.Properties.Resources.backend;
             this.btnCategoria.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCategoria.Location = new System.Drawing.Point(374, 107);
+            this.btnCategoria.Location = new System.Drawing.Point(335, 107);
             this.btnCategoria.Name = "btnCategoria";
             this.btnCategoria.Size = new System.Drawing.Size(150, 190);
             this.btnCategoria.TabIndex = 2;
@@ -99,7 +100,7 @@
             this.btnActivo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActivo.Image = global::Activos.Properties.Resources.article;
             this.btnActivo.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnActivo.Location = new System.Drawing.Point(552, 107);
+            this.btnActivo.Location = new System.Drawing.Point(491, 107);
             this.btnActivo.Name = "btnActivo";
             this.btnActivo.Size = new System.Drawing.Size(150, 190);
             this.btnActivo.TabIndex = 3;
@@ -116,7 +117,7 @@
             this.btnArticulo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnArticulo.Image = global::Activos.Properties.Resources.attachment;
             this.btnArticulo.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnArticulo.Location = new System.Drawing.Point(727, 107);
+            this.btnArticulo.Location = new System.Drawing.Point(647, 107);
             this.btnArticulo.Name = "btnArticulo";
             this.btnArticulo.Size = new System.Drawing.Size(150, 190);
             this.btnArticulo.TabIndex = 4;
@@ -131,7 +132,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(332, 28);
+            this.label1.Location = new System.Drawing.Point(395, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(246, 45);
             this.label1.TabIndex = 5;
@@ -142,9 +143,9 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = global::Activos.Properties.Resources.Econsa;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Location = new System.Drawing.Point(769, 353);
+            this.panel1.Location = new System.Drawing.Point(819, 328);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(123, 99);
+            this.panel1.Size = new System.Drawing.Size(158, 124);
             this.panel1.TabIndex = 7;
             // 
             // label2
@@ -166,7 +167,7 @@
             this.button2.BackColor = System.Drawing.Color.Transparent;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(727, 303);
+            this.button2.Location = new System.Drawing.Point(647, 303);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(150, 44);
             this.button2.TabIndex = 9;
@@ -187,13 +188,31 @@
             this.labelName.TabIndex = 10;
             this.labelName.Text = "Bienvenido";
             // 
+            // btnInventario
+            // 
+            this.btnInventario.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventario.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnInventario.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInventario.Image = global::Activos.Properties.Resources.archive;
+            this.btnInventario.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnInventario.Location = new System.Drawing.Point(803, 107);
+            this.btnInventario.Name = "btnInventario";
+            this.btnInventario.Size = new System.Drawing.Size(150, 190);
+            this.btnInventario.TabIndex = 11;
+            this.btnInventario.TabStop = false;
+            this.btnInventario.Text = "Inventario";
+            this.btnInventario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnInventario.UseVisualStyleBackColor = false;
+            this.btnInventario.Click += new System.EventHandler(this.btnInventario_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Activos.Properties.Resources.fondo2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(902, 457);
+            this.ClientSize = new System.Drawing.Size(980, 457);
+            this.Controls.Add(this.btnInventario);
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
@@ -229,6 +248,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.Button btnInventario;
     }
 }
 
