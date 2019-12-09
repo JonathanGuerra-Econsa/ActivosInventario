@@ -97,6 +97,12 @@
     <Compile Include="Agregar_Usuario.Designer.cs">
       <DependentUpon>Agregar_Usuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Aperturar_Inventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Aperturar_Inventario.Designer.cs">
+      <DependentUpon>Aperturar_Inventario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Articulos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Agregar_Usuario.resx">
       <DependentUpon>Agregar_Usuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Aperturar_Inventario.resx">
+      <DependentUpon>Aperturar_Inventario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Articulos.resx">
       <DependentUpon>Articulos.cs</DependentUpon>
@@ -279,6 +288,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Logo excel_opt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\article1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stapler %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\return-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left-arrow-in-circular-button-black-symbol.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
