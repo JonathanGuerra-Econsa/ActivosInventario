@@ -759,5 +759,17 @@ namespace Activos
         }
         //-------------------------------------------------------------------------------------------------------------------------------------//
         #endregion
+        #region insertarDetalleArtículo()
+        //---------------------------------------------------* Inserta en Detalle artículo todos los artículos que no esten dados de baja *---------------------------------------------------------//
+        public void insertarDetalleArticulo()
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+
+            }
+        }
+        //----------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------//
+        #endregion
     }
 }
