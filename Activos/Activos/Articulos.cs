@@ -211,7 +211,8 @@ namespace Activos
             if (!string.IsNullOrEmpty(textBox1.Text))
             {
                 if (consulta.ToString() != "WHERE ") consulta.Append(" AND ");
-                consulta.Append("a.idArticulo = " + textBox1.Text);
+                if (int.TryParse(textBox1.Text, out int n)) consulta.Append("a.idArticulo = " + textBox1.Text);
+                else consulta.Append("a.codigo = '" + textBox1.Text + "'");
             }
             if (consulta.ToString() == "WHERE ") consulta = new StringBuilder();
 
@@ -331,10 +332,14 @@ namespace Activos
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             timer1.Stop();
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != 'a' && e.KeyChar != '-' && e.KeyChar != 'A' && e.KeyChar != 'R' && e.KeyChar != 'r')
             {
                 e.Handled = true;
             }
+
+            if (((e.KeyChar == 'a') && (sender as TextBox).Text.IndexOf('a') > -1) || ((e.KeyChar == 'A') && (sender as TextBox).Text.IndexOf('A') > -1)) e.Handled = true;
+            if (((e.KeyChar == 'r') && (sender as TextBox).Text.IndexOf('r') > -1) || ((e.KeyChar == 'R') && (sender as TextBox).Text.IndexOf('R') > -1)) e.Handled = true;
+            if ((e.KeyChar == '-') && (sender as TextBox).Text.IndexOf('-') > -1) e.Handled = true;
             timer1.Start();
         }
 
