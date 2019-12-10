@@ -105,6 +105,93 @@ namespace Activos
             return dt;
         }
 
+        public DataTable consultaActivoDetalle(int id, string consulta = "")
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID", typeof(Int32));
+            dt.Columns.Add("Descripcion");
+            dt.Columns.Add("idActivo");
+            dt.Columns.Add("Estado Fisico");
+            dt.Columns.Add("idEstado");
+            dt.Columns.Add("Estado");
+            dt.Columns.Add("idStatus");
+            dt.Columns.Add("idInventario");
+            dt.Columns.Add("Fecha de Actualizacion");
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT a.idDetalle, " +
+                "ar.descripcion, " +
+                "a.idActivo, " +
+                "e.nombre, " +
+                "e.idEstado, " +
+                "s.nombre, " +
+                "s.idStatus, " +
+                "i.idInventarioActivo, " +
+                "a.fecha_actualizacion " +
+                "FROM detalleinvactivo a " +
+                "JOIN activo ar ON a.idActivo = ar.idActivo " +
+                "JOIN estado e ON a.idEstado = e.idEstado " +
+                "JOIN status s ON a.idStatus = s.idStatus " +
+                "JOIN inventario_activo i On a.idInventario = i.idInventarioActivo " +
+                "WHERE i.idInventarioActivo = " + id + consulta + " ORDER BY a.idDetalle";
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    DataRow activo = dt.NewRow();
+                    activo["ID"] = reader.GetString(0);
+                    activo["Descripcion"] = reader.GetString(1);
+                    activo["idActivo"] = reader.GetString(2);
+                    activo["Estado Fisico"] = reader.GetString(3);
+                    activo["idEstado"] = reader.GetString(4);
+                    activo["Estado"] = reader.GetString(5);
+                    activo["idStatus"] = reader.GetString(6);
+                    activo["idInventario"] = reader.GetString(7);
+                    activo["Fecha de Actualizacion"] = reader.GetString(8);
+                    dt.Rows.Add(activo);
+                }
+            }
+            connection.Close();
+            return dt;
+        }
+
+        public int ActivosRevisados()
+        {
+            int revisados = new int();
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT COUNT(*) FROM detalleinvactivo WHERE idStatus = 1";
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    revisados = reader.GetInt32(0);
+                }
+            }
+            connection.Close();
+            return revisados;
+        }
+
+        public int ActivosNoRevisados()
+        {
+            int revisados = new int();
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT COUNT(*) FROM detalleinvactivo WHERE idStatus = 2";
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    revisados = reader.GetInt32(0);
+                }
+            }
+            connection.Close();
+            return revisados;
+        }
+
         public DataTable consultaArticulo(string consulta = "")
         {
             DataTable dt = new DataTable();
@@ -172,6 +259,93 @@ namespace Activos
             }
             connection.Close();
             return dt;
+        }
+
+        public DataTable consultaArticuloDetalle(int id, string consulta = "")
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID", typeof(Int32));
+            dt.Columns.Add("Descripcion");
+            dt.Columns.Add("idArticulo");
+            dt.Columns.Add("Estado Fisico");
+            dt.Columns.Add("idEstado");
+            dt.Columns.Add("Estado");
+            dt.Columns.Add("idStatus");
+            dt.Columns.Add("idInventario");
+            dt.Columns.Add("Fecha de Actualizacion");
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT a.idDetalle, " +
+                "ar.descripcion, " +
+                "a.idArticulo, " +
+                "e.nombre, " +
+                "e.idEstado, " +
+                "s.nombre, " +
+                "s.idStatus, " +
+                "i.idInventarioArticulo, " +
+                "a.fecha_actualizacion " +
+                "FROM detalleinvarticulo a " +
+                "JOIN articulo ar ON a.idArticulo = ar.idArticulo " +
+                "JOIN estado e ON a.idEstado = e.idEstado " +
+                "JOIN status s ON a.idStatus = s.idStatus " +
+                "JOIN inventario_articulo i On a.idInventario = i.idInventarioArticulo " +
+                "WHERE i.idInventarioArticulo = " + id + consulta + " ORDER BY a.idDetalle";
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    DataRow activo = dt.NewRow();
+                    activo["ID"] = reader.GetString(0);
+                    activo["Descripcion"] = reader.GetString(1);
+                    activo["idArticulo"] = reader.GetString(2);
+                    activo["Estado Fisico"] = reader.GetString(3);
+                    activo["idEstado"] = reader.GetString(4);
+                    activo["Estado"] = reader.GetString(5);
+                    activo["idStatus"] = reader.GetString(6);
+                    activo["idInventario"] = reader.GetString(7);
+                    activo["Fecha de Actualizacion"] = reader.GetString(8);
+                    dt.Rows.Add(activo);
+                }
+            }
+            connection.Close();
+            return dt;
+        }
+
+        public int ArticulosRevisados()
+        {
+            int revisados = new int();
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT COUNT(*) FROM detalleinvarticulo WHERE idStatus = 1";
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    revisados= reader.GetInt32(0);
+                }
+            }
+            connection.Close();
+            return revisados;
+        }
+
+        public int ArticulosNoRevisados()
+        {
+            int revisados = new int();
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT COUNT(*) FROM detalleinvarticulo WHERE idStatus = 2";
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    revisados = reader.GetInt32(0);
+                }
+            }
+            connection.Close();
+            return revisados;
         }
 
         public DataTable usuarios(int idDepto)
