@@ -170,9 +170,7 @@ namespace Activos
         {
             if(txtDescripcion.Text != "" & cmbEstado.SelectedIndex != -1 & cmbTipo.SelectedIndex != -1 
                 & cmbEmpresa.SelectedIndex != -1 & dtFecha.Value != null & cmbUsuario.SelectedIndex != -1 
-                & cmbSubGrupo.SelectedIndex != -1 & nuValor.Value != 0 & txtFPC.Text != "" & dtDepreciacion.Value != null 
-                & nuPorcentaje.Value != 0 & nuDepreciacionAcumulada.Value != 0 & nuValorResidual.Value != 0
-                & nuValorLibros.Value != 0)
+                & cmbSubGrupo.SelectedIndex != -1 & nuValor.Value != 0 & txtFPC.Text != "" & dtDepreciacion.Value != null )
             {
                 if (MessageBox.Show("Desea guardar este activo?", "Guardar Activo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {

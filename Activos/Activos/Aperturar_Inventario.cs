@@ -167,6 +167,7 @@ namespace Activos
                 txtInventario.Text = "";
                 txtInventario.Visible = false;
                 btnAperturar.Visible = false;
+                lbInventario.Visible = false;
             }
             else if(btnActivo.Enabled == true || btnArticulo.Enabled == true || btnAmbos.Enabled == true)
             {

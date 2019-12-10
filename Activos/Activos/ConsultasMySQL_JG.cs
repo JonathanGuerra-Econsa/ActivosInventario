@@ -739,7 +739,7 @@ namespace Activos
                 MySqlDataReader read = mysqlCmd.ExecuteReader();
                 while (read.Read())
                 {
-                    idInventario = read["idInventario"].ToString();
+                    idInventario = read["idInventarioActivo"].ToString();
                 }
                 return idInventario;
             }
@@ -753,11 +753,23 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(idActivo, idEstado, idStatus, idInventario, fecha_actualizacion) SELECT idActivo as 'ID activo', null as 'Estado', 1 as 'Status', '{1}' as 'ID Inventario', '0' as 'Fecha Actualización' FROM activo WHERE idEstado != 4 ORDER BY idActivo ASC", Tabla_DetalleInvActivo), mysqlCon);
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(idActivo, idEstado, idStatus, idInventario, fecha_actualizacion) SELECT idActivo as 'ID activo', null as 'Estado', 1 as 'Status', '{1}' as 'ID Inventario', '0' as 'Fecha Actualización' FROM activo WHERE idEstado != 4 ORDER BY idActivo ASC", Tabla_DetalleInvActivo, idInventario), mysqlCon);
                 mysqlCmd.ExecuteNonQuery();
             }
         }
         //-------------------------------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region insertarDetalleArtículo()
+        //---------------------------------------------------* Inserta en Detalle artículo todos los artículos que no esten dados de baja *---------------------------------------------------------//
+        public void insertarDetalleArticulo()
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+
+            }
+        }
+        //----------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------//
         #endregion
     }
 }
