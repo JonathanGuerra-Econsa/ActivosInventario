@@ -51,7 +51,10 @@ namespace Activos
                             //---------------------------------------------------------------------------------//
                             MessageBox.Show("Inventario activo creado éxitosamente", "Inventario Creado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             //-----------------------------* Redirigir a DashBoard *----------------------------//
-
+                            //DashboardTodos dashBoard = new DashboardTodos();
+                            //dashBoard.idA = Convert.ToInt32(idInventario);
+                            //dashBoard.opcion = 2;
+                            //dashBoard.Show();
                             //--------------------------------------------------------------------------------------//
                         }
                     }
@@ -81,9 +84,15 @@ namespace Activos
                             consultasMySQL.insertInvArticulo(nombre, fechaApertura);
                             //-----------------------------------------------------------------------------//
                             //-------------------------------* Crear Detalle *--------------------------------------//
+                            string idInventario = consultasMySQL.buscarInventarioArticulo(fechaApertura);
+                            consultasMySQL.insertarDetalleArticulo(idInventario);
                             //----------------------------------------------------------------------------------------//
                             MessageBox.Show("Inventario de artículo creado éxitosamente", "Inventario Creado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             //-------------------------------* Redirigir *------------------------------------//
+                            //DashboardTodos dashBoard = new DashboardTodos();
+                            //dashBoard.idAr = Convert.ToInt32(idInventario);
+                            //dashBoard.opcion = 2;
+                            //dashBoard.Show();
                             //---------------------------------------------------------------------------------//
                         }
                     }
@@ -114,10 +123,18 @@ namespace Activos
                             consultasMySQL.insertInvArticulo(nombre, fechaApertura);
                             //-------------------------------------------------------------------------------------//
                             //-----------------------------------* Crear Detalles *----------------------------------------------//
-
+                            string idInventarioArticulo = consultasMySQL.buscarInventarioArticulo(fechaApertura);
+                            string idInventarioActivo = consultasMySQL.buscarInventario(fechaApertura);
+                            consultasMySQL.insertarDetalleArticulo(idInventarioArticulo);
+                            consultasMySQL.insertarDetalleActivo(idInventarioActivo);
                             //----------------------------------------------------------------------------------------------------//
                             MessageBox.Show("Inventarios creados éxitosamente", "Aperurar Inventario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             //----------------------------* Redirigir *-----------------------------------//
+                            DashboardTodos dashBoard = new DashboardTodos();
+                            dashBoard.idA = Convert.ToInt32(idInventarioActivo);
+                            dashBoard.idAr = Convert.ToInt32(idInventarioArticulo);
+                            dashBoard.opcion = 2;
+                            dashBoard.Show();
                             //------------------------------------------------------------------------------//
                         }
                     }

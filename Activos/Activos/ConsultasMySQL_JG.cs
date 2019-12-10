@@ -23,6 +23,7 @@ namespace Activos
         string Tabla_Status = "status";
         string Tabla_Empresa = "empresa";
         string Tabla_DetalleInvActivo = "detalleinvactivo";
+        string Tabla_DetalleInvArticulo = "detalleinvarticulo";
         string Tabla_InvActivo = "inventario_activo";
         string Tabla_InvArticulo = "inventario_articulo";
         string Tabla_SubGrupo = "subgrupo";
@@ -746,6 +747,25 @@ namespace Activos
         }
         //----------------------------------------------------------------------------------------------------------------------------------------//
         #endregion
+        #region buscarInventarioArtículo()
+        //----------------------------------------------------* Busca el id de un inventario por su fecha *-----------------------------------//
+        public string buscarInventarioArticulo(string fechaApertura)
+        {
+            string idInventario = "";
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("SELECT idInventarioArticulo FROM {0} WHERE fecha_apertura = '{1}'", Tabla_InvArticulo, fechaApertura), mysqlCon);
+                MySqlDataReader read = mysqlCmd.ExecuteReader();
+                while (read.Read())
+                {
+                    idInventario = read["idInventarioArticulo"].ToString();
+                }
+                return idInventario;
+            }
+        }
+        //----------------------------------------------------------------------------------------------------------------------------------------//
+        #endregion
         #region insertarDetalleActivo()
         //-------------------------------------------- * Crea los detalles de los inventarios * ---------------------------------------------//
         public void insertarDetalleActivo(string idInventario)
@@ -753,23 +773,24 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(idActivo, idEstado, idStatus, idInventario, fecha_actualizacion) SELECT idActivo as 'ID activo', null as 'Estado', 1 as 'Status', '{1}' as 'ID Inventario', '0' as 'Fecha Actualización' FROM activo WHERE idEstado != 4 ORDER BY idActivo ASC", Tabla_DetalleInvActivo, idInventario), mysqlCon);
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(idActivo, idEstado, idStatus, idInventario, fecha_actualizacion) SELECT idActivo as 'ID activo', 5 as 'Estado', 2 as 'Status', '{1}' as 'ID Inventario', '0' as 'Fecha Actualización' FROM activo WHERE idEstado != 4 ORDER BY idActivo ASC", Tabla_DetalleInvActivo, idInventario), mysqlCon);
                 mysqlCmd.ExecuteNonQuery();
             }
         }
         //-------------------------------------------------------------------------------------------------------------------------------------//
         #endregion
-        #region insertarDetalleArtículo()
-        //---------------------------------------------------* Inserta en Detalle artículo todos los artículos que no esten dados de baja *---------------------------------------------------------//
-        public void insertarDetalleArticulo()
+        #region insertarDetalleArticulo()
+        //-------------------------------------------- * Crea los detalles de los inventarios * ---------------------------------------------//
+        public void insertarDetalleArticulo(string idInventario)
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(idArticulo, idEstado, idStatus, idInventario, fecha_actualizacion) SELECT idArticulo as 'ID articulo', 5 as 'Estado', 2 as 'Status', '{1}' as 'ID Inventario', '0' as 'Fecha Actualización' FROM articulo WHERE idEstado != 4 ORDER BY idArticulo ASC", Tabla_DetalleInvArticulo, idInventario), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
             }
         }
-        //----------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------//
+        //-------------------------------------------------------------------------------------------------------------------------------------//
         #endregion
     }
 }
