@@ -773,7 +773,7 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(idActivo, idEstado, idStatus, idInventario, fecha_actualizacion) SELECT idActivo as 'ID activo', 5 as 'Estado', 2 as 'Status', '{1}' as 'ID Inventario', '0' as 'Fecha Actualización' FROM activo WHERE idEstado != 4 ORDER BY idActivo ASC", Tabla_DetalleInvActivo, idInventario), mysqlCon);
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(idActivo, idEstado, idStatus, idInventario, fecha_actualizacion) SELECT idActivo as 'ID activo', null as 'Estado', 2 as 'Status', '{1}' as 'ID Inventario', '0' as 'Fecha Actualización' FROM activo WHERE idEstado != 4 ORDER BY idActivo ASC", Tabla_DetalleInvActivo, idInventario), mysqlCon);
                 mysqlCmd.ExecuteNonQuery();
             }
         }
@@ -786,7 +786,7 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(idArticulo, idEstado, idStatus, idInventario, fecha_actualizacion) SELECT idArticulo as 'ID articulo', 5 as 'Estado', 2 as 'Status', '{1}' as 'ID Inventario', '0' as 'Fecha Actualización' FROM articulo WHERE idEstado != 4 ORDER BY idArticulo ASC", Tabla_DetalleInvArticulo, idInventario), mysqlCon);
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(idArticulo, idEstado, idStatus, idInventario, fecha_actualizacion) SELECT idArticulo as 'ID articulo', null as 'Estado', 2 as 'Status', '{1}' as 'ID Inventario', '0' as 'Fecha Actualización' FROM articulo WHERE idEstado != 4 ORDER BY idArticulo ASC", Tabla_DetalleInvArticulo, idInventario), mysqlCon);
                 mysqlCmd.ExecuteNonQuery();
             }
         }
