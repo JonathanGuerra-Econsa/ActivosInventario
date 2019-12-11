@@ -116,7 +116,18 @@ namespace Activos
             dt.Columns.Add("Estado");
             dt.Columns.Add("idStatus");
             dt.Columns.Add("idInventario");
+            dt.Columns.Add("Usuario");
+            dt.Columns.Add("idUsuario");
+            dt.Columns.Add("Tipo");
+            dt.Columns.Add("idTipo");
+            dt.Columns.Add("Subgrupo");
+            dt.Columns.Add("idSubgrupo");
+            dt.Columns.Add("Grupo");
+            dt.Columns.Add("idGrupo");
+            dt.Columns.Add("Empresa");
+            dt.Columns.Add("idEmpresa");
             dt.Columns.Add("Fecha de Actualizacion");
+            dt.Columns.Add("idDepartamento");
             MySqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = "SELECT a.idDetalle, " +
                 "ar.descripcion, " +
@@ -126,13 +137,29 @@ namespace Activos
                 "s.nombre, " +
                 "s.idStatus, " +
                 "i.idInventarioActivo, " +
-                "a.fecha_actualizacion " +
+                "u.nombre, " +
+                "u.idUsuario, " +
+                "t.Tipo, " +
+                "t.idTipo, " +
+                "sub.nombre, " +
+                "sub.idSubgrupo, " +
+                "g.nombre, " +
+                "g.idGrupo, " +
+                "em.nombre, " +
+                "em.idEmpresa, " +
+                "a.fecha_actualizacion, " +
+                "u.idDepartamento " +
                 "FROM detalleinvactivo a " +
                 "JOIN activo ar ON a.idActivo = ar.idActivo " +
-                "JOIN estado e ON a.idEstado = e.idEstado " +
+                "LEFT JOIN estado e ON a.idEstado = e.idEstado " +
                 "JOIN status s ON a.idStatus = s.idStatus " +
                 "JOIN inventario_activo i On a.idInventario = i.idInventarioActivo " +
-                "WHERE i.idInventarioActivo = " + id + consulta + " ORDER BY a.idDetalle";
+                "JOIN usuario u ON ar.idUsuario = u.idUsuario " +
+                "JOIN tipo t ON ar.idTipo = t.idTipo " +
+                "JOIN empresa em ON ar.idEmpresa = em.idEmpresa " +
+                "JOIN subgrupo sub ON ar.idSubgrupo = sub.idSubgrupo " +
+                "JOIN grupo g ON sub.idGrupo = g.idGrupo " +
+                "WHERE i.idInventarioActivo = " + id + consulta + " ORDER BY a.idEstado ASC, a.idEstado DESC";
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
@@ -143,12 +170,25 @@ namespace Activos
                     activo["ID"] = reader.GetString(0);
                     activo["Descripcion"] = reader.GetString(1);
                     activo["idActivo"] = reader.GetString(2);
-                    activo["Estado Fisico"] = reader.GetString(3);
-                    activo["idEstado"] = reader.GetString(4);
+                    try { activo["Estado Fisico"] = reader.GetString(3); }
+                    catch { activo["Estado Fisico"] = DBNull.Value; }
+                    try { activo["idEstado"] = reader.GetString(4); }
+                    catch { activo["idEstado"] = DBNull.Value; }
                     activo["Estado"] = reader.GetString(5);
                     activo["idStatus"] = reader.GetString(6);
                     activo["idInventario"] = reader.GetString(7);
-                    activo["Fecha de Actualizacion"] = reader.GetString(8);
+                    activo["Usuario"] = reader.GetString(8);
+                    activo["idUsuario"] = reader.GetString(9);
+                    activo["Tipo"] = reader.GetString(10);
+                    activo["idTipo"] = reader.GetString(11);
+                    activo["Subgrupo"] = reader.GetString(12);
+                    activo["idSubgrupo"] = reader.GetString(13);
+                    activo["Grupo"] = reader.GetString(14);
+                    activo["idGrupo"] = reader.GetString(15);
+                    activo["Empresa"] = reader.GetString(16);
+                    activo["idEmpresa"] = reader.GetString(17);
+                    activo["Fecha de Actualizacion"] = reader.GetMySqlDateTime(18);
+                    activo["idDepartamento"] = reader.GetString(19);
                     dt.Rows.Add(activo);
                 }
             }
@@ -156,11 +196,11 @@ namespace Activos
             return dt;
         }
 
-        public int ActivosRevisados()
+        public int ActivosRevisados(int id)
         {
             int revisados = new int();
             MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT COUNT(*) FROM detalleinvactivo WHERE idStatus = 1";
+            cmd.CommandText = "SELECT COUNT(*) FROM detalleinvactivo WHERE idStatus = 1 AND idInventario = " + id;
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
@@ -174,11 +214,11 @@ namespace Activos
             return revisados;
         }
 
-        public int ActivosNoRevisados()
+        public int ActivosNoRevisados(int id)
         {
             int revisados = new int();
             MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT COUNT(*) FROM detalleinvactivo WHERE idStatus = 2";
+            cmd.CommandText = "SELECT COUNT(*) FROM detalleinvactivo WHERE idStatus = 2 AND idInventario = " + id;
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
@@ -272,7 +312,16 @@ namespace Activos
             dt.Columns.Add("Estado");
             dt.Columns.Add("idStatus");
             dt.Columns.Add("idInventario");
+            dt.Columns.Add("Usuario");
+            dt.Columns.Add("idUsuario");
+            dt.Columns.Add("Tipo");
+            dt.Columns.Add("idTipo");
+            dt.Columns.Add("Grupo");
+            dt.Columns.Add("idGrupo");
+            dt.Columns.Add("Empresa");
+            dt.Columns.Add("idEmpresa");
             dt.Columns.Add("Fecha de Actualizacion");
+            dt.Columns.Add("idDepartamento");
             MySqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = "SELECT a.idDetalle, " +
                 "ar.descripcion, " +
@@ -282,13 +331,26 @@ namespace Activos
                 "s.nombre, " +
                 "s.idStatus, " +
                 "i.idInventarioArticulo, " +
-                "a.fecha_actualizacion " +
+                "u.nombre, " +
+                "u.idUsuario, " +
+                "t.Tipo, " +
+                "t.idTipoArticulo, " +
+                "em.nombre, " +
+                "em.idEmpresa, " +
+                "g.nombre, " +
+                "g.idGrupoArticulo, " +
+                "a.fecha_actualizacion ," +
+                "u.idDepartamento " +
                 "FROM detalleinvarticulo a " +
                 "JOIN articulo ar ON a.idArticulo = ar.idArticulo " +
-                "JOIN estado e ON a.idEstado = e.idEstado " +
+                "LEFT JOIN estado e ON a.idEstado = e.idEstado " +
                 "JOIN status s ON a.idStatus = s.idStatus " +
                 "JOIN inventario_articulo i On a.idInventario = i.idInventarioArticulo " +
-                "WHERE i.idInventarioArticulo = " + id + consulta + " ORDER BY a.idDetalle";
+                "JOIN usuario u ON ar.idUsuario = u.idUsuario " +
+                "JOIN tipo_articulo t ON ar.idTipo = t.idTipoArticulo " +
+                "JOIN empresa em ON ar.idEmpresa = em.idEmpresa " +
+                "JOIN grupo_articulo g ON t.idGrupoArticulo = g.idGrupoArticulo " +
+                "WHERE i.idInventarioArticulo = " + id + consulta + " ORDER BY a.idEstado ASC, a.idEstado DESC";
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
@@ -299,12 +361,23 @@ namespace Activos
                     activo["ID"] = reader.GetString(0);
                     activo["Descripcion"] = reader.GetString(1);
                     activo["idArticulo"] = reader.GetString(2);
-                    activo["Estado Fisico"] = reader.GetString(3);
-                    activo["idEstado"] = reader.GetString(4);
+                    try { activo["Estado Fisico"] = reader.GetString(3); }
+                    catch { activo["Estado Fisico"] = DBNull.Value; }
+                    try { activo["idEstado"] = reader.GetString(4); }
+                    catch { activo["idEstado"] = DBNull.Value; }
                     activo["Estado"] = reader.GetString(5);
                     activo["idStatus"] = reader.GetString(6);
                     activo["idInventario"] = reader.GetString(7);
-                    activo["Fecha de Actualizacion"] = reader.GetString(8);
+                    activo["Usuario"] = reader.GetString(8);
+                    activo["idUsuario"] = reader.GetString(9);
+                    activo["Tipo"] = reader.GetString(10);
+                    activo["idTipo"] = reader.GetString(11);
+                    activo["Empresa"] = reader.GetString(12);
+                    activo["idEmpresa"] = reader.GetString(13);
+                    activo["Grupo"] = reader.GetString(14);
+                    activo["idGrupo"] = reader.GetString(15);
+                    activo["Fecha de Actualizacion"] = reader.GetMySqlDateTime(16);
+                    activo["idDepartamento"] = reader.GetString(17);
                     dt.Rows.Add(activo);
                 }
             }
@@ -312,11 +385,11 @@ namespace Activos
             return dt;
         }
 
-        public int ArticulosRevisados()
+        public int ArticulosRevisados(int id)
         {
             int revisados = new int();
             MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT COUNT(*) FROM detalleinvarticulo WHERE idStatus = 1";
+            cmd.CommandText = "SELECT COUNT(*) FROM detalleinvarticulo WHERE idStatus = 1 AND idInventario = " + id;
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
@@ -330,11 +403,11 @@ namespace Activos
             return revisados;
         }
 
-        public int ArticulosNoRevisados()
+        public int ArticulosNoRevisados(int id)
         {
             int revisados = new int();
             MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT COUNT(*) FROM detalleinvarticulo WHERE idStatus = 2";
+            cmd.CommandText = "SELECT COUNT(*) FROM detalleinvarticulo WHERE idStatus = 2 AND idInventario =" + id;
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
