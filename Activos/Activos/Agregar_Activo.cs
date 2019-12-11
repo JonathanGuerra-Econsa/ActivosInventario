@@ -33,9 +33,14 @@ namespace Activos
                 btnSet.Visible = true;
                 btnEditar.Visible = false;
             }
-            else
+            else if (opcion == 2)
             {
                 metodoMostrar();
+            }
+            else if (opcion == 3)
+            {
+                metodoMostrar();
+                btnEditar.Visible = false;
             }
         }
         //--------------------------------------------------------------------- --------------------------------------------------------------//

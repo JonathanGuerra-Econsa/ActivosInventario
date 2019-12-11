@@ -133,6 +133,16 @@ namespace Activos.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap box__1_ {
+            get {
+                object obj = ResourceManager.GetObject("box (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cancel {
             get {
                 object obj = ResourceManager.GetObject("cancel", resourceCulture);
@@ -296,6 +306,16 @@ namespace Activos.Properties {
         internal static System.Drawing.Bitmap Logo_excel_opt {
             get {
                 object obj = ResourceManager.GetObject("Logo excel_opt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap loupe__2_ {
+            get {
+                object obj = ResourceManager.GetObject("loupe (2)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

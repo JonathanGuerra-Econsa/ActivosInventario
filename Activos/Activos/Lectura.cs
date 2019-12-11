@@ -16,6 +16,8 @@ namespace Activos
         #region Variables
         //----------------------------------------------- * Variables * -------------------------------------------------//
         ConsultasMySQL_JG consultasMySQL = new ConsultasMySQL_JG();
+        int idActivo = 0;
+        int idArticulo = 0;
         //---------------------------------------------------------------------------------------------------------------//
         #endregion
         #region Load()
@@ -25,10 +27,16 @@ namespace Activos
         }
         #endregion
         #region Botón Soporte
-        //---------------------------------------------- * Cuando de da click al botón de soporte * --------------------------------------------------------//
+        //---------------------------------------------- * Cuando le da click al botón de soporte * --------------------------------------------------------//
         private void btnSoporte_Click(object sender, EventArgs e)
         {
-            
+            if (idArticulo != 0 || idActivo != 0)
+            {
+                Agregar_Activo agregar = new Agregar_Activo();
+                agregar.ID = idActivo.ToString();
+                agregar.opcion = 2;
+                agregar.Show();
+            }
         }
         //---------------------------------------------- ---------------------------------------------- --------------------------------------------------------//
         #endregion
@@ -46,11 +54,15 @@ namespace Activos
                     int id = Convert.ToInt32(txtEscaner.Text.Substring(inicio + 1, txtEscaner.Text.Length - (inicio + 1)));
                     if (activo_articulo == "a" || activo_articulo == "A")
                     {
-                        MessageBox.Show("Es un activo con id: " + id);
+                        //MessageBox.Show("Es un activo con id: " + id);
+                        llenarDatosActivo(id.ToString());
+                        idActivo = id;
                     }
                     else if (activo_articulo == "ar" || activo_articulo == "AR")
                     {
-                        MessageBox.Show("Es un artículo con id: " + id);
+                        //MessageBox.Show("Es un artículo con id: " + id);
+                        llenarDatosArticulo(id.ToString());
+                        idArticulo = id;
                     }
                     else
                     {
@@ -64,6 +76,26 @@ namespace Activos
             }
         }
         //----------------------------------------------------------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region llenarDatosActivo()
+        //--------------------------- * Llena los datos del detalle * ------------------------------//
+        private void llenarDatosActivo(string idActivo)
+        {
+            consultasMySQL.detalleActivo(idActivo);
+            lbDescripcion.Text = consultasMySQL.descripcion;
+            lbUsuario.Text = consultasMySQL.usuario;
+        }
+        //------------------------------------------- ------------------------------------------------//
+        #endregion
+        #region llenarDatosArticulo()
+        //--------------------------- * Llena los datos del detalle * ------------------------------//
+        private void llenarDatosArticulo(string idArticulo)
+        {
+            consultasMySQL.detalleArticulo(idArticulo);
+            lbDescripcion.Text = consultasMySQL.descripcion_articulo;
+            lbUsuario.Text = consultasMySQL.usuario_articulo;
+        }
+        //------------------------------------------- ------------------------------------------------//
         #endregion
     }
 }
