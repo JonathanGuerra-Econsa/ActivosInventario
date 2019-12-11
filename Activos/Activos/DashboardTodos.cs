@@ -14,20 +14,21 @@ namespace Activos
 {
     public partial class DashboardTodos : Form
     {
-        public int idA, idAr, opcion;
-        int heightMax, widthMax;
+        public int idA , idAr, opcion;
         ConsultasMysql mysql = new ConsultasMysql(); 
 
         public DashboardTodos()
         {
             InitializeComponent();
-            this.heightMax = Height;
-            this.widthMax = Width;
             MinimizeBox = false;
-            this.CenterToScreen();
+            CenterToScreen();
             DatosActivos();
             DatosArticulos();
             tabControl2.Controls.Remove(tabPage4);
+            if (opcion == 2)
+            {
+                button6.Enabled = false;
+            }
         }
 
         //private void tabControl2_DrawItem(object sender, DrawItemEventArgs e)     //Para poner color a los tabs
@@ -52,31 +53,153 @@ namespace Activos
 
         private void DashboardTodos_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = mysql.consultaActivoDetalle(idA = 1);
+            #region datos de datagrid
+            dataGridView1.DataSource = mysql.consultaActivoDetalle(idA);
             dataGridView1.Columns[2].Visible = false;
             dataGridView1.Columns[4].Visible = false;
             dataGridView1.Columns[6].Visible = false;
             dataGridView1.Columns[7].Visible = false;
+            dataGridView1.Columns[9].Visible = false;
+            dataGridView1.Columns[11].Visible = false;
+            dataGridView1.Columns[13].Visible = false;
+            dataGridView1.Columns[15].Visible = false;
+            dataGridView1.Columns[17].Visible = false;
+            dataGridView1.Columns[19].Visible = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
 
 
-            dataGridView2.DataSource = mysql.consultaArticuloDetalle(idAr = 1);
+            dataGridView2.DataSource = mysql.consultaArticuloDetalle(idAr);
             dataGridView2.Columns[2].Visible = false;
             dataGridView2.Columns[4].Visible = false;
             dataGridView2.Columns[6].Visible = false;
             dataGridView2.Columns[7].Visible = false;
+            dataGridView2.Columns[9].Visible = false;
+            dataGridView2.Columns[11].Visible = false;
+            dataGridView2.Columns[13].Visible = false;
+            dataGridView2.Columns[15].Visible = false;
+            dataGridView2.Columns[17].Visible = false;
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView2.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            #endregion
+
+            #region Combo box de Estado
+            DataTable estados = new DataTable();
+            estados = mysql.estados();
+
+            DataRow nulo3 = estados.NewRow();
+            nulo3["nombre"] = "";
+            nulo3["idE"] = 0;
+            estados.Rows.InsertAt(nulo3, 0);
+
+            nulo3 = estados.NewRow();
+            nulo3["nombre"] = "Sin Revisar";
+            nulo3["idE"] = DBNull.Value;
+            estados.Rows.InsertAt(nulo3, 1);
+
+            cmbEstado.DisplayMember = "nombre";
+            cmbEstado.ValueMember = "idE";
+            cmbEstado.DataSource = estados;
+
+            cmbEstado.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbEstado.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection estadoData = new AutoCompleteStringCollection();
+            foreach (DataRow row in estados.Rows)
+            {
+                estadoData.Add(row["nombre"].ToString());
+            }
+            cmbEstado.AutoCompleteCustomSource = estadoData;
+            #endregion
+
+            #region Combo box de Empresa
+            DataTable empresa = new DataTable();
+            empresa.Columns.Add("idEm", typeof(Int32));
+            empresa.Columns.Add("nombre", typeof(string));
+
+            DataRow nuloem = empresa.NewRow();
+            nuloem["nombre"] = "";
+            nuloem["idEm"] = 0;
+            empresa.Rows.Add(nuloem);
+
+            DataRow unhesa = empresa.NewRow();
+            unhesa["nombre"] = "Unhesa";
+            unhesa["idEm"] = 1;
+            empresa.Rows.Add(unhesa);
+
+            DataRow proquima = empresa.NewRow();
+            proquima["nombre"] = "Proquima";
+            proquima["idEm"] = 2;
+            empresa.Rows.Add(proquima);
+
+            cmbEmpresa.DisplayMember = "nombre";
+            cmbEmpresa.ValueMember = "idEm";
+            cmbEmpresa.DataSource = empresa;
+
+            cmbEmpresa.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbEmpresa.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection empresaData = new AutoCompleteStringCollection();
+            foreach (DataRow row in estados.Rows)
+            {
+                empresaData.Add(row["nombre"].ToString());
+            }
+            cmbEmpresa.AutoCompleteCustomSource = empresaData;
+            #endregion
+
+            #region Combo box de Tipo
+            DataTable tipos = new DataTable();
+            tipos = mysql.tipos();
+
+            DataRow nulo2 = tipos.NewRow();
+            nulo2["nombre"] = "";
+            nulo2["idT"] = 0;
+            tipos.Rows.InsertAt(nulo2, 0);
+
+            cmbTipo.DisplayMember = "nombre";
+            cmbTipo.ValueMember = "idT";
+            cmbTipo.DataSource = tipos;
+
+            cmbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbTipo.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection tipoData = new AutoCompleteStringCollection();
+            foreach (DataRow row in tipos.Rows)
+            {
+                tipoData.Add(row["nombre"].ToString());
+            }
+            cmbTipo.AutoCompleteCustomSource = tipoData;
+            #endregion
+
+            #region Combo box de Departamento
+            DataTable departamentos = new DataTable();
+            departamentos = mysql.departamentos();
+
+            DataRow nulo4 = departamentos.NewRow();
+            nulo4["nombre"] = "";
+            nulo4["idD"] = 0;
+            departamentos.Rows.InsertAt(nulo4, 0);
+
+            cmbDepto.DisplayMember = "nombre";
+            cmbDepto.ValueMember = "idD";
+            cmbDepto.DataSource = departamentos;
+
+            cmbDepto.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbDepto.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection deptoData = new AutoCompleteStringCollection();
+            foreach (DataRow row in departamentos.Rows)
+            {
+                deptoData.Add(row["nombre"].ToString());
+            }
+            cmbDepto.AutoCompleteCustomSource = deptoData;
+            #endregion
         }
 
         private void DatosArticulos()
         {            
-            ArrayList noContados = NoContadosArticulos(), datos = new ArrayList();
+            ArrayList noContados = NoContadosArticulos(idAr), datos = new ArrayList();
             datos.Add("Revisados");
             datos.Add("No Revisados");
             chart1.Series[0].Points.DataBindXY(datos,noContados);
-            label6.Text = ((Convert.ToInt32(noContados[0])*100)/(Convert.ToInt32(noContados[0]) + Convert.ToInt32(noContados[1]))).ToString() + '%';
+            if ((Convert.ToInt32(noContados[0]) + Convert.ToInt32(noContados[1])) != 0) label6.Text = ((Convert.ToInt32(noContados[0]) * 100) / (Convert.ToInt32(noContados[0]) + Convert.ToInt32(noContados[1]))).ToString() + '%';
+            else label6.Text = "0%";
             label3.Text = noContados[0].ToString();
             label9.Text = noContados[1].ToString();
         }
@@ -95,7 +218,7 @@ namespace Activos
 
             }
             if (consulta.ToString() == " AND ") consulta = new StringBuilder();
-            dataGridView1.DataSource = mysql.consultaActivoDetalle(idA = 1,consulta.ToString());
+            dataGridView1.DataSource = mysql.consultaActivoDetalle(idA,consulta.ToString());
         }
 
         private void ArmarConsultaArticulo(object sender, EventArgs e)
@@ -112,9 +235,10 @@ namespace Activos
 
             }
             if (consulta.ToString() == " AND ") consulta = new StringBuilder();
-            dataGridView2.DataSource = mysql.consultaArticuloDetalle(idAr = 1, consulta.ToString());
+            dataGridView2.DataSource = mysql.consultaArticuloDetalle(idAr, consulta.ToString());
         }
 
+        #region Excel
         private void excelAc_Click(object sender, EventArgs e)
         {
             try
@@ -242,43 +366,60 @@ namespace Activos
                 MessageBox.Show(ex.Message);
             }
         }
+        #endregion
 
+        #region botones cambio de tab
         private void button2_Click(object sender, EventArgs e)
         {
             tabControl2.Controls.Add(tabPage4);
-            tabControl2.Controls.Remove(tabPage3);
+            tabControl2.SelectedTab = tabPage4;
+            //tabControl2.Controls.Remove(tabPage3);
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void atrasActivos(object sender, EventArgs e)
         {
-            tabControl2.Controls.Add(tabPage3);
-            tabControl2.Controls.Remove(tabPage4);
+            //tabControl2.Controls.Add(tabPage3);
+            if (tabControl2.SelectedTab != tabPage4)tabControl2.Controls.Remove(tabPage4);
         }
+        #endregion
 
-        private ArrayList NoContadosArticulos()
+        private ArrayList NoContadosArticulos(int id)
         {
             ArrayList noContados = new ArrayList();
-            int cont = mysql.ArticulosRevisados(), noCont = mysql.ArticulosNoRevisados();
+            int cont = mysql.ArticulosRevisados(id), noCont = mysql.ArticulosNoRevisados(id);
             noContados.Add(cont);
             noContados.Add(noCont);
             return noContados;
         }
 
+        private void ActualizarButton(object sender, EventArgs e)
+        {
+            ArmarConsulta(sender, e);
+            DatosActivos();
+        }
+
+        private void ActualizarArticulo(object sender, EventArgs e)
+        {
+            ArmarConsultaArticulo(sender, e);
+            DatosArticulos();
+        }
+
         private void DatosActivos()
         {
-            ArrayList noContados = NoContadosActivos(), datos = new ArrayList();
+            ArrayList noContados = NoContadosActivos(idA), datos = new ArrayList();
             datos.Add("Revisados");
             datos.Add("No Revisados");
             chart2.Series[0].Points.DataBindXY(datos, noContados);
-            label5.Text = ((Convert.ToInt32(noContados[0])*100)/(Convert.ToInt32(noContados[0]) + Convert.ToInt32(noContados[1]))).ToString() + '%';
+            if ((Convert.ToInt32(noContados[0]) + Convert.ToInt32(noContados[1])) != 0) label5.Text = ((Convert.ToInt32(noContados[0]) * 100) / (Convert.ToInt32(noContados[0]) + Convert.ToInt32(noContados[1]))).ToString() + '%';
+            else label5.Text = "0%";
             label2.Text = noContados[0].ToString();
             label7.Text = noContados[1].ToString();
         }
 
-        private ArrayList NoContadosActivos()
+        private ArrayList NoContadosActivos(int id)
         {
             ArrayList noContados = new ArrayList();
-            int cont = mysql.ActivosRevisados(), noCont = mysql.ActivosNoRevisados();
+            int cont = mysql.ActivosRevisados(id), noCont = mysql.ActivosNoRevisados(id);
             noContados.Add(cont);
             noContados.Add(noCont);
             return noContados;
