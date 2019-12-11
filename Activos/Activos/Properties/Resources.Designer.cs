@@ -163,6 +163,16 @@ namespace Activos.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap customer_support {
+            get {
+                object obj = ResourceManager.GetObject("customer-support", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Econsa {
             get {
                 object obj = ResourceManager.GetObject("Econsa", resourceCulture);
