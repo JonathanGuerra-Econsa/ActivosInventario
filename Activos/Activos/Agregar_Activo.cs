@@ -14,8 +14,6 @@ namespace Activos
         #region Variables
         //----------------------------------------------------------*Variables*---------------------------------------------------//
         ConsultasMySQL_JG consultasMySQL =new  ConsultasMySQL_JG();
-        bool detalle = true;
-
         public string ID;
         public int opcion;
         //--------------------------------------------------------------------------------------------------------------------------//
@@ -50,10 +48,6 @@ namespace Activos
             cmbEstado.DisplayMember = "Estado";
             cmbEstado.ValueMember = "ID";
 
-            cmbUsuario.DataSource = consultasMySQL.verUsuarios();
-            cmbUsuario.DisplayMember = "Usuario";
-            cmbUsuario.ValueMember = "ID";
-
             cmbTipo.DataSource = consultasMySQL.verTipos();
             cmbTipo.DisplayMember = "Tipo";
             cmbTipo.ValueMember = "ID";
@@ -65,6 +59,16 @@ namespace Activos
             cmbGrupo.DataSource = consultasMySQL.verGrupos();
             cmbGrupo.DisplayMember = "Nombre";
             cmbGrupo.ValueMember = "ID";
+
+            cmbDepartamento.DataSource = consultasMySQL.verDepartamentos();
+            cmbDepartamento.DisplayMember = "Departamento";
+            cmbDepartamento.ValueMember = "ID";
+
+            string idDepartamento = cmbDepartamento.SelectedValue.ToString();
+            cmbUsuario.Text = "";
+            cmbUsuario.DataSource = consultasMySQL.filtrarUsuarioDep(idDepartamento);
+            cmbUsuario.DisplayMember = "Nombre";
+            cmbUsuario.ValueMember = "ID";
 
             string idGrupo = cmbGrupo.SelectedValue.ToString();
             cmbSubGrupo.DataSource = consultasMySQL.verSubGrupo(idGrupo);
@@ -113,6 +117,7 @@ namespace Activos
             cmbUsuario.Enabled = true;
             cmbGrupo.Enabled = true;
             cmbSubGrupo.Enabled = true;
+            cmbDepartamento.Enabled = true;
             nuValor.Enabled = true;
             txtFPC.Enabled = true;
             dtDepreciacion.Enabled = true;
@@ -165,9 +170,7 @@ namespace Activos
         {
             if(txtDescripcion.Text != "" & cmbEstado.SelectedIndex != -1 & cmbTipo.SelectedIndex != -1 
                 & cmbEmpresa.SelectedIndex != -1 & dtFecha.Value != null & cmbUsuario.SelectedIndex != -1 
-                & cmbSubGrupo.SelectedIndex != -1 & nuValor.Value != 0 & txtFPC.Text != "" & dtDepreciacion.Value != null 
-                & nuPorcentaje.Value != 0 & nuDepreciacionAcumulada.Value != 0 & nuValorResidual.Value != 0
-                & nuValorLibros.Value != 0)
+                & cmbSubGrupo.SelectedIndex != -1 & nuValor.Value != 0 & txtFPC.Text != "" & dtDepreciacion.Value != null )
             {
                 if (MessageBox.Show("Desea guardar este activo?", "Guardar Activo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
@@ -210,8 +213,6 @@ namespace Activos
         {
             string idUsuario = cmbUsuario.SelectedValue.ToString();
             consultasMySQL.buscarUsuario(idUsuario);
-            lbNombreUsuario.Text = consultasMySQL.nombreUsuario;
-            lbDepartamentoUsuario.Text = consultasMySQL.nombreDepartamentoUsuario;
             lbPuesto.Text = consultasMySQL.puestoUsuario;
         }
         //-------------------------------------------------------------------------------------------------//
@@ -222,6 +223,16 @@ namespace Activos
             cmbSubGrupo.DataSource = consultasMySQL.verSubGrupo(idGrupo);
             cmbSubGrupo.DisplayMember = "Nombre";
             cmbSubGrupo.ValueMember = "ID";
+        }
+        //---------------------------------------------------------------------------------------------------//
+        //----------------------------------------cmbDepto----------------------------------------------//
+        private void cmbDepartamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string idDepartamento = cmbDepartamento.SelectedValue.ToString();
+            cmbUsuario.Text = "";
+            cmbUsuario.DataSource = consultasMySQL.filtrarUsuarioDep(idDepartamento);
+            cmbUsuario.DisplayMember = "Nombre";
+            cmbUsuario.ValueMember = "ID";
         }
         //---------------------------------------------------------------------------------------------------//
         #endregion
@@ -237,6 +248,7 @@ namespace Activos
             cmbUsuario.Enabled = false;
             cmbGrupo.Enabled = false;
             cmbSubGrupo.Enabled = false;
+            cmbDepartamento.Enabled = false;
             nuValor.Enabled = false;
             txtFPC.Enabled = false;
             dtDepreciacion.Enabled = false;
@@ -261,10 +273,9 @@ namespace Activos
             cmbEstado.Text= consultasMySQL.estado;
             cmbTipo.Text = consultasMySQL.tipo;
             cmbEmpresa.Text = consultasMySQL.empresa;
+            cmbDepartamento.Text = consultasMySQL.departamentoUsuario;
             dtFecha.Value = Convert.ToDateTime(consultasMySQL.fecha_compra);
             cmbUsuario.Text = consultasMySQL.usuario;
-            lbNombreUsuario.Text = consultasMySQL.usuario;
-            lbDepartamentoUsuario.Text = consultasMySQL.nombreDepartamentoUsuario;
             lbPuesto.Text = consultasMySQL.puestoUsuario;
             cmbGrupo.Text = consultasMySQL.grupo;
             cmbSubGrupo.Text = consultasMySQL.subgrupo;
@@ -277,5 +288,6 @@ namespace Activos
             nuValorLibros.Value = Convert.ToDecimal(consultasMySQL.valorLibros);
         }
         #endregion
+
     }
 }

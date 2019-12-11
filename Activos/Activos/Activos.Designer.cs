@@ -296,11 +296,13 @@
             this.button1.BackColor = System.Drawing.Color.Transparent;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = global::Activos.Properties.Resources.Logo_excel_opt;
             this.button1.Location = new System.Drawing.Point(967, 127);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(91, 52);
             this.button1.TabIndex = 26;
             this.button1.Text = "Imprimir Excel";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -372,9 +374,9 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(70)))), ((int)(((byte)(144)))));
             this.label2.Location = new System.Drawing.Point(6, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 20);
+            this.label2.Size = new System.Drawing.Size(91, 20);
             this.label2.TabIndex = 35;
-            this.label2.Text = "Id del Activo";
+            this.label2.Text = "ID o Código";
             // 
             // timer1
             // 

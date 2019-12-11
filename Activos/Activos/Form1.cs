@@ -42,7 +42,7 @@ namespace Activos
 
         private void btnArticulo_Click(object sender, EventArgs e)
         {
-
+            new Articulos().ShowDialog();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -57,7 +57,7 @@ namespace Activos
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new Articulos().ShowDialog();
+            new DashboardTodos().Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -68,6 +68,12 @@ namespace Activos
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnInventario_Click(object sender, EventArgs e)
+        {
+            Aperturar_Inventario aperturarInventario = new Aperturar_Inventario();
+            aperturarInventario.Show();
         }
     }
 }
