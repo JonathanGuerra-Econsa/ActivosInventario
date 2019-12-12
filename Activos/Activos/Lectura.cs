@@ -18,6 +18,7 @@ namespace Activos
         ConsultasMySQL_JG consultasMySQL = new ConsultasMySQL_JG();
         int idActivo = 0;
         int idArticulo = 0;
+        int idInventario;
         //---------------------------------------------------------------------------------------------------------------//
         #endregion
         #region Load()
@@ -81,9 +82,13 @@ namespace Activos
         //--------------------------- * Llena los datos del detalle * ------------------------------//
         private void llenarDatosActivo(string idActivo)
         {
+            lbUsuario.Visible = true;
+            lbDescripcion.Visible = true;
+            lbEstado.Visible = true;
             consultasMySQL.detalleActivo(idActivo);
             lbDescripcion.Text = consultasMySQL.descripcion;
             lbUsuario.Text = consultasMySQL.usuario;
+            lbEstado.Text = consultasMySQL.estado;
         }
         //------------------------------------------- ------------------------------------------------//
         #endregion
@@ -91,11 +96,21 @@ namespace Activos
         //--------------------------- * Llena los datos del detalle * ------------------------------//
         private void llenarDatosArticulo(string idArticulo)
         {
+            lbUsuario.Visible = true;
+            lbDescripcion.Visible = true;
+            lbEstado.Visible = true;
             consultasMySQL.detalleArticulo(idArticulo);
             lbDescripcion.Text = consultasMySQL.descripcion_articulo;
             lbUsuario.Text = consultasMySQL.usuario_articulo;
+            lbEstado.Text = consultasMySQL.estado_articulo;
         }
         //------------------------------------------- ------------------------------------------------//
+        #endregion
+        #region Carga Inicial
+        private void Lectura_Load(object sender, EventArgs e)
+        {
+
+        }
         #endregion
     }
 }
