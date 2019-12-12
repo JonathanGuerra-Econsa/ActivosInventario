@@ -151,7 +151,7 @@ namespace Activos
                 "u.idDepartamento " +
                 "FROM detalleinvactivo a " +
                 "JOIN activo ar ON a.idActivo = ar.idActivo " +
-                "LEFT JOIN estado e ON a.idEstado = e.idEstado " +
+                "JOIN estado e ON a.idEstado = e.idEstado " +
                 "JOIN status s ON a.idStatus = s.idStatus " +
                 "JOIN inventario_activo i On a.idInventario = i.idInventarioActivo " +
                 "JOIN usuario u ON ar.idUsuario = u.idUsuario " +
@@ -170,10 +170,8 @@ namespace Activos
                     activo["ID"] = reader.GetString(0);
                     activo["Descripcion"] = reader.GetString(1);
                     activo["idActivo"] = reader.GetString(2);
-                    try { activo["Estado Fisico"] = reader.GetString(3); }
-                    catch { activo["Estado Fisico"] = DBNull.Value; }
-                    try { activo["idEstado"] = reader.GetString(4); }
-                    catch { activo["idEstado"] = DBNull.Value; }
+                    activo["Estado Fisico"] = reader.GetString(3);
+                    activo["idEstado"] = reader.GetString(4);
                     activo["Estado"] = reader.GetString(5);
                     activo["idStatus"] = reader.GetString(6);
                     activo["idInventario"] = reader.GetString(7);
@@ -343,7 +341,7 @@ namespace Activos
                 "u.idDepartamento " +
                 "FROM detalleinvarticulo a " +
                 "JOIN articulo ar ON a.idArticulo = ar.idArticulo " +
-                "LEFT JOIN estado e ON a.idEstado = e.idEstado " +
+                "JOIN estado e ON a.idEstado = e.idEstado " +
                 "JOIN status s ON a.idStatus = s.idStatus " +
                 "JOIN inventario_articulo i On a.idInventario = i.idInventarioArticulo " +
                 "JOIN usuario u ON ar.idUsuario = u.idUsuario " +
@@ -361,10 +359,8 @@ namespace Activos
                     activo["ID"] = reader.GetString(0);
                     activo["Descripcion"] = reader.GetString(1);
                     activo["idArticulo"] = reader.GetString(2);
-                    try { activo["Estado Fisico"] = reader.GetString(3); }
-                    catch { activo["Estado Fisico"] = DBNull.Value; }
-                    try { activo["idEstado"] = reader.GetString(4); }
-                    catch { activo["idEstado"] = DBNull.Value; }
+                    activo["Estado Fisico"] = reader.GetString(3);
+                    activo["idEstado"] = reader.GetString(4); 
                     activo["Estado"] = reader.GetString(5);
                     activo["idStatus"] = reader.GetString(6);
                     activo["idInventario"] = reader.GetString(7);
@@ -603,13 +599,36 @@ namespace Activos
             return dt;
         }
 
+        public DataTable status()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("idS", typeof(Int32));
+            dt.Columns.Add("nombre", typeof(string));
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT * FROM status";
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    DataRow categoria = dt.NewRow();
+                    categoria["idS"] = reader.GetInt32(0);
+                    categoria["nombre"] = reader.GetString(1);
+                    dt.Rows.Add(categoria);
+                }
+            }
+            connection.Close();
+            return dt;
+        }
+
         public DataTable tiposArticulo(int idSub)
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("idT", typeof(Int32));
             dt.Columns.Add("nombre", typeof(string));
             MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT * FROM tipo_articulo WHERE idTipoArticulo =" + idSub;
+            cmd.CommandText = "SELECT * FROM tipo_articulo WHERE idGrupoArticulo =" + idSub;
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)

@@ -20,15 +20,6 @@ namespace Activos
         public DashboardTodos()
         {
             InitializeComponent();
-            MinimizeBox = false;
-            CenterToScreen();
-            DatosActivos();
-            DatosArticulos();
-            tabControl2.Controls.Remove(tabPage4);
-            if (opcion == 2)
-            {
-                button6.Enabled = false;
-            }
         }
 
         //private void tabControl2_DrawItem(object sender, DrawItemEventArgs e)     //Para poner color a los tabs
@@ -83,6 +74,54 @@ namespace Activos
             dataGridView2.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
             #endregion
 
+            #region combobox activos
+            #region Combo box de Grupos
+            DataTable grupo = new DataTable();
+            grupo = mysql.grupos();
+
+            DataRow nulo1 = grupo.NewRow();
+            nulo1["nombre"] = "";
+            nulo1["idG"] = 0;
+            grupo.Rows.InsertAt(nulo1, 0);
+
+            cmbGrupo.DisplayMember = "nombre";
+            cmbGrupo.ValueMember = "idG";
+            cmbGrupo.DataSource = grupo;
+
+            cmbGrupo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbGrupo.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection grupoData = new AutoCompleteStringCollection();
+            foreach (DataRow row in grupo.Rows)
+            {
+                grupoData.Add(row["nombre"].ToString());
+            }
+            cmbGrupo.AutoCompleteCustomSource = grupoData;
+            cmbGrupo.SelectedValue = 0;
+            #endregion
+
+            #region Combo box de Status
+            DataTable status = new DataTable();
+            status = mysql.status();
+
+            DataRow nulo10 = status.NewRow();
+            nulo10["nombre"] = "";
+            nulo10["idS"] = 0;
+            status.Rows.InsertAt(nulo10, 0);
+
+            cmbStatus.DisplayMember = "nombre";
+            cmbStatus.ValueMember = "idS";
+            cmbStatus.DataSource = status;
+
+            cmbStatus.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbStatus.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection statusData = new AutoCompleteStringCollection();
+            foreach (DataRow row in status.Rows)
+            {
+                statusData.Add(row["nombre"].ToString());
+            }
+            cmbStatus.AutoCompleteCustomSource = statusData;
+            #endregion
+
             #region Combo box de Estado
             DataTable estados = new DataTable();
             estados = mysql.estados();
@@ -94,7 +133,7 @@ namespace Activos
 
             nulo3 = estados.NewRow();
             nulo3["nombre"] = "Sin Revisar";
-            nulo3["idE"] = DBNull.Value;
+            nulo3["idE"] = -1;
             estados.Rows.InsertAt(nulo3, 1);
 
             cmbEstado.DisplayMember = "nombre";
@@ -189,6 +228,151 @@ namespace Activos
                 deptoData.Add(row["nombre"].ToString());
             }
             cmbDepto.AutoCompleteCustomSource = deptoData;
+            cmbDepto.SelectedValue = 0;
+            #endregion
+            #endregion
+
+            #region combobox articulos
+            #region Combo box de Estado
+            estados = new DataTable();
+            estados = mysql.estados();
+
+            nulo3 = estados.NewRow();
+            nulo3["nombre"] = "";
+            nulo3["idE"] = 0;
+            estados.Rows.InsertAt(nulo3, 0);
+
+            cmbArEstado.DisplayMember = "nombre";
+            cmbArEstado.ValueMember = "idE";
+            cmbArEstado.DataSource = estados;
+
+            cmbArEstado.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbArEstado.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            estadoData = new AutoCompleteStringCollection();
+            foreach (DataRow row in estados.Rows)
+            {
+                estadoData.Add(row["nombre"].ToString());
+            }
+            cmbArEstado.AutoCompleteCustomSource = estadoData;
+            #endregion
+
+            #region Combo box de Departamento
+            departamentos = new DataTable();
+            departamentos = mysql.departamentos();
+
+            nulo4 = departamentos.NewRow();
+            nulo4["nombre"] = "";
+            nulo4["idD"] = 0;
+            departamentos.Rows.InsertAt(nulo4, 0);
+
+            cmbArDepto.DisplayMember = "nombre";
+            cmbArDepto.ValueMember = "idD";
+            cmbArDepto.DataSource = departamentos;
+
+            cmbArDepto.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbArDepto.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            deptoData = new AutoCompleteStringCollection();
+            foreach (DataRow row in departamentos.Rows)
+            {
+                deptoData.Add(row["nombre"].ToString());
+            }
+            cmbArDepto.AutoCompleteCustomSource = deptoData;
+            #endregion
+
+            #region Combo box de Empresa
+            empresa = new DataTable();
+            empresa.Columns.Add("idEm", typeof(Int32));
+            empresa.Columns.Add("nombre", typeof(string));
+
+            nuloem = empresa.NewRow();
+            nuloem["nombre"] = "";
+            nuloem["idEm"] = 0;
+            empresa.Rows.Add(nuloem);
+
+            unhesa = empresa.NewRow();
+            unhesa["nombre"] = "Unhesa";
+            unhesa["idEm"] = 1;
+            empresa.Rows.Add(unhesa);
+
+            proquima = empresa.NewRow();
+            proquima["nombre"] = "Proquima";
+            proquima["idEm"] = 2;
+            empresa.Rows.Add(proquima);
+
+            cmbArEmpresa.DisplayMember = "nombre";
+            cmbArEmpresa.ValueMember = "idEm";
+            cmbArEmpresa.DataSource = empresa;
+
+            cmbArEmpresa.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbArEmpresa.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            empresaData = new AutoCompleteStringCollection();
+            foreach (DataRow row in estados.Rows)
+            {
+                empresaData.Add(row["nombre"].ToString());
+            }
+            cmbArEmpresa.AutoCompleteCustomSource = empresaData;
+            #endregion
+
+            #region Combo box de Status
+            status = new DataTable();
+            status = mysql.status();
+
+            nulo10 = status.NewRow();
+            nulo10["nombre"] = "";
+            nulo10["idS"] = 0;
+            status.Rows.InsertAt(nulo10, 0);
+
+            cmbArStatus.DisplayMember = "nombre";
+            cmbArStatus.ValueMember = "idS";
+            cmbArStatus.DataSource = status;
+
+            cmbArStatus.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbArStatus.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            statusData = new AutoCompleteStringCollection();
+            foreach (DataRow row in status.Rows)
+            {
+                statusData.Add(row["nombre"].ToString());
+            }
+            cmbArStatus.AutoCompleteCustomSource = statusData;
+            #endregion
+
+
+            #region Combo box de Grupo
+            DataTable subgrupo = new DataTable();
+            subgrupo = mysql.gruposAll();
+
+            nulo1 = subgrupo.NewRow();
+            nulo1["Grupo"] = "";
+            nulo1["ID"] = 0;
+            subgrupo.Rows.InsertAt(nulo1, 0);
+
+            cmbArGrupo.DisplayMember = "Grupo";
+            cmbArGrupo.ValueMember = "ID";
+            cmbArGrupo.DataSource = subgrupo;
+
+            cmbArGrupo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbArGrupo.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection subgrupoData = new AutoCompleteStringCollection();
+            foreach (DataRow row in subgrupo.Rows)
+            {
+                subgrupoData.Add(row["Grupo"].ToString());
+            }
+            cmbArGrupo.AutoCompleteCustomSource = subgrupoData;
+            #endregion
+            #endregion
+
+            #region config
+            MinimizeBox = false;
+            MaximizeBox = false;
+            CenterToScreen();
+            DatosActivos();
+            DatosArticulos();
+            tabControl2.Controls.Remove(tabPage4);
+            tabControl1.Controls.Remove(tabPage2);
+            if (opcion == 2)
+            {
+                button7.Enabled = false;
+            }
             #endregion
         }
 
@@ -204,35 +388,45 @@ namespace Activos
             label9.Text = noContados[1].ToString();
         }
 
-        private void ArmarConsulta(object sender, EventArgs e)
-        {
-            StringBuilder consulta = new StringBuilder();
-            consulta.Append(" AND ");
-            if (true)
-            {
-
-            }
-            if (true)
-            {
-                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
-
-            }
-            if (consulta.ToString() == " AND ") consulta = new StringBuilder();
-            dataGridView1.DataSource = mysql.consultaActivoDetalle(idA,consulta.ToString());
-        }
-
         private void ArmarConsultaArticulo(object sender, EventArgs e)
         {
+            if (cmbArGrupo.SelectedValue == null) return;
             StringBuilder consulta = new StringBuilder();
             consulta.Append(" AND ");
-            if (true)
+            if (cmbArEstado.SelectedValue.ToString() != 0.ToString() && cmbArEstado.SelectedValue.ToString() != null)
             {
-               
+                if (Convert.ToInt32(cmbArEstado.SelectedValue) > 0) consulta.Append("e.idEstado = " + cmbArEstado.SelectedValue);
+                else consulta.Append("e.idEstado IS NULL");
             }
-            if (true)
+            if (cmbArEmpresa.SelectedValue.ToString() != 0.ToString() && cmbArEmpresa.SelectedValue.ToString() != null)
             {
                 if (consulta.ToString() != " AND ") consulta.Append(" AND ");
-
+                consulta.Append("em.idEmpresa = " + cmbArEmpresa.SelectedValue);
+            }
+            if (cmbArStatus.SelectedValue.ToString() != 0.ToString() && cmbArStatus.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
+                consulta.Append("s.idStatus = " + cmbArStatus.SelectedValue);
+            }
+            if (cmbArUser.SelectedValue.ToString() != 0.ToString() && cmbArUser.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
+                consulta.Append("u.idUsuario = " + cmbArUser.SelectedValue);
+            }
+            if (cmbArTipo.SelectedValue.ToString() != 0.ToString() && cmbArTipo.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
+                consulta.Append("t.idTipoArticulo = " + cmbArTipo.SelectedValue);
+            }
+            if (cmbArGrupo.SelectedValue.ToString() != 0.ToString() && cmbArGrupo.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
+                consulta.Append("g.idGrupoArticulo = " + cmbArGrupo.SelectedValue);
+            }
+            if (cmbArDepto.SelectedValue.ToString() != 0.ToString() && cmbArDepto.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
+                consulta.Append("u.idDepartamento = " + cmbArDepto.SelectedValue);
             }
             if (consulta.ToString() == " AND ") consulta = new StringBuilder();
             dataGridView2.DataSource = mysql.consultaArticuloDetalle(idAr, consulta.ToString());
@@ -392,10 +586,22 @@ namespace Activos
             return noContados;
         }
 
-        private void ActualizarButton(object sender, EventArgs e)
+        private void button7_Click(object sender, EventArgs e)
         {
-            ArmarConsulta(sender, e);
-            DatosActivos();
+            new Lectura().ShowDialog();
+            ActualizarButton(sender, e);
+            ActualizarArticulo(sender, e);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.SelectedTab = tabPage2;
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab != tabPage2)tabControl1.Controls.Remove(tabPage2);
         }
 
         private void ActualizarArticulo(object sender, EventArgs e)
@@ -404,6 +610,137 @@ namespace Activos
             DatosArticulos();
         }
 
+        #region activos
+
+        private void ArmarConsulta(object sender, EventArgs e)
+        {
+            if (cmbDepto.SelectedValue == null) return;
+            StringBuilder consulta = new StringBuilder();
+            consulta.Append(" AND ");
+            if (cmbEstado.SelectedValue.ToString() != 0.ToString() && cmbEstado.SelectedValue.ToString() != null)
+            {
+                if (Convert.ToInt32(cmbEstado.SelectedValue) > 0)consulta.Append("e.idEstado = " + cmbEstado.SelectedValue);
+                else consulta.Append("e.idEstado IS NULL");
+            }
+            if (cmbEmpresa.SelectedValue.ToString() != 0.ToString() && cmbEmpresa.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
+                consulta.Append("em.idEmpresa = " + cmbEmpresa.SelectedValue);
+            }
+            if (cmbStatus.SelectedValue.ToString() != 0.ToString() && cmbStatus.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
+                consulta.Append("s.idStatus = " + cmbStatus.SelectedValue);
+            }
+            if (cmbUser.SelectedValue.ToString() != 0.ToString() && cmbUser.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
+                consulta.Append("u.idUsuario = " + cmbUser.SelectedValue);
+            }
+            if (cmbTipo.SelectedValue.ToString() != 0.ToString() && cmbTipo.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
+                consulta.Append("t.idTipo = " + cmbTipo.SelectedValue);
+            }
+            if (cmbSubgrupo.SelectedValue.ToString() != 0.ToString() && cmbSubgrupo.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
+                consulta.Append("sub.idSubgrupo = " + cmbSubgrupo.SelectedValue);
+            }
+            if (cmbGrupo.SelectedValue.ToString() != 0.ToString() && cmbGrupo.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
+                consulta.Append("g.idGrupo = " + cmbGrupo.SelectedValue);
+            }
+            if (cmbDepto.SelectedValue.ToString() != 0.ToString() && cmbDepto.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
+                consulta.Append("u.idDepartamento = " + cmbDepto.SelectedValue);
+            }
+            if (consulta.ToString() == " AND ") consulta = new StringBuilder();
+            dataGridView1.DataSource = mysql.consultaActivoDetalle(idA, consulta.ToString());
+        }
+
+        private void ActualizarButton(object sender, EventArgs e)
+        {
+            ArmarConsulta(sender, e);
+            DatosActivos();
+        }
+
+        private void cmbDepto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable usuarios = new DataTable();
+            usuarios = mysql.usuarios(Convert.ToInt32(cmbDepto.SelectedValue));
+
+            DataRow nulo1 = usuarios.NewRow();
+            nulo1["nombre"] = "";
+            nulo1["idU"] = 0;
+            usuarios.Rows.InsertAt(nulo1, 0);
+
+            cmbUser.DisplayMember = "nombre";
+            cmbUser.ValueMember = "idU";
+            cmbUser.DataSource = usuarios;
+
+            cmbUser.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbUser.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection userData = new AutoCompleteStringCollection();
+            foreach (DataRow row in usuarios.Rows)
+            {
+                userData.Add(row["nombre"].ToString());
+            }
+            cmbUser.AutoCompleteCustomSource = userData;
+
+            ArmarConsulta(sender, e);
+        }
+
+        private void cmbGrupo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable subgrupo = new DataTable();
+            subgrupo = mysql.subgrupo(Convert.ToInt32(cmbGrupo.SelectedValue));
+
+            DataRow nulo1 = subgrupo.NewRow();
+            nulo1["nombre"] = "";
+            nulo1["idS"] = 0;
+            subgrupo.Rows.InsertAt(nulo1, 0);
+
+            cmbSubgrupo.DisplayMember = "nombre";
+            cmbSubgrupo.ValueMember = "idS";
+            cmbSubgrupo.DataSource = subgrupo;
+
+            cmbSubgrupo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbSubgrupo.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection subgrupoData = new AutoCompleteStringCollection();
+            foreach (DataRow row in subgrupo.Rows)
+            {
+                subgrupoData.Add(row["nombre"].ToString());
+            }
+            cmbSubgrupo.AutoCompleteCustomSource = subgrupoData;
+
+            ArmarConsulta(sender, e);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            cmbEmpresa.SelectedValue = 0;
+            cmbStatus.SelectedValue = 0;
+            cmbEstado.SelectedValue = 0;
+            cmbUser.SelectedValue = 0;
+            cmbTipo.SelectedValue = 0;
+            cmbSubgrupo.SelectedValue = 0;
+            cmbGrupo.SelectedValue = 0;
+            cmbDepto.SelectedValue = 0;
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            var row = dataGridView1.CurrentRow.Index;
+            Agregar_Activo agregar = new Agregar_Activo();
+            agregar.opcion = 3;
+            agregar.ID = dataGridView1.Rows[row].Cells["idActivo"].Value.ToString();
+            agregar.ShowDialog();
+        }
+        
         private void DatosActivos()
         {
             ArrayList noContados = NoContadosActivos(idA), datos = new ArrayList();
@@ -414,7 +751,7 @@ namespace Activos
             else label5.Text = "0%";
             label2.Text = noContados[0].ToString();
             label7.Text = noContados[1].ToString();
-        }
+        }        
 
         private ArrayList NoContadosActivos(int id)
         {
@@ -424,5 +761,81 @@ namespace Activos
             noContados.Add(noCont);
             return noContados;
         }
+        #endregion
+
+        #region articulos
+        private void cmbArGrupo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable tipos = new DataTable();
+            tipos = mysql.tiposArticulo(Convert.ToInt32(cmbArGrupo.SelectedValue));
+
+            DataRow nulo1 = tipos.NewRow();
+            nulo1["nombre"] = "";
+            nulo1["idT"] = 0;
+            tipos.Rows.InsertAt(nulo1, 0);
+
+            cmbArTipo.DisplayMember = "nombre";
+            cmbArTipo.ValueMember = "idT";
+            cmbArTipo.DataSource = tipos;
+
+            cmbArTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbArTipo.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection tipoData = new AutoCompleteStringCollection();
+            foreach (DataRow row in tipos.Rows)
+            {
+                tipoData.Add(row["nombre"].ToString());
+            }
+            cmbArTipo.AutoCompleteCustomSource = tipoData;
+
+            ArmarConsulta(sender, e);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            cmbArEstado.SelectedValue = 0;
+            cmbArStatus.SelectedValue = 0;
+            cmbArEmpresa.SelectedValue = 0;
+            cmbArDepto.SelectedValue = 0;
+            cmbArUser.SelectedValue = 0;
+            cmbArGrupo.SelectedValue = 0;
+            cmbArTipo.SelectedValue = 0;
+        }
+
+        private void cmbArDepto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable usuarios = new DataTable();
+            usuarios = mysql.usuarios(Convert.ToInt32(cmbArDepto.SelectedValue));
+
+            DataRow nulo1 = usuarios.NewRow();
+            nulo1["nombre"] = "";
+            nulo1["idU"] = 0;
+            usuarios.Rows.InsertAt(nulo1, 0);
+
+            cmbArUser.DisplayMember = "nombre";
+            cmbArUser.ValueMember = "idU";
+            cmbArUser.DataSource = usuarios;
+
+            cmbArUser.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbArUser.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection userData = new AutoCompleteStringCollection();
+            foreach (DataRow row in usuarios.Rows)
+            {
+                userData.Add(row["nombre"].ToString());
+            }
+            cmbArUser.AutoCompleteCustomSource = userData;
+
+            ArmarConsulta(sender, e);
+        }
+
+        private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            var row = dataGridView2.CurrentRow.Index;
+            Agregar_Articulo agregar = new Agregar_Articulo();
+            agregar.opcion = 3;
+            agregar.ID = Convert.ToInt32(dataGridView2.Rows[row].Cells["idArticulo"].Value);
+            agregar.ShowDialog();
+        }
+        #endregion
     }
 }
