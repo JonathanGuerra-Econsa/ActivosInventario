@@ -18,7 +18,7 @@ namespace Activos
         ConsultasMySQL_JG consultasMySQL = new ConsultasMySQL_JG();
         int idActivo = 0;
         int idArticulo = 0;
-        int idInventario;
+        public int invIdAc, invIdArt;
         //---------------------------------------------------------------------------------------------------------------//
         #endregion
         #region Load()
