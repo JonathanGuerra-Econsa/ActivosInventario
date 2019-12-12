@@ -33,9 +33,14 @@ namespace Activos
                 label8.Visible = false;
                 lbID.Visible = false;
             }
-            else
+            else if (opcion == 2)
             {
                 vistaDetalle();
+            }
+            else if (opcion == 3)
+            {
+                vistaDetalle();
+                btnEditar.Visible = false;
             }
         }
         //---------------------------------------------------------------------------  -------------------------------------------------------------------------------//

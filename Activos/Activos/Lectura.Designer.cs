@@ -34,10 +34,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnSoporte = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lbTituloDescripcion = new System.Windows.Forms.Label();
-            this.lbDescripcion = new System.Windows.Forms.Label();
+            this.lbEstado = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.lbUsuario = new System.Windows.Forms.Label();
             this.lbTituloUsuario = new System.Windows.Forms.Label();
+            this.lbDescripcion = new System.Windows.Forms.Label();
+            this.lbTituloDescripcion = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,6 +93,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.lbEstado);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.lbUsuario);
             this.groupBox1.Controls.Add(this.lbTituloUsuario);
             this.groupBox1.Controls.Add(this.lbDescripcion);
@@ -103,27 +107,28 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalle";
             // 
-            // lbTituloDescripcion
+            // lbEstado
             // 
-            this.lbTituloDescripcion.AutoSize = true;
-            this.lbTituloDescripcion.BackColor = System.Drawing.Color.Transparent;
-            this.lbTituloDescripcion.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTituloDescripcion.Location = new System.Drawing.Point(24, 33);
-            this.lbTituloDescripcion.Name = "lbTituloDescripcion";
-            this.lbTituloDescripcion.Size = new System.Drawing.Size(80, 17);
-            this.lbTituloDescripcion.TabIndex = 6;
-            this.lbTituloDescripcion.Text = "Descripción:";
+            this.lbEstado.AutoSize = true;
+            this.lbEstado.BackColor = System.Drawing.Color.Transparent;
+            this.lbEstado.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEstado.Location = new System.Drawing.Point(22, 174);
+            this.lbEstado.Name = "lbEstado";
+            this.lbEstado.Size = new System.Drawing.Size(69, 25);
+            this.lbEstado.TabIndex = 9;
+            this.lbEstado.Text = "Estado";
+            this.lbEstado.Visible = false;
             // 
-            // lbDescripcion
+            // label4
             // 
-            this.lbDescripcion.AutoSize = true;
-            this.lbDescripcion.BackColor = System.Drawing.Color.Transparent;
-            this.lbDescripcion.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDescripcion.Location = new System.Drawing.Point(22, 50);
-            this.lbDescripcion.Name = "lbDescripcion";
-            this.lbDescripcion.Size = new System.Drawing.Size(112, 25);
-            this.lbDescripcion.TabIndex = 6;
-            this.lbDescripcion.Text = "Descripción";
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(24, 157);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 17);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Estado:";
             // 
             // lbUsuario
             // 
@@ -135,6 +140,7 @@
             this.lbUsuario.Size = new System.Drawing.Size(77, 25);
             this.lbUsuario.TabIndex = 7;
             this.lbUsuario.Text = "Usuario";
+            this.lbUsuario.Visible = false;
             // 
             // lbTituloUsuario
             // 
@@ -146,6 +152,29 @@
             this.lbTituloUsuario.Size = new System.Drawing.Size(57, 17);
             this.lbTituloUsuario.TabIndex = 8;
             this.lbTituloUsuario.Text = "Usuario:";
+            // 
+            // lbDescripcion
+            // 
+            this.lbDescripcion.AutoSize = true;
+            this.lbDescripcion.BackColor = System.Drawing.Color.Transparent;
+            this.lbDescripcion.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDescripcion.Location = new System.Drawing.Point(22, 50);
+            this.lbDescripcion.Name = "lbDescripcion";
+            this.lbDescripcion.Size = new System.Drawing.Size(112, 25);
+            this.lbDescripcion.TabIndex = 6;
+            this.lbDescripcion.Text = "Descripción";
+            this.lbDescripcion.Visible = false;
+            // 
+            // lbTituloDescripcion
+            // 
+            this.lbTituloDescripcion.AutoSize = true;
+            this.lbTituloDescripcion.BackColor = System.Drawing.Color.Transparent;
+            this.lbTituloDescripcion.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTituloDescripcion.Location = new System.Drawing.Point(24, 33);
+            this.lbTituloDescripcion.Name = "lbTituloDescripcion";
+            this.lbTituloDescripcion.Size = new System.Drawing.Size(80, 17);
+            this.lbTituloDescripcion.TabIndex = 6;
+            this.lbTituloDescripcion.Text = "Descripción:";
             // 
             // Lectura
             // 
@@ -165,6 +194,7 @@
             this.Name = "Lectura";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lectura";
+            this.Load += new System.EventHandler(this.Lectura_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -183,5 +213,7 @@
         private System.Windows.Forms.Label lbTituloUsuario;
         private System.Windows.Forms.Label lbDescripcion;
         private System.Windows.Forms.Label lbTituloDescripcion;
+        private System.Windows.Forms.Label lbEstado;
+        private System.Windows.Forms.Label label4;
     }
 }
