@@ -15,7 +15,7 @@ namespace Activos
     public partial class DashboardArticulo : Form
     {
 
-        public int idAr= 2, opcion;
+        public int idAr, opcion;
         ConsultasMysql mysql = new ConsultasMysql();
 
         public DashboardArticulo()
