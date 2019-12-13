@@ -12,7 +12,7 @@ namespace Activos
     {
         #region Variables
         //----------------------------------------------*Variables Gloables*--------------------------------------------//
-        string connectionString = @"Server=192.168.0.5;Database=activos;Uid=hola;Pwd=;port=3306;";
+        string connectionString = @"Server=192.168.0.5;Database=activos;Uid=hola;Pwd=;port=3306;Convert Zero Datetime=True;";
         string Tabla_Departamento = "departamento";
         string Tabla_Usuario = "usuario";
         string Tabla_Tipo = "tipo";
@@ -63,6 +63,8 @@ namespace Activos
         public string fecha_articulo;
         public string valor_articulo;
         public string fpc_articulo;
+        public string fisico_articulo;
+        public string inv_articulo;
         //---------------------------------------------------------------------------------------------------------------------------------//
         #endregion
         #region Plantilla ;)
@@ -874,6 +876,51 @@ namespace Activos
             return idArticulo;
         }
         //----------------------------------------------- -------------------------------------------------//
+        #endregion
+        #region DataArtículo
+        //----------------------------- * Trae la información que necesito de artículo * ------------------------------//
+        public void traerArticulo(string idArticulo, string idInvArticulo)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("" +
+                    "SELECT " +
+                    "dART.idDetalle, " +
+                    "ar.descripcion as 'Articulo', " +
+                    "u.nombre as 'Usuario', " +
+                    "e.nombre as 'Estado', " +
+                    "s.nombre as 'Status', " +
+                    "inv.nombre as 'Inventario', " +
+                    "dArt.fecha_actualizacion as 'Fecha' " +
+                    "FROM detalleinvarticulo dArt " +
+                    "INNER JOIN articulo ar ON dArt.idArticulo = ar.idArticulo " +
+                    "INNER JOIN usuario u ON ar.idUsuario = u.idUsuario " +
+                    "INNER JOIN estado e ON ar.idEstado = e.idEstado " +
+                    "INNER JOIN status s ON s.idStatus = dArt.idStatus " +
+                    "INNER JOIN inventario_articulo inv ON inv.idInventarioArticulo = dArt.idInventario " +
+                    "WHERE dArt.idArticulo = '{0}' AND dArt.idInventario = '{1}' " +
+                    "ORDER BY `dArt`.`idDetalle` ASC", idArticulo, idInvArticulo), mysqlCon); 
+                MySqlDataReader read = mysqlCmd.ExecuteReader();
+                while (read.Read())
+                {
+                    descripcion_articulo = read["Articulo"].ToString();
+                    usuario_articulo = read["Usuario"].ToString();
+                    estado_articulo = read["Estado"].ToString();
+                    fisico_articulo = read["Status"].ToString();
+                    inv_articulo = read["Inventario"].ToString();
+                    if (read["Fecha"].ToString() == "1/01/0001 00:00:00")
+                    {
+                        fecha_articulo = "Sin actualizaciones";
+                    }
+                    else
+                    {
+                        fecha_articulo = read["Fecha"].ToString();
+                    }
+                }
+            }
+        }
+        //------------------------------------------------------- ----------------------------------------------------------//
         #endregion
     }
 }

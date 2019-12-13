@@ -121,14 +121,14 @@
   <data name="FONDO 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FONDO 1.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="article" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\article.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="cashier" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cashier.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="box (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\box (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="loupe (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\loupe (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="man (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\man (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -196,8 +196,8 @@
   <data name="FONDO 4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FONDO 4.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Econsa" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Econsa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="article" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\article.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="return-arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\return-arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -208,6 +208,9 @@
   <data name="left-arrow-in-circular-button-black-symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\left-arrow-in-circular-button-black-symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Econsa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Econsa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Logo excel_opt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Logo excel_opt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -217,7 +220,7 @@
   <data name="file1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\file1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="loupe (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\loupe (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="validation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\validation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
