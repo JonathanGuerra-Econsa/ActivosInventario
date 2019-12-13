@@ -123,6 +123,12 @@
     <Compile Include="Control_GrupoArticulo.Designer.cs">
       <DependentUpon>Control_GrupoArticulo.cs</DependentUpon>
     </Compile>
+    <Compile Include="DahsboardActivos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DahsboardActivos.Designer.cs">
+      <DependentUpon>DahsboardActivos.cs</DependentUpon>
+    </Compile>
     <Compile Include="DashboardTodos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Control_GrupoArticulo.resx">
       <DependentUpon>Control_GrupoArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DahsboardActivos.resx">
+      <DependentUpon>DahsboardActivos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DashboardTodos.resx">
       <DependentUpon>DashboardTodos.cs</DependentUpon>
