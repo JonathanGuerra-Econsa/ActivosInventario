@@ -131,11 +131,6 @@ namespace Activos
             nulo3["idE"] = 0;
             estados.Rows.InsertAt(nulo3, 0);
 
-            nulo3 = estados.NewRow();
-            nulo3["nombre"] = "Sin Revisar";
-            nulo3["idE"] = -1;
-            estados.Rows.InsertAt(nulo3, 1);
-
             cmbEstado.DisplayMember = "nombre";
             cmbEstado.ValueMember = "idE";
             cmbEstado.DataSource = estados;
@@ -375,63 +370,7 @@ namespace Activos
             }
             #endregion
         }
-
-        private void DatosArticulos()
-        {            
-            ArrayList noContados = NoContadosArticulos(idAr), datos = new ArrayList();
-            datos.Add("Revisados");
-            datos.Add("No Revisados");
-            chart1.Series[0].Points.DataBindXY(datos,noContados);
-            if ((Convert.ToInt32(noContados[0]) + Convert.ToInt32(noContados[1])) != 0) label6.Text = ((Convert.ToInt32(noContados[0]) * 100) / (Convert.ToInt32(noContados[0]) + Convert.ToInt32(noContados[1]))).ToString() + '%';
-            else label6.Text = "0%";
-            label3.Text = noContados[0].ToString();
-            label9.Text = noContados[1].ToString();
-        }
-
-        private void ArmarConsultaArticulo(object sender, EventArgs e)
-        {
-            if (cmbArGrupo.SelectedValue == null) return;
-            StringBuilder consulta = new StringBuilder();
-            consulta.Append(" AND ");
-            if (cmbArEstado.SelectedValue.ToString() != 0.ToString() && cmbArEstado.SelectedValue.ToString() != null)
-            {
-                if (Convert.ToInt32(cmbArEstado.SelectedValue) > 0) consulta.Append("e.idEstado = " + cmbArEstado.SelectedValue);
-                else consulta.Append("e.idEstado IS NULL");
-            }
-            if (cmbArEmpresa.SelectedValue.ToString() != 0.ToString() && cmbArEmpresa.SelectedValue.ToString() != null)
-            {
-                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
-                consulta.Append("em.idEmpresa = " + cmbArEmpresa.SelectedValue);
-            }
-            if (cmbArStatus.SelectedValue.ToString() != 0.ToString() && cmbArStatus.SelectedValue.ToString() != null)
-            {
-                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
-                consulta.Append("s.idStatus = " + cmbArStatus.SelectedValue);
-            }
-            if (cmbArUser.SelectedValue.ToString() != 0.ToString() && cmbArUser.SelectedValue.ToString() != null)
-            {
-                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
-                consulta.Append("u.idUsuario = " + cmbArUser.SelectedValue);
-            }
-            if (cmbArTipo.SelectedValue.ToString() != 0.ToString() && cmbArTipo.SelectedValue.ToString() != null)
-            {
-                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
-                consulta.Append("t.idTipoArticulo = " + cmbArTipo.SelectedValue);
-            }
-            if (cmbArGrupo.SelectedValue.ToString() != 0.ToString() && cmbArGrupo.SelectedValue.ToString() != null)
-            {
-                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
-                consulta.Append("g.idGrupoArticulo = " + cmbArGrupo.SelectedValue);
-            }
-            if (cmbArDepto.SelectedValue.ToString() != 0.ToString() && cmbArDepto.SelectedValue.ToString() != null)
-            {
-                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
-                consulta.Append("u.idDepartamento = " + cmbArDepto.SelectedValue);
-            }
-            if (consulta.ToString() == " AND ") consulta = new StringBuilder();
-            dataGridView2.DataSource = mysql.consultaArticuloDetalle(idAr, consulta.ToString());
-        }
-
+        
         #region Excel
         private void excelAc_Click(object sender, EventArgs e)
         {
@@ -576,19 +515,13 @@ namespace Activos
             if (tabControl2.SelectedTab != tabPage4)tabControl2.Controls.Remove(tabPage4);
         }
         #endregion
-
-        private ArrayList NoContadosArticulos(int id)
-        {
-            ArrayList noContados = new ArrayList();
-            int cont = mysql.ArticulosRevisados(id), noCont = mysql.ArticulosNoRevisados(id);
-            noContados.Add(cont);
-            noContados.Add(noCont);
-            return noContados;
-        }
-
+        
         private void button7_Click(object sender, EventArgs e)
         {
-            new Lectura().ShowDialog();
+            Lectura lectura = new Lectura();
+            lectura.invIdAc = idA;
+            lectura.invIdArt = idAr;
+            lectura.ShowDialog();
             ActualizarButton(sender, e);
             ActualizarArticulo(sender, e);
         }
@@ -764,6 +697,71 @@ namespace Activos
         #endregion
 
         #region articulos
+        private ArrayList NoContadosArticulos(int id)
+        {
+            ArrayList noContados = new ArrayList();
+            int cont = mysql.ArticulosRevisados(id), noCont = mysql.ArticulosNoRevisados(id);
+            noContados.Add(cont);
+            noContados.Add(noCont);
+            return noContados;
+        }
+
+        private void DatosArticulos()
+        {
+            ArrayList noContados = NoContadosArticulos(idAr), datos = new ArrayList();
+            datos.Add("Revisados");
+            datos.Add("No Revisados");
+            chart1.Series[0].Points.DataBindXY(datos, noContados);
+            if ((Convert.ToInt32(noContados[0]) + Convert.ToInt32(noContados[1])) != 0) label6.Text = ((Convert.ToInt32(noContados[0]) * 100) / (Convert.ToInt32(noContados[0]) + Convert.ToInt32(noContados[1]))).ToString() + '%';
+            else label6.Text = "0%";
+            label3.Text = noContados[0].ToString();
+            label9.Text = noContados[1].ToString();
+        }
+
+        private void ArmarConsultaArticulo(object sender, EventArgs e)
+        {
+            if (cmbArGrupo.SelectedValue == null) return;
+            StringBuilder consulta = new StringBuilder();
+            consulta.Append(" AND ");
+            if (cmbArEstado.SelectedValue.ToString() != 0.ToString() && cmbArEstado.SelectedValue.ToString() != null)
+            {
+                if (Convert.ToInt32(cmbArEstado.SelectedValue) > 0) consulta.Append("e.idEstado = " + cmbArEstado.SelectedValue);
+                else consulta.Append("e.idEstado IS NULL");
+            }
+            if (cmbArEmpresa.SelectedValue.ToString() != 0.ToString() && cmbArEmpresa.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
+                consulta.Append("em.idEmpresa = " + cmbArEmpresa.SelectedValue);
+            }
+            if (cmbArStatus.SelectedValue.ToString() != 0.ToString() && cmbArStatus.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
+                consulta.Append("s.idStatus = " + cmbArStatus.SelectedValue);
+            }
+            if (cmbArUser.SelectedValue.ToString() != 0.ToString() && cmbArUser.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
+                consulta.Append("u.idUsuario = " + cmbArUser.SelectedValue);
+            }
+            if (cmbArTipo.SelectedValue.ToString() != 0.ToString() && cmbArTipo.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
+                consulta.Append("t.idTipoArticulo = " + cmbArTipo.SelectedValue);
+            }
+            if (cmbArGrupo.SelectedValue.ToString() != 0.ToString() && cmbArGrupo.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
+                consulta.Append("g.idGrupoArticulo = " + cmbArGrupo.SelectedValue);
+            }
+            if (cmbArDepto.SelectedValue.ToString() != 0.ToString() && cmbArDepto.SelectedValue.ToString() != null)
+            {
+                if (consulta.ToString() != " AND ") consulta.Append(" AND ");
+                consulta.Append("u.idDepartamento = " + cmbArDepto.SelectedValue);
+            }
+            if (consulta.ToString() == " AND ") consulta = new StringBuilder();
+            dataGridView2.DataSource = mysql.consultaArticuloDetalle(idAr, consulta.ToString());
+        }
+
         private void cmbArGrupo_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable tipos = new DataTable();
@@ -799,6 +797,11 @@ namespace Activos
             cmbArUser.SelectedValue = 0;
             cmbArGrupo.SelectedValue = 0;
             cmbArTipo.SelectedValue = 0;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
         private void cmbArDepto_SelectedIndexChanged(object sender, EventArgs e)
