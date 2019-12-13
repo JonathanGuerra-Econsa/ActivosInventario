@@ -159,7 +159,7 @@ namespace Activos
                 "JOIN empresa em ON ar.idEmpresa = em.idEmpresa " +
                 "JOIN subgrupo sub ON ar.idSubgrupo = sub.idSubgrupo " +
                 "JOIN grupo g ON sub.idGrupo = g.idGrupo " +
-                "WHERE i.idInventarioActivo = " + id + consulta + " ORDER BY a.idEstado ASC, a.idEstado DESC";
+                "WHERE i.idInventarioActivo = " + id + consulta + " ORDER BY a.idDetalle ASC, a.idEstado DESC";
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
@@ -348,7 +348,7 @@ namespace Activos
                 "JOIN tipo_articulo t ON ar.idTipo = t.idTipoArticulo " +
                 "JOIN empresa em ON ar.idEmpresa = em.idEmpresa " +
                 "JOIN grupo_articulo g ON t.idGrupoArticulo = g.idGrupoArticulo " +
-                "WHERE i.idInventarioArticulo = " + id + consulta + " ORDER BY a.idEstado ASC, a.idEstado DESC";
+                "WHERE i.idInventarioArticulo = " + id + consulta + " ORDER BY a.idDetalle ASC, a.idEstado DESC";
             connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.HasRows)
