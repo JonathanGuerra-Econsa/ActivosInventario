@@ -201,6 +201,9 @@
     <EmbeddedResource Include="DahsboardActivos.resx">
       <DependentUpon>DahsboardActivos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DashboardArticulo.resx">
+      <DependentUpon>DashboardArticulo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DashboardTodos.resx">
       <DependentUpon>DashboardTodos.cs</DependentUpon>
     </EmbeddedResource>

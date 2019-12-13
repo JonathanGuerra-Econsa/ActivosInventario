@@ -57,7 +57,7 @@ namespace Activos
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //new art().Show();
+            new DashboardArticulo().ShowDialog();
         }
 
         private void Form1_Load(object sender, EventArgs e)

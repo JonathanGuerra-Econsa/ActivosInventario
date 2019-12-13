@@ -22,6 +22,7 @@ namespace Activos
             InitializeComponent();
         }
 
+        #region Para poner color a los tabs, no esta en uso
         //private void tabControl2_DrawItem(object sender, DrawItemEventArgs e)     //Para poner color a los tabs
         //{
         //    switch (e.Index)
@@ -41,6 +42,7 @@ namespace Activos
         //    paddedBounds.Inflate(-2, -2);
         //    e.Graphics.DrawString(tabControl1.TabPages[e.Index].Text, this.Font, SystemBrushes.HighlightText, paddedBounds);
         //}
+        #endregion
 
         private void DashboardTodos_Load(object sender, EventArgs e)
         {
