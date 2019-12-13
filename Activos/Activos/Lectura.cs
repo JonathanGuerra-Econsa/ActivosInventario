@@ -18,7 +18,8 @@ namespace Activos
         ConsultasMySQL_JG consultasMySQL = new ConsultasMySQL_JG();
         int idActivo = 0;
         int idArticulo = 0;
-        public int invIdAc, invIdArt;
+        public int invIdAc;
+        public int invIdArt = 25;
         //---------------------------------------------------------------------------------------------------------------//
         #endregion
         #region Load()
@@ -33,10 +34,10 @@ namespace Activos
         {
             if (idArticulo != 0 || idActivo != 0)
             {
-                Agregar_Activo agregar = new Agregar_Activo();
-                agregar.ID = idActivo.ToString();
-                agregar.opcion = 2;
-                agregar.Show();
+                cmbEstados.Visible = true;
+                lbEstado.Visible = false;
+                btnActualizar.Visible = true;
+                btnSoporte.Visible = false;
             }
         }
         //---------------------------------------------- ---------------------------------------------- --------------------------------------------------------//
@@ -99,18 +100,41 @@ namespace Activos
             lbUsuario.Visible = true;
             lbDescripcion.Visible = true;
             lbEstado.Visible = true;
-            consultasMySQL.detalleArticulo(idArticulo);
+            lbStatus.Visible = true;
+            lbInventario.Visible = true;
+            lbFecha.Visible = true;
+            consultasMySQL.traerArticulo(idArticulo, Convert.ToString(invIdArt));
             lbDescripcion.Text = consultasMySQL.descripcion_articulo;
             lbUsuario.Text = consultasMySQL.usuario_articulo;
             lbEstado.Text = consultasMySQL.estado_articulo;
+            lbStatus.Text = consultasMySQL.fisico_articulo;
+            lbInventario.Text = consultasMySQL.inv_articulo;
+            lbFecha.Text = consultasMySQL.fecha_articulo;
         }
         //------------------------------------------- ------------------------------------------------//
         #endregion
         #region Carga Inicial
         private void Lectura_Load(object sender, EventArgs e)
         {
-
+            cmbEstados.DataSource = consultasMySQL.verEstados();
+            cmbEstados.DisplayMember = "Estado";
+            cmbEstados.ValueMember = "ID";
         }
         #endregion
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            if (cmbEstados.SelectedItem != null)
+            {
+                if (MessageBox.Show("Desea cambiar este artículo a un esado físico " + cmbEstados.Text + "?", "Revisar Artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string fecha = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    string estado = cmbEstados.SelectedValue.ToString();
+                    string idStatus = "1";
+                    string idInventarioArticulo = invIdArt.ToString();
+                    string idInventarioActivo = invIdAc.ToString();
+                }
+            }
+        }
     }
 }
