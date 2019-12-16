@@ -65,6 +65,7 @@ namespace Activos
         public string fpc_articulo;
         public string fisico_articulo;
         public string inv_articulo;
+        public string idDetalleArticulo;
         //---------------------------------------------------------------------------------------------------------------------------------//
         #endregion
         #region Plantilla ;)
@@ -886,7 +887,7 @@ namespace Activos
                 mysqlCon.Open();
                 MySqlCommand mysqlCmd = new MySqlCommand(string.Format("" +
                     "SELECT " +
-                    "dART.idDetalle, " +
+                    "dART.idDetalle as 'Detalle', " +
                     "ar.descripcion as 'Articulo', " +
                     "u.nombre as 'Usuario', " +
                     "e.nombre as 'Estado', " +
@@ -904,6 +905,7 @@ namespace Activos
                 MySqlDataReader read = mysqlCmd.ExecuteReader();
                 while (read.Read())
                 {
+                    idDetalleArticulo = read["Detalle"].ToString();
                     descripcion_articulo = read["Articulo"].ToString();
                     usuario_articulo = read["Usuario"].ToString();
                     estado_articulo = read["Estado"].ToString();

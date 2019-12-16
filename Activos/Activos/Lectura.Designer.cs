@@ -49,6 +49,7 @@
             this.lbFecha = new System.Windows.Forms.Label();
             this.cmbEstados = new System.Windows.Forms.ComboBox();
             this.btnActualizar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -299,6 +300,22 @@
             this.btnActualizar.Visible = false;
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnCancelar.Image = global::Activos.Properties.Resources.cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(447, 382);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(172, 82);
+            this.btnCancelar.TabIndex = 17;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Visible = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // Lectura
             // 
             this.AcceptButton = this.btnSoporte;
@@ -307,6 +324,7 @@
             this.BackgroundImage = global::Activos.Properties.Resources.FONDO_4;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(806, 508);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -351,5 +369,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbFecha;
         private System.Windows.Forms.Button btnActualizar;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }
