@@ -38,6 +38,8 @@ namespace Activos
                 lbEstado.Visible = false;
                 btnActualizar.Visible = true;
                 btnSoporte.Visible = false;
+                txtEscaner.Enabled = false;
+                btnCancelar.Visible = true;
             }
         }
         //---------------------------------------------- ---------------------------------------------- --------------------------------------------------------//
@@ -110,6 +112,16 @@ namespace Activos
             lbStatus.Text = consultasMySQL.fisico_articulo;
             lbInventario.Text = consultasMySQL.inv_articulo;
             lbFecha.Text = consultasMySQL.fecha_articulo;
+            if(lbStatus.Text == "Revisado")
+            {
+                btnSoporte.Text = "Revisado";
+                btnSoporte.Enabled = false;
+            }
+            else
+            {
+                btnSoporte.Text = "Revisar";
+                btnSoporte.Enabled = true;
+            }
         }
         //------------------------------------------- ------------------------------------------------//
         #endregion
@@ -133,8 +145,27 @@ namespace Activos
                     string idStatus = "1";
                     string idInventarioArticulo = invIdArt.ToString();
                     string idInventarioActivo = invIdAc.ToString();
+                    string idDetalle = consultasMySQL.idDetalleArticulo;
+                    try
+                    {
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
                 }
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            btnCancelar.Visible = false;
+            txtEscaner.Enabled = true;
+            btnActualizar.Visible = false;
+            cmbEstados.Visible = false;
+            btnSoporte.Visible = true;
+            lbEstado.Visible = true;
         }
     }
 }
