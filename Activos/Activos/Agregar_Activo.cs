@@ -15,7 +15,7 @@ namespace Activos
         //----------------------------------------------------------*Variables*---------------------------------------------------//
         ConsultasMySQL_JG consultasMySQL =new  ConsultasMySQL_JG();
         public string ID;
-        public int opcion;
+        public int opcion, inventario;
         //--------------------------------------------------------------------------------------------------------------------------//
         #endregion
         #region Load
@@ -40,7 +40,8 @@ namespace Activos
             else if (opcion == 3)
             {
                 metodoMostrar();
-                btnEditar.Visible = false;
+                btnEditar.Visible = true;
+                btnEditar.Text = "Historial";
             }
         }
         //--------------------------------------------------------------------- --------------------------------------------------------------//
@@ -114,6 +115,16 @@ namespace Activos
         //------------------------------------------------ Actualiza el activo seleccionado y actualiza el DataGridView de Activos -----------------------------------//
         private void btnEditar_Click(object sender, EventArgs e)
         {
+
+            if (opcion == 3)
+            {
+                Historial historial = new Historial();
+                historial.id = Convert.ToInt32(lbID.Text);
+                historial.opcion = 1;
+                historial.inventario = inventario;
+                historial.ShowDialog();
+                return;
+            }
             txtDescripcion.Enabled = true;
             cmbEstado.Enabled = true;
             cmbTipo.Enabled = true;
