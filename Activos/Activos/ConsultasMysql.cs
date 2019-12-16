@@ -381,6 +381,13 @@ namespace Activos
             return dt;
         }
 
+        public DataTable historial(int id, int inventario, int tabla)
+        {
+            DataTable db = new DataTable();
+
+            return db;
+        }
+
         public int ArticulosRevisados(int id)
         {
             int revisados = new int();

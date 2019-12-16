@@ -672,6 +672,7 @@ namespace Activos
             var row = dataGridView1.CurrentRow.Index;
             Agregar_Activo agregar = new Agregar_Activo();
             agregar.opcion = 3;
+            agregar.inventario = idA;
             agregar.ID = dataGridView1.Rows[row].Cells["idActivo"].Value.ToString();
             agregar.ShowDialog();
         }
@@ -838,6 +839,7 @@ namespace Activos
             var row = dataGridView2.CurrentRow.Index;
             Agregar_Articulo agregar = new Agregar_Articulo();
             agregar.opcion = 3;
+            //agregar.inventario = idAr;
             agregar.ID = Convert.ToInt32(dataGridView2.Rows[row].Cells["idArticulo"].Value);
             agregar.ShowDialog();
         }
