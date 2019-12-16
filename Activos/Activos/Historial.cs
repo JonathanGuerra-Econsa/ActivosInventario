@@ -24,7 +24,7 @@ namespace Activos
 
         private void Historial_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = mysql.historial(id, inventario, opcion)
+            dataGridView1.DataSource = mysql.historial(id, inventario, opcion);
         }
     }
 }
