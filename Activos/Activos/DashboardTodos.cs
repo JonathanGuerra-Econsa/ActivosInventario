@@ -22,6 +22,7 @@ namespace Activos
             InitializeComponent();
         }
 
+        #region Para poner color a los tabs, no esta en uso
         //private void tabControl2_DrawItem(object sender, DrawItemEventArgs e)     //Para poner color a los tabs
         //{
         //    switch (e.Index)
@@ -41,6 +42,7 @@ namespace Activos
         //    paddedBounds.Inflate(-2, -2);
         //    e.Graphics.DrawString(tabControl1.TabPages[e.Index].Text, this.Font, SystemBrushes.HighlightText, paddedBounds);
         //}
+        #endregion
 
         private void DashboardTodos_Load(object sender, EventArgs e)
         {
@@ -670,6 +672,7 @@ namespace Activos
             var row = dataGridView1.CurrentRow.Index;
             Agregar_Activo agregar = new Agregar_Activo();
             agregar.opcion = 3;
+            agregar.inventario = idA;
             agregar.ID = dataGridView1.Rows[row].Cells["idActivo"].Value.ToString();
             agregar.ShowDialog();
         }
@@ -836,6 +839,7 @@ namespace Activos
             var row = dataGridView2.CurrentRow.Index;
             Agregar_Articulo agregar = new Agregar_Articulo();
             agregar.opcion = 3;
+            //agregar.inventario = idAr;
             agregar.ID = Convert.ToInt32(dataGridView2.Rows[row].Cells["idArticulo"].Value);
             agregar.ShowDialog();
         }
