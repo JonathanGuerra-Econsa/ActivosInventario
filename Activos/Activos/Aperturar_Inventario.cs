@@ -69,7 +69,6 @@ namespace Activos
                             //-----------------------------* Redirigir a DashBoard *----------------------------//
                             //DashboardTodos dashBoard = new DashboardTodos();
                             //dashBoard.idA = Convert.ToInt32(idInventario);
-                            //dashBoard.opcion = 2;
                             //dashBoard.Show();
                             //--------------------------------------------------------------------------------------//
                         }
@@ -326,11 +325,25 @@ namespace Activos
             string idActivo = consultasMySQL.idActivo(cmbInventario.Text);
             string idArticulo = consultasMySQL.idArticulo(cmbInventario.Text); ;
             //----------------------------* Redirigir *-----------------------------------//
-            DashboardTodos dashBoard = new DashboardTodos();
-            dashBoard.idA = Convert.ToInt32(idActivo);
-            dashBoard.idAr = Convert.ToInt32(idArticulo);
-            dashBoard.opcion = 2;
-            dashBoard.Show();
+            if (btnAmbos.Enabled == true)
+            {
+                DashboardTodos dashBoard = new DashboardTodos();
+                dashBoard.idA = Convert.ToInt32(idActivo);
+                dashBoard.idAr = Convert.ToInt32(idArticulo);
+                dashBoard.Show();
+            }
+            else if (btnActivo.Enabled == true)
+            {
+                DahsboardActivos dahsboard = new DahsboardActivos();
+                dahsboard.idA = Convert.ToInt32(idActivo);
+                dahsboard.Show();
+            }
+            else if (btnArticulo.Enabled == true)
+            {
+                DashboardArticulo dashboard = new DashboardArticulo();
+                dashboard.idAr = Convert.ToInt32(idArticulo);
+                dashboard.Show();
+            }
             //------------------------------------------------------------------------------//
         }
         //----------------------------------------------------------------------------------------------------------//

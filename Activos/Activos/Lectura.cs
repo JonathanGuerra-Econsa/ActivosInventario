@@ -18,7 +18,7 @@ namespace Activos
         ConsultasMySQL_JG consultasMySQL = new ConsultasMySQL_JG();
         int idActivo = 0;
         int idArticulo = 0;
-        public int invIdAc = 28;
+        public int invIdAc = 29;
         public int invIdArt = 25;
         string activo_articulo;
         //---------------------------------------------------------------------------------------------------------------//
@@ -49,6 +49,9 @@ namespace Activos
         //------------------------------------------------------- * Cada vez que el texto cambia * --------------------------------------------------------------------//
         private void txtEscaner_TextChanged(object sender, EventArgs e)
         {
+            idActivo = 0;
+            idArticulo = 0;
+            ocultar_ver(false);
             if (txtEscaner.Text.Length >= 7)
             {
                 Regex rx = new Regex(@"^[aA-zZ]+\-[0-9]+$");
@@ -86,12 +89,7 @@ namespace Activos
         //--------------------------- * Llena los datos del detalle * ------------------------------//
         private void llenarDatosActivo(string idActivo)
         {
-            lbUsuario.Visible = true;
-            lbDescripcion.Visible = true;
-            lbEstado.Visible = true;
-            lbStatus.Visible = true;
-            lbInventario.Visible = true;
-            lbFecha.Visible = true;
+            ocultar_ver(true);
             consultasMySQL.traerActivo(idActivo, Convert.ToString(invIdAc));
             lbDescripcion.Text = consultasMySQL.descripcion;
             lbUsuario.Text = consultasMySQL.usuario;
@@ -116,12 +114,7 @@ namespace Activos
         //--------------------------- * Llena los datos del detalle * ------------------------------//
         private void llenarDatosArticulo(string idArticulo)
         {
-            lbUsuario.Visible = true;
-            lbDescripcion.Visible = true;
-            lbEstado.Visible = true;
-            lbStatus.Visible = true;
-            lbInventario.Visible = true;
-            lbFecha.Visible = true;
+            ocultar_ver(true);
             consultasMySQL.traerArticulo(idArticulo, Convert.ToString(invIdArt));
             lbDescripcion.Text = consultasMySQL.descripcion_articulo;
             lbUsuario.Text = consultasMySQL.usuario_articulo;
@@ -150,7 +143,7 @@ namespace Activos
             cmbEstados.ValueMember = "ID";
         }
         #endregion
-
+        #region Botón Actualizar
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             if (cmbEstados.SelectedItem != null)
@@ -170,6 +163,13 @@ namespace Activos
                             //MessageBox.Show("Es una activo");
                             consultasMySQL.updateDetalleActivo(estado, idStatus, fecha, idDetalle);
                             consultasMySQL.cambioEstadoActivo(estado, idActivo.ToString());
+                            llenarDatosActivo(idActivo.ToString());
+                            cmbEstados.Visible = false;
+                            btnCancelar.Visible = false;
+                            btnActualizar.Visible = false;
+                            txtEscaner.Enabled = true;
+                            btnSoporte.Visible = true;
+                            lbEstado.Visible = true;
                         }
                         else if (activo_articulo == "ar" || activo_articulo == "AR")
                         {
@@ -183,7 +183,8 @@ namespace Activos
                 }
             }
         }
-
+        #endregion
+        #region Botón Cancelar
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             btnCancelar.Visible = false;
@@ -193,5 +194,21 @@ namespace Activos
             btnSoporte.Visible = true;
             lbEstado.Visible = true;
         }
+        #endregion
+        #region ocultar_ver()
+        private void ocultar_ver(bool ver)
+        {
+            lbDescripcion.Visible = ver;
+            lbUsuario.Visible = ver;
+            lbInventario.Visible = ver;
+            lbEstado.Visible = ver;
+            lbStatus.Visible = ver;
+            lbFecha.Visible = ver;
+            if (ver == false)
+            {
+
+            }
+        }
+        #endregion
     }
 }
