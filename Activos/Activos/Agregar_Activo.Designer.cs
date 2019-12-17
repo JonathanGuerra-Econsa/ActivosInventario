@@ -75,6 +75,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.nuValor = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.gbDetalleActivo.SuspendLayout();
             this.gbUsuario.SuspendLayout();
             this.gbSubGrupo.SuspendLayout();
@@ -665,6 +666,22 @@
             this.label12.TabIndex = 51;
             this.label12.Text = "Valor:";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.button1.Image = global::Activos.Properties.Resources.file1;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.Location = new System.Drawing.Point(523, 502);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(154, 76);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Historial";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Agregar_Activo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -672,6 +689,7 @@
             this.BackgroundImage = global::Activos.Properties.Resources.FONDO_4;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1040, 632);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnActualiza);
             this.Controls.Add(this.gbValor);
             this.Controls.Add(this.gbSubGrupo);
@@ -753,5 +771,6 @@
         private System.Windows.Forms.Button btnActualiza;
         private System.Windows.Forms.ComboBox cmbDepartamento;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button1;
     }
 }

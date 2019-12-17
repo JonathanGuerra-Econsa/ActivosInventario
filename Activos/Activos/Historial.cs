@@ -14,6 +14,7 @@ namespace Activos
     {
 
         public int id, inventario, opcion;
+        public string activo;
         ConsultasMysql mysql = new ConsultasMysql();
 
         public Historial()
@@ -30,6 +31,8 @@ namespace Activos
             dataGridView1.Columns[7].Visible = false;
             dataGridView1.Columns[18].Visible = false;
             dataGridView1.Columns[20].Visible = false;
+
+            label3.Text = activo;
         }
     }
 }

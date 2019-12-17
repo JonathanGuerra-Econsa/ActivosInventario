@@ -40,8 +40,7 @@ namespace Activos
             else if (opcion == 3)
             {
                 metodoMostrar();
-                btnEditar.Visible = true;
-                btnEditar.Text = "Historial";
+                btnEditar.Visible = false;
             }
         }
         //--------------------------------------------------------------------- --------------------------------------------------------------//
@@ -107,6 +106,7 @@ namespace Activos
             {
                 metodoMostrar();
                 btnCancelar.Visible = false;
+                button1.Visible = true;
             }
         }
         //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
@@ -115,16 +115,7 @@ namespace Activos
         //------------------------------------------------ Actualiza el activo seleccionado y actualiza el DataGridView de Activos -----------------------------------//
         private void btnEditar_Click(object sender, EventArgs e)
         {
-
-            if (opcion == 3)
-            {
-                Historial historial = new Historial();
-                historial.id = Convert.ToInt32(lbID.Text);
-                historial.opcion = 1;
-                historial.inventario = inventario;
-                historial.ShowDialog();
-                return;
-            }
+            button1.Visible = false;
             txtDescripcion.Enabled = true;
             cmbEstado.Enabled = true;
             cmbTipo.Enabled = true;
@@ -277,9 +268,23 @@ namespace Activos
             btnActualiza.Visible = false;
             btnCancelar.Visible = false;
             btnSet.Visible = false;
+            button1.Visible = true;
             asignacionDeVariables();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            metodoMostrar();
+            Historial historial = new Historial();
+            historial.id = Convert.ToInt32(lbID.Text);
+            historial.opcion = 1;
+            historial.activo = txtDescripcion.Text;
+            historial.inventario = inventario;
+            historial.ShowDialog();
+            return;
+        }
         #endregion
+
         #region asignacion de variables
         public void asignacionDeVariables()
         {
