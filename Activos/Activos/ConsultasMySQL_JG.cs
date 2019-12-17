@@ -989,11 +989,16 @@ namespace Activos
         }
         #endregion
         #region Cambiar Estado de Activo
-        public void cambioEstadoActivo()
+        public void cambioEstadoActivo(string idEstado, string idActivo)
         {
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
-
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("" +
+                    "UPDATE {0} " +
+                    "SET idEstado = '{1}' " +
+                    "WHERE idActivo = '{2}'", Tabla_Activo, idEstado, idActivo), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
             }
         }
         #endregion

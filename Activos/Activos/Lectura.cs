@@ -169,6 +169,7 @@ namespace Activos
                         {
                             //MessageBox.Show("Es una activo");
                             consultasMySQL.updateDetalleActivo(estado, idStatus, fecha, idDetalle);
+                            consultasMySQL.cambioEstadoActivo(estado, idActivo.ToString());
                         }
                         else if (activo_articulo == "ar" || activo_articulo == "AR")
                         {
