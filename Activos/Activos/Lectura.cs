@@ -16,10 +16,10 @@ namespace Activos
         #region Variables
         //----------------------------------------------- * Variables * -------------------------------------------------//
         ConsultasMySQL_JG consultasMySQL = new ConsultasMySQL_JG();
-        int idActivo = 0;
-        int idArticulo = 0;
-        public int invIdAc = 29;
-        public int invIdArt = 25;
+        int idActivo;
+        int idArticulo;
+        public int invIdAc;
+        public int invIdArt;
         string activo_articulo;
         //---------------------------------------------------------------------------------------------------------------//
         #endregion
@@ -41,6 +41,7 @@ namespace Activos
                 btnSoporte.Visible = false;
                 txtEscaner.Enabled = false;
                 btnCancelar.Visible = true;
+                cmbEstados.Text = lbEstado.Text;
             }
         }
         //---------------------------------------------- ---------------------------------------------- --------------------------------------------------------//
@@ -62,13 +63,11 @@ namespace Activos
                     int id = Convert.ToInt32(txtEscaner.Text.Substring(inicio + 1, txtEscaner.Text.Length - (inicio + 1)));
                     if (activo_articulo == "a" || activo_articulo == "A")
                     {
-                        //MessageBox.Show("Es un activo con id: " + id);
                         llenarDatosActivo(id.ToString());
                         idActivo = id;
                     }
                     else if (activo_articulo == "ar" || activo_articulo == "AR")
                     {
-                        //MessageBox.Show("Es un artículo con id: " + id);
                         llenarDatosArticulo(id.ToString());
                         idArticulo = id;
                     }
@@ -107,6 +106,14 @@ namespace Activos
                 btnSoporte.Text = "Revisar";
                 btnSoporte.Enabled = true;
             }
+            if(lbDescripcion.Text != "")
+            {
+                btnSoporte.Visible = true;
+            }
+            else
+            {
+                btnSoporte.Visible = false;
+            }
         }
         //------------------------------------------- ------------------------------------------------//
         #endregion
@@ -132,6 +139,14 @@ namespace Activos
                 btnSoporte.Text = "Revisar";
                 btnSoporte.Enabled = true;
             }
+            if (lbDescripcion.Text != "")
+            {
+                btnSoporte.Visible = true;
+            }
+            else
+            {
+                btnSoporte.Visible = false;
+            }
         }
         //------------------------------------------- ------------------------------------------------//
         #endregion
@@ -156,6 +171,7 @@ namespace Activos
                     string idInventarioArticulo = invIdArt.ToString();
                     string idInventarioActivo = invIdAc.ToString();
                     string idDetalle = consultasMySQL.idDetalleActivo;
+                    string idDetalleArt = consultasMySQL.idDetalleArticulo;
                     try
                     {
                         if(activo_articulo == "a" || activo_articulo == "A")
@@ -173,7 +189,15 @@ namespace Activos
                         }
                         else if (activo_articulo == "ar" || activo_articulo == "AR")
                         {
-                            MessageBox.Show("Es una artículo");
+                            consultasMySQL.updateDetalleArticulo(estado, idStatus, fecha, idDetalleArt);
+                            consultasMySQL.cambioEstadoArticulo(estado, idArticulo.ToString());
+                            llenarDatosArticulo(idArticulo.ToString());
+                            cmbEstados.Visible = false;
+                            btnCancelar.Visible = false;
+                            btnActualizar.Visible = false;
+                            txtEscaner.Enabled = true;
+                            btnSoporte.Visible = true;
+                            lbEstado.Visible = true;
                         }
                     }
                     catch (Exception ex)
@@ -204,10 +228,7 @@ namespace Activos
             lbEstado.Visible = ver;
             lbStatus.Visible = ver;
             lbFecha.Visible = ver;
-            if (ver == false)
-            {
-
-            }
+            btnSoporte.Visible = ver;
         }
         #endregion
     }
