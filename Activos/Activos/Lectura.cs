@@ -18,8 +18,9 @@ namespace Activos
         ConsultasMySQL_JG consultasMySQL = new ConsultasMySQL_JG();
         int idActivo = 0;
         int idArticulo = 0;
-        public int invIdAc;
+        public int invIdAc = 28;
         public int invIdArt = 25;
+        string activo_articulo;
         //---------------------------------------------------------------------------------------------------------------//
         #endregion
         #region Load()
@@ -54,7 +55,7 @@ namespace Activos
                 if (rx.IsMatch(txtEscaner.Text))
                 {
                     int inicio = txtEscaner.Text.LastIndexOf('-');
-                    string activo_articulo = txtEscaner.Text.Substring(0, inicio);
+                    activo_articulo = txtEscaner.Text.Substring(0, inicio);
                     int id = Convert.ToInt32(txtEscaner.Text.Substring(inicio + 1, txtEscaner.Text.Length - (inicio + 1)));
                     if (activo_articulo == "a" || activo_articulo == "A")
                     {
@@ -88,10 +89,26 @@ namespace Activos
             lbUsuario.Visible = true;
             lbDescripcion.Visible = true;
             lbEstado.Visible = true;
-            consultasMySQL.detalleActivo(idActivo);
+            lbStatus.Visible = true;
+            lbInventario.Visible = true;
+            lbFecha.Visible = true;
+            consultasMySQL.traerActivo(idActivo, Convert.ToString(invIdAc));
             lbDescripcion.Text = consultasMySQL.descripcion;
             lbUsuario.Text = consultasMySQL.usuario;
             lbEstado.Text = consultasMySQL.estado;
+            lbStatus.Text = consultasMySQL.fisico;
+            lbInventario.Text = consultasMySQL.inv_activo;
+            lbFecha.Text = consultasMySQL.fecha_activo;
+            if (lbStatus.Text == "Revisado")
+            {
+                btnSoporte.Text = "Revisado";
+                btnSoporte.Enabled = false;
+            }
+            else
+            {
+                btnSoporte.Text = "Revisar";
+                btnSoporte.Enabled = true;
+            }
         }
         //------------------------------------------- ------------------------------------------------//
         #endregion
@@ -145,10 +162,18 @@ namespace Activos
                     string idStatus = "1";
                     string idInventarioArticulo = invIdArt.ToString();
                     string idInventarioActivo = invIdAc.ToString();
-                    string idDetalle = consultasMySQL.idDetalleArticulo;
+                    string idDetalle = consultasMySQL.idDetalleActivo;
                     try
                     {
-
+                        if(activo_articulo == "a" || activo_articulo == "A")
+                        {
+                            //MessageBox.Show("Es una activo");
+                            consultasMySQL.updateDetalleActivo(estado, idStatus, fecha, idDetalle);
+                        }
+                        else if (activo_articulo == "ar" || activo_articulo == "AR")
+                        {
+                            MessageBox.Show("Es una artículo");
+                        }
                     }
                     catch (Exception ex)
                     {

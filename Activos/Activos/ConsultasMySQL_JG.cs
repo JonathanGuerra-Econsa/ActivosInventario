@@ -36,6 +36,7 @@ namespace Activos
         public string tipo;
         public string empresa;
         public string fecha_compra;
+        public string fecha_activo;
         public string usuario;
         public string nombreUsuario;
         public string nombreDepartamentoUsuario;
@@ -50,6 +51,9 @@ namespace Activos
         public string valorResidual;
         public string valorLibros;
         public string departamentoUsuario;
+        public string idDetalleActivo;
+        public string fisico;
+        public string inv_activo;
         //------------------------------------------------------------------------------------------------------------------//
         #endregion
         #region Variables Artículo
@@ -923,6 +927,75 @@ namespace Activos
             }
         }
         //------------------------------------------------------- ----------------------------------------------------------//
+        #endregion
+        #region DataActivo
+        public void traerActivo(string idActivo, string idInvActivo)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("" +
+                    "SELECT " +
+                    "dAct.idDetalle as 'Detalle', " +
+                    "a.descripcion as 'Activo', " +
+                    "u.nombre as 'Usuario', " +
+                    "e.nombre as 'Estado', " +
+                    "s.nombre as 'Status', " +
+                    "inv.nombre as 'Inventario', " +
+                    "dAct.fecha_actualizacion as 'Fecha' " +
+                    "FROM detalleinvactivo dAct " +
+                    "INNER JOIN activo a ON dAct.idActivo = a.idActivo " +
+                    "INNER JOIN usuario u ON a.idUsuario = u.idUsuario " +
+                    "INNER JOIN estado e ON dAct.idEstado = e.idEstado " +
+                    "INNER JOIN status s ON s.idStatus = dAct.idStatus" +
+                    " INNER JOIN inventario_activo inv ON inv.idInventarioActivo = dAct.idInventario " +
+                    "WHERE dAct.idActivo = '{0}' AND dAct.idInventario = '{1}' " +
+                    "ORDER BY dAct.idDetalle ASC", idActivo, idInvActivo), mysqlCon);
+                MySqlDataReader read = mysqlCmd.ExecuteReader();
+                while (read.Read())
+                {
+                    idDetalleActivo = read["Detalle"].ToString();
+                    descripcion = read["Activo"].ToString();
+                    usuario = read["Usuario"].ToString();
+                    estado = read["Estado"].ToString();
+                    fisico = read["Status"].ToString();
+                    inv_activo = read["Inventario"].ToString();
+                    if (read["Fecha"].ToString() == "1/01/0001 00:00:00")
+                    {
+                        fecha_activo = "Sin actualizaciones";
+                    }
+                    else
+                    {
+                        fecha_activo = read["Fecha"].ToString();
+                    }
+                }
+            }
+        }
+        #endregion
+        #region updateDetalleActivo
+        public void updateDetalleActivo(string idEstado, string idStatus, string fecha, string idDetalle)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("" +
+                    "UPDATE {0} SET " +
+                    "idEstado = '{1}', " +
+                    "idStatus = '{2}', " +
+                    "fecha_actualizacion = '{3}' " +
+                    "WHERE idDetalle = '{4}'", Tabla_DetalleInvActivo, idEstado, idStatus, fecha, idDetalle), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+        #region Cambiar Estado de Activo
+        public void cambioEstadoActivo()
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+
+            }
+        }
         #endregion
     }
 }
