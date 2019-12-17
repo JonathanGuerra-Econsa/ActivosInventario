@@ -67,9 +67,9 @@ namespace Activos
                             //---------------------------------------------------------------------------------//
                             MessageBox.Show("Inventario activo creado éxitosamente", "Inventario Creado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             //-----------------------------* Redirigir a DashBoard *----------------------------//
-                            //DashboardTodos dashBoard = new DashboardTodos();
-                            //dashBoard.idA = Convert.ToInt32(idInventario);
-                            //dashBoard.Show();
+                            DahsboardActivos dahsboard = new DahsboardActivos();
+                            dahsboard.idA = Convert.ToInt32(idInventario);
+                            dahsboard.Show();
                             //--------------------------------------------------------------------------------------//
                         }
                     }
@@ -104,10 +104,9 @@ namespace Activos
                             //----------------------------------------------------------------------------------------//
                             MessageBox.Show("Inventario de artículo creado éxitosamente", "Inventario Creado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             //-------------------------------* Redirigir *------------------------------------//
-                            //DashboardTodos dashBoard = new DashboardTodos();
-                            //dashBoard.idAr = Convert.ToInt32(idInventario);
-                            //dashBoard.opcion = 2;
-                            //dashBoard.Show();
+                            DashboardArticulo dashboard = new DashboardArticulo();
+                            dashboard.idAr = Convert.ToInt32(idInventario);
+                            dashboard.Show();
                             //---------------------------------------------------------------------------------//
                         }
                     }
@@ -148,7 +147,6 @@ namespace Activos
                             DashboardTodos dashBoard = new DashboardTodos();
                             dashBoard.idA = Convert.ToInt32(idInventarioActivo);
                             dashBoard.idAr = Convert.ToInt32(idInventarioArticulo);
-                            dashBoard.opcion = 2;
                             dashBoard.Show();
                             //------------------------------------------------------------------------------//
                         }
