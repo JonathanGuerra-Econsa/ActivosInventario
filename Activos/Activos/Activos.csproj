@@ -123,6 +123,18 @@
     <Compile Include="Control_GrupoArticulo.Designer.cs">
       <DependentUpon>Control_GrupoArticulo.cs</DependentUpon>
     </Compile>
+    <Compile Include="DahsboardActivos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DahsboardActivos.Designer.cs">
+      <DependentUpon>DahsboardActivos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DashboardArticulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DashboardArticulo.Designer.cs">
+      <DependentUpon>DashboardArticulo.cs</DependentUpon>
+    </Compile>
     <Compile Include="DashboardTodos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +148,12 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsultasMySQL_JG.cs" />
+    <Compile Include="Historial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Historial.Designer.cs">
+      <DependentUpon>Historial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Lectura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,11 +204,20 @@
     <EmbeddedResource Include="Control_GrupoArticulo.resx">
       <DependentUpon>Control_GrupoArticulo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DahsboardActivos.resx">
+      <DependentUpon>DahsboardActivos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DashboardArticulo.resx">
+      <DependentUpon>DashboardArticulo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DashboardTodos.resx">
       <DependentUpon>DashboardTodos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Historial.resx">
+      <DependentUpon>Historial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Lectura.resx">
       <DependentUpon>Lectura.cs</DependentUpon>
@@ -316,6 +343,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\customer-support.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loupe %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\validation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chronometer.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

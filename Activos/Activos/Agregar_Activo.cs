@@ -15,7 +15,7 @@ namespace Activos
         //----------------------------------------------------------*Variables*---------------------------------------------------//
         ConsultasMySQL_JG consultasMySQL =new  ConsultasMySQL_JG();
         public string ID;
-        public int opcion;
+        public int opcion, inventario;
         //--------------------------------------------------------------------------------------------------------------------------//
         #endregion
         #region Load
@@ -32,10 +32,16 @@ namespace Activos
                 lbID.Text = "";
                 btnSet.Visible = true;
                 btnEditar.Visible = false;
+                button1.Visible = false;
             }
-            else
+            else if (opcion == 2)
             {
                 metodoMostrar();
+            }
+            else if (opcion == 3)
+            {
+                metodoMostrar();
+                btnEditar.Visible = false;
             }
         }
         //--------------------------------------------------------------------- --------------------------------------------------------------//
@@ -101,6 +107,7 @@ namespace Activos
             {
                 metodoMostrar();
                 btnCancelar.Visible = false;
+                button1.Visible = true;
             }
         }
         //--------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------//
@@ -109,6 +116,7 @@ namespace Activos
         //------------------------------------------------ Actualiza el activo seleccionado y actualiza el DataGridView de Activos -----------------------------------//
         private void btnEditar_Click(object sender, EventArgs e)
         {
+            button1.Visible = false;
             txtDescripcion.Enabled = true;
             cmbEstado.Enabled = true;
             cmbTipo.Enabled = true;
@@ -261,9 +269,22 @@ namespace Activos
             btnActualiza.Visible = false;
             btnCancelar.Visible = false;
             btnSet.Visible = false;
+            button1.Visible = true;
             asignacionDeVariables();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            metodoMostrar();
+            Historial historial = new Historial();
+            historial.id = Convert.ToInt32(lbID.Text);
+            historial.opcion = 1;
+            historial.activo = txtDescripcion.Text;
+            historial.inventario = inventario;
+            historial.ShowDialog();
+        }
         #endregion
+
         #region asignacion de variables
         public void asignacionDeVariables()
         {

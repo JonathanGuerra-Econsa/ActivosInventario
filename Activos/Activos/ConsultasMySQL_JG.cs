@@ -12,7 +12,7 @@ namespace Activos
     {
         #region Variables
         //----------------------------------------------*Variables Gloables*--------------------------------------------//
-        string connectionString = @"Server=192.168.0.5;Database=activos;Uid=hola;Pwd=;port=3306;";
+        string connectionString = @"Server=192.168.0.5;Database=activos;Uid=hola;Pwd=;port=3306;Convert Zero Datetime=True;";
         string Tabla_Departamento = "departamento";
         string Tabla_Usuario = "usuario";
         string Tabla_Tipo = "tipo";
@@ -36,6 +36,7 @@ namespace Activos
         public string tipo;
         public string empresa;
         public string fecha_compra;
+        public string fecha_activo;
         public string usuario;
         public string nombreUsuario;
         public string nombreDepartamentoUsuario;
@@ -50,6 +51,9 @@ namespace Activos
         public string valorResidual;
         public string valorLibros;
         public string departamentoUsuario;
+        public string idDetalleActivo;
+        public string fisico;
+        public string inv_activo;
         //------------------------------------------------------------------------------------------------------------------//
         #endregion
         #region Variables Artículo
@@ -63,6 +67,9 @@ namespace Activos
         public string fecha_articulo;
         public string valor_articulo;
         public string fpc_articulo;
+        public string fisico_articulo;
+        public string inv_articulo;
+        public string idDetalleArticulo;
         //---------------------------------------------------------------------------------------------------------------------------------//
         #endregion
         #region Plantilla ;)
@@ -791,6 +798,270 @@ namespace Activos
             }
         }
         //-------------------------------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region inventarioActivo()
+        //------------------------------------- * busca todos los inventarios de activo * --------------------------------------//
+        public DataTable inventarioActivo()
+        {
+            DataTable dt = new DataTable();
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlDataAdapter mySqlData = new MySqlDataAdapter(string.Format("SELECT idInventarioActivo as 'ID', nombre as 'Nombre' FROM {0} ORDER BY idInventarioActivo DESC", Tabla_InvActivo), mysqlCon);
+                mySqlData.Fill(dt);
+            }
+            return dt;
+        }
+        //-------------------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region inventarioArticulo()
+        //--------------------------------- * Busca los inventarios de articulo * ---------------------------//
+        public DataTable inventarioArticulo()
+        {
+            DataTable dataTable = new DataTable();
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlDataAdapter mySqlData = new MySqlDataAdapter(string.Format("SELECT idInventarioArticulo as 'ID', nombre as 'Nombre' FROM {0} ORDER BY idInventarioArticulo DESC", Tabla_InvArticulo), mysqlCon);
+                mySqlData.Fill(dataTable);
+            }
+            return dataTable;
+        }
+        //--------------------------------------------------- --------------------------------------------------//
+        #endregion
+        #region inventarioActivoArticulo()
+        //------------------------------------------- * Busca y trae todos los inventario que tengan el mismo nombre en activo y articulo * ---------------------------------------------//
+        public DataTable inventarioActivoArticulo()
+        {
+            DataTable dataTable = new DataTable();
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlDataAdapter mySqlData = new MySqlDataAdapter(string.Format("SELECT a.nombre as 'Nombre' FROM {0} a INNER JOIN {1} ar ON a.nombre = ar.nombre ORDER BY a.fecha_apertura DESC", Tabla_InvActivo, Tabla_InvArticulo), mysqlCon);
+                mySqlData.Fill(dataTable);
+            }
+            return dataTable;
+        }
+        //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region idActivo()
+        //---------------- * trae el id de activo segun su nombre * ------------------//
+        public string idActivo(string nombre)
+        {
+            string idActivo = "";
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mySqlCmd = new MySqlCommand(string.Format("SELECT idInventarioActivo as 'ID' FROM {0} WHERE nombre = '{1}'", Tabla_InvActivo, nombre),mysqlCon);
+                MySqlDataReader read = mySqlCmd.ExecuteReader();
+                while (read.Read())
+                {
+                    idActivo = read["ID"].ToString();
+                }
+            }
+            return idActivo;
+        }
+        //------------------------------------- ------------------------------------------//
+        #endregion
+        #region idArticulo()
+        //----------------------- * trae el id de artículo segun su nombre * --------------------------//
+        public string idArticulo(string nombre)
+        {
+            string idArticulo = "";
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("SELECT idInventarioArticulo as 'ID' FROM {0} WHERE nombre = '{1}'", Tabla_InvArticulo, nombre), mysqlCon);
+                MySqlDataReader read = mysqlCmd.ExecuteReader();
+                while (read.Read())
+                {
+                    idArticulo = read["ID"].ToString();
+                }
+            }
+            return idArticulo;
+        }
+        //----------------------------------------------- -------------------------------------------------//
+        #endregion
+        #region DataArtículo
+        //----------------------------- * Trae la información que necesito de artículo * ------------------------------//
+        public void traerArticulo(string idArticulo, string idInvArticulo)
+        {
+            idDetalleArticulo = "";
+            descripcion_articulo = "";
+            usuario_articulo = "";
+            estado_articulo = "";
+            fisico_articulo = "";
+            inv_articulo = "";
+            fecha_articulo = "";
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("" +
+                    "SELECT " +
+                    "dART.idDetalle as 'Detalle', " +
+                    "ar.descripcion as 'Articulo', " +
+                    "u.nombre as 'Usuario', " +
+                    "e.nombre as 'Estado', " +
+                    "s.nombre as 'Status', " +
+                    "inv.nombre as 'Inventario', " +
+                    "dArt.fecha_actualizacion as 'Fecha' " +
+                    "FROM detalleinvarticulo dArt " +
+                    "INNER JOIN articulo ar ON dArt.idArticulo = ar.idArticulo " +
+                    "INNER JOIN usuario u ON ar.idUsuario = u.idUsuario " +
+                    "INNER JOIN estado e ON ar.idEstado = e.idEstado " +
+                    "INNER JOIN status s ON s.idStatus = dArt.idStatus " +
+                    "INNER JOIN inventario_articulo inv ON inv.idInventarioArticulo = dArt.idInventario " +
+                    "WHERE dArt.idArticulo = '{0}' AND dArt.idInventario = '{1}' " +
+                    "ORDER BY `dArt`.`idDetalle` ASC", idArticulo, idInvArticulo), mysqlCon); 
+                MySqlDataReader read = mysqlCmd.ExecuteReader();
+                while (read.Read())
+                {
+                    idDetalleArticulo = read["Detalle"].ToString();
+                    descripcion_articulo = read["Articulo"].ToString();
+                    usuario_articulo = read["Usuario"].ToString();
+                    estado_articulo = read["Estado"].ToString();
+                    fisico_articulo = read["Status"].ToString();
+                    inv_articulo = read["Inventario"].ToString();
+                    if (read["Fecha"].ToString() == "1/01/0001 00:00:00")
+                    {
+                        fecha_articulo = "Sin actualizaciones";
+                    }
+                    else
+                    {
+                        fecha_articulo = read["Fecha"].ToString();
+                    }
+                }
+            }
+        }
+        //------------------------------------------------------- ----------------------------------------------------------//
+        #endregion
+        #region DataActivo
+        public void traerActivo(string idActivo, string idInvActivo)
+        {
+            idDetalleActivo = "";
+            descripcion = "";
+            usuario = "";
+            estado = "";
+            fisico = "";
+            inv_activo = "";
+            fecha_activo = "";
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("" +
+                    "SELECT " +
+                    "dAct.idDetalle as 'Detalle', " +
+                    "a.descripcion as 'Activo', " +
+                    "u.nombre as 'Usuario', " +
+                    "e.nombre as 'Estado', " +
+                    "s.nombre as 'Status', " +
+                    "inv.nombre as 'Inventario', " +
+                    "dAct.fecha_actualizacion as 'Fecha' " +
+                    "FROM detalleinvactivo dAct " +
+                    "INNER JOIN activo a ON dAct.idActivo = a.idActivo " +
+                    "INNER JOIN usuario u ON a.idUsuario = u.idUsuario " +
+                    "INNER JOIN estado e ON a.idEstado = e.idEstado " +
+                    "INNER JOIN status s ON s.idStatus = dAct.idStatus" +
+                    " INNER JOIN inventario_activo inv ON inv.idInventarioActivo = dAct.idInventario " +
+                    "WHERE dAct.idActivo = '{0}' AND dAct.idInventario = '{1}' " +
+                    "ORDER BY dAct.idDetalle ASC", idActivo, idInvActivo), mysqlCon);
+                MySqlDataReader read = mysqlCmd.ExecuteReader();
+                while (read.Read())
+                {
+                    idDetalleActivo = read["Detalle"].ToString();
+                    descripcion = read["Activo"].ToString();
+                    usuario = read["Usuario"].ToString();
+                    estado = read["Estado"].ToString();
+                    fisico = read["Status"].ToString();
+                    inv_activo = read["Inventario"].ToString();
+                    if (read["Fecha"].ToString() == "1/01/0001 00:00:00")
+                    {
+                        fecha_activo = "Sin actualizaciones";
+                    }
+                    else
+                    {
+                        fecha_activo = read["Fecha"].ToString();
+                    }
+                }
+            }
+        }
+        #endregion
+        #region updateDetalleActivo
+        public void updateDetalleActivo(string idEstado, string idStatus, string fecha, string idDetalle)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("" +
+                    "UPDATE {0} SET " +
+                    "idEstado = '{1}', " +
+                    "idStatus = '{2}', " +
+                    "fecha_actualizacion = '{3}' " +
+                    "WHERE idDetalle = '{4}'", Tabla_DetalleInvActivo, idEstado, idStatus, fecha, idDetalle), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+        #region updateDetalleArticulo
+        public void updateDetalleArticulo(string idEstado, string idStatus, string fechaDep, string idDetalle)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("" +
+                    "UPDATE {0} SET " +
+                    "idEstado = '{1}', " +
+                    "idStatus = '{2}', " +
+                    "fecha_actualizacion = '{3}' " +
+                    "WHERE idDetalle = '{4}'", Tabla_DetalleInvArticulo, idEstado, idStatus, fechaDep, idDetalle), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+        #region Cambiar Estado de Activo
+        public void cambioEstadoActivo(string idEstado, string idActivo)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("" +
+                    "UPDATE {0} " +
+                    "SET idEstado = '{1}' " +
+                    "WHERE idActivo = '{2}'", Tabla_Activo, idEstado, idActivo), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+        #region Cambiar Estado de Articulo
+        public void cambioEstadoArticulo(string idEstado, string idArticulo)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("" +
+                    "UPDATE {0} " +
+                    "SET idEstado = '{1}' " +
+                    "WHERE idArticulo = '{2}'", Tabla_Articulo, idEstado, idArticulo), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+        #region idEstados
+        public string idEstados(string idActivo)
+        {
+            string idEstado = "";
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mySqlData = new MySqlCommand(string.Format("SELECT idEstado FROM {0} WHERE idActivo = '{1}'", Tabla_Activo, idActivo), mysqlCon);
+                MySqlDataReader read = mySqlData.ExecuteReader();
+                while (read.Read())
+                {
+                    idEstado = read["idEstado"].ToString();
+                }
+            }
+            return idEstado;
+        }
         #endregion
     }
 }

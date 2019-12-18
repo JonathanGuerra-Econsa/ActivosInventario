@@ -32,10 +32,16 @@ namespace Activos
                 vistaAgregar();
                 label8.Visible = false;
                 lbID.Visible = false;
+                button1.Visible = false;
             }
-            else
+            else if (opcion == 2)
             {
                 vistaDetalle();
+            }
+            else if (opcion == 3)
+            {
+                vistaDetalle();
+                btnEditar.Visible = false;
             }
         }
         //---------------------------------------------------------------------------  -------------------------------------------------------------------------------//
@@ -84,6 +90,7 @@ namespace Activos
             habilitar(false);
             btnEditar.Visible = true;
             btnCancelar.Visible = false;
+            button1.Visible = true;
             try
             {
                 consultasMySQL.detalleArticulo(ID.ToString());
@@ -125,6 +132,7 @@ namespace Activos
             btnEditar.Visible = false;
             btnActualizar.Visible = true;
             btnCancelar.Visible = true;
+            button1.Visible = false;
         }
         #endregion
         #region Botón Cancelar
@@ -193,7 +201,18 @@ namespace Activos
             consultasMySQL.buscarUsuario(cmbUsuario.SelectedValue.ToString());
             lbPuesto.Text = consultasMySQL.puestoUsuario;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            vistaDetalle();
+            Historial historial = new Historial();
+            historial.id = Convert.ToInt32(lbID.Text);
+            historial.opcion = 2;
+            historial.activo = txtDescripcion.Text;
+            historial.ShowDialog();
+        }
         #endregion
+
         #region vistaAgregar()
         private void vistaAgregar()
         {

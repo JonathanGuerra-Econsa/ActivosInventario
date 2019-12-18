@@ -59,6 +59,7 @@
             this.cmbUsuario = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnSet = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuValor)).BeginInit();
@@ -445,6 +446,22 @@
             this.btnSet.Visible = false;
             this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.button1.Image = global::Activos.Properties.Resources.chronometer;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.Location = new System.Drawing.Point(707, 321);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(169, 76);
+            this.button1.TabIndex = 36;
+            this.button1.Text = "Historial";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Agregar_Articulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -452,6 +469,7 @@
             this.BackgroundImage = global::Activos.Properties.Resources.FONDO_4;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(894, 520);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSet);
             this.Controls.Add(this.gbUsuario);
             this.Controls.Add(this.groupBox3);
@@ -510,5 +528,6 @@
         private System.Windows.Forms.NumericUpDown nuValor;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnSet;
+        private System.Windows.Forms.Button button1;
     }
 }

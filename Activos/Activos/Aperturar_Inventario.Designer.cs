@@ -37,6 +37,11 @@
             this.txtInventario = new System.Windows.Forms.TextBox();
             this.btnAperturar = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.btnAperturarInv = new System.Windows.Forms.Button();
+            this.btnBuscarInv = new System.Windows.Forms.Button();
+            this.lbBusqueda = new System.Windows.Forms.Label();
+            this.cmbInventario = new System.Windows.Forms.ComboBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -44,11 +49,11 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(187, 46);
+            this.label1.Location = new System.Drawing.Point(247, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(253, 32);
+            this.label1.Size = new System.Drawing.Size(133, 32);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Aperturar Inventario";
+            this.label1.Text = "Inventario";
             // 
             // btnActivo
             // 
@@ -65,6 +70,7 @@
             this.btnActivo.Text = "Activo";
             this.btnActivo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnActivo.UseVisualStyleBackColor = false;
+            this.btnActivo.Visible = false;
             this.btnActivo.Click += new System.EventHandler(this.btnActivo_Click);
             // 
             // btnArticulo
@@ -82,6 +88,7 @@
             this.btnArticulo.Text = "Artículo";
             this.btnArticulo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnArticulo.UseVisualStyleBackColor = false;
+            this.btnArticulo.Visible = false;
             this.btnArticulo.Click += new System.EventHandler(this.btnArticulo_Click);
             // 
             // btnAmbos
@@ -99,6 +106,7 @@
             this.btnAmbos.Text = "Ambos";
             this.btnAmbos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAmbos.UseVisualStyleBackColor = false;
+            this.btnAmbos.Visible = false;
             this.btnAmbos.Click += new System.EventHandler(this.btnAmbos_Click);
             // 
             // lbInventario
@@ -153,6 +161,79 @@
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // btnAperturarInv
+            // 
+            this.btnAperturarInv.BackColor = System.Drawing.Color.Transparent;
+            this.btnAperturarInv.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAperturarInv.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAperturarInv.Image = global::Activos.Properties.Resources.box__1_;
+            this.btnAperturarInv.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAperturarInv.Location = new System.Drawing.Point(151, 112);
+            this.btnAperturarInv.Name = "btnAperturarInv";
+            this.btnAperturarInv.Size = new System.Drawing.Size(150, 190);
+            this.btnAperturarInv.TabIndex = 10;
+            this.btnAperturarInv.TabStop = false;
+            this.btnAperturarInv.Text = "Aperturar Inventario";
+            this.btnAperturarInv.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAperturarInv.UseVisualStyleBackColor = false;
+            this.btnAperturarInv.Click += new System.EventHandler(this.btnAperturarInv_Click);
+            // 
+            // btnBuscarInv
+            // 
+            this.btnBuscarInv.BackColor = System.Drawing.Color.Transparent;
+            this.btnBuscarInv.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBuscarInv.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarInv.Image = global::Activos.Properties.Resources.loupe__2_;
+            this.btnBuscarInv.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnBuscarInv.Location = new System.Drawing.Point(321, 112);
+            this.btnBuscarInv.Name = "btnBuscarInv";
+            this.btnBuscarInv.Size = new System.Drawing.Size(150, 190);
+            this.btnBuscarInv.TabIndex = 11;
+            this.btnBuscarInv.TabStop = false;
+            this.btnBuscarInv.Text = "Buscar Inventario";
+            this.btnBuscarInv.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnBuscarInv.UseVisualStyleBackColor = false;
+            this.btnBuscarInv.Click += new System.EventHandler(this.btnBuscarInv_Click);
+            // 
+            // lbBusqueda
+            // 
+            this.lbBusqueda.AutoSize = true;
+            this.lbBusqueda.BackColor = System.Drawing.Color.Transparent;
+            this.lbBusqueda.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbBusqueda.Location = new System.Drawing.Point(204, 305);
+            this.lbBusqueda.Name = "lbBusqueda";
+            this.lbBusqueda.Size = new System.Drawing.Size(222, 25);
+            this.lbBusqueda.TabIndex = 12;
+            this.lbBusqueda.Text = "Seleccione un Inventario";
+            this.lbBusqueda.Visible = false;
+            // 
+            // cmbInventario
+            // 
+            this.cmbInventario.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbInventario.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbInventario.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.cmbInventario.FormattingEnabled = true;
+            this.cmbInventario.Location = new System.Drawing.Point(209, 333);
+            this.cmbInventario.Name = "cmbInventario";
+            this.cmbInventario.Size = new System.Drawing.Size(202, 29);
+            this.cmbInventario.TabIndex = 13;
+            this.cmbInventario.Visible = false;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackColor = System.Drawing.Color.Transparent;
+            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBuscar.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.Location = new System.Drawing.Point(238, 368);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(142, 49);
+            this.btnBuscar.TabIndex = 14;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Visible = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
             // Aperturar_Inventario
             // 
             this.AcceptButton = this.btnAperturar;
@@ -161,6 +242,11 @@
             this.BackgroundImage = global::Activos.Properties.Resources.fondo2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(628, 470);
+            this.Controls.Add(this.btnBuscar);
+            this.Controls.Add(this.cmbInventario);
+            this.Controls.Add(this.lbBusqueda);
+            this.Controls.Add(this.btnBuscarInv);
+            this.Controls.Add(this.btnAperturarInv);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnAperturar);
             this.Controls.Add(this.txtInventario);
@@ -174,6 +260,7 @@
             this.Name = "Aperturar_Inventario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Aperturar Inventario";
+            this.Load += new System.EventHandler(this.Aperturar_Inventario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,5 +276,10 @@
         private System.Windows.Forms.TextBox txtInventario;
         private System.Windows.Forms.Button btnAperturar;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnAperturarInv;
+        private System.Windows.Forms.Button btnBuscarInv;
+        private System.Windows.Forms.Label lbBusqueda;
+        private System.Windows.Forms.ComboBox cmbInventario;
+        private System.Windows.Forms.Button btnBuscar;
     }
 }
