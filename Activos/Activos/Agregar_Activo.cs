@@ -32,6 +32,7 @@ namespace Activos
                 lbID.Text = "";
                 btnSet.Visible = true;
                 btnEditar.Visible = false;
+                button1.Visible = false;
             }
             else if (opcion == 2)
             {
@@ -281,7 +282,6 @@ namespace Activos
             historial.activo = txtDescripcion.Text;
             historial.inventario = inventario;
             historial.ShowDialog();
-            return;
         }
         #endregion
 
