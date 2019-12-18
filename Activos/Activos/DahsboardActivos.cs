@@ -196,6 +196,14 @@ namespace Activos
             #endregion
             #endregion
 
+            #region Revisar estado del inventario
+            if (mysql.EstadoInvAc(idA) == 2)
+            {
+                button7.Enabled = false;
+                button3.Enabled = false;
+            }
+            #endregion
+
             CenterToScreen();
             tabControl2.Controls.Remove(tabPage4);
             MinimizeBox = false;
@@ -367,6 +375,31 @@ namespace Activos
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            var row = dataGridView1.CurrentRow.Index;
+            Agregar_Activo agregar = new Agregar_Activo();
+            agregar.opcion = 3;
+            agregar.inventario = idA;
+            agregar.ID = dataGridView1.Rows[row].Cells["idActivo"].Value.ToString();
+            agregar.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("¿Realmente desea cerrar este inventario?\nUna vez cerrado ya no se podran realizar cambios", "Cerrar Inventario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                if (mysql.cerrarInvAc(idA))
+                {
+                    button7.Enabled = false;
+                    button3.Enabled = false;
+                    MessageBox.Show("Inventario cerrado satisfactoriamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
         }
 
