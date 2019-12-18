@@ -807,7 +807,8 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlDataAdapter mySqlData = new MySqlDataAdapter(string.Format("SELECT idInventarioActivo as 'ID', nombre as 'Nombre' FROM {0} ORDER BY idInventarioActivo DESC", Tabla_InvActivo), mysqlCon);
+                //MySqlDataAdapter mySqlData = new MySqlDataAdapter(string.Format("SELECT idInventarioActivo as 'ID', nombre as 'Nombre' FROM {0} ORDER BY idInventarioActivo DESC", Tabla_InvActivo), mysqlCon);
+                MySqlDataAdapter mySqlData = new MySqlDataAdapter(string.Format("SELECT a.idInventarioActivo as 'ID', a.nombre as 'Nombre' FROM inventario_activo a WHERE a.nombre not in (SELECT inventario_articulo.nombre FROM inventario_articulo INNER JOIN inventario_activo ON inventario_activo.nombre = inventario_articulo.nombre) ORDER BY a.idInventarioActivo DESC", Tabla_InvActivo), mysqlCon);
                 mySqlData.Fill(dt);
             }
             return dt;
@@ -822,7 +823,8 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlDataAdapter mySqlData = new MySqlDataAdapter(string.Format("SELECT idInventarioArticulo as 'ID', nombre as 'Nombre' FROM {0} ORDER BY idInventarioArticulo DESC", Tabla_InvArticulo), mysqlCon);
+                //MySqlDataAdapter mySqlData = new MySqlDataAdapter(string.Format("SELECT idInventarioArticulo as 'ID', nombre as 'Nombre' FROM {0} ORDER BY idInventarioArticulo DESC", Tabla_InvArticulo), mysqlCon);
+                MySqlDataAdapter mySqlData = new MySqlDataAdapter(string.Format("SELECT idInventarioArticulo as 'ID', nombre as 'Nombre' FROM inventario_articulo WHERE nombre not in (SELECT inventario_articulo.nombre FROM inventario_articulo INNER JOIN inventario_activo ON inventario_activo.nombre = inventario_articulo.nombre) ORDER BY idInventarioArticulo DESC", Tabla_InvArticulo), mysqlCon);
                 mySqlData.Fill(dataTable);
             }
             return dataTable;
