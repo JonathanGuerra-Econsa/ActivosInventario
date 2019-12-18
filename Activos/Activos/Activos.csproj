@@ -353,5 +353,8 @@
   <ItemGroup>
     <None Include="Resources\validation.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chronometer.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
