@@ -886,6 +886,13 @@ namespace Activos
         //----------------------------- * Trae la información que necesito de artículo * ------------------------------//
         public void traerArticulo(string idArticulo, string idInvArticulo)
         {
+            idDetalleArticulo = "";
+            descripcion_articulo = "";
+            usuario_articulo = "";
+            estado_articulo = "";
+            fisico_articulo = "";
+            inv_articulo = "";
+            fecha_articulo = "";
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
@@ -931,6 +938,13 @@ namespace Activos
         #region DataActivo
         public void traerActivo(string idActivo, string idInvActivo)
         {
+            idDetalleActivo = "";
+            descripcion = "";
+            usuario = "";
+            estado = "";
+            fisico = "";
+            inv_activo = "";
+            fecha_activo = "";
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
@@ -946,7 +960,7 @@ namespace Activos
                     "FROM detalleinvactivo dAct " +
                     "INNER JOIN activo a ON dAct.idActivo = a.idActivo " +
                     "INNER JOIN usuario u ON a.idUsuario = u.idUsuario " +
-                    "INNER JOIN estado e ON dAct.idEstado = e.idEstado " +
+                    "INNER JOIN estado e ON a.idEstado = e.idEstado " +
                     "INNER JOIN status s ON s.idStatus = dAct.idStatus" +
                     " INNER JOIN inventario_activo inv ON inv.idInventarioActivo = dAct.idInventario " +
                     "WHERE dAct.idActivo = '{0}' AND dAct.idInventario = '{1}' " +
@@ -988,6 +1002,22 @@ namespace Activos
             }
         }
         #endregion
+        #region updateDetalleArticulo
+        public void updateDetalleArticulo(string idEstado, string idStatus, string fechaDep, string idDetalle)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("" +
+                    "UPDATE {0} SET " +
+                    "idEstado = '{1}', " +
+                    "idStatus = '{2}', " +
+                    "fecha_actualizacion = '{3}' " +
+                    "WHERE idDetalle = '{4}'", Tabla_DetalleInvArticulo, idEstado, idStatus, fechaDep, idDetalle), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
         #region Cambiar Estado de Activo
         public void cambioEstadoActivo(string idEstado, string idActivo)
         {
@@ -1000,6 +1030,37 @@ namespace Activos
                     "WHERE idActivo = '{2}'", Tabla_Activo, idEstado, idActivo), mysqlCon);
                 mysqlCmd.ExecuteNonQuery();
             }
+        }
+        #endregion
+        #region Cambiar Estado de Articulo
+        public void cambioEstadoArticulo(string idEstado, string idArticulo)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("" +
+                    "UPDATE {0} " +
+                    "SET idEstado = '{1}' " +
+                    "WHERE idArticulo = '{2}'", Tabla_Articulo, idEstado, idArticulo), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+        #region idEstados
+        public string idEstados(string idActivo)
+        {
+            string idEstado = "";
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mySqlData = new MySqlCommand(string.Format("SELECT idEstado FROM {0} WHERE idActivo = '{1}'", Tabla_Activo, idActivo), mysqlCon);
+                MySqlDataReader read = mySqlData.ExecuteReader();
+                while (read.Read())
+                {
+                    idEstado = read["idEstado"].ToString();
+                }
+            }
+            return idEstado;
         }
         #endregion
     }

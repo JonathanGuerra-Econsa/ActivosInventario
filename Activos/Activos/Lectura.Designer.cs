@@ -99,6 +99,7 @@
             this.btnSoporte.Text = "Revisar";
             this.btnSoporte.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSoporte.UseVisualStyleBackColor = false;
+            this.btnSoporte.Visible = false;
             this.btnSoporte.Click += new System.EventHandler(this.btnSoporte_Click);
             // 
             // groupBox1
