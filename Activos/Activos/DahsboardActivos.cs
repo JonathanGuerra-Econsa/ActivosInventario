@@ -16,7 +16,7 @@ namespace Activos
     {
 
         ConsultasMysql mysql = new ConsultasMysql();
-        public int idA = 1, opcion;
+        public int idA, opcion;
 
         public DahsboardActivos()
         {

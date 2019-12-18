@@ -275,7 +275,7 @@ namespace Activos
 
         private void button1_Click(object sender, EventArgs e)
         {
-            metodoMostrar();
+            asignacionDeVariables();
             Historial historial = new Historial();
             historial.id = Convert.ToInt32(lbID.Text);
             historial.opcion = 1;

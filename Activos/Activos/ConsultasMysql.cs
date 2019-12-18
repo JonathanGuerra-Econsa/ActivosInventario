@@ -551,17 +551,10 @@ namespace Activos
                         activo["Fecha de Compra"] = reader.GetString(9);
                         activo["Valor"] = reader.GetString(10);
                         activo["FPC"] = reader.GetString(11);
-                        activo["Fecha de Depreciacion"] = reader.GetString(12);
-                        activo["% Depreciacion"] = reader.GetString(13);
-                        activo["Depreciacion Acumulada"] = reader.GetString(14);
-                        activo["Valor Residual"] = reader.GetString(15);
-                        activo["Valor Libros"] = reader.GetString(16);
-                        activo["Subgrupo"] = reader.GetString(17);
-                        activo["idSubgrupo"] = reader.GetString(18);
-                        activo["Grupo"] = reader.GetString(19);
-                        activo["idGrupo"] = reader.GetString(20);
-                        activo["Código"] = reader.GetString(21);
-                        activo["Fecha de Modificación"] = reader.GetString(22);
+                        activo["Grupo"] = reader.GetString(12);
+                        activo["idGrupo"] = reader.GetString(13);
+                        activo["Código"] = reader.GetString(14);
+                        activo["Fecha de Modificación"] = reader.GetString(15);
                         dt.Rows.Add(activo);
                     }
                 }
