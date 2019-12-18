@@ -96,16 +96,6 @@ namespace Activos
             lbStatus.Text = consultasMySQL.fisico;
             lbInventario.Text = consultasMySQL.inv_activo;
             lbFecha.Text = consultasMySQL.fecha_activo;
-            if (lbStatus.Text == "Revisado")
-            {
-                btnSoporte.Text = "Revisado";
-                btnSoporte.Enabled = false;
-            }
-            else
-            {
-                btnSoporte.Text = "Revisar";
-                btnSoporte.Enabled = true;
-            }
             if(lbDescripcion.Text != "")
             {
                 btnSoporte.Visible = true;
@@ -129,16 +119,6 @@ namespace Activos
             lbStatus.Text = consultasMySQL.fisico_articulo;
             lbInventario.Text = consultasMySQL.inv_articulo;
             lbFecha.Text = consultasMySQL.fecha_articulo;
-            if(lbStatus.Text == "Revisado")
-            {
-                btnSoporte.Text = "Revisado";
-                btnSoporte.Enabled = false;
-            }
-            else
-            {
-                btnSoporte.Text = "Revisar";
-                btnSoporte.Enabled = true;
-            }
             if (lbDescripcion.Text != "")
             {
                 btnSoporte.Visible = true;

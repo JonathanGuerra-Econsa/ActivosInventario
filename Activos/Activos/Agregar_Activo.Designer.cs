@@ -671,7 +671,7 @@
             this.button1.BackColor = System.Drawing.Color.Transparent;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.button1.Image = global::Activos.Properties.Resources.file1;
+            this.button1.Image = global::Activos.Properties.Resources.chronometer;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.Location = new System.Drawing.Point(523, 502);
             this.button1.Name = "button1";
