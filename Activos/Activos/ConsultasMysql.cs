@@ -482,6 +482,90 @@ namespace Activos
             else
             {
                 //articulos
+                dt.Columns.Add("ID", typeof(Int32));
+                dt.Columns.Add("Descripcion");
+                dt.Columns.Add("Usuario");
+                dt.Columns.Add("idUsuario");
+                dt.Columns.Add("Estado");
+                dt.Columns.Add("idEstado");
+                dt.Columns.Add("Tipo");
+                dt.Columns.Add("idTipo");
+                dt.Columns.Add("Grupo");
+                dt.Columns.Add("idGrupo");
+                dt.Columns.Add("Empresa");
+                dt.Columns.Add("Fecha de Compra");
+                dt.Columns.Add("Valor");
+                dt.Columns.Add("FPC");
+                dt.Columns.Add("Código");
+                dt.Columns.Add("Fecha de Modificación");
+                MySqlCommand cmd = connection.CreateCommand();
+                cmd.CommandText = "SELECT a.idHistorial, " +
+                    "a.descripcion, " +
+                    "u.nombre AS 'Usuario', " +
+                    "u.idUsuario, " +
+                    "e.nombre AS 'Estado', " +
+                    "e.idEstado, " +
+                    "c.tipo AS 'Tipo', " +
+                    "c.idTipo, " +
+                    "em.nombre AS 'Empresa', " +
+                    "a.fecha_compra, " +
+                    "a.Valor, " +
+                    "a.FPC, " +
+                    "a.fecha_dep, " +
+                    "a.PorcentajeDep, " +
+                    "a.DepAcumulada, " +
+                    "a.ValorResidual, " +
+                    "a.ValorLibros, " +
+                    "s.nombre AS 'Subgrupo', " +
+                    "a.idSubgrupo, " +
+                    "g.nombre, " +
+                    "s.idGrupo, " +
+                    "ar.codigo, " +
+                    "a.fecha_modificacion " +
+                    "FROM `historial_activo` AS a " +
+                    "JOIN `activo` AS ar ON a.idActivo = ar.idActivo " +
+                    "JOIN `usuario` AS u ON a.idUsuario = u.idUsuario " +
+                    "JOIN `estado` AS e ON a.idEstado = e.idEstado " +
+                    "JOIN `tipo` AS c ON a.idTipo = c.idTipo " +
+                    "JOIN `empresa` AS em ON a.idEmpresa = em.idEmpresa " +
+                    "JOIN `subgrupo` AS s ON a.idSubgrupo = s.idSubgrupo " +
+                    "JOIN `grupo` AS g ON g.idGrupo = s.idGrupo " +
+                    "JOIN `departamento` AS d ON d.idDepartamento = u.idDepartamento " +
+                    "WHERE a.idActivo = " + id + " ORDER BY a.idHistorial DESC";
+                connection.Open();
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        DataRow activo = dt.NewRow();
+                        activo["ID"] = reader.GetString(0);
+                        activo["Descripcion"] = reader.GetString(1);
+                        activo["Usuario"] = reader.GetString(2);
+                        activo["idUsuario"] = reader.GetString(3);
+                        activo["Estado"] = reader.GetString(4);
+                        activo["idEstado"] = reader.GetString(5);
+                        activo["Tipo"] = reader.GetString(6);
+                        activo["idTipo"] = reader.GetString(7);
+                        activo["Empresa"] = reader.GetString(8);
+                        activo["Fecha de Compra"] = reader.GetString(9);
+                        activo["Valor"] = reader.GetString(10);
+                        activo["FPC"] = reader.GetString(11);
+                        activo["Fecha de Depreciacion"] = reader.GetString(12);
+                        activo["% Depreciacion"] = reader.GetString(13);
+                        activo["Depreciacion Acumulada"] = reader.GetString(14);
+                        activo["Valor Residual"] = reader.GetString(15);
+                        activo["Valor Libros"] = reader.GetString(16);
+                        activo["Subgrupo"] = reader.GetString(17);
+                        activo["idSubgrupo"] = reader.GetString(18);
+                        activo["Grupo"] = reader.GetString(19);
+                        activo["idGrupo"] = reader.GetString(20);
+                        activo["Código"] = reader.GetString(21);
+                        activo["Fecha de Modificación"] = reader.GetString(22);
+                        dt.Rows.Add(activo);
+                    }
+                }
+                connection.Close();
             }
             return dt;
         }
@@ -566,6 +650,68 @@ namespace Activos
             }
             connection.Close();
             return dt;
+        }
+
+        public int EstadoInvAr(int id)
+        {
+            int estado = new int();
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT idEstadoInv FROM inventario_articulo WHERE idInventarioArticulo = " + id;
+            Console.WriteLine(cmd.CommandText);
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    estado = reader.GetInt32(0);
+                }
+            }
+            connection.Close();
+            return estado;
+        }
+
+        public bool cerrarInvAr(int id)
+        {
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "UPDATE inventario_articulo SET idEstadoInv = 2, fecha_final = current_timestamp() WHERE idInventarioArticulo = " + id;
+            Console.WriteLine(cmd.CommandText);
+            connection.Open();
+            object resultado = cmd.ExecuteNonQuery();
+            connection.Close();
+            if (resultado != null) return true;
+            else return false;
+        }
+
+        public int EstadoInvAc(int id)
+        {
+            int estado = new int();
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT idEstadoInv FROM inventario_activo WHERE idInventarioActivo = " + id;
+            Console.WriteLine(cmd.CommandText);
+            connection.Open();
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    estado = reader.GetInt32(0);
+                }
+            }
+            connection.Close();
+            return estado;
+        }
+
+        public bool cerrarInvAc(int id)
+        {
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "UPDATE inventario_activo SET idEstadoInv = 2, fecha_final = current_timestamp() WHERE idInventarioActivo = " + id;
+            Console.WriteLine(cmd.CommandText);
+            connection.Open();
+            object resultado = cmd.ExecuteNonQuery();
+            connection.Close();
+            if (resultado != null) return true;
+            else return false;
         }
 
         public DataTable gruposAll()
