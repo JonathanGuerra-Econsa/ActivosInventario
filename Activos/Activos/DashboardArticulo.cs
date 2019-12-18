@@ -239,6 +239,14 @@ namespace Activos
             #endregion
             #endregion
 
+            #region Revisar estado del inventario
+            if (mysql.EstadoInvAr(idAr) == 2)
+            {
+                button7.Enabled = false;
+                button3.Enabled = false;
+            }
+            #endregion
+
             #region config
             CenterToScreen();
             tabControl2.Controls.Remove(tabPage4);
@@ -350,6 +358,31 @@ namespace Activos
             cmbStatus.SelectedValue = 0;
             cmbTipo.SelectedValue = 0;
             cmbUser.SelectedValue = 0;
+        }
+
+        private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            var row = dataGridView2.CurrentRow.Index;
+            Agregar_Articulo agregar = new Agregar_Articulo();
+            agregar.opcion = 3;
+            //agregar.inventario = idAr;
+            agregar.ID = Convert.ToInt32(dataGridView2.Rows[row].Cells["idArticulo"].Value);
+            agregar.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("¿Realmente desea cerrar este inventario?\nUna vez cerrado ya no se podran realizar cambios", "Cerrar Inventario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                if (mysql.cerrarInvAr(idAr))
+                {
+                    button7.Enabled = false;
+                    button3.Enabled = false;
+                    MessageBox.Show("Inventario cerrado satisfactoriamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
         }
 
         private void ArmarConsulta(object sender, EventArgs e)
