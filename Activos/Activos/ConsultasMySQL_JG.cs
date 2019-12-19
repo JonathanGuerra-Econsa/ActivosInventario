@@ -716,7 +716,7 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(nombre, fecha_apertura, fecha_final) VALUES('{1}', '{2}', '0')", Tabla_InvActivo, nombre, fecha_apertura), mysqlCon);
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(nombre, idEstadoInv ,fecha_apertura, fecha_final) VALUES('{1}',  1,'{2}', '0')", Tabla_InvActivo, nombre, fecha_apertura), mysqlCon);
                 mysqlCmd.ExecuteNonQuery();
             }
         }
@@ -729,7 +729,7 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(nombre, fecha_apertura, fecha_final) VALUES('{1}', '{2}', '0')", Tabla_InvArticulo, nombre, fechaApertura), mysqlCon);
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(nombre, idEstadoInv, fecha_apertura, fecha_final) VALUES('{1}', 1, '{2}', '0')", Tabla_InvArticulo, nombre, fechaApertura), mysqlCon);
                 mysqlCmd.ExecuteNonQuery();
             }
         }
@@ -808,7 +808,7 @@ namespace Activos
             {
                 mysqlCon.Open();
                 //MySqlDataAdapter mySqlData = new MySqlDataAdapter(string.Format("SELECT idInventarioActivo as 'ID', nombre as 'Nombre' FROM {0} ORDER BY idInventarioActivo DESC", Tabla_InvActivo), mysqlCon);
-                MySqlDataAdapter mySqlData = new MySqlDataAdapter(string.Format("SELECT a.idInventarioActivo as 'ID', a.nombre as 'Nombre' FROM inventario_activo a WHERE a.nombre not in (SELECT inventario_articulo.nombre FROM inventario_articulo INNER JOIN inventario_activo ON inventario_activo.nombre = inventario_articulo.nombre) ORDER BY a.idInventarioActivo DESC", Tabla_InvActivo), mysqlCon);
+                MySqlDataAdapter mySqlData = new MySqlDataAdapter(string.Format("SELECT a.idInventarioActivo as 'ID', a.nombre as 'Nombre' FROM inventario_activo a WHERE a.fecha_apertura not in (SELECT inventario_articulo.fecha_apertura FROM inventario_articulo INNER JOIN inventario_activo ON inventario_activo.nombre = inventario_articulo.nombre) ORDER BY a.idInventarioActivo DESC", Tabla_InvActivo), mysqlCon);
                 mySqlData.Fill(dt);
             }
             return dt;
@@ -824,7 +824,7 @@ namespace Activos
             {
                 mysqlCon.Open();
                 //MySqlDataAdapter mySqlData = new MySqlDataAdapter(string.Format("SELECT idInventarioArticulo as 'ID', nombre as 'Nombre' FROM {0} ORDER BY idInventarioArticulo DESC", Tabla_InvArticulo), mysqlCon);
-                MySqlDataAdapter mySqlData = new MySqlDataAdapter(string.Format("SELECT idInventarioArticulo as 'ID', nombre as 'Nombre' FROM inventario_articulo WHERE nombre not in (SELECT inventario_articulo.nombre FROM inventario_articulo INNER JOIN inventario_activo ON inventario_activo.nombre = inventario_articulo.nombre) ORDER BY idInventarioArticulo DESC", Tabla_InvArticulo), mysqlCon);
+                MySqlDataAdapter mySqlData = new MySqlDataAdapter(string.Format("SELECT idInventarioArticulo as 'ID', nombre as 'Nombre' FROM inventario_articulo WHERE fecha_apertura not in (SELECT inventario_activo.fecha_apertura FROM inventario_articulo INNER JOIN inventario_activo ON inventario_activo.nombre = inventario_articulo.nombre) ORDER BY idInventarioArticulo DESC", Tabla_InvArticulo), mysqlCon);
                 mySqlData.Fill(dataTable);
             }
             return dataTable;
@@ -839,7 +839,7 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlDataAdapter mySqlData = new MySqlDataAdapter(string.Format("SELECT a.nombre as 'Nombre' FROM {0} a INNER JOIN {1} ar ON a.nombre = ar.nombre ORDER BY a.fecha_apertura DESC", Tabla_InvActivo, Tabla_InvArticulo), mysqlCon);
+                MySqlDataAdapter mySqlData = new MySqlDataAdapter(string.Format("SELECT a.nombre as 'Nombre' FROM inventario_activo a INNER JOIN inventario_articulo ar ON a.nombre = ar.nombre WHERE a.fecha_apertura = ar.fecha_apertura ORDER BY a.fecha_apertura DESC", Tabla_InvActivo, Tabla_InvArticulo), mysqlCon);
                 mySqlData.Fill(dataTable);
             }
             return dataTable;

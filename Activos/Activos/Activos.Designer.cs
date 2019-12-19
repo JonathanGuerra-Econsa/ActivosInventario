@@ -66,26 +66,34 @@
             // btnAct
             // 
             this.btnAct.BackColor = System.Drawing.Color.Transparent;
+            this.btnAct.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAct.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAct.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAct.Location = new System.Drawing.Point(967, 69);
+            this.btnAct.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAct.Image = global::Activos.Properties.Resources.refresh;
+            this.btnAct.Location = new System.Drawing.Point(870, 105);
             this.btnAct.Name = "btnAct";
-            this.btnAct.Size = new System.Drawing.Size(91, 52);
+            this.btnAct.Size = new System.Drawing.Size(188, 41);
             this.btnAct.TabIndex = 12;
             this.btnAct.Text = "Actualizar";
+            this.btnAct.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAct.UseVisualStyleBackColor = false;
             this.btnAct.Click += new System.EventHandler(this.ArmarConsulta);
             // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(967, 12);
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Image = global::Activos.Properties.Resources.eraser;
+            this.button2.Location = new System.Drawing.Point(870, 59);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(91, 51);
+            this.button2.Size = new System.Drawing.Size(188, 41);
             this.button2.TabIndex = 13;
             this.button2.Text = "Limpiar Buscador";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.limpiarDatos);
             // 
@@ -113,11 +121,11 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 182);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 199);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(1046, 368);
+            this.dataGridView1.Size = new System.Drawing.Size(1046, 351);
             this.dataGridView1.TabIndex = 22;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
@@ -132,11 +140,11 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.cmbSubgrupo);
             this.groupBox1.Controls.Add(this.cmbGrupo);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(70)))), ((int)(((byte)(144)))));
             this.groupBox1.Location = new System.Drawing.Point(13, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(422, 164);
+            this.groupBox1.Size = new System.Drawing.Size(422, 181);
             this.groupBox1.TabIndex = 24;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Activo";
@@ -147,7 +155,7 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(70)))), ((int)(((byte)(144)))));
-            this.label9.Location = new System.Drawing.Point(211, 81);
+            this.label9.Location = new System.Drawing.Point(278, 101);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(56, 20);
             this.label9.TabIndex = 32;
@@ -159,7 +167,7 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(70)))), ((int)(((byte)(144)))));
-            this.label10.Location = new System.Drawing.Point(211, 22);
+            this.label10.Location = new System.Drawing.Point(289, 45);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(40, 20);
             this.label10.TabIndex = 31;
@@ -169,7 +177,7 @@
             // 
             this.cmbEstado.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEstado.FormattingEnabled = true;
-            this.cmbEstado.Location = new System.Drawing.Point(215, 104);
+            this.cmbEstado.Location = new System.Drawing.Point(215, 124);
             this.cmbEstado.Name = "cmbEstado";
             this.cmbEstado.Size = new System.Drawing.Size(201, 23);
             this.cmbEstado.TabIndex = 30;
@@ -179,7 +187,7 @@
             // 
             this.cmbTipo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTipo.FormattingEnabled = true;
-            this.cmbTipo.Location = new System.Drawing.Point(215, 45);
+            this.cmbTipo.Location = new System.Drawing.Point(215, 65);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(201, 23);
             this.cmbTipo.TabIndex = 29;
@@ -191,7 +199,7 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(70)))), ((int)(((byte)(144)))));
-            this.label8.Location = new System.Drawing.Point(6, 81);
+            this.label8.Location = new System.Drawing.Point(61, 101);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(77, 20);
             this.label8.TabIndex = 28;
@@ -203,7 +211,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(70)))), ((int)(((byte)(144)))));
-            this.label7.Location = new System.Drawing.Point(6, 22);
+            this.label7.Location = new System.Drawing.Point(74, 42);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 20);
             this.label7.TabIndex = 27;
@@ -213,7 +221,7 @@
             // 
             this.cmbSubgrupo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSubgrupo.FormattingEnabled = true;
-            this.cmbSubgrupo.Location = new System.Drawing.Point(6, 104);
+            this.cmbSubgrupo.Location = new System.Drawing.Point(6, 124);
             this.cmbSubgrupo.Name = "cmbSubgrupo";
             this.cmbSubgrupo.Size = new System.Drawing.Size(203, 23);
             this.cmbSubgrupo.TabIndex = 1;
@@ -223,7 +231,7 @@
             // 
             this.cmbGrupo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbGrupo.FormattingEnabled = true;
-            this.cmbGrupo.Location = new System.Drawing.Point(6, 45);
+            this.cmbGrupo.Location = new System.Drawing.Point(6, 65);
             this.cmbGrupo.Name = "cmbGrupo";
             this.cmbGrupo.Size = new System.Drawing.Size(203, 23);
             this.cmbGrupo.TabIndex = 0;
@@ -236,11 +244,11 @@
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.cmbUser);
             this.groupBox2.Controls.Add(this.cmbDepto);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(70)))), ((int)(((byte)(144)))));
             this.groupBox2.Location = new System.Drawing.Point(441, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(215, 164);
+            this.groupBox2.Size = new System.Drawing.Size(215, 181);
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Responsable";
@@ -251,7 +259,7 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(70)))), ((int)(((byte)(144)))));
-            this.label11.Location = new System.Drawing.Point(2, 81);
+            this.label11.Location = new System.Drawing.Point(72, 101);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(63, 20);
             this.label11.TabIndex = 36;
@@ -264,7 +272,7 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(70)))), ((int)(((byte)(144)))));
-            this.label12.Location = new System.Drawing.Point(2, 22);
+            this.label12.Location = new System.Drawing.Point(55, 42);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(111, 20);
             this.label12.TabIndex = 35;
@@ -274,7 +282,7 @@
             // 
             this.cmbUser.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbUser.FormattingEnabled = true;
-            this.cmbUser.Location = new System.Drawing.Point(6, 104);
+            this.cmbUser.Location = new System.Drawing.Point(6, 124);
             this.cmbUser.Name = "cmbUser";
             this.cmbUser.Size = new System.Drawing.Size(201, 23);
             this.cmbUser.TabIndex = 34;
@@ -285,7 +293,7 @@
             // 
             this.cmbDepto.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDepto.FormattingEnabled = true;
-            this.cmbDepto.Location = new System.Drawing.Point(6, 45);
+            this.cmbDepto.Location = new System.Drawing.Point(6, 65);
             this.cmbDepto.Name = "cmbDepto";
             this.cmbDepto.Size = new System.Drawing.Size(201, 23);
             this.cmbDepto.TabIndex = 33;
@@ -294,14 +302,16 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Image = global::Activos.Properties.Resources.Logo_excel_opt;
-            this.button1.Location = new System.Drawing.Point(967, 127);
+            this.button1.Location = new System.Drawing.Point(870, 152);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(91, 52);
+            this.button1.Size = new System.Drawing.Size(188, 41);
             this.button1.TabIndex = 26;
             this.button1.Text = "Imprimir Excel";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -309,13 +319,18 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.Transparent;
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Image = global::Activos.Properties.Resources.plus_sign_in_circle;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button3.Location = new System.Drawing.Point(870, 12);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(91, 52);
+            this.button3.Size = new System.Drawing.Size(188, 41);
             this.button3.TabIndex = 27;
             this.button3.Text = "Agregar Activo";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -326,11 +341,11 @@
             this.groupBox3.Controls.Add(this.cmbEmpresa);
             this.groupBox3.Controls.Add(this.textBox1);
             this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(70)))), ((int)(((byte)(144)))));
             this.groupBox3.Location = new System.Drawing.Point(662, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(202, 164);
+            this.groupBox3.Size = new System.Drawing.Size(202, 181);
             this.groupBox3.TabIndex = 37;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "ID y Empresa";
@@ -341,7 +356,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(70)))), ((int)(((byte)(144)))));
-            this.label1.Location = new System.Drawing.Point(6, 81);
+            this.label1.Location = new System.Drawing.Point(61, 101);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 20);
             this.label1.TabIndex = 38;
@@ -351,7 +366,7 @@
             // 
             this.cmbEmpresa.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEmpresa.FormattingEnabled = true;
-            this.cmbEmpresa.Location = new System.Drawing.Point(10, 104);
+            this.cmbEmpresa.Location = new System.Drawing.Point(10, 124);
             this.cmbEmpresa.Name = "cmbEmpresa";
             this.cmbEmpresa.Size = new System.Drawing.Size(186, 23);
             this.cmbEmpresa.TabIndex = 37;
@@ -360,7 +375,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.textBox1.Location = new System.Drawing.Point(10, 45);
+            this.textBox1.Location = new System.Drawing.Point(10, 65);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(186, 23);
             this.textBox1.TabIndex = 36;
@@ -372,7 +387,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(70)))), ((int)(((byte)(144)))));
-            this.label2.Location = new System.Drawing.Point(6, 22);
+            this.label2.Location = new System.Drawing.Point(61, 42);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 20);
             this.label2.TabIndex = 35;
