@@ -31,6 +31,9 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DahsboardActivos));
             this.button7 = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -72,7 +75,9 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(340, 96);
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button7.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.Location = new System.Drawing.Point(493, 100);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(247, 29);
             this.button7.TabIndex = 13;
@@ -89,14 +94,14 @@
             this.tabControl2.Location = new System.Drawing.Point(12, 12);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(601, 206);
+            this.tabControl2.Size = new System.Drawing.Size(756, 206);
             this.tabControl2.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl2.TabIndex = 12;
             this.tabControl2.SelectedIndexChanged += new System.EventHandler(this.tabControl2_SelectedIndexChanged);
             // 
             // tabPage3
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage3.BackColor = System.Drawing.Color.White;
             this.tabPage3.Controls.Add(this.button3);
             this.tabPage3.Controls.Add(this.button7);
             this.tabPage3.Controls.Add(this.button2);
@@ -112,14 +117,15 @@
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tabPage3.Size = new System.Drawing.Size(593, 173);
+            this.tabPage3.Size = new System.Drawing.Size(748, 173);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Activos";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(340, 131);
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(493, 135);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(247, 29);
             this.button3.TabIndex = 14;
@@ -129,7 +135,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(340, 40);
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(493, 44);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(121, 50);
             this.button2.TabIndex = 8;
@@ -142,8 +150,8 @@
             this.excelAc.BackColor = System.Drawing.Color.Transparent;
             this.excelAc.BackgroundImage = global::Activos.Properties.Resources.Logo_excel;
             this.excelAc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.excelAc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.excelAc.Location = new System.Drawing.Point(466, 40);
+            this.excelAc.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.excelAc.Location = new System.Drawing.Point(619, 44);
             this.excelAc.Name = "excelAc";
             this.excelAc.Size = new System.Drawing.Size(121, 50);
             this.excelAc.TabIndex = 7;
@@ -152,7 +160,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(340, 7);
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(493, 11);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(247, 27);
             this.button1.TabIndex = 6;
@@ -163,7 +173,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(252, 90);
+            this.label7.Location = new System.Drawing.Point(332, 90);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(50, 20);
             this.label7.TabIndex = 5;
@@ -172,9 +182,10 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(159, 90);
+            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(227, 90);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(98, 20);
+            this.label8.Size = new System.Drawing.Size(102, 20);
             this.label8.TabIndex = 4;
             this.label8.Text = "No revisados:";
             // 
@@ -182,7 +193,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(240, 6);
+            this.label5.Location = new System.Drawing.Point(320, 6);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(94, 40);
             this.label5.TabIndex = 3;
@@ -191,7 +202,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(252, 59);
+            this.label2.Location = new System.Drawing.Point(332, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 20);
             this.label2.TabIndex = 2;
@@ -200,9 +211,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(159, 59);
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(227, 59);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 20);
+            this.label1.Size = new System.Drawing.Size(80, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Revisados:";
             // 
@@ -214,7 +226,7 @@
             this.chart2.Cursor = System.Windows.Forms.Cursors.Default;
             legend1.Name = "Legend1";
             this.chart2.Legends.Add(legend1);
-            this.chart2.Location = new System.Drawing.Point(6, 6);
+            this.chart2.Location = new System.Drawing.Point(74, 6);
             this.chart2.Name = "chart2";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
@@ -248,14 +260,15 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 29);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(593, 173);
+            this.tabPage4.Size = new System.Drawing.Size(748, 173);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Busqueda de Activos";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(6, 8);
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button4.Location = new System.Drawing.Point(88, 6);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(180, 52);
             this.button4.TabIndex = 9;
@@ -266,7 +279,7 @@
             // cmbEmpresa
             // 
             this.cmbEmpresa.FormattingEnabled = true;
-            this.cmbEmpresa.Location = new System.Drawing.Point(201, 31);
+            this.cmbEmpresa.Location = new System.Drawing.Point(283, 29);
             this.cmbEmpresa.Name = "cmbEmpresa";
             this.cmbEmpresa.Size = new System.Drawing.Size(191, 28);
             this.cmbEmpresa.TabIndex = 27;
@@ -275,16 +288,17 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(200, 60);
+            this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(328, 60);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(106, 20);
+            this.label16.Size = new System.Drawing.Size(108, 20);
             this.label16.TabIndex = 26;
             this.label16.Text = "Departamento";
             // 
             // cmbDepto
             // 
             this.cmbDepto.FormattingEnabled = true;
-            this.cmbDepto.Location = new System.Drawing.Point(201, 88);
+            this.cmbDepto.Location = new System.Drawing.Point(283, 86);
             this.cmbDepto.Name = "cmbDepto";
             this.cmbDepto.Size = new System.Drawing.Size(191, 28);
             this.cmbDepto.TabIndex = 25;
@@ -293,16 +307,17 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(398, 8);
+            this.label17.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(553, 6);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(50, 20);
+            this.label17.Size = new System.Drawing.Size(52, 20);
             this.label17.TabIndex = 24;
             this.label17.Text = "Grupo";
             // 
             // cmbGrupo
             // 
             this.cmbGrupo.FormattingEnabled = true;
-            this.cmbGrupo.Location = new System.Drawing.Point(398, 30);
+            this.cmbGrupo.Location = new System.Drawing.Point(480, 28);
             this.cmbGrupo.Name = "cmbGrupo";
             this.cmbGrupo.Size = new System.Drawing.Size(191, 28);
             this.cmbGrupo.TabIndex = 23;
@@ -311,16 +326,17 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(398, 61);
+            this.label18.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(539, 59);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(74, 20);
+            this.label18.Size = new System.Drawing.Size(77, 20);
             this.label18.TabIndex = 22;
             this.label18.Text = "Subgrupo";
             // 
             // cmbSubgrupo
             // 
             this.cmbSubgrupo.FormattingEnabled = true;
-            this.cmbSubgrupo.Location = new System.Drawing.Point(398, 84);
+            this.cmbSubgrupo.Location = new System.Drawing.Point(480, 82);
             this.cmbSubgrupo.Name = "cmbSubgrupo";
             this.cmbSubgrupo.Size = new System.Drawing.Size(191, 28);
             this.cmbSubgrupo.TabIndex = 21;
@@ -329,7 +345,8 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(398, 115);
+            this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(560, 113);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(39, 20);
             this.label15.TabIndex = 20;
@@ -338,7 +355,7 @@
             // cmbTipo
             // 
             this.cmbTipo.FormattingEnabled = true;
-            this.cmbTipo.Location = new System.Drawing.Point(398, 138);
+            this.cmbTipo.Location = new System.Drawing.Point(480, 136);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(191, 28);
             this.cmbTipo.TabIndex = 19;
@@ -347,16 +364,17 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(200, 116);
+            this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(349, 115);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(59, 20);
+            this.label14.Size = new System.Drawing.Size(62, 20);
             this.label14.TabIndex = 18;
             this.label14.Text = "Usuario";
             // 
             // cmbUser
             // 
             this.cmbUser.FormattingEnabled = true;
-            this.cmbUser.Location = new System.Drawing.Point(201, 140);
+            this.cmbUser.Location = new System.Drawing.Point(283, 138);
             this.cmbUser.Name = "cmbUser";
             this.cmbUser.Size = new System.Drawing.Size(191, 28);
             this.cmbUser.TabIndex = 17;
@@ -365,16 +383,18 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(204, 6);
+            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(344, 6);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(66, 20);
+            this.label13.Size = new System.Drawing.Size(67, 20);
             this.label13.TabIndex = 16;
             this.label13.Text = "Empresa";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(2, 65);
+            this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(152, 63);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(54, 20);
             this.label12.TabIndex = 14;
@@ -383,16 +403,17 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(2, 117);
+            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(135, 115);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(95, 20);
+            this.label11.Size = new System.Drawing.Size(96, 20);
             this.label11.TabIndex = 13;
             this.label11.Text = "Estado Fisico";
             // 
             // cmbStatus
             // 
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(4, 88);
+            this.cmbStatus.Location = new System.Drawing.Point(86, 86);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(191, 28);
             this.cmbStatus.TabIndex = 11;
@@ -401,7 +422,7 @@
             // cmbEstado
             // 
             this.cmbEstado.FormattingEnabled = true;
-            this.cmbEstado.Location = new System.Drawing.Point(6, 140);
+            this.cmbEstado.Location = new System.Drawing.Point(88, 138);
             this.cmbEstado.Name = "cmbEstado";
             this.cmbEstado.Size = new System.Drawing.Size(191, 28);
             this.cmbEstado.TabIndex = 10;
@@ -413,12 +434,28 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(12, 224);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(601, 355);
+            this.dataGridView1.Size = new System.Drawing.Size(756, 296);
             this.dataGridView1.TabIndex = 11;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
@@ -428,12 +465,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Activos.Properties.Resources.FONDO_4;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(626, 603);
+            this.ClientSize = new System.Drawing.Size(780, 565);
             this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.dataGridView1);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DahsboardActivos";
-            this.Text = "DahsboardActivos";
+            this.Text = "Dashboard Activos";
             this.Load += new System.EventHandler(this.DahsboardActivos_Load);
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);

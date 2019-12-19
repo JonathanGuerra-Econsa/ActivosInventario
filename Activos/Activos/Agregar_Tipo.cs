@@ -35,7 +35,7 @@ namespace Activos
         private void button1_Click(object sender, EventArgs e)
         {
             Administrador_Activo administrar = new Administrador_Activo();
-            administrar.Show();
+            administrar.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)

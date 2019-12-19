@@ -68,6 +68,7 @@
             // 
             // lblGrupo
             // 
+            this.lblGrupo.BackColor = System.Drawing.Color.White;
             this.lblGrupo.Location = new System.Drawing.Point(479, 210);
             this.lblGrupo.Multiline = true;
             this.lblGrupo.Name = "lblGrupo";
@@ -77,6 +78,7 @@
             // 
             // lblTipo
             // 
+            this.lblTipo.BackColor = System.Drawing.Color.White;
             this.lblTipo.Location = new System.Drawing.Point(479, 108);
             this.lblTipo.Multiline = true;
             this.lblTipo.Name = "lblTipo";
@@ -86,6 +88,7 @@
             // 
             // lblId
             // 
+            this.lblId.BackColor = System.Drawing.Color.White;
             this.lblId.Location = new System.Drawing.Point(479, 75);
             this.lblId.Name = "lblId";
             this.lblId.ReadOnly = true;
@@ -94,22 +97,32 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(536, 319);
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Image = global::Activos.Properties.Resources.writing;
+            this.button2.Location = new System.Drawing.Point(547, 301);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(116, 32);
+            this.button2.Size = new System.Drawing.Size(126, 50);
             this.button2.TabIndex = 9;
             this.button2.Text = "Editar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(415, 317);
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = global::Activos.Properties.Resources.plus_sign_in_circle;
+            this.button1.Location = new System.Drawing.Point(415, 301);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(115, 33);
+            this.button1.Size = new System.Drawing.Size(126, 50);
             this.button1.TabIndex = 8;
             this.button1.Text = "Agregar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label8
@@ -145,7 +158,7 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(7, 27);
             this.dataGridView1.MultiSelect = false;

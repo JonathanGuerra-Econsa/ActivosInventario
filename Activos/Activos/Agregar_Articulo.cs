@@ -204,7 +204,24 @@ namespace Activos
 
         private void button1_Click(object sender, EventArgs e)
         {
-            vistaDetalle();
+            try
+            {
+                consultasMySQL.detalleArticulo(ID.ToString());
+                lbID.Text = ID.ToString();
+                txtDescripcion.Text = consultasMySQL.descripcion_articulo;
+                cmbEstado.Text = consultasMySQL.estado_articulo;
+                cmbTipo.Text = consultasMySQL.tipo_articulo;
+                cmbEmpresa.Text = consultasMySQL.empresa_articulo;
+                cmbDepartamento.Text = consultasMySQL.departamento_articulo;
+                cmbUsuario.Text = consultasMySQL.usuario_articulo;
+                dtFecha.Text = consultasMySQL.fecha_articulo;
+                nuValor.Value = Convert.ToDecimal(consultasMySQL.valor_articulo);
+                txtFPC.Text = consultasMySQL.fpc_articulo;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
             Historial historial = new Historial();
             historial.id = Convert.ToInt32(lbID.Text);
             historial.opcion = 2;
