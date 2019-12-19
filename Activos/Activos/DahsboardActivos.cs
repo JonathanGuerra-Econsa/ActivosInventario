@@ -403,6 +403,13 @@ namespace Activos
             }
         }
 
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Lectura form = new Lectura();
+            form.invIdAc = idA;
+            form.ShowDialog();
+        }
+
         private void ArmarConsulta(object sender, EventArgs e)
         {
             if (cmbDepto.SelectedValue == null) return;
