@@ -77,11 +77,13 @@
             // 
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button7.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.Image = global::Activos.Properties.Resources.supermarket_scanner;
             this.button7.Location = new System.Drawing.Point(493, 100);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(247, 29);
+            this.button7.Size = new System.Drawing.Size(121, 64);
             this.button7.TabIndex = 13;
             this.button7.Text = "Escaner de código";
+            this.button7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -125,11 +127,13 @@
             // 
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(493, 135);
+            this.button3.Image = global::Activos.Properties.Resources._lock;
+            this.button3.Location = new System.Drawing.Point(619, 100);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(247, 29);
+            this.button3.Size = new System.Drawing.Size(121, 64);
             this.button3.TabIndex = 14;
             this.button3.Text = "Cerrar Inventario";
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -137,11 +141,13 @@
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(493, 44);
+            this.button2.Image = global::Activos.Properties.Resources.loupe__1_;
+            this.button2.Location = new System.Drawing.Point(493, 59);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(121, 50);
+            this.button2.Size = new System.Drawing.Size(121, 35);
             this.button2.TabIndex = 8;
             this.button2.Text = "Buscar";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -151,9 +157,9 @@
             this.excelAc.BackgroundImage = global::Activos.Properties.Resources.Logo_excel;
             this.excelAc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.excelAc.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.excelAc.Location = new System.Drawing.Point(619, 44);
+            this.excelAc.Location = new System.Drawing.Point(619, 59);
             this.excelAc.Name = "excelAc";
-            this.excelAc.Size = new System.Drawing.Size(121, 50);
+            this.excelAc.Size = new System.Drawing.Size(121, 35);
             this.excelAc.TabIndex = 7;
             this.excelAc.UseVisualStyleBackColor = false;
             this.excelAc.Click += new System.EventHandler(this.excelAc_Click);
@@ -162,11 +168,14 @@
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = global::Activos.Properties.Resources.refresh;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.Location = new System.Drawing.Point(493, 11);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(247, 27);
+            this.button1.Size = new System.Drawing.Size(247, 42);
             this.button1.TabIndex = 6;
             this.button1.Text = "Actualizar";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -268,11 +277,14 @@
             // button4
             // 
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button4.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.button4.Image = global::Activos.Properties.Resources.refresh;
             this.button4.Location = new System.Drawing.Point(88, 6);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(180, 52);
             this.button4.TabIndex = 9;
             this.button4.Text = "Limpiar Busqueda";
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 

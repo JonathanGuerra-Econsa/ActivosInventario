@@ -109,33 +109,42 @@
             // button3
             // 
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Location = new System.Drawing.Point(425, 135);
+            this.button3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.button3.Image = global::Activos.Properties.Resources._lock;
+            this.button3.Location = new System.Drawing.Point(635, 100);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(247, 29);
+            this.button3.Size = new System.Drawing.Size(121, 64);
             this.button3.TabIndex = 14;
             this.button3.Text = "Cerrar Inventario";
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button7
             // 
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button7.Location = new System.Drawing.Point(425, 100);
+            this.button7.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.button7.Image = global::Activos.Properties.Resources.supermarket_scanner;
+            this.button7.Location = new System.Drawing.Point(509, 100);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(247, 29);
+            this.button7.Size = new System.Drawing.Size(120, 64);
             this.button7.TabIndex = 13;
             this.button7.Text = "Escaner de código";
+            this.button7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button2
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Location = new System.Drawing.Point(425, 44);
+            this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.button2.Image = global::Activos.Properties.Resources.loupe__1_;
+            this.button2.Location = new System.Drawing.Point(508, 59);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(121, 50);
+            this.button2.Size = new System.Drawing.Size(121, 35);
             this.button2.TabIndex = 8;
             this.button2.Text = "Buscar";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -145,9 +154,9 @@
             this.excelAc.BackgroundImage = global::Activos.Properties.Resources.Logo_excel;
             this.excelAc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.excelAc.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.excelAc.Location = new System.Drawing.Point(551, 44);
+            this.excelAc.Location = new System.Drawing.Point(635, 59);
             this.excelAc.Name = "excelAc";
-            this.excelAc.Size = new System.Drawing.Size(121, 50);
+            this.excelAc.Size = new System.Drawing.Size(121, 35);
             this.excelAc.TabIndex = 7;
             this.excelAc.UseVisualStyleBackColor = false;
             this.excelAc.Click += new System.EventHandler(this.excelAc_Click);
@@ -155,18 +164,22 @@
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(425, 11);
+            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.button1.Image = global::Activos.Properties.Resources.refresh;
+            this.button1.Location = new System.Drawing.Point(509, 11);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(247, 27);
+            this.button1.Size = new System.Drawing.Size(247, 42);
             this.button1.TabIndex = 6;
             this.button1.Text = "Actualizar";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(339, 90);
+            this.label7.Location = new System.Drawing.Point(321, 90);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(50, 20);
             this.label7.TabIndex = 5;
@@ -175,7 +188,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(246, 90);
+            this.label8.Location = new System.Drawing.Point(228, 90);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(98, 20);
             this.label8.TabIndex = 4;
@@ -185,7 +198,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(327, 6);
+            this.label5.Location = new System.Drawing.Point(309, 6);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(94, 40);
             this.label5.TabIndex = 3;
@@ -194,7 +207,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(339, 59);
+            this.label2.Location = new System.Drawing.Point(321, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 20);
             this.label2.TabIndex = 2;
@@ -203,7 +216,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(246, 59);
+            this.label1.Location = new System.Drawing.Point(228, 59);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 20);
             this.label1.TabIndex = 1;
@@ -217,7 +230,7 @@
             this.chart2.Cursor = System.Windows.Forms.Cursors.Default;
             legend1.Name = "Legend1";
             this.chart2.Legends.Add(legend1);
-            this.chart2.Location = new System.Drawing.Point(93, 6);
+            this.chart2.Location = new System.Drawing.Point(75, 6);
             this.chart2.Name = "chart2";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
@@ -257,11 +270,14 @@
             // button4
             // 
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button4.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.button4.Image = global::Activos.Properties.Resources.refresh;
             this.button4.Location = new System.Drawing.Point(116, 6);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(180, 52);
             this.button4.TabIndex = 9;
             this.button4.Text = "Limpiar Busqueda";
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
