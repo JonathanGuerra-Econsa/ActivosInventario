@@ -38,6 +38,7 @@ namespace Activos
             dt.Columns.Add("idSubgrupo");
             dt.Columns.Add("Grupo");
             dt.Columns.Add("idGrupo");
+            dt.Columns.Add("Código");
             MySqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = "SELECT a.idActivo, " +
                 "a.descripcion, " +
@@ -59,7 +60,8 @@ namespace Activos
                 "s.nombre AS 'Subgrupo', " +
                 "a.idSubgrupo, " +
                 "g.nombre AS 'grupo', " +
-                "g.idGrupo " +
+                "g.idGrupo, " +
+                "a.codigo " +
                 "FROM `activo` AS a " +
                 "JOIN `usuario` AS u ON a.idUsuario = u.idUsuario " +
                 "JOIN `estado` AS e ON a.idEstado = e.idEstado " +
@@ -98,6 +100,7 @@ namespace Activos
                     activo["idSubgrupo"] = reader.GetString(18);
                     activo["Grupo"] = reader.GetString(19);
                     activo["idGrupo"] = reader.GetString(20);
+                    activo["Código"] = reader.GetString(21);
                     dt.Rows.Add(activo);
                 }
             }
@@ -247,6 +250,7 @@ namespace Activos
             dt.Columns.Add("FPC");
             dt.Columns.Add("Subgrupo");
             dt.Columns.Add("idSubgrupo");
+            dt.Columns.Add("Código");
             MySqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = "SELECT a.idArticulo, " +
                 "a.descripcion, " +
@@ -261,7 +265,8 @@ namespace Activos
                 "a.Valor, " +
                 "a.FPC, " +
                 "s.nombre AS 'Grupo', " +
-                "s.idGrupoArticulo " +
+                "s.idGrupoArticulo, " +
+                "a.codigo " +
                 "FROM `articulo` AS a " +
                 "JOIN `usuario` AS u ON a.idUsuario = u.idUsuario " +
                 "JOIN `estado` AS e ON a.idEstado = e.idEstado " +
@@ -292,6 +297,7 @@ namespace Activos
                     activo["FPC"] = reader.GetString(11);
                     activo["Subgrupo"] = reader.GetString(12);
                     activo["idSubgrupo"] = reader.GetString(13);
+                    activo["Código"] = reader.GetString(14);
                     dt.Rows.Add(activo);
                 }
             }
