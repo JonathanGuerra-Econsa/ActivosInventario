@@ -82,6 +82,7 @@
             // 
             this.cmbAdministrar.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbAdministrar.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbAdministrar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAdministrar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbAdministrar.FormattingEnabled = true;
             this.cmbAdministrar.Location = new System.Drawing.Point(22, 41);
@@ -582,6 +583,8 @@
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(792, 567);
+            this.MinimumSize = new System.Drawing.Size(792, 567);
             this.Name = "Administrador_Activo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Administrador Activo";
