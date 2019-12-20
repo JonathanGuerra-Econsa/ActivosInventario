@@ -202,7 +202,11 @@ namespace Activos
                 int n;
                 if (consulta.ToString() != "WHERE ") consulta.Append(" AND ");
                 if (int.TryParse(textBox1.Text, out n)) consulta.Append("a.idActivo = " + textBox1.Text);
-                else consulta.Append("a.codigo = '" + textBox1.Text + "'");
+                else
+                {
+                    textBox1.Text = textBox1.Text.Replace('\'', '-');
+                    consulta.Append("a.codigo = '" + textBox1.Text + "'");
+                }
             }
             Console.WriteLine(consulta.ToString());
             ////----- En caso de que de error, pruebe con lo siguiente
@@ -392,12 +396,13 @@ namespace Activos
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             timer1.Stop();
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != 'a' && e.KeyChar != 'A' && e.KeyChar != '-')
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != 'a' && e.KeyChar != 'A' && e.KeyChar != '-' && e.KeyChar != '\'')
             {
                 e.Handled = true;
             }
             if (((e.KeyChar == 'a') && (sender as TextBox).Text.IndexOf('a') > -1 ) || ((e.KeyChar == 'A') && (sender as TextBox).Text.IndexOf('A') > -1)) e.Handled = true;
             if ((e.KeyChar == '-') && (sender as TextBox).Text.IndexOf('-') > -1) e.Handled = true;
+            if ((e.KeyChar == '\'') && (sender as TextBox).Text.IndexOf('\'') > -1) e.Handled = true;
             timer1.Start();
         }
 

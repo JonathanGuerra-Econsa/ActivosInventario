@@ -16,7 +16,7 @@ namespace Activos
     {
 
         ConsultasMysql mysql = new ConsultasMysql();
-        public int idA = 1, opcion;
+        public int idA, opcion;
 
         public DahsboardActivos()
         {
@@ -401,6 +401,13 @@ namespace Activos
                     MessageBox.Show("Inventario cerrado satisfactoriamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Lectura form = new Lectura();
+            form.invIdAc = idA;
+            form.ShowDialog();
         }
 
         private void ArmarConsulta(object sender, EventArgs e)

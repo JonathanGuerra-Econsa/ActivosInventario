@@ -22,22 +22,22 @@ namespace Activos
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Agregar_Departamento().Show();
+            new Agregar_Departamento().ShowDialog();
         }
 
         private void btnUsuario_Click(object sender, EventArgs e)
         {
-            new Agregar_Usuario().Show();
+            new Agregar_Usuario().ShowDialog();
         }
 
         private void btnCategoria_Click(object sender, EventArgs e)
         {
-            new Agregar_Tipo().Show();
+            new Agregar_Tipo().ShowDialog();
         }
 
         private void btnActivo_Click(object sender, EventArgs e)
         {
-            new Activos().Show();
+            new Activos().ShowDialog();
         }
 
         private void btnArticulo_Click(object sender, EventArgs e)
@@ -73,7 +73,7 @@ namespace Activos
         private void btnInventario_Click(object sender, EventArgs e)
         {
             Aperturar_Inventario aperturarInventario = new Aperturar_Inventario();
-            aperturarInventario.Show();
+            aperturarInventario.ShowDialog();
         }
     }
 }

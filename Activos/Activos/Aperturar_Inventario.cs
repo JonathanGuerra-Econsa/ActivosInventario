@@ -69,7 +69,7 @@ namespace Activos
                             //-----------------------------* Redirigir a DashBoard *----------------------------//
                             DahsboardActivos dahsboard = new DahsboardActivos();
                             dahsboard.idA = Convert.ToInt32(idInventario);
-                            dahsboard.Show();
+                            dahsboard.ShowDialog();
                             //--------------------------------------------------------------------------------------//
                         }
                     }
@@ -106,7 +106,7 @@ namespace Activos
                             //-------------------------------* Redirigir *------------------------------------//
                             DashboardArticulo dashboard = new DashboardArticulo();
                             dashboard.idAr = Convert.ToInt32(idInventario);
-                            dashboard.Show();
+                            dashboard.ShowDialog();
                             //---------------------------------------------------------------------------------//
                         }
                     }
@@ -147,7 +147,7 @@ namespace Activos
                             DashboardTodos dashBoard = new DashboardTodos();
                             dashBoard.idA = Convert.ToInt32(idInventarioActivo);
                             dashBoard.idAr = Convert.ToInt32(idInventarioArticulo);
-                            dashBoard.Show();
+                            dashBoard.ShowDialog();
                             //------------------------------------------------------------------------------//
                         }
                     }
@@ -328,19 +328,19 @@ namespace Activos
                 DashboardTodos dashBoard = new DashboardTodos();
                 dashBoard.idA = Convert.ToInt32(idActivo);
                 dashBoard.idAr = Convert.ToInt32(idArticulo);
-                dashBoard.Show();
+                dashBoard.ShowDialog();
             }
             else if (btnActivo.Enabled == true)
             {
                 DahsboardActivos dahsboard = new DahsboardActivos();
                 dahsboard.idA = Convert.ToInt32(idActivo);
-                dahsboard.Show();
+                dahsboard.ShowDialog();
             }
             else if (btnArticulo.Enabled == true)
             {
                 DashboardArticulo dashboard = new DashboardArticulo();
                 dashboard.idAr = Convert.ToInt32(idArticulo);
-                dashboard.Show();
+                dashboard.ShowDialog();
             }
             //------------------------------------------------------------------------------//
         }

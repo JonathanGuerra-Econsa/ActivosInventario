@@ -160,7 +160,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(120, 51);
             this.label7.TabIndex = 40;
-            this.label7.Text = "Fecha Compra:";
+            this.label7.Text = "*Fecha Compra:";
             // 
             // cmbEmpresa
             // 
@@ -181,9 +181,9 @@
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(6, 173);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(90, 25);
+            this.label6.Size = new System.Drawing.Size(98, 25);
             this.label6.TabIndex = 38;
-            this.label6.Text = "Empresa:";
+            this.label6.Text = "*Empresa:";
             // 
             // cmbTipo
             // 
@@ -204,9 +204,9 @@
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(4, 135);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 25);
+            this.label5.Size = new System.Drawing.Size(62, 25);
             this.label5.TabIndex = 36;
-            this.label5.Text = "Tipo:";
+            this.label5.Text = "*Tipo:";
             // 
             // cmbEstado
             // 
@@ -227,9 +227,9 @@
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(6, 100);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 25);
+            this.label4.Size = new System.Drawing.Size(82, 25);
             this.label4.TabIndex = 34;
-            this.label4.Text = "Estado:";
+            this.label4.Text = "*Estado:";
             // 
             // txtDescripcion
             // 
@@ -247,9 +247,9 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(6, 63);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 25);
+            this.label2.Size = new System.Drawing.Size(130, 25);
             this.label2.TabIndex = 29;
-            this.label2.Text = "Descripción: ";
+            this.label2.Text = "*Descripción: ";
             // 
             // btnCancelar
             // 
@@ -338,9 +338,9 @@
             this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(56, 50);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(143, 25);
+            this.label9.Size = new System.Drawing.Size(151, 25);
             this.label9.TabIndex = 42;
-            this.label9.Text = "Departamento:";
+            this.label9.Text = "*Departamento:";
             // 
             // lbPuesto
             // 
@@ -384,9 +384,9 @@
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(56, 81);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 25);
+            this.label3.Size = new System.Drawing.Size(90, 25);
             this.label3.TabIndex = 34;
-            this.label3.Text = "Usuario:";
+            this.label3.Text = "*Usuario:";
             // 
             // btnActualiza
             // 
@@ -439,9 +439,9 @@
             this.label17.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(121, 52);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(102, 25);
+            this.label17.Size = new System.Drawing.Size(110, 25);
             this.label17.TabIndex = 35;
-            this.label17.Text = "SubGrupo:";
+            this.label17.Text = "*SubGrupo:";
             // 
             // cmbGrupo
             // 
@@ -463,9 +463,9 @@
             this.label18.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.Location = new System.Drawing.Point(121, 19);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(70, 25);
+            this.label18.Size = new System.Drawing.Size(78, 25);
             this.label18.TabIndex = 34;
-            this.label18.Text = "Grupo:";
+            this.label18.Text = "*Grupo:";
             // 
             // gbValor
             // 
@@ -619,7 +619,7 @@
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(133, 51);
             this.label15.TabIndex = 52;
-            this.label15.Text = "Fecha de Depreciación:";
+            this.label15.Text = "*Fecha de Depreciación:";
             // 
             // txtFPC
             // 
@@ -637,9 +637,9 @@
             this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(6, 54);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(55, 25);
+            this.label13.Size = new System.Drawing.Size(63, 25);
             this.label13.TabIndex = 52;
-            this.label13.Text = "FPC: ";
+            this.label13.Text = "*FPC: ";
             // 
             // nuValor
             // 
@@ -662,9 +662,9 @@
             this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(6, 22);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(62, 25);
+            this.label12.Size = new System.Drawing.Size(70, 25);
             this.label12.TabIndex = 51;
-            this.label12.Text = "Valor:";
+            this.label12.Text = "*Valor:";
             // 
             // button1
             // 
@@ -700,8 +700,11 @@
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnSet);
             this.DoubleBuffered = true;
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1056, 671);
+            this.MinimumSize = new System.Drawing.Size(1056, 671);
             this.Name = "Agregar_Activo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Activo";

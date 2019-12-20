@@ -55,10 +55,16 @@ namespace Activos
             ocultar_ver(false);
             if (txtEscaner.Text.Length >= 7)
             {
-                Regex rx = new Regex(@"^[aA-zZ]+\-[0-9]+$");
+                Regex rx = new Regex(@"^[aA-zZ]+(\-|\')?[0-9]+$");
                 if (rx.IsMatch(txtEscaner.Text))
                 {
                     int inicio = txtEscaner.Text.LastIndexOf('-');
+                    if (inicio == -1)
+                    {
+                        inicio = txtEscaner.Text.LastIndexOf('\'');
+                        string nuevo = Regex.Replace(txtEscaner.Text, "'", "-");
+                        txtEscaner.Text = nuevo;
+                    }
                     activo_articulo = txtEscaner.Text.Substring(0, inicio);
                     int id = Convert.ToInt32(txtEscaner.Text.Substring(inicio + 1, txtEscaner.Text.Length - (inicio + 1)));
                     if (activo_articulo == "a" || activo_articulo == "A")
@@ -66,7 +72,7 @@ namespace Activos
                         llenarDatosActivo(id.ToString());
                         idActivo = id;
                     }
-                    else if (activo_articulo == "ar" || activo_articulo == "AR")
+                    else if (activo_articulo == "ar" || activo_articulo == "AR" || activo_articulo == "Ar" || activo_articulo == "aR")
                     {
                         llenarDatosArticulo(id.ToString());
                         idArticulo = id;

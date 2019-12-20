@@ -38,6 +38,7 @@ namespace Activos
             dt.Columns.Add("idSubgrupo");
             dt.Columns.Add("Grupo");
             dt.Columns.Add("idGrupo");
+            dt.Columns.Add("Código");
             MySqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = "SELECT a.idActivo, " +
                 "a.descripcion, " +
@@ -59,7 +60,8 @@ namespace Activos
                 "s.nombre AS 'Subgrupo', " +
                 "a.idSubgrupo, " +
                 "g.nombre AS 'grupo', " +
-                "g.idGrupo " +
+                "g.idGrupo, " +
+                "a.codigo " + 
                 "FROM `activo` AS a " +
                 "JOIN `usuario` AS u ON a.idUsuario = u.idUsuario " +
                 "JOIN `estado` AS e ON a.idEstado = e.idEstado " +
@@ -98,6 +100,7 @@ namespace Activos
                     activo["idSubgrupo"] = reader.GetString(18);
                     activo["Grupo"] = reader.GetString(19);
                     activo["idGrupo"] = reader.GetString(20);
+                    activo["Código"] = reader.GetString(21);
                     dt.Rows.Add(activo);
                 }
             }
@@ -247,55 +250,64 @@ namespace Activos
             dt.Columns.Add("FPC");
             dt.Columns.Add("Subgrupo");
             dt.Columns.Add("idSubgrupo");
-            MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT a.idArticulo, " +
-                "a.descripcion, " +
-                "u.nombre AS 'Usuario', " +
-                "u.idUsuario, " +
-                "e.nombre AS 'Estado', " +
-                "e.idEstado, " +
-                "c.Tipo AS 'Tipo', " +
-                "c.idTipoArticulo, " +
-                "em.nombre AS 'Empresa', " +
-                "a.fecha_compra, " +
-                "a.Valor, " +
-                "a.FPC, " +
-                "s.nombre AS 'Grupo', " +
-                "s.idGrupoArticulo " +
-                "FROM `articulo` AS a " +
-                "JOIN `usuario` AS u ON a.idUsuario = u.idUsuario " +
-                "JOIN `estado` AS e ON a.idEstado = e.idEstado " +
-                "JOIN `tipo_articulo` AS c ON a.idTipo = c.idTipoArticulo " +
-                "JOIN `empresa` AS em ON a.idEmpresa = em.idEmpresa " +
-                "JOIN `grupo_articulo` AS s ON c.idGrupoArticulo = s.idGrupoArticulo " +
-                "JOIN `departamento` AS d ON d.idDepartamento = u.idDepartamento " + 
-                consulta + 
-                " ORDER BY a.idArticulo";
-            connection.Open();
-            reader = cmd.ExecuteReader();
-            if (reader.HasRows)
-            {
-                while (reader.Read())
+            dt.Columns.Add("Código");
+            try { 
+                MySqlCommand cmd = connection.CreateCommand();
+                cmd.CommandText = "SELECT a.idArticulo, " +
+                    "a.descripcion, " +
+                    "u.nombre AS 'Usuario', " +
+                    "u.idUsuario, " +
+                    "e.nombre AS 'Estado', " +
+                    "e.idEstado, " +
+                    "c.Tipo AS 'Tipo', " +
+                    "c.idTipoArticulo, " +
+                    "em.nombre AS 'Empresa', " +
+                    "a.fecha_compra, " +
+                    "a.Valor, " +
+                    "a.FPC, " +
+                    "s.nombre AS 'Grupo', " +
+                    "s.idGrupoArticulo, " +
+                    "a.codigo " +
+                    "FROM `articulo` AS a " +
+                    "JOIN `usuario` AS u ON a.idUsuario = u.idUsuario " +
+                    "JOIN `estado` AS e ON a.idEstado = e.idEstado " +
+                    "JOIN `tipo_articulo` AS c ON a.idTipo = c.idTipoArticulo " +
+                    "JOIN `empresa` AS em ON a.idEmpresa = em.idEmpresa " +
+                    "JOIN `grupo_articulo` AS s ON c.idGrupoArticulo = s.idGrupoArticulo " +
+                    "JOIN `departamento` AS d ON d.idDepartamento = u.idDepartamento " + 
+                    consulta + 
+                    " ORDER BY a.idArticulo";
+                connection.Open();
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
                 {
-                    DataRow activo = dt.NewRow();
-                    activo["ID"] = reader.GetString(0);
-                    activo["Descripcion"] = reader.GetString(1);
-                    activo["Usuario"] = reader.GetString(2);
-                    activo["idUsuario"] = reader.GetString(3);
-                    activo["Estado"] = reader.GetString(4);
-                    activo["idEstado"] = reader.GetString(5);
-                    activo["Tipo"] = reader.GetString(6);
-                    activo["idTipo"] = reader.GetString(7);
-                    activo["Empresa"] = reader.GetString(8);
-                    activo["Fecha de Compra"] = reader.GetString(9);
-                    activo["Valor"] = reader.GetString(10);
-                    activo["FPC"] = reader.GetString(11);
-                    activo["Subgrupo"] = reader.GetString(12);
-                    activo["idSubgrupo"] = reader.GetString(13);
-                    dt.Rows.Add(activo);
+                    while (reader.Read())
+                    {
+                        DataRow activo = dt.NewRow();
+                        activo["ID"] = reader.GetString(0);
+                        activo["Descripcion"] = reader.GetString(1);
+                        activo["Usuario"] = reader.GetString(2);
+                        activo["idUsuario"] = reader.GetString(3);
+                        activo["Estado"] = reader.GetString(4);
+                        activo["idEstado"] = reader.GetString(5);
+                        activo["Tipo"] = reader.GetString(6);
+                        activo["idTipo"] = reader.GetString(7);
+                        activo["Empresa"] = reader.GetString(8);
+                        activo["Fecha de Compra"] = reader.GetString(9);
+                        activo["Valor"] = reader.GetString(10);
+                        activo["FPC"] = reader.GetString(11);
+                        activo["Subgrupo"] = reader.GetString(12);
+                        activo["idSubgrupo"] = reader.GetString(13);
+                        activo["Código"] = reader.GetString(14);
+                        dt.Rows.Add(activo);
+                    }
                 }
+                connection.Close();
             }
-            connection.Close();
+            catch
+            {
+
+            }
             return dt;
         }
 
@@ -551,17 +563,10 @@ namespace Activos
                         activo["Fecha de Compra"] = reader.GetString(9);
                         activo["Valor"] = reader.GetString(10);
                         activo["FPC"] = reader.GetString(11);
-                        activo["Fecha de Depreciacion"] = reader.GetString(12);
-                        activo["% Depreciacion"] = reader.GetString(13);
-                        activo["Depreciacion Acumulada"] = reader.GetString(14);
-                        activo["Valor Residual"] = reader.GetString(15);
-                        activo["Valor Libros"] = reader.GetString(16);
-                        activo["Subgrupo"] = reader.GetString(17);
-                        activo["idSubgrupo"] = reader.GetString(18);
-                        activo["Grupo"] = reader.GetString(19);
-                        activo["idGrupo"] = reader.GetString(20);
-                        activo["Código"] = reader.GetString(21);
-                        activo["Fecha de Modificación"] = reader.GetString(22);
+                        activo["Grupo"] = reader.GetString(12);
+                        activo["idGrupo"] = reader.GetString(13);
+                        activo["Código"] = reader.GetString(14);
+                        activo["Fecha de Modificación"] = reader.GetString(15);
                         dt.Rows.Add(activo);
                     }
                 }
