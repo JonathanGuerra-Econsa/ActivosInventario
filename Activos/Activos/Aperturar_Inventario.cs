@@ -25,7 +25,7 @@ namespace Activos
         }
         private void Aperturar_Inventario_Load(object sender, EventArgs e)
         {
-
+            llenarComboBoxDepto();
         }
         //------------------------------------------------ ------------------------------------------------------------//
         #endregion
@@ -263,14 +263,10 @@ namespace Activos
         //------------------------------------------------------------ *Botón que muestra las opciónes para aperturar un inventario * ----------------------------------------------------------------------------//
         private void btnAperturarInv_Click(object sender, EventArgs e)
         {
+            btnUnDepto.Visible = true;
+            btnTodosDepto.Visible = true;
             btnAperturarInv.Visible = false;
             btnBuscarInv.Visible = false;
-            btnActivo.Visible = true;
-            btnArticulo.Visible = true;
-            btnAmbos.Visible = true;
-            btnBuscarInv.Enabled = false;
-            label1.Text = "Aperturar Inventario";
-            label1.Location = new Point(189, 43);
         }
         //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
         #endregion
@@ -314,6 +310,18 @@ namespace Activos
             cmbInventario.DisplayMember = "Nombre";
         }
         //-----------------------------------------------------------------------------------------------------------------------------------------------------//
+        private void llenarComboBoxDepto()
+        {
+            cmbDepartamento.DataSource = consultasMySQL.verDepartamentos();
+            cmbDepartamento.DisplayMember = "Departamento";
+            cmbDepartamento.ValueMember = "ID";
+        }
+        private void llenarComboBoxUsuario()
+        {
+            cmbUsuarios.DataSource = consultasMySQL.verUsuariosDep(cmbDepartamento.SelectedValue.ToString());
+            cmbUsuarios.DisplayMember = "Nombre";
+            cmbUsuarios.ValueMember = "ID";
+        }
         //----------------------------------------------------------------------- ---------------------------------------------------------------------//
         #endregion
         #region Botón Buscar Inventario
@@ -346,5 +354,50 @@ namespace Activos
         }
         //----------------------------------------------------------------------------------------------------------//
         #endregion
+
+        private void btnDepartamento_Click(object sender, EventArgs e)
+        {
+            lbDepartamento.Visible = false;
+            cmbDepartamento.Visible = false;
+            btnDepartamento.Visible = false;
+            btnUnaPersona.Visible = true;
+            btnTodasPersonas.Visible = true;
+            //btnActivo.Visible = true;
+            //btnArticulo.Visible = true;
+            //btnAmbos.Visible = true;
+            //btnBuscarInv.Enabled = false;
+            //label1.Text = "Aperturar Inventario";
+            //label1.Location = new Point(189, 43);
+        }
+
+        private void btnTodosDepto_Click(object sender, EventArgs e)
+        {
+            btnUnDepto.Visible = false;
+            btnTodosDepto.Visible = false;
+            btnActivo.Visible = true;
+            btnArticulo.Visible = true;
+            btnAmbos.Visible = true;
+            btnBuscarInv.Enabled = false;
+            label1.Text = "Aperturar Inventario";
+            label1.Location = new Point(189, 43);
+        }
+
+        private void btnUnDepto_Click(object sender, EventArgs e)
+        {
+            btnUnDepto.Visible = false;
+            btnTodosDepto.Visible = false;
+            cmbDepartamento.Visible = true;
+            lbDepartamento.Visible = true;
+            btnDepartamento.Visible = true;
+        }
+
+        private void btnUnaPersona_Click(object sender, EventArgs e)
+        {
+            llenarComboBoxUsuario();
+            btnTodasPersonas.Enabled = false;
+            lbUsuario.Visible = true;
+            cmbUsuarios.Visible = true;
+            btnUsuario.Visible = true;
+        }
     }
 }

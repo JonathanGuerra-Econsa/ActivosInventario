@@ -172,6 +172,7 @@ namespace Activos
                             txtEscaner.Enabled = true;
                             btnSoporte.Visible = true;
                             lbEstado.Visible = true;
+                            ocultar_ver(false);
                         }
                         else if (activo_articulo == "ar" || activo_articulo == "AR")
                         {
