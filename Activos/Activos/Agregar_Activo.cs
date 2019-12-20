@@ -210,7 +210,7 @@ namespace Activos
             }
             else
             {
-                MessageBox.Show("Por favor llene el formulario completamente", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor llene el formulario completamente (datos a llenar obligatoriamente *)", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
