@@ -61,7 +61,7 @@ namespace Activos
                 "a.idSubgrupo, " +
                 "g.nombre AS 'grupo', " +
                 "g.idGrupo, " +
-                "a.codigo " +
+                "a.codigo " + 
                 "FROM `activo` AS a " +
                 "JOIN `usuario` AS u ON a.idUsuario = u.idUsuario " +
                 "JOIN `estado` AS e ON a.idEstado = e.idEstado " +
