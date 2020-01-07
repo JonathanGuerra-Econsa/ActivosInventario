@@ -250,7 +250,7 @@
             this.cmbDepartamento.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbDepartamento.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.cmbDepartamento.FormattingEnabled = true;
-            this.cmbDepartamento.Location = new System.Drawing.Point(197, 333);
+            this.cmbDepartamento.Location = new System.Drawing.Point(209, 333);
             this.cmbDepartamento.Name = "cmbDepartamento";
             this.cmbDepartamento.Size = new System.Drawing.Size(202, 29);
             this.cmbDepartamento.TabIndex = 15;
@@ -335,6 +335,7 @@
             this.btnTodasPersonas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodasPersonas.UseVisualStyleBackColor = false;
             this.btnTodasPersonas.Visible = false;
+            this.btnTodasPersonas.Click += new System.EventHandler(this.btnTodasPersonas_Click);
             // 
             // btnUnaPersona
             // 
@@ -367,6 +368,7 @@
             this.btnUsuario.Text = "Seleccionar";
             this.btnUsuario.UseVisualStyleBackColor = false;
             this.btnUsuario.Visible = false;
+            this.btnUsuario.Click += new System.EventHandler(this.btnUsuario_Click);
             // 
             // cmbUsuarios
             // 
