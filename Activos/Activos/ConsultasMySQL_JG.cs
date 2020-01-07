@@ -786,6 +786,32 @@ namespace Activos
         }
         //-------------------------------------------------------------------------------------------------------------------------------------//
         #endregion
+        #region insertarDetalleActivoUnDepto
+        //-------------------------------------------- * Crea los detalles de los inventarios * ---------------------------------------------//
+        public void insertarDetalleActivoUnDepto(string idInventario, string idDepartamento)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(idActivo, idEstado, idStatus, idInventario, fecha_actualizacion) SELECT idActivo as 'ID activo', 5 as 'Estado', 2 as 'Status', '{1}' as 'ID Inventario', '0' as 'Fecha Actualización' FROM activo WHERE idEstado != 4 AND idUsuario in (SELECT idUsuario FROM usuario WHERE idDepartamento = '{2}') ORDER BY idActivo ASC", Tabla_DetalleInvActivo, idInventario, idDepartamento), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+            }
+        }
+        //-------------------------------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region insertarDetalleActivoUnUsuario
+        //-------------------------------------------- * Crea los detalles de los inventarios * ---------------------------------------------//
+        public void insertarDetalleActivoUnUsuario(string idInventario, string idUsuario)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(idActivo, idEstado, idStatus, idInventario, fecha_actualizacion) SELECT idActivo as 'ID activo', 5 as 'Estado', 2 as 'Status', '{1}' as 'ID Inventario', '0' as 'Fecha Actualización' FROM activo WHERE idEstado != 4 AND idUsuario = '{2}' ORDER BY idActivo ASC", Tabla_DetalleInvActivo, idInventario, idUsuario), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+            }
+        }
+        //-------------------------------------------------------------------------------------------------------------------------------------//
+        #endregion
         #region insertarDetalleArticulo()
         //-------------------------------------------- * Crea los detalles de los inventarios * ---------------------------------------------//
         public void insertarDetalleArticulo(string idInventario)
@@ -794,6 +820,32 @@ namespace Activos
             {
                 mysqlCon.Open();
                 MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(idArticulo, idEstado, idStatus, idInventario, fecha_actualizacion) SELECT idArticulo as 'ID articulo', 5 as 'Estado', 2 as 'Status', '{1}' as 'ID Inventario', '0' as 'Fecha Actualización' FROM articulo WHERE idEstado != 4 ORDER BY idArticulo ASC", Tabla_DetalleInvArticulo, idInventario), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+            }
+        }
+        //-------------------------------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region insertarDetalleArticuloUnDepartamento()
+        //-------------------------------------------- * Crea los detalles de los inventarios * ---------------------------------------------//
+        public void insertarDetalleArticuloUnDepartamento(string idInventario, string idDepartamento)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(idArticulo, idEstado, idStatus, idInventario, fecha_actualizacion) SELECT idArticulo as 'ID articulo', 5 as 'Estado', 2 as 'Status', '{1}' as 'ID Inventario', '0' as 'Fecha Actualización' FROM articulo WHERE idEstado != 4 AND idUsuario in (SELECT idUsuario FROM usuario WHERE idDepartamento = '{2}') ORDER BY idArticulo ASC", Tabla_DetalleInvArticulo, idInventario, idDepartamento), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+            }
+        }
+        //-------------------------------------------------------------------------------------------------------------------------------------//
+        #endregion
+        #region insertarDetalleArticuloUnUsuario()
+        //-------------------------------------------- * Crea los detalles de los inventarios * ---------------------------------------------//
+        public void insertarDetalleArticuloUnUsuario(string idInventario, string idUsuario)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(idArticulo, idEstado, idStatus, idInventario, fecha_actualizacion) SELECT idArticulo as 'ID articulo', 5 as 'Estado', 2 as 'Status', '{1}' as 'ID Inventario', '0' as 'Fecha Actualización' FROM articulo WHERE idEstado != 4 AND idUsuario = '{2}' ORDER BY idArticulo ASC", Tabla_DetalleInvArticulo, idInventario, idUsuario), mysqlCon);
                 mysqlCmd.ExecuteNonQuery();
             }
         }
