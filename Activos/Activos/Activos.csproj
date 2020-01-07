@@ -405,6 +405,7 @@
     <None Include="Resources\boy.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\excel %282%29.png" />
     <None Include="Resources\loupe %281%291.png" />
     <None Include="Resources\loupe2.png" />
     <None Include="Resources\loupe1.png" />
