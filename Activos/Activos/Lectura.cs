@@ -170,8 +170,10 @@ namespace Activos
                             btnCancelar.Visible = false;
                             btnActualizar.Visible = false;
                             txtEscaner.Enabled = true;
+                            txtEscaner.Text = "";
                             btnSoporte.Visible = true;
                             lbEstado.Visible = true;
+                            ocultar_ver(false);
                         }
                         else if (activo_articulo == "ar" || activo_articulo == "AR")
                         {
@@ -182,8 +184,10 @@ namespace Activos
                             btnCancelar.Visible = false;
                             btnActualizar.Visible = false;
                             txtEscaner.Enabled = true;
+                            txtEscaner.Text = "";
                             btnSoporte.Visible = true;
                             lbEstado.Visible = true;
+                            ocultar_ver(false);
                         }
                     }
                     catch (Exception ex)

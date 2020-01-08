@@ -42,6 +42,17 @@
             this.lbBusqueda = new System.Windows.Forms.Label();
             this.cmbInventario = new System.Windows.Forms.ComboBox();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.cmbDepartamento = new System.Windows.Forms.ComboBox();
+            this.lbDepartamento = new System.Windows.Forms.Label();
+            this.btnDepartamento = new System.Windows.Forms.Button();
+            this.btnTodosDepto = new System.Windows.Forms.Button();
+            this.btnUnDepto = new System.Windows.Forms.Button();
+            this.btnTodasPersonas = new System.Windows.Forms.Button();
+            this.btnUnaPersona = new System.Windows.Forms.Button();
+            this.btnUsuario = new System.Windows.Forms.Button();
+            this.cmbUsuarios = new System.Windows.Forms.ComboBox();
+            this.lbUsuario = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // label1
@@ -234,6 +245,166 @@
             this.btnBuscar.Visible = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // cmbDepartamento
+            // 
+            this.cmbDepartamento.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbDepartamento.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbDepartamento.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.cmbDepartamento.FormattingEnabled = true;
+            this.cmbDepartamento.Location = new System.Drawing.Point(209, 333);
+            this.cmbDepartamento.Name = "cmbDepartamento";
+            this.cmbDepartamento.Size = new System.Drawing.Size(202, 29);
+            this.cmbDepartamento.TabIndex = 15;
+            this.cmbDepartamento.Visible = false;
+            // 
+            // lbDepartamento
+            // 
+            this.lbDepartamento.AutoSize = true;
+            this.lbDepartamento.BackColor = System.Drawing.Color.Transparent;
+            this.lbDepartamento.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDepartamento.Location = new System.Drawing.Point(179, 305);
+            this.lbDepartamento.Name = "lbDepartamento";
+            this.lbDepartamento.Size = new System.Drawing.Size(260, 25);
+            this.lbDepartamento.TabIndex = 16;
+            this.lbDepartamento.Text = "Seleccione un Departamento";
+            this.lbDepartamento.Visible = false;
+            // 
+            // btnDepartamento
+            // 
+            this.btnDepartamento.BackColor = System.Drawing.Color.Transparent;
+            this.btnDepartamento.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDepartamento.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDepartamento.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDepartamento.Location = new System.Drawing.Point(238, 368);
+            this.btnDepartamento.Name = "btnDepartamento";
+            this.btnDepartamento.Size = new System.Drawing.Size(142, 49);
+            this.btnDepartamento.TabIndex = 17;
+            this.btnDepartamento.Text = "Seleccionar";
+            this.btnDepartamento.UseVisualStyleBackColor = false;
+            this.btnDepartamento.Visible = false;
+            this.btnDepartamento.Click += new System.EventHandler(this.btnDepartamento_Click);
+            // 
+            // btnTodosDepto
+            // 
+            this.btnTodosDepto.BackColor = System.Drawing.Color.Transparent;
+            this.btnTodosDepto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTodosDepto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTodosDepto.Image = global::Activos.Properties.Resources.department;
+            this.btnTodosDepto.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnTodosDepto.Location = new System.Drawing.Point(321, 112);
+            this.btnTodosDepto.Name = "btnTodosDepto";
+            this.btnTodosDepto.Size = new System.Drawing.Size(150, 190);
+            this.btnTodosDepto.TabIndex = 19;
+            this.btnTodosDepto.TabStop = false;
+            this.btnTodosDepto.Text = "Aperturar todos los Departamentos";
+            this.btnTodosDepto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnTodosDepto.UseVisualStyleBackColor = false;
+            this.btnTodosDepto.Visible = false;
+            this.btnTodosDepto.Click += new System.EventHandler(this.btnTodosDepto_Click);
+            // 
+            // btnUnDepto
+            // 
+            this.btnUnDepto.BackColor = System.Drawing.Color.Transparent;
+            this.btnUnDepto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnUnDepto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUnDepto.Image = global::Activos.Properties.Resources.cashier1;
+            this.btnUnDepto.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnUnDepto.Location = new System.Drawing.Point(151, 112);
+            this.btnUnDepto.Name = "btnUnDepto";
+            this.btnUnDepto.Size = new System.Drawing.Size(150, 190);
+            this.btnUnDepto.TabIndex = 18;
+            this.btnUnDepto.TabStop = false;
+            this.btnUnDepto.Text = "Aperturar un Departamento";
+            this.btnUnDepto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnUnDepto.UseVisualStyleBackColor = false;
+            this.btnUnDepto.Visible = false;
+            this.btnUnDepto.Click += new System.EventHandler(this.btnUnDepto_Click);
+            // 
+            // btnTodasPersonas
+            // 
+            this.btnTodasPersonas.BackColor = System.Drawing.Color.Transparent;
+            this.btnTodasPersonas.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTodasPersonas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTodasPersonas.Image = global::Activos.Properties.Resources.department__1_;
+            this.btnTodasPersonas.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnTodasPersonas.Location = new System.Drawing.Point(321, 112);
+            this.btnTodasPersonas.Name = "btnTodasPersonas";
+            this.btnTodasPersonas.Size = new System.Drawing.Size(150, 190);
+            this.btnTodasPersonas.TabIndex = 21;
+            this.btnTodasPersonas.TabStop = false;
+            this.btnTodasPersonas.Text = "Todos los usuarios";
+            this.btnTodasPersonas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnTodasPersonas.UseVisualStyleBackColor = false;
+            this.btnTodasPersonas.Visible = false;
+            this.btnTodasPersonas.Click += new System.EventHandler(this.btnTodasPersonas_Click);
+            // 
+            // btnUnaPersona
+            // 
+            this.btnUnaPersona.BackColor = System.Drawing.Color.Transparent;
+            this.btnUnaPersona.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnUnaPersona.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUnaPersona.Image = global::Activos.Properties.Resources.boy;
+            this.btnUnaPersona.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnUnaPersona.Location = new System.Drawing.Point(151, 112);
+            this.btnUnaPersona.Name = "btnUnaPersona";
+            this.btnUnaPersona.Size = new System.Drawing.Size(150, 190);
+            this.btnUnaPersona.TabIndex = 20;
+            this.btnUnaPersona.TabStop = false;
+            this.btnUnaPersona.Text = "Un usuario";
+            this.btnUnaPersona.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnUnaPersona.UseVisualStyleBackColor = false;
+            this.btnUnaPersona.Visible = false;
+            this.btnUnaPersona.Click += new System.EventHandler(this.btnUnaPersona_Click);
+            // 
+            // btnUsuario
+            // 
+            this.btnUsuario.BackColor = System.Drawing.Color.Transparent;
+            this.btnUsuario.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnUsuario.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuario.Location = new System.Drawing.Point(238, 368);
+            this.btnUsuario.Name = "btnUsuario";
+            this.btnUsuario.Size = new System.Drawing.Size(142, 49);
+            this.btnUsuario.TabIndex = 24;
+            this.btnUsuario.Text = "Seleccionar";
+            this.btnUsuario.UseVisualStyleBackColor = false;
+            this.btnUsuario.Visible = false;
+            this.btnUsuario.Click += new System.EventHandler(this.btnUsuario_Click);
+            // 
+            // cmbUsuarios
+            // 
+            this.cmbUsuarios.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbUsuarios.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbUsuarios.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.cmbUsuarios.FormattingEnabled = true;
+            this.cmbUsuarios.Location = new System.Drawing.Point(209, 333);
+            this.cmbUsuarios.Name = "cmbUsuarios";
+            this.cmbUsuarios.Size = new System.Drawing.Size(202, 29);
+            this.cmbUsuarios.TabIndex = 23;
+            this.cmbUsuarios.Visible = false;
+            // 
+            // lbUsuario
+            // 
+            this.lbUsuario.AutoSize = true;
+            this.lbUsuario.BackColor = System.Drawing.Color.Transparent;
+            this.lbUsuario.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUsuario.Location = new System.Drawing.Point(212, 305);
+            this.lbUsuario.Name = "lbUsuario";
+            this.lbUsuario.Size = new System.Drawing.Size(199, 25);
+            this.lbUsuario.TabIndex = 22;
+            this.lbUsuario.Text = "Seleccione un Usuario";
+            this.lbUsuario.Visible = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.BackgroundImage = global::Activos.Properties.Resources.Econsa;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Location = new System.Drawing.Point(457, 333);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(159, 125);
+            this.panel1.TabIndex = 25;
+            // 
             // Aperturar_Inventario
             // 
             this.AcceptButton = this.btnAperturar;
@@ -242,6 +413,17 @@
             this.BackgroundImage = global::Activos.Properties.Resources.fondo2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(628, 470);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnUsuario);
+            this.Controls.Add(this.cmbUsuarios);
+            this.Controls.Add(this.lbUsuario);
+            this.Controls.Add(this.btnTodasPersonas);
+            this.Controls.Add(this.btnUnaPersona);
+            this.Controls.Add(this.btnTodosDepto);
+            this.Controls.Add(this.btnUnDepto);
+            this.Controls.Add(this.btnDepartamento);
+            this.Controls.Add(this.lbDepartamento);
+            this.Controls.Add(this.cmbDepartamento);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.cmbInventario);
             this.Controls.Add(this.lbBusqueda);
@@ -284,5 +466,16 @@
         private System.Windows.Forms.Label lbBusqueda;
         private System.Windows.Forms.ComboBox cmbInventario;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.ComboBox cmbDepartamento;
+        private System.Windows.Forms.Label lbDepartamento;
+        private System.Windows.Forms.Button btnDepartamento;
+        private System.Windows.Forms.Button btnTodosDepto;
+        private System.Windows.Forms.Button btnUnDepto;
+        private System.Windows.Forms.Button btnTodasPersonas;
+        private System.Windows.Forms.Button btnUnaPersona;
+        private System.Windows.Forms.Button btnUsuario;
+        private System.Windows.Forms.ComboBox cmbUsuarios;
+        private System.Windows.Forms.Label lbUsuario;
+        private System.Windows.Forms.Panel panel1;
     }
 }

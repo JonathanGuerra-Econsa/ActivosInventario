@@ -212,7 +212,7 @@
             // 
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Image = global::Activos.Properties.Resources.loupe__2_1;
+            this.button5.Image = global::Activos.Properties.Resources.loupe1;
             this.button5.Location = new System.Drawing.Point(339, 52);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(120, 115);
@@ -224,14 +224,16 @@
             // 
             // excelArt
             // 
-            this.excelArt.BackgroundImage = global::Activos.Properties.Resources.Logo_excel;
             this.excelArt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.excelArt.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.excelArt.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.excelArt.Image = global::Activos.Properties.Resources.excel__2_;
             this.excelArt.Location = new System.Drawing.Point(465, 52);
             this.excelArt.Name = "excelArt";
             this.excelArt.Size = new System.Drawing.Size(120, 115);
             this.excelArt.TabIndex = 8;
+            this.excelArt.Text = "Excel";
+            this.excelArt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.excelArt.UseVisualStyleBackColor = true;
             this.excelArt.Click += new System.EventHandler(this.excelArt_Click);
             // 
@@ -522,7 +524,7 @@
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = global::Activos.Properties.Resources.loupe__2_1;
+            this.button2.Image = global::Activos.Properties.Resources.loupe1;
             this.button2.Location = new System.Drawing.Point(340, 52);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(120, 115);
@@ -534,14 +536,16 @@
             // 
             // excelAc
             // 
-            this.excelAc.BackgroundImage = global::Activos.Properties.Resources.Logo_excel;
             this.excelAc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.excelAc.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.excelAc.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.excelAc.Image = global::Activos.Properties.Resources.excel__2_;
             this.excelAc.Location = new System.Drawing.Point(466, 52);
             this.excelAc.Name = "excelAc";
             this.excelAc.Size = new System.Drawing.Size(121, 115);
             this.excelAc.TabIndex = 7;
+            this.excelAc.Text = "Excel";
+            this.excelAc.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.excelAc.UseVisualStyleBackColor = true;
             this.excelAc.Click += new System.EventHandler(this.excelAc_Click);
             // 

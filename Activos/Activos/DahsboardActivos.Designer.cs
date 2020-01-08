@@ -141,7 +141,7 @@
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = global::Activos.Properties.Resources.loupe__1_;
+            this.button2.Image = global::Activos.Properties.Resources.loupe__1_1;
             this.button2.Location = new System.Drawing.Point(493, 59);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(121, 35);
@@ -154,13 +154,17 @@
             // excelAc
             // 
             this.excelAc.BackColor = System.Drawing.Color.Transparent;
-            this.excelAc.BackgroundImage = global::Activos.Properties.Resources.Logo_excel;
             this.excelAc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.excelAc.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.excelAc.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.excelAc.Image = global::Activos.Properties.Resources.Logo_excel_opt;
+            this.excelAc.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.excelAc.Location = new System.Drawing.Point(619, 59);
             this.excelAc.Name = "excelAc";
             this.excelAc.Size = new System.Drawing.Size(121, 35);
             this.excelAc.TabIndex = 7;
+            this.excelAc.Text = "Excel";
+            this.excelAc.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.excelAc.UseVisualStyleBackColor = false;
             this.excelAc.Click += new System.EventHandler(this.excelAc_Click);
             // 
@@ -182,6 +186,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(332, 90);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(50, 20);
@@ -211,6 +216,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(332, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 20);

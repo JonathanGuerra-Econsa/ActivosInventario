@@ -55,11 +55,6 @@ namespace Activos
             MessageBox.Show("Departamento de Informática 2020", "Creditos", MessageBoxButtons.OK);
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            new DashboardTodos().ShowDialog();
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             labelName.Text = ("Bienvenido " + nombre);

@@ -37,7 +37,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.labelName = new System.Windows.Forms.Label();
             this.btnInventario = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -49,7 +48,7 @@
             this.btnDepartamento.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDepartamento.Image = global::Activos.Properties.Resources.cashier;
             this.btnDepartamento.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnDepartamento.Location = new System.Drawing.Point(23, 107);
+            this.btnDepartamento.Location = new System.Drawing.Point(23, 121);
             this.btnDepartamento.Name = "btnDepartamento";
             this.btnDepartamento.Size = new System.Drawing.Size(150, 190);
             this.btnDepartamento.TabIndex = 0;
@@ -66,7 +65,7 @@
             this.btnUsuario.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUsuario.Image = global::Activos.Properties.Resources.man__1_;
             this.btnUsuario.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnUsuario.Location = new System.Drawing.Point(179, 107);
+            this.btnUsuario.Location = new System.Drawing.Point(179, 121);
             this.btnUsuario.Name = "btnUsuario";
             this.btnUsuario.Size = new System.Drawing.Size(150, 190);
             this.btnUsuario.TabIndex = 1;
@@ -83,7 +82,7 @@
             this.btnCategoria.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCategoria.Image = global::Activos.Properties.Resources.backend;
             this.btnCategoria.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCategoria.Location = new System.Drawing.Point(335, 107);
+            this.btnCategoria.Location = new System.Drawing.Point(335, 121);
             this.btnCategoria.Name = "btnCategoria";
             this.btnCategoria.Size = new System.Drawing.Size(150, 190);
             this.btnCategoria.TabIndex = 2;
@@ -100,7 +99,7 @@
             this.btnActivo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActivo.Image = global::Activos.Properties.Resources.article;
             this.btnActivo.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnActivo.Location = new System.Drawing.Point(491, 107);
+            this.btnActivo.Location = new System.Drawing.Point(491, 121);
             this.btnActivo.Name = "btnActivo";
             this.btnActivo.Size = new System.Drawing.Size(150, 190);
             this.btnActivo.TabIndex = 3;
@@ -117,7 +116,7 @@
             this.btnArticulo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnArticulo.Image = global::Activos.Properties.Resources.attachment;
             this.btnArticulo.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnArticulo.Location = new System.Drawing.Point(647, 107);
+            this.btnArticulo.Location = new System.Drawing.Point(647, 121);
             this.btnArticulo.Name = "btnArticulo";
             this.btnArticulo.Size = new System.Drawing.Size(150, 190);
             this.btnArticulo.TabIndex = 4;
@@ -162,19 +161,6 @@
             this.label2.Text = "Departamento de Informática 2020";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(647, 303);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(150, 44);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Articulo Busqueda";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // labelName
             // 
             this.labelName.AutoSize = true;
@@ -195,7 +181,7 @@
             this.btnInventario.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInventario.Image = global::Activos.Properties.Resources.archive;
             this.btnInventario.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnInventario.Location = new System.Drawing.Point(803, 107);
+            this.btnInventario.Location = new System.Drawing.Point(803, 121);
             this.btnInventario.Name = "btnInventario";
             this.btnInventario.Size = new System.Drawing.Size(150, 190);
             this.btnInventario.TabIndex = 11;
@@ -214,7 +200,6 @@
             this.ClientSize = new System.Drawing.Size(980, 457);
             this.Controls.Add(this.btnInventario);
             this.Controls.Add(this.labelName);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
@@ -248,7 +233,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Button btnInventario;
     }
