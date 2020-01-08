@@ -47,6 +47,8 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmbFiltroDep = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.SuspendLayout();
@@ -257,13 +259,34 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvUsuarios.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvUsuarios.EnableHeadersVisualStyles = false;
-            this.dgvUsuarios.Location = new System.Drawing.Point(12, 82);
+            this.dgvUsuarios.Location = new System.Drawing.Point(12, 115);
             this.dgvUsuarios.Name = "dgvUsuarios";
             this.dgvUsuarios.ReadOnly = true;
             this.dgvUsuarios.RowHeadersVisible = false;
-            this.dgvUsuarios.Size = new System.Drawing.Size(356, 311);
+            this.dgvUsuarios.Size = new System.Drawing.Size(356, 278);
             this.dgvUsuarios.TabIndex = 24;
             this.dgvUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellClick_1);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(12, 70);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(123, 42);
+            this.label6.TabIndex = 33;
+            this.label6.Text = "Filtrar por \r\ndepartamento: ";
+            // 
+            // cmbFiltroDep
+            // 
+            this.cmbFiltroDep.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbFiltroDep.FormattingEnabled = true;
+            this.cmbFiltroDep.Location = new System.Drawing.Point(141, 81);
+            this.cmbFiltroDep.Name = "cmbFiltroDep";
+            this.cmbFiltroDep.Size = new System.Drawing.Size(227, 28);
+            this.cmbFiltroDep.TabIndex = 33;
+            this.cmbFiltroDep.SelectedIndexChanged += new System.EventHandler(this.cmbFiltroDep_SelectedIndexChanged);
             // 
             // Agregar_Usuario
             // 
@@ -272,6 +295,8 @@
             this.BackgroundImage = global::Activos.Properties.Resources.fondo2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(750, 449);
+            this.Controls.Add(this.cmbFiltroDep);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.dgvUsuarios);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
@@ -309,5 +334,7 @@
         private System.Windows.Forms.DataGridView dgvUsuarios;
         private System.Windows.Forms.TextBox txtPuesto;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cmbFiltroDep;
     }
 }

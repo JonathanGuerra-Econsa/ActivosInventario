@@ -170,6 +170,7 @@ namespace Activos
                             btnCancelar.Visible = false;
                             btnActualizar.Visible = false;
                             txtEscaner.Enabled = true;
+                            txtEscaner.Text = "";
                             btnSoporte.Visible = true;
                             lbEstado.Visible = true;
                             ocultar_ver(false);
@@ -183,8 +184,10 @@ namespace Activos
                             btnCancelar.Visible = false;
                             btnActualizar.Visible = false;
                             txtEscaner.Enabled = true;
+                            txtEscaner.Text = "";
                             btnSoporte.Visible = true;
                             lbEstado.Visible = true;
+                            ocultar_ver(false);
                         }
                     }
                     catch (Exception ex)

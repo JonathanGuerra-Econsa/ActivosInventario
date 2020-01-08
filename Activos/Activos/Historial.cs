@@ -31,8 +31,8 @@ namespace Activos
             dataGridView1.Columns[7].Visible = false;
             if (opcion == 1) dataGridView1.Columns[18].Visible = false;
             if (opcion == 1) dataGridView1.Columns[20].Visible = false;
-
             label3.Text = activo;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
     }
 }
