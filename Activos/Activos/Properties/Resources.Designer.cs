@@ -163,6 +163,16 @@ namespace Activos.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap business_and_finance {
+            get {
+                object obj = ResourceManager.GetObject("business-and-finance", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cancel {
             get {
                 object obj = ResourceManager.GetObject("cancel", resourceCulture);
@@ -296,6 +306,16 @@ namespace Activos.Properties {
         internal static System.Drawing.Bitmap eraser {
             get {
                 object obj = ResourceManager.GetObject("eraser", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap excel__2_ {
+            get {
+                object obj = ResourceManager.GetObject("excel (2)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -443,6 +463,16 @@ namespace Activos.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap loupe__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("loupe (1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap loupe__2_ {
             get {
                 object obj = ResourceManager.GetObject("loupe (2)", resourceCulture);
@@ -456,6 +486,26 @@ namespace Activos.Properties {
         internal static System.Drawing.Bitmap loupe__2_1 {
             get {
                 object obj = ResourceManager.GetObject("loupe (2)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap loupe1 {
+            get {
+                object obj = ResourceManager.GetObject("loupe1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap loupe2 {
+            get {
+                object obj = ResourceManager.GetObject("loupe2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -496,6 +546,16 @@ namespace Activos.Properties {
         internal static System.Drawing.Bitmap plus_sign_in_circle {
             get {
                 object obj = ResourceManager.GetObject("plus-sign-in-circle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap quetzal {
+            get {
+                object obj = ResourceManager.GetObject("quetzal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

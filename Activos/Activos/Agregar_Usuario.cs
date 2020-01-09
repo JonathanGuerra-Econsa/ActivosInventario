@@ -26,9 +26,9 @@ namespace Activos
         }
         private void Agregar_Usuario_Load(object sender, EventArgs e)
         {
-            verUsuarios();
-            activarDGV();
             llenarComboBox();
+            cmbFiltroDep.Text = "";
+            activarDGV();
         }
         //----------------------------------------------------------------------------------------------------------------------//
         #endregion
@@ -39,6 +39,10 @@ namespace Activos
             cmbDepartamento.DataSource = consultasMySQL.verDepartamentos();
             cmbDepartamento.DisplayMember = "Departamento";
             cmbDepartamento.ValueMember = "ID";
+
+            cmbFiltroDep.DataSource = consultasMySQL.verDepartamentos();
+            cmbFiltroDep.DisplayMember = "Departamento";
+            cmbFiltroDep.ValueMember = "ID";
         }
         //--------------------------------------------------------- ------------------------------------------------------------//
         #endregion
@@ -146,7 +150,7 @@ namespace Activos
         #region verUsuarios()
         private void verUsuarios()
         {
-            dgvUsuarios.DataSource = consultasMySQL.verUsuarios();
+            dgvUsuarios.DataSource = consultasMySQL.verUsuarios(cmbFiltroDep.SelectedValue.ToString());
             dgvUsuarios.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgvUsuarios.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
@@ -181,7 +185,6 @@ namespace Activos
             btnCancelar.Visible = false;
             btnCancelar.Location = new Point(226, 226);
             lbNombreID.Visible = true;
-            transladarusuarios();
         }
         #endregion
         #region activarDetalle()
@@ -195,6 +198,12 @@ namespace Activos
             txtPuesto.Enabled = true;
             cmbDepartamento.Enabled = true;
             btnCancelar.Visible = true;
+        }
+        #endregion
+        #region Filtro de usuarios por departamento
+        private void cmbFiltroDep_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            verUsuarios();
         }
         #endregion
     }

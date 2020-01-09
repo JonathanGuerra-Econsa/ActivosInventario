@@ -52,6 +52,7 @@
             this.btnUsuario = new System.Windows.Forms.Button();
             this.cmbUsuarios = new System.Windows.Forms.ComboBox();
             this.lbUsuario = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // label1
@@ -394,6 +395,16 @@
             this.lbUsuario.Text = "Seleccione un Usuario";
             this.lbUsuario.Visible = false;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.BackgroundImage = global::Activos.Properties.Resources.Econsa;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Location = new System.Drawing.Point(457, 333);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(159, 125);
+            this.panel1.TabIndex = 25;
+            // 
             // Aperturar_Inventario
             // 
             this.AcceptButton = this.btnAperturar;
@@ -402,6 +413,7 @@
             this.BackgroundImage = global::Activos.Properties.Resources.fondo2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(628, 470);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnUsuario);
             this.Controls.Add(this.cmbUsuarios);
             this.Controls.Add(this.lbUsuario);
@@ -464,5 +476,6 @@
         private System.Windows.Forms.Button btnUsuario;
         private System.Windows.Forms.ComboBox cmbUsuarios;
         private System.Windows.Forms.Label lbUsuario;
+        private System.Windows.Forms.Panel panel1;
     }
 }

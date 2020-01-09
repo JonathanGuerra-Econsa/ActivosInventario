@@ -54,10 +54,6 @@ namespace Activos
             cmbEstado.DisplayMember = "Estado";
             cmbEstado.ValueMember = "ID";
 
-            cmbTipo.DataSource = consultasMySQL.verTipoArt();
-            cmbTipo.DisplayMember = "Tipo";
-            cmbTipo.ValueMember = "ID";
-
             cmbEmpresa.DataSource = consultasMySQL.verEmpresa();
             cmbEmpresa.DisplayMember = "Empresa";
             cmbEmpresa.ValueMember = "ID";
@@ -65,6 +61,15 @@ namespace Activos
             cmbDepartamento.DataSource = consultasMySQL.verDepartamentos();
             cmbDepartamento.DisplayMember = "Departamento";
             cmbDepartamento.ValueMember = "ID";
+
+            cmbGrupo.DataSource = consultasMySQL.verGrupoArticulo();
+            cmbGrupo.DisplayMember = "Nombre";
+            cmbGrupo.ValueMember = "ID";
+
+            string idGrupoArticulo = cmbGrupo.SelectedValue.ToString();
+            cmbTipo.DataSource = consultasMySQL.verTipoArt(idGrupoArticulo);
+            cmbTipo.DisplayMember = "Tipo";
+            cmbTipo.ValueMember = "ID";
 
             string idDepartamento = cmbDepartamento.SelectedValue.ToString();
             cmbUsuario.DataSource = consultasMySQL.verUsuariosDep(idDepartamento);
@@ -123,6 +128,7 @@ namespace Activos
             dtFecha.Enabled = habilitar;
             nuValor.Enabled = habilitar;
             txtFPC.Enabled = habilitar;
+            cmbGrupo.Enabled = habilitar;
         }
         #endregion
         #region Botón Editar
@@ -228,8 +234,15 @@ namespace Activos
             historial.activo = txtDescripcion.Text;
             historial.ShowDialog();
         }
-        #endregion
 
+        private void cmbGrupo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string idGrupoArticulo = cmbGrupo.SelectedValue.ToString();
+            cmbTipo.DataSource = consultasMySQL.verTipoArt(idGrupoArticulo);
+            cmbTipo.DisplayMember = "Tipo";
+            cmbTipo.ValueMember = "ID";
+        }
+        #endregion
         #region vistaAgregar()
         private void vistaAgregar()
         {
