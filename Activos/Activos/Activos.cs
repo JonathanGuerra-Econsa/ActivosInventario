@@ -161,7 +161,12 @@ namespace Activos
         }
 
         private void ArmarConsulta(object sender, EventArgs e)
-        {            
+        {
+            functionActualizar();
+        }
+
+        private void functionActualizar()
+        {
             if (cmbDepto.SelectedValue == null) return;
             StringBuilder consulta = new StringBuilder();
             consulta.Append("WHERE ");
@@ -409,6 +414,24 @@ namespace Activos
         private void cmbSubgrupo_SelectedIndexChanged(object sender, EventArgs e)
         {
             ArmarConsulta(sender, e);
-        }        
+        }
+
+        private void btnDepreciar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Esta seguro de depreciar todos los activos?, una vez realizada esta acción no hay forma de retornar los datos", "Depreciar", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                try
+                {
+                    ConsultasMySQL_JG consultasMysql = new ConsultasMySQL_JG();
+                    consultasMysql.depreciacionAcumulada();
+                    MessageBox.Show("Depreciación realizada con éxtio", "Depreciación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    functionActualizar();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+        }
     }
 }

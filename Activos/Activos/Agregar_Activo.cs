@@ -130,9 +130,7 @@ namespace Activos
             txtFPC.Enabled = true;
             dtDepreciacion.Enabled = true;
             nuPorcentaje.Enabled = true;
-            nuDepreciacionAcumulada.Enabled = true;
             nuValorResidual.Enabled = true;
-            nuValorLibros.Enabled = true;
             btnActualiza.Visible = true;
             btnEditar.Visible = false;
             btnCancelar.Visible = true;
@@ -160,7 +158,9 @@ namespace Activos
                     string valorlibros= Convert.ToString(nuValorLibros.Value);
                     string idsubgrupo = Convert.ToString(cmbSubGrupo.SelectedValue);
                     string idactivo = lbID.Text;
-                    consultasMySQL.updateActivo(des, idusuario, idestado, idtipo, idempresa, fecha_compra, valor, fpc, fechadep, porcentajedep, depacumulada, valorresidual, valorlibros, idsubgrupo, idactivo);
+                    string valorDepreciable = nuValorDep.Value.ToString();
+                    string depreciacionMes = nuDepreciacionMes.Value.ToString();
+                    consultasMySQL.updateActivo(des, idusuario, idestado, idtipo, idempresa, fecha_compra, valor, fpc, fechadep, porcentajedep, depacumulada, valorresidual, valorlibros, idsubgrupo, idactivo, valorDepreciable, depreciacionMes);
                     MessageBox.Show("Activo Actualizado !", "Actualización", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     metodoMostrar();
                 }
@@ -176,9 +176,10 @@ namespace Activos
         //-------------------------------------------------------------- Guarda un nuevo Activo -------------------------------------------------------------------------------//
         private void btnSet_Click(object sender, EventArgs e)
         {
-            if(txtDescripcion.Text != "" & cmbEstado.SelectedIndex != -1 & cmbTipo.SelectedIndex != -1 
-                & cmbEmpresa.SelectedIndex != -1 & dtFecha.Value != null & cmbUsuario.SelectedIndex != -1 
-                & cmbSubGrupo.SelectedIndex != -1 & nuValor.Value != 0 & txtFPC.Text != "" & dtDepreciacion.Value != null )
+            if (txtDescripcion.Text != "" & cmbEstado.SelectedIndex != -1 & cmbTipo.SelectedIndex != -1
+                & cmbEmpresa.SelectedIndex != -1 & dtFecha.Value != null & cmbUsuario.SelectedIndex != -1
+                & cmbSubGrupo.SelectedIndex != -1 & nuValor.Value != 0 & nuValorResidual.Value != 0 & txtFPC.Text != ""
+                & dtDepreciacion.Value != null & nuPorcentaje.Value != 0)
             {
                 if (MessageBox.Show("Desea guardar este activo?", "Guardar Activo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
@@ -197,8 +198,10 @@ namespace Activos
                         string porcentajeDep = nuPorcentaje.Value.ToString();
                         string depAcumulada = nuDepreciacionAcumulada.Value.ToString();
                         string valorResidual = nuValorResidual.Value.ToString();
+                        string valorDepreciable = nuValorDep.Value.ToString();
+                        string depreciacionMes = nuDepreciacionMes.Value.ToString();
                         string valorLibro = nuValorLibros.Value.ToString();
-                        consultasMySQL.agregarActivo(descricpion, idUsuario, idEstado, idTipo, idEmpresa, fecha_compra, valor, fpc, fecha_depreciacion, porcentajeDep, depAcumulada, valorResidual, valorLibro, idSubgrupo);
+                        consultasMySQL.agregarActivo(descricpion, idUsuario, idEstado, idTipo, idEmpresa, fecha_compra, valor, fpc, fecha_depreciacion, porcentajeDep, depAcumulada, valorResidual, valorLibro, idSubgrupo, valorDepreciable, depreciacionMes);
                         MessageBox.Show("Activo Guardado con éxtio", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Hide();
                     }
@@ -284,7 +287,6 @@ namespace Activos
             historial.ShowDialog();
         }
         #endregion
-
         #region asignacion de variables
         public void asignacionDeVariables()
         {
@@ -307,8 +309,61 @@ namespace Activos
             nuDepreciacionAcumulada.Value = Convert.ToDecimal(consultasMySQL.depAcumulada);
             nuValorResidual.Value = Convert.ToDecimal(consultasMySQL.valorResidual);
             nuValorLibros.Value = Convert.ToDecimal(consultasMySQL.valorLibros);
+            nuValorDep.Value = Convert.ToDecimal(consultasMySQL.valor_depreciable);
+            nuDepreciacionMes.Value = Convert.ToDecimal(consultasMySQL.depreciacion_mes);
         }
         #endregion
+        #region calularDepreciable
+        private void nuValor_ValueChanged(object sender, EventArgs e)
+        {
+            if (nuValor.Value != 0 && nuValorResidual.Value != 0)
+            {
+                calcularDep();
+            }
+        }
 
+        private void nuValorResidual_ValueChanged_1(object sender, EventArgs e)
+        {
+            if (nuValor.Value != 0 && nuValorResidual.Value != 0)
+            {
+                calcularDep();
+            }
+        }
+
+
+        private void calcularDep()
+        {
+            try
+            {
+                nuValorDep.Value = nuValor.Value - nuValorResidual.Value;
+            }
+            catch (Exception)
+            {
+                
+            }
+        }
+        #endregion
+        #region calcularDepMes
+        private void nuValorDep_ValueChanged(object sender, EventArgs e)
+        {
+            if (nuPorcentaje.Value != 0 & nuValorDep.Value != 0)
+            {
+                calcularDepMes();
+            }
+        }
+
+        private void nuPorcentaje_ValueChanged(object sender, EventArgs e)
+        {
+            if (nuPorcentaje.Value != 0 & nuValorDep.Value != 0)
+            {
+                calcularDepMes();
+            }
+        }
+
+        private void calcularDepMes()
+        {
+            nuDepreciacionMes.Value = ((nuValorDep.Value * (nuPorcentaje.Value / 100)) / 12);
+        }
+        #endregion
     }
 }
