@@ -409,6 +409,8 @@
     <None Include="Resources\loupe %281%291.png" />
     <None Include="Resources\loupe2.png" />
     <None Include="Resources\loupe1.png" />
+    <None Include="Resources\quetzal.png" />
+    <None Include="Resources\business-and-finance.png" />
     <Content Include="value.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

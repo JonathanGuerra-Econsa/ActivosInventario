@@ -57,6 +57,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnDepreciar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -72,7 +73,7 @@
             this.btnAct.Image = global::Activos.Properties.Resources.refresh;
             this.btnAct.Location = new System.Drawing.Point(870, 105);
             this.btnAct.Name = "btnAct";
-            this.btnAct.Size = new System.Drawing.Size(188, 41);
+            this.btnAct.Size = new System.Drawing.Size(118, 41);
             this.btnAct.TabIndex = 12;
             this.btnAct.Text = "Actualizar";
             this.btnAct.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -89,7 +90,7 @@
             this.button2.Image = global::Activos.Properties.Resources.eraser;
             this.button2.Location = new System.Drawing.Point(870, 59);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(188, 41);
+            this.button2.Size = new System.Drawing.Size(216, 41);
             this.button2.TabIndex = 13;
             this.button2.Text = "Limpiar Buscador";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -125,7 +126,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(1046, 351);
+            this.dataGridView1.Size = new System.Drawing.Size(1074, 351);
             this.dataGridView1.TabIndex = 22;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
@@ -308,9 +309,9 @@
             this.button1.Image = global::Activos.Properties.Resources.Logo_excel_opt;
             this.button1.Location = new System.Drawing.Point(870, 152);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 41);
+            this.button1.Size = new System.Drawing.Size(118, 41);
             this.button1.TabIndex = 26;
-            this.button1.Text = "Imprimir Excel";
+            this.button1.Text = "Imprimir";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = false;
@@ -326,7 +327,7 @@
             this.button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button3.Location = new System.Drawing.Point(870, 12);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(188, 41);
+            this.button3.Size = new System.Drawing.Size(216, 41);
             this.button3.TabIndex = 27;
             this.button3.Text = "Agregar Activo";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -398,13 +399,30 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btnDepreciar
+            // 
+            this.btnDepreciar.BackColor = System.Drawing.Color.Transparent;
+            this.btnDepreciar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDepreciar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDepreciar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDepreciar.Image = global::Activos.Properties.Resources.business_and_finance;
+            this.btnDepreciar.Location = new System.Drawing.Point(994, 106);
+            this.btnDepreciar.Name = "btnDepreciar";
+            this.btnDepreciar.Size = new System.Drawing.Size(92, 87);
+            this.btnDepreciar.TabIndex = 38;
+            this.btnDepreciar.Text = "Depreciar";
+            this.btnDepreciar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnDepreciar.UseVisualStyleBackColor = false;
+            this.btnDepreciar.Click += new System.EventHandler(this.btnDepreciar_Click);
+            // 
             // Activos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Activos.Properties.Resources.fondo3;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1070, 556);
+            this.ClientSize = new System.Drawing.Size(1098, 556);
+            this.Controls.Add(this.btnDepreciar);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
@@ -456,5 +474,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbEmpresa;
+        private System.Windows.Forms.Button btnDepreciar;
     }
 }

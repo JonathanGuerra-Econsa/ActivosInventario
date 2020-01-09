@@ -45,8 +45,8 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -57,15 +57,15 @@
             this.dataGridView1.Location = new System.Drawing.Point(13, 112);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(775, 326);
+            this.dataGridView1.Size = new System.Drawing.Size(1073, 403);
             this.dataGridView1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(-9, 91);
+            this.label1.Location = new System.Drawing.Point(10, 91);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(816, 18);
+            this.label1.Size = new System.Drawing.Size(1076, 18);
             this.label1.TabIndex = 1;
             this.label1.Text = "*Este historial solo muestra los cambios que se realizen fuera de los inventarios" +
     " a excepción de realizar un cambio de estado.";
@@ -76,7 +76,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(354, 25);
+            this.label2.Location = new System.Drawing.Point(487, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 30);
             this.label2.TabIndex = 2;
@@ -86,9 +86,9 @@
             // 
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(127, 55);
+            this.label3.Location = new System.Drawing.Point(163, 55);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(561, 30);
+            this.label3.Size = new System.Drawing.Size(731, 30);
             this.label3.TabIndex = 3;
             this.label3.Text = "Nombre del Producto";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -99,7 +99,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Activos.Properties.Resources.FONDO_4;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(800, 471);
+            this.ClientSize = new System.Drawing.Size(1098, 556);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
