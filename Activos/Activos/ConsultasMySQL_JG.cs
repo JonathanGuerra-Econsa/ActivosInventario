@@ -12,7 +12,7 @@ namespace Activos
     {
         #region Variables
         //----------------------------------------------*Variables Gloables*--------------------------------------------//
-        string connectionString = @"Server=192.168.0.5;Database=activos;Uid=admin;Pwd=;port=3306;Convert Zero Datetime=True;";
+        string connectionString = @"Server=192.168.0.7;Database=activos;Uid=admin;Pwd=;port=3306;Convert Zero Datetime=True;";
         string Tabla_Departamento = "departamento";
         string Tabla_Usuario = "usuario";
         string Tabla_Tipo = "tipo";
@@ -172,7 +172,7 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlDataAdapter mysqlCmd = new MySqlDataAdapter(string.Format("SELECT {0}.idActivo as 'ID', {0}.descripcion as 'Descripcion', {1}.user as 'Usuario', {2}.nombre as 'Estado', {3}.nombre as 'Categoria', {4}.nombre as 'Empresa', {0}.fecha_ingreso as 'Fecha Ingreso' FROM {0} INNER JOIN {1} ON {1}.idUsuario = {0}.idusuario INNER JOIN {2} ON {2}.idEstado = {0}.idEstado INNER JOIN {3} ON {3}.idCategoria = {0}.idcategoria INNER JOIN {4} ON {4}.idEmpresa = {0}.idEmpresa ORDER BY idActivo", Tabla_Activo, Tabla_Usuario, Tabla_Estado, Tabla_Tipo, Tabla_Empresa), mysqlCon);
+                MySqlDataAdapter mysqlCmd = new MySqlDataAdapter(string.Format("SELECT a.idActivo as 'ID', a.descripcion as 'Descripcion', u.nombre as 'Usuario', es.nombre as 'Estado', t.Tipo as 'Tipo' FROM activo a INNER JOIN usuario u ON a.idUsuario = u.idUsuario INNER JOIN estado es ON a.idEstado = es.idEstado INNER JOIN tipo t ON a.idTipo = t.idTipo ORDER BY a.idActivo"), mysqlCon);
                 DataTable TableActivo = new DataTable();
                 mysqlCmd.Fill(TableActivo);
                 return TableActivo;
@@ -1145,6 +1145,20 @@ namespace Activos
                 MySqlCommand mysqlCmd = new MySqlCommand(string.Format("UPDATE {0} set DepAcumulada = (DepAcumulada + depreciacion_mes), ValorLibros = (Valor - DepAcumulada) WHERE (DepAcumulada + depreciacion_mes) <= valor_depreciable", Tabla_Activo), mysqlCon);
                 mysqlCmd.ExecuteNonQuery();
                 mysqlCon.Close();
+            }
+        }
+        #endregion
+        #region reporteActivoUsuario()
+        public DataTable reporteActivoUsuario(string idUser)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString)) 
+            {
+                mysqlCon.Open();
+                DataTable dt = new DataTable();
+                MySqlDataAdapter adapter = new MySqlDataAdapter(string.Format("SELECT * FROM activo WHERE idUser = '{0}'", idUser), mysqlCon);
+                adapter.Fill(dt);
+                mysqlCon.Close();
+                return dt;
             }
         }
         #endregion
