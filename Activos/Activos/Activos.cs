@@ -433,5 +433,17 @@ namespace Activos
                 }
             }
         }
+
+        private void btnReporte_Click(object sender, EventArgs e)
+        {
+            GenerarReporte generar = new GenerarReporte();
+            generar.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Bajas bajas = new Bajas();
+            bajas.ShowDialog();
+        }
     }
 }

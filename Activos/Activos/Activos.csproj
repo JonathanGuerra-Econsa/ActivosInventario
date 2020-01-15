@@ -113,6 +113,12 @@
     <Compile Include="Articulos.Designer.cs">
       <DependentUpon>Articulos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bajas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bajas.Designer.cs">
+      <DependentUpon>Bajas.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsultasMysql.cs" />
     <Compile Include="Control_Articulo.cs">
       <SubType>Form</SubType>
@@ -151,6 +157,12 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsultasMySQL_JG.cs" />
+    <Compile Include="GenerarReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarReporte.Designer.cs">
+      <DependentUpon>GenerarReporte.cs</DependentUpon>
+    </Compile>
     <Compile Include="Historial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +213,9 @@
     <EmbeddedResource Include="Articulos.resx">
       <DependentUpon>Articulos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Bajas.resx">
+      <DependentUpon>Bajas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control_Articulo.resx">
       <DependentUpon>Control_Articulo.cs</DependentUpon>
     </EmbeddedResource>
@@ -218,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarReporte.resx">
+      <DependentUpon>GenerarReporte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Historial.resx">
       <DependentUpon>Historial.cs</DependentUpon>
@@ -411,6 +429,11 @@
     <None Include="Resources\loupe1.png" />
     <None Include="Resources\quetzal.png" />
     <None Include="Resources\business-and-finance.png" />
+    <None Include="Resources\contract.png" />
+    <None Include="Resources\employee.png" />
+    <None Include="Resources\businessman.png" />
+    <None Include="Resources\low-price.png" />
+    <None Include="Resources\plane.png" />
     <Content Include="value.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
