@@ -11,7 +11,7 @@ namespace Activos
 {
     class ConsultasMysql
     {
-        private MySqlConnection connection = new MySqlConnection("datasource=192.168.0.5;port=3306;username=admin;password=;database=activos;");
+        private MySqlConnection connection = new MySqlConnection("datasource=192.168.0.7;port=3306;username=admin;password=;database=activos;");
         MySqlDataReader reader;
 
         public DataTable consulta(string consulta = "")
