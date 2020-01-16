@@ -33,7 +33,7 @@
             this.gbDashboard = new System.Windows.Forms.GroupBox();
             this.chk = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.btnAct = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbEmpresa = new System.Windows.Forms.ComboBox();
@@ -82,7 +82,7 @@
             this.gbDashboard.BackColor = System.Drawing.Color.White;
             this.gbDashboard.Controls.Add(this.chk);
             this.gbDashboard.Controls.Add(this.button2);
-            this.gbDashboard.Controls.Add(this.btnAct);
+            this.gbDashboard.Controls.Add(this.btnBuscar);
             this.gbDashboard.Controls.Add(this.groupBox3);
             this.gbDashboard.Controls.Add(this.groupBox2);
             this.gbDashboard.Controls.Add(this.groupBox1);
@@ -119,22 +119,24 @@
             this.button2.Text = "Limpiar \r\nBuscador";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // btnAct
+            // btnBuscar
             // 
-            this.btnAct.BackColor = System.Drawing.Color.Transparent;
-            this.btnAct.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAct.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAct.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAct.Image = global::Activos.Properties.Resources.refresh;
-            this.btnAct.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAct.Location = new System.Drawing.Point(636, 119);
-            this.btnAct.Name = "btnAct";
-            this.btnAct.Size = new System.Drawing.Size(127, 87);
-            this.btnAct.TabIndex = 4;
-            this.btnAct.Text = "Actualizar";
-            this.btnAct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAct.UseVisualStyleBackColor = false;
+            this.btnBuscar.BackColor = System.Drawing.Color.Transparent;
+            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBuscar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.Image = global::Activos.Properties.Resources.loupe__1_1;
+            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnBuscar.Location = new System.Drawing.Point(636, 119);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(127, 87);
+            this.btnBuscar.TabIndex = 4;
+            this.btnBuscar.Text = "Filtrar";
+            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // groupBox3
             // 
@@ -252,6 +254,7 @@
             this.cmbDepto.Name = "cmbDepto";
             this.cmbDepto.Size = new System.Drawing.Size(132, 23);
             this.cmbDepto.TabIndex = 0;
+            this.cmbDepto.SelectedIndexChanged += new System.EventHandler(this.cmbDepto_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -356,11 +359,13 @@
             this.cmbGrupo.Name = "cmbGrupo";
             this.cmbGrupo.Size = new System.Drawing.Size(132, 23);
             this.cmbGrupo.TabIndex = 0;
+            this.cmbGrupo.SelectedIndexChanged += new System.EventHandler(this.cmbGrupo_SelectedIndexChanged);
             // 
             // dgvActivos
             // 
             this.dgvActivos.AllowUserToAddRows = false;
             this.dgvActivos.AllowUserToDeleteRows = false;
+            this.dgvActivos.AllowUserToResizeRows = false;
             this.dgvActivos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvActivos.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -427,7 +432,7 @@
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Location = new System.Drawing.Point(305, 22);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(93, 69);
+            this.panel1.Size = new System.Drawing.Size(93, 80);
             this.panel1.TabIndex = 12;
             // 
             // txtJustificacion
@@ -495,6 +500,7 @@
             this.cmbDepartamento.Name = "cmbDepartamento";
             this.cmbDepartamento.Size = new System.Drawing.Size(225, 28);
             this.cmbDepartamento.TabIndex = 3;
+            this.cmbDepartamento.SelectedIndexChanged += new System.EventHandler(this.cmbDepartamento_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -600,7 +606,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button btnAct;
+        private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.TextBox txtTitulo;
         private System.Windows.Forms.Label lbFecha;
         private System.Windows.Forms.Label label13;

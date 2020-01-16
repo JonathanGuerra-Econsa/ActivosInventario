@@ -29,6 +29,7 @@ namespace Activos
         string Tabla_SubGrupo = "subgrupo";
         string Tabla_Grupo = "grupo";
         string Tabla_Grupo_Articulo = "grupo_articulo";
+        string Tabla_Caso = "caso";
         //---------------------------------------------------------------------------------------------------------------//
         //---------------------------------------------- * Variables de Reader Activo* -----------------------------------------//
 
@@ -112,7 +113,7 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlDataAdapter mySqlCmd = new MySqlDataAdapter(string.Format("SELECT idEstado as 'ID', nombre as 'Estado' FROM {0} WHERE idEstado != 5 ORDER BY idEstado", Tabla_Estado), mysqlCon);
+                MySqlDataAdapter mySqlCmd = new MySqlDataAdapter(string.Format("SELECT idEstado as 'ID', nombre as 'Estado' FROM {0} WHERE idEstado != 4 ORDER BY idEstado", Tabla_Estado), mysqlCon);
                 DataTable TableEstado = new DataTable();
                 mySqlCmd.Fill(TableEstado);
                 return TableEstado;
@@ -172,7 +173,7 @@ namespace Activos
             using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
             {
                 mysqlCon.Open();
-                MySqlDataAdapter mysqlCmd = new MySqlDataAdapter(string.Format("SELECT a.idActivo as 'ID', a.descripcion as 'Descripcion', u.nombre as 'Usuario', es.nombre as 'Estado', t.Tipo as 'Tipo' FROM activo a INNER JOIN usuario u ON a.idUsuario = u.idUsuario INNER JOIN estado es ON a.idEstado = es.idEstado INNER JOIN tipo t ON a.idTipo = t.idTipo ORDER BY a.idActivo"), mysqlCon);
+                MySqlDataAdapter mysqlCmd = new MySqlDataAdapter(string.Format("SELECT a.idActivo AS 'ID', a.descripcion AS 'Descripcion', u.nombre AS 'Usuario', es.nombre AS 'Estado', t.Tipo AS 'Tipo', em.nombre as 'Empresa', s.nombre as 'Subgrupo', g.nombre as 'Grupo' FROM activo a INNER JOIN usuario u ON a.idUsuario = u.idUsuario INNER JOIN estado es ON a.idEstado = es.idEstado INNER JOIN tipo t ON a.idTipo = t.idTipo INNER JOIN empresa em ON a.idEmpresa = em.idEmpresa INNER JOIN subgrupo s ON a.idSubgrupo = s.idSubgrupo INNER JOIN grupo g ON s.idGrupo = g.idGrupo WHERE a.idActivo NOT IN( SELECT idActivo FROM detalle_caso ) ORDER BY a.idActivo"), mysqlCon);
                 DataTable TableActivo = new DataTable();
                 mysqlCmd.Fill(TableActivo);
                 return TableActivo;
@@ -1160,6 +1161,59 @@ namespace Activos
                 mysqlCon.Close();
                 return dt;
             }
+        }
+        #endregion
+        #region Ingresar caso
+        public void ingresarCaso(string titulo, string fecha, string idSolicitante, string justificacion, string observacion, string idEstadoCaso)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO {0}(titulo, fecha, idSolicitante, justificacion, observacion, idEstadoCaso) VALUES('{1}', '{2}', '{3}', '{4}', '{5}', '{6}')", Tabla_Caso, titulo, fecha, idSolicitante, justificacion, observacion, idEstadoCaso ), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+                mysqlCon.Close();
+            }
+        }
+        #endregion
+        #region Ingresar detalle del caso
+        public void ingresarDetalle(string idCaso, string idActivos)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("INSERT INTO detalle_caso(idCaso, idActivo) SELECT '{0}', idActivo FROM activo WHERE idActivo in ({1})", new string[]{idCaso, idActivos}), mysqlCon);
+                mysqlCmd.ExecuteNonQuery();
+                mysqlCon.Close();
+            }
+        }
+        #endregion
+        #region obtenerIdCaso
+        public string obtenerIdCaso(string fecha)
+        {
+            string idCaso = "";
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mysqlCmd = new MySqlCommand(string.Format("SELECT idCaso FROM caso WHERE fecha = '{0}'", fecha), mysqlCon);
+                MySqlDataReader read = mysqlCmd.ExecuteReader();
+                while (read.Read())
+                {
+                    idCaso = read["idCaso"].ToString();
+                }
+            }
+            return idCaso;
+        }
+        #endregion
+        #region consulta
+        public DataTable consulta(string condicion)
+        {
+            DataTable data = new DataTable();
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlDataAdapter mySqlData = new MySqlDataAdapter(string.Format("SELECT a.idActivo AS 'ID', a.descripcion AS 'Descripcion', u.nombre AS 'Usuario', es.nombre AS 'Estado', t.Tipo AS 'Tipo' FROM activo a INNER JOIN usuario u ON a.idUsuario = u.idUsuario INNER JOIN estado es ON a.idEstado = es.idEstado INNER JOIN tipo t ON a.idTipo = t.idTipo " + condicion + " AND a.idActivo NOT IN( SELECT idActivo FROM detalle_caso) ORDER BY a.idActivo"), mysqlCon);
+            }
+            return data;
         }
         #endregion
     }

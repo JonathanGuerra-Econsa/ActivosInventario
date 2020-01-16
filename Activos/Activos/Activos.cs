@@ -20,7 +20,7 @@ namespace Activos
             InitializeComponent(); 
         }
 
-        private void Activos_Load(object sender, EventArgs e)
+        public void Activos_Load(object sender, EventArgs e)
         {
             #region datos
             dataGridView1.DataSource = mysql.consulta();
@@ -160,12 +160,12 @@ namespace Activos
             #endregion
         }
 
-        private void ArmarConsulta(object sender, EventArgs e)
+        public void ArmarConsulta(object sender, EventArgs e)
         {
             functionActualizar();
         }
 
-        private void functionActualizar()
+        public void functionActualizar()
         {
             if (cmbDepto.SelectedValue == null) return;
             StringBuilder consulta = new StringBuilder();
@@ -231,7 +231,7 @@ namespace Activos
             dataGridView1.DataSource = mysql.consulta(consulta.ToString());
         }
 
-        private void limpiarDatos(object sender, EventArgs e)
+        public void limpiarDatos(object sender, EventArgs e)
         {
             cmbUser.SelectedValue = 0;
             cmbTipo.SelectedValue = 0;
@@ -244,7 +244,7 @@ namespace Activos
             ArmarConsulta(sender, e);
         }
 
-        private void cmbGrupo_SelectedIndexChanged(object sender, EventArgs e)
+        public void cmbGrupo_SelectedIndexChanged(object sender, EventArgs e)
         {
             //if (cmbTipo.SelectedValue == null) return;
             DataTable subgrupo = new DataTable();
@@ -271,7 +271,7 @@ namespace Activos
             ArmarConsulta(sender,e);
         }
 
-        private void cmbDepto_SelectedIndexChanged(object sender, EventArgs e)
+        public void cmbDepto_SelectedIndexChanged(object sender, EventArgs e)
         {
             //if (cmbTipo.SelectedValue == null) return;
             if (cmbDepto.SelectedValue.ToString() == 0.ToString())
@@ -308,7 +308,7 @@ namespace Activos
             ArmarConsulta(sender, e);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        public void button3_Click(object sender, EventArgs e)
         {
             Agregar_Activo agregar = new Agregar_Activo();
             agregar.opcion = 1;
@@ -317,7 +317,7 @@ namespace Activos
             ArmarConsulta(sender, e);
         }
 
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        public void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
             var row = dataGridView1.CurrentRow.Index;
@@ -328,7 +328,7 @@ namespace Activos
             ArmarConsulta(sender,e);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void button1_Click(object sender, EventArgs e)
         {
             try
             {
@@ -392,13 +392,13 @@ namespace Activos
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        public void timer1_Tick(object sender, EventArgs e)
         {
             timer1.Stop();
             ArmarConsulta(sender,e);
         }
 
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        public void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             timer1.Stop();
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != 'a' && e.KeyChar != 'A' && e.KeyChar != '-' && e.KeyChar != '\'')
@@ -411,12 +411,12 @@ namespace Activos
             timer1.Start();
         }
 
-        private void cmbSubgrupo_SelectedIndexChanged(object sender, EventArgs e)
+        public void cmbSubgrupo_SelectedIndexChanged(object sender, EventArgs e)
         {
             ArmarConsulta(sender, e);
         }
 
-        private void btnDepreciar_Click(object sender, EventArgs e)
+        public void btnDepreciar_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Esta seguro de depreciar todos los activos?, una vez realizada esta acción no hay forma de retornar los datos", "Depreciar", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
@@ -434,16 +434,21 @@ namespace Activos
             }
         }
 
-        private void btnReporte_Click(object sender, EventArgs e)
+        public void btnReporte_Click(object sender, EventArgs e)
         {
             GenerarReporte generar = new GenerarReporte();
             generar.ShowDialog();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        public void button4_Click(object sender, EventArgs e)
         {
             Bajas bajas = new Bajas();
             bajas.ShowDialog();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
